@@ -1,7 +1,4 @@
 # Zombautomate
-
-Groupe: Alice Rivoal
-
 ## But Du Jeu  
 
 Le but du jeu est d'être le dernier survivant.
@@ -33,3 +30,4 @@ Chaque joueur influ sur les automates des autres joueurs.
 Pierre BELABBES
 Alexandre FERRERA
 Nicolas Homberg
+Alice Rivoal
