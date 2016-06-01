@@ -26,6 +26,7 @@ Chaque joueur influ sur les automates des autres joueurs.
 * Se déplacer si besoin et recommencer
 
 
+## Contributors
 
-
-t
+Pierre BELABBES
+Alexandre FERRERA
