@@ -1,5 +1,7 @@
 # Zombautomate
 
+Groupe: Alice Rivoal
+
 ## But Du Jeu  
 
 Le but du jeu est d'être le dernier survivant.
