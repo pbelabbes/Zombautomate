@@ -25,3 +25,6 @@ Chaque joueur influ sur les automates des autres joueurs.
 * On change d'état en fonction de l'action effectuée
 * Se déplacer si besoin et recommencer
 
+## Contributors
+
+Pierre BELABBES
