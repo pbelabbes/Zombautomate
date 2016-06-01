@@ -32,3 +32,4 @@ Chaque joueur influ sur les automates des autres joueurs.
 
 Pierre BELABBES
 Alexandre FERRERA
+Nicolas Homberg
