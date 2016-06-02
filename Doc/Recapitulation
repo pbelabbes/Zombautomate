@@ -1,0 +1,53 @@
+# Attributs #
+
+*Personnages:
+- Force de base
+- Vie 
+- Exp
+- Liste objets
+- (Vitesse)
+- Position
+
+*Zombies:
+- Vie
+- Force
+- Position
+- (Vitesse)
+
+
+
+
+# Récapitulation actions #
+
+- Se déplacer
+- Se battre -> Joueurs, zombies
+- Ramasser -> armes, nourriture
+- (Echanger) -> armes, nourriture
+- Voler
+- Planter
+
+*Donner un coup:
+- Zombie si perso case adjascente
+- Perso (selon automate)
+
+*Se déplacer:
+- (Changer orientation) -> voir affichage
+- Avancer
+
+*Ramasser:
+- Prendre objet (supprimer case)
+- Mettre dans liste
+
+*Echanger:
+- Partager équitablement la reserve de nourriture entre 2 alliés
+- Si personne ou ennemi -> Rien
+
+*Voler:
+- Prendre aléatoirement un objet de la liste (arme/nourriture) de son ennemi
+- Si ami ou personne -> Rien
+
+*Planter:
+- Planter une graine qui deviendra de la nourriture
+
+
+
