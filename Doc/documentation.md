@@ -1,6 +1,8 @@
-# Attributs #
+# Documentation Zombautomate
 
-*Personnages:
+## Entitées 
+
+### Personnages:
 - Force de base
 - Vie 
 - Exp
@@ -8,7 +10,7 @@
 - (Vitesse)
 - Position
 
-*Zombies:
+### Zombies:
 - Vie
 - Force
 - Position
@@ -17,7 +19,7 @@
 
 
 
-# Récapitulation actions #
+## Récapitulation actions 
 
 - Se déplacer
 - Se battre -> Joueurs, zombies
@@ -26,27 +28,27 @@
 - Voler
 - Planter
 
-*Donner un coup:
+### Donner un coup:
 - Zombie si perso case adjascente
 - Perso (selon automate)
 
-*Se déplacer:
+### Se déplacer:
 - (Changer orientation) -> voir affichage
 - Avancer
 
-*Ramasser:
+### Ramasser:
 - Prendre objet (supprimer case)
 - Mettre dans liste
 
-*Echanger:
+### Echanger:
 - Partager équitablement la reserve de nourriture entre 2 alliés
 - Si personne ou ennemi -> Rien
 
-*Voler:
+### Voler:
 - Prendre aléatoirement un objet de la liste (arme/nourriture) de son ennemi
 - Si ami ou personne -> Rien
 
-*Planter:
+### Planter:
 - Planter une graine qui deviendra de la nourriture
 
 
