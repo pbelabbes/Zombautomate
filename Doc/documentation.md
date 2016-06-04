@@ -1,6 +1,13 @@
 # Documentation Zombautomate
 
-## Entitées 
+
+### Entitées 
+
+- Vie
+- idEquipe
+- Force 
+- case ( ou position )
+- automate
 
 ### Personnages:
 - Force de base
@@ -16,17 +23,31 @@
 - Position
 - (Vitesse)
 
+## Actions et Décors 
 
+### Actions
 
+| ACTION      | REPRESENTATION    | IMPACT                     |
+| ----------- | :---------------: | :------------------------: |
+| Se déplacer | herbe             | Déplacement N,S,E,O        |
+| Se battre   | pomme             | Joueurs, Zombies		   |
+| Ramasser    | poire             | armes, nourriture -> herbe |
+| Echanger    | batte de baseball | armes, nourriture          |
+| Voler       | Katana 			  | armes, nourriture          | 
+| Planter     | pousse 			  | herbe -> pousse            |
+| Arroser     | lapin 			  | pousse -> arbre            | 
+| Deposer     | Forêt 			  | herbe -> rocher            |
 
-## Récapitulation actions 
+### Décors
 
-- Se déplacer
-- Se battre -> Joueurs, zombies
-- Ramasser -> armes, nourriture
-- (Echanger) -> armes, nourriture
-- Voler
-- Planter
+- Rocher
+- Herbe
+- Lapin
+- Pomme 
+- Poire
+- Forêt
+- Batte de Baseball
+- Katana
 
 ### Donner un coup:
 - Zombie si perso case adjascente
