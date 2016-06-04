@@ -7,7 +7,7 @@ package Model;
  * @author pierrebelabbes
  *
  */
-public abstract class Entity {
+public abstract class Character {
 
 	int hp ;
 	Player player;

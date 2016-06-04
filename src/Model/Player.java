@@ -13,6 +13,6 @@ public class Player {
 	
 	int id;
 	String name;
-	ArrayList<Entity> entities;
+	ArrayList<Character> entities;
 	int foodStock;
 }

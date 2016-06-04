@@ -10,8 +10,8 @@ package Model;
 public class Cell {
 
 		Decor decor;
-		Entity entity_on;
-		Entity owned_by;
+		Character entity_on;
+		Character owned_by;
 		Action action;
 		
 }
