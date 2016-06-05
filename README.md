@@ -5,7 +5,7 @@ Le but du jeu est d'être le dernier survivant.
 
 ## Description 
 
-Deux joueurs possède des survivants sur la carte et doivent rester envie face à une invasion de zombies.
+Deux joueurs possèdent des survivants sur la carte et doivent rester envie face à une invasion de zombies.
 Le comportement de chaque joueur est décris par un automate.
 Cet automate est un morceau de la map.
 Chaque joueur influ sur les automates des autres joueurs.
