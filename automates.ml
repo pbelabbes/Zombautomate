@@ -2,14 +2,24 @@
 type transition = etat * condition * action * direction  * etat * priorite
 type automate = transition list
 *)
-let automate_exemple = 
+
+
+(*Il faut compiler la suite pour faire fonctionner cet exemple *)
+let (automate_exemple: automate) = 
   [(1, ScanLoin(Pomme,N), Deplacer, N, 2,1) ;
-   (1,ScanProche(Pomme,N),Ramasser,N,2,1);]
+   (1, ScanProche(Pomme,N),Ramasser,N,2,1);
+   (1, ScanLoin(Ennemi,E),Deplacer,O,4,1);
+   (4, ScanLoin(Katana,S),Deplacer,S,5,1);
+   (5, ScanProche(Katana,E),Ramasser,E,6,1);
+   (6, ScanProche(Ennemi,N),Attaquer,N,6,1);
+   (3, ScanProche(Ennemi,E),Deplacer,O,3,1);
+  ];;
+
 
 
 (* LES TYPES *)
 
-type direction = N (* nord *) | S | E | O
+(* type direction = N (* nord *) | S | E | O *)
 
 type action =
 |Deplacer
@@ -30,9 +40,10 @@ type action =
 |Spray
 |Leave
 *)
-type retour = Direction of direction | Nombre of int
+type retour = N | S | E | O | Nombre of int
+(*Direction of direction | Nombre of int *)
 
-
+(*
 type decor =
 |Pomme
 |Rocher
@@ -42,10 +53,23 @@ type decor =
 |Arme
 |Arbre
 |Pousse
+  *)
 
-type personnage = Allie | Ennemi | Zombie
+(* type personnage = Allie | Ennemi | Zombie *)
 
-type cible = Decor of decor | Personnage of personnage
+type cible = 
+|Pomme
+|Rocher
+|Lapin
+|Batte_baseball
+|Katana
+|Arme
+|Arbre
+|Pousse
+|Allie
+|Ennemi
+|Zombie
+
 
 type condition =
 |ScanLoin of cible*retour (*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
@@ -53,11 +77,11 @@ type condition =
 
 type etat = int
 type priorite = int
-type transition = etat * condition * action * direction  * etat * priorite
+type transition = etat * condition * action * retour  * etat * priorite
 type automate = transition list
 
 let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
-  List.map  (fun direction -> (src, ScanLoin(cbl,Direction(direction)), act, direction , tgt, pri) ) [N;S;E;O];;
+  List.map  (fun direction -> (src, ScanLoin(cbl,direction), act, direction , tgt, pri) ) [N;S;E;O];;
 
-let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
-  List.map  (fun direction -> (src, ScanLoin(cbl,Direction(direction)), act, direction , tgt, pri) ) [N;S;E;O];;
+let (scan_proche_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
+  List.map  (fun direction -> (src, ScanProche(cbl,direction), act, direction , tgt, pri) ) [N;S;E;O];;
