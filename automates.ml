@@ -54,11 +54,15 @@ let (automate_perso_1: automate) =
   @
     presence_AD 0 Zombie Deplacer 1 1
   @
-    presence_AD 1 Zombie Deplacer 1 0
+    presence_AD 1 Zombie Deplacer 0 1
   @
     presence_AD 1 Arbre Cacher 0 1
   @ 
-    scan_loin_AD 1 Arbre Deplacer 1 1;;
+    scan_loin_AD 1 Arbre Deplacer 1 1
+  @
+    presence_AD 0 Ennemi Deplacer 1 1
+  @
+    presence_AD 1 Ennemi Voler 0 1 ;;
 
 
 let (automate_zombie: automate) = 
