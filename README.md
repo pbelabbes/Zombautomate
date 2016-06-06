@@ -27,8 +27,9 @@ Chaque joueur influe sur les automates des autres joueurs.
 ### Transitions-Automates-Représentation par un tableau
 
 2 solutions:
-* nombre de conditions fixé 
-* nombre de conditions calculées 
+* nombre de conditions fixées
+* nombre de conditions calculées : 
+
 On affecte à chaque transition donnée par le joueur un entier. Ainsi si le joueur dans son automate défini 15 conditions, le tableau resultant de celui-ci aura 15 lignes. Pour éviter d'avoir un trop grand nombre de condition oon peut définir un maximum même si on a déjà défini un "crédit de joueur" c'est à dire un certain nombre de cases qu'il lui est possible d'utiliser pour l'ensemble de ses joueurs.
 
 ## Contributors
