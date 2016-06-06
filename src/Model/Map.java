@@ -11,4 +11,9 @@ public class Map {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Cell[][] init( int taille){
+      return grid=new Cell[taille][taille];
+       
+     
+	}
 }
