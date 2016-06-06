@@ -209,7 +209,7 @@ public class Survivor extends Character{
 	}
 	
 	/**
-	 * La fonctioin arroser permet de faire d'une pousse un arbre 
+	 * La fonction arroser permet de faire d'une pousse un arbre 
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void arroser (char direction){
@@ -225,14 +225,41 @@ public class Survivor extends Character{
 			map.grid[p.x][p.y].decor=Decor.FOREST ;
 		}		
 	}
+	
 	/**
-	 * 
-	 * @param direction
-	 * @param decor
+	 * La fonction echanger permet à ddeux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
+	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void echange (char direction, Decor decor){
+	public void echanger (char direction){
 		
-		
+		Point p=new Point(this.cell.position);
+		switch (direction){
+		case 'N': p.y=p.y-1;break;				
+		case 'S': p.y=p.y+1;break;
+		case 'E': p.x=p.x+1;break;
+		case 'O': p.x=p.x-1;break;
+		default: ;
+		}
+		if ((this.map.grid[p.x][p.y].entity_on instanceof Survivor)&&(this.map.grid[p.x][p.y].entity_on.player==this.player)){
+			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].entity_on;
+			//vol d'armes de l'adversaire
+			int nb_arme_allie=ent_on.arme.size();
+			int nb_arme_moi=this.arme.size();
+			while (nb_arme_allie>nb_arme_moi+1){
+				int m=(int)(Math.random()*nb_arme_allie);
+				this.arme.add(ent_on.arme.get(m));
+				ent_on.arme.remove(m);
+				nb_arme_allie=ent_on.arme.size();
+				nb_arme_moi=this.arme.size();
+			}
+			while (nb_arme_moi>nb_arme_allie){
+				int m=(int)(Math.random()*nb_arme_moi);
+				ent_on.arme.add(this.arme.get(m));
+				this.arme.remove(m);
+				nb_arme_allie=ent_on.arme.size();
+				nb_arme_moi=this.arme.size();
+			}
+		}
 		
 	}
 	
@@ -242,7 +269,8 @@ public class Survivor extends Character{
 	 * 	  déplacer   DONE
 		  battre     DONE
 		 Ramasser   DONE
-		 Voler      DONE      
+		 Voler      DONE
+		 echanger   DONE      
 		 Planter    DONE 
 		 Arroser    DONE 
 		 Deposer    DONE
