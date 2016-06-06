@@ -6,15 +6,18 @@ type automate = transition list
 
 (*Il faut compiler la suite pour faire fonctionner cet exemple *)
 let (automate_exemple: automate) = 
-  [(1, ScanLoin(Pomme,N), Deplacer, N, 2,1) ;
-   (1, ScanProche(Pomme,N),Ramasser,N,2,1);
-   (1, ScanLoin(Ennemi,E),Deplacer,O,4,1);
-   (4, ScanLoin(Katana,S),Deplacer,S,5,1);
-   (5, ScanProche(Katana,E),Ramasser,E,6,1);
-   (6, ScanProche(Ennemi,N),Attaquer,N,6,1);
-   (3, ScanProche(Ennemi,E),Deplacer,O,3,1);
+  [(1, ScanLoin(Pomme,Dir(N)), Deplacer, N, 2,1) ;
+   (1, ScanProche(Pomme,Dir(N)),Ramasser,N,2,1);
+   (1, ScanLoin(Ennemi,Dir(E)),Deplacer,O,4,1);
+   (4, ScanLoin(Katana,Dir(S)),Deplacer,S,5,1);
+   (5, ScanProche(Katana,Dir(E)),Ramasser,E,6,1);
+   (6, ScanProche(Ennemi,Dir(N)),Attaquer,N,6,1);
+   (3, ScanProche(Ennemi,Dir(E)),Deplacer,O,3,1);
   ];;
 
+(*Un automate de guerrier *)
+let (automate_perso_1: automate) = 
+  [(0,
 
 
 (* LES TYPES *)
@@ -89,10 +92,10 @@ type automate = transition list
 
 
 
-
+(*On verra plus tard *)
 
 let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
-  List.map  (fun direction -> (src, ScanLoin(cbl,direction), act, direction , tgt, pri) ) [N;S;E;O];;
+  List.map  (fun direction -> (src, ScanLoin(cbl,Dir(direction)), act, direction , tgt, pri) ) [N;S;E;O];;
 
 let (scan_proche_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
-  List.map  (fun direction -> (src, ScanProche(cbl,direction), act, direction , tgt, pri) ) [N;S;E;O];;
+  List.map  (fun (direction:direction) -> (src, ScanProche(cbl,Dir(direction)), act, direction , tgt, pri) ) [N;S;E;O];;
