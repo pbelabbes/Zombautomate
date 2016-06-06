@@ -123,7 +123,6 @@ type cible =
 |Lapin
 |Batte_baseball
 |Katana
-|Arme
 |Arbre
 |Pousse
 |Allie
