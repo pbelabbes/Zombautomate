@@ -10,5 +10,4 @@ public enum Decor {
 	FOREST,
 	BASEBALL_BAT,
 	KATANA;
-	
 }
