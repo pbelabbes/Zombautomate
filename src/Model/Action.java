@@ -10,4 +10,7 @@ package Model;
 public class Action {
 	
 	String nom;
+	
+	
+
 }
