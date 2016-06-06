@@ -110,6 +110,7 @@ type decor =
 |Arme
 |Arbre
 |Pousse
+|Herbe
   *)
 
 (* type personnage = Allie | Ennemi | Zombie *)
@@ -126,6 +127,7 @@ type cible =
 |Allie
 |Ennemi
 |Zombie
+|Herbe
 
 
 type condition =
