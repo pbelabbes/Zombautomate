@@ -38,17 +38,35 @@ let (automate_perso_1: automate) =
     scan_loin_AD 1 Katana Deplacer 0 1;;
 
 
+(*Un automate de farmer *)
+let (automate_perso_1: automate) = 
+  presence_AD 0 Pomme Ramasser 0 1
+  @
+    presence_AD 0 Lapin Ramasser 0 1
+  @
+    scan_loin_AD 0 Pomme Deplacer 0 1
+  @
+    scan_loin_AD 0 Lapin Deplacer 0 1
+  @
+    presence_AD 0 Pousse Arroser 0 1
+  @
+    presence_AD 0 Herbe Planter 0 1
+  @
+    presence_AD 0 Zombie Deplacer 1 1
+  @
+    presence_AD 1 Zombie Deplacer 1 0
+  @
+    presence_AD 1 Arbre Cacher 0 1
+  @ 
+    scan_loin_AD 1 Arbre Deplacer 1 1;;
+
+
 let (automate_zombie: automate) = 
-  [(1, ScanProche(Ennemi,N),Attaquer,N,1,1) ;
-   (1, ScanProche(Ennemi,S),Attaquer,N,1,1);
-   (1, ScanProche(Ennemi,E),Attaquer,O,1,1);
-   (1, ScanProche(Ennemi,O),Attaquer,S,1,1);
-   (1, ScanLoin(Ennemi,N),Deplacer,N,1,1);
-   (1, ScanLoin(Ennemi,S),Deplacer,S,1,1);
-   (1, ScanLoin(Ennemi,E),Deplacer,E,1,1);
-   (1, ScanLoin(Ennemi,O),Deplacer,O,1,1);
-  ];;
-(*Mettre une priorité sur le ScanProche*)
+  presence_AD 0 Ennemi Attaquer 0 1
+  @
+  scan_loin_AD 0 Ennemi Deplacer 0 1;;
+
+(*Mettre une priorité sur presence*)
 
 
 
