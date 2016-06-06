@@ -14,4 +14,5 @@ public abstract class Character {
 	int strength ; 
 	Cell cell;
 	Automata automata;
+	Map map;
 }
