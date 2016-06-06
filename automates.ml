@@ -19,7 +19,7 @@ let (automate_exemple: automate) =
 
 (* LES TYPES *)
 
-(* type direction = N (* nord *) | S | E | O *)
+type direction = N (* nord *) | S | E | O 
 
 type action =
 |Deplacer
@@ -40,7 +40,7 @@ type action =
 |Spray
 |Leave
 *)
-type retour = N | S | E | O | Nombre of int
+type retour = Dir of direction | Nbr of int
 (*Direction of direction | Nombre of int *)
 
 (*
@@ -74,11 +74,22 @@ type cible =
 type condition =
 |ScanLoin of cible*retour (*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
 |ScanProche of cible*retour (*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+|Et of condition*condition
+|Present of cible*direction
+
+
+
 
 type etat = int
 type priorite = int
-type transition = etat * condition * action * retour  * etat * priorite
+type transition = etat * condition * action * direction  * etat * priorite
 type automate = transition list
+
+
+
+
+
+
 
 let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
   List.map  (fun direction -> (src, ScanLoin(cbl,direction), act, direction , tgt, pri) ) [N;S;E;O];;
