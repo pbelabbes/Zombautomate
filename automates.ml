@@ -15,9 +15,27 @@ let (automate_exemple: automate) =
    (3, ScanProche(Ennemi,Dir(E)),Deplacer,O,3,1);
   ];;
 
+(* let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri -> *)
+
+
+
 (*Un automate de guerrier *)
 let (automate_perso_1: automate) = 
-  [(0,
+  presence_AD 0 Katana Ramasser 1 1
+  @
+    presence_AD 0 Batte_baseball Ramasser 1 1
+  @
+    scan_loin_AD 0 Katana Deplacer 0 1
+  @
+    scan_loin_AD 0 Batte_baseball Deplacer 0 1
+  @
+    presence_AD 1 Ennemi Attaquer 1 1
+  @
+    scan_loin_AD 1 Ennemi Attaquer 1 1
+  @
+    scan_loin_AD 1 Batte_baseball Deplacer 0 1
+  @
+    scan_loin_AD 1 Katana Deplacer 0 1;;
 
 
 let (automate_zombie: automate) = 
@@ -113,3 +131,6 @@ let (scan_loin_AD: etat -> cible -> action -> etat -> priorite -> automate) = fu
 
 let (scan_proche_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
   List.map  (fun (direction:direction) -> (src, ScanProche(cbl,Dir(direction)), act, direction , tgt, pri) ) [N;S;E;O];;
+
+let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun src cbl act tgt pri ->
+  List.map (fun (direction:direction) -> (src, Present(cbl,direction), act, direction, tgt, pri) ) [N ; S ; E ; O];;
