@@ -15,6 +15,17 @@ let (automate_exemple: automate) =
    (3, ScanProche(Ennemi,E),Deplacer,O,3,1);
   ];;
 
+let (automate_zombie: automate) = 
+  [(1, ScanProche(Ennemi,N),Attaquer,N,1,1) ;
+   (1, ScanProche(Ennemi,S),Attaquer,N,1,1);
+   (1, ScanProche(Ennemi,E),Attaquer,O,1,1);
+   (1, ScanProche(Ennemi,O),Attaquer,S,1,1);
+   (1, ScanLoin(Ennemi,N),Deplacer,N,1,1);
+   (1, ScanLoin(Ennemi,S),Deplacer,S,1,1);
+   (1, ScanLoin(Ennemi,E),Deplacer,E,1,1);
+   (1, ScanLoin(Ennemi,O),Deplacer,O,1,1);
+  ];;
+(*Mettre une priorité sur le ScanProche*)
 
 
 (* LES TYPES *)
