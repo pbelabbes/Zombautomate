@@ -39,30 +39,32 @@ let (automate_perso_1: automate) =
 
 
 (*Un automate de farmer *)
-let (automate_perso_1: automate) = 
-  presence_AD 0 Pomme Ramasser 0 1
+let (automate_perso_1: automate) =
+   case_allie 0 Deplacer 0 1
   @
-    presence_AD 0 Lapin Ramasser 0 1
+   presence_AD 1 Pomme Ramasser 0 1
   @
-    scan_loin_AD 0 Pomme Deplacer 0 1
+    presence_AD 1 Lapin Ramasser 0 1
   @
-    scan_loin_AD 0 Lapin Deplacer 0 1
+    scan_loin_AD 1 Pomme Deplacer 0 1
   @
-    presence_AD 0 Pousse Arroser 0 1
+    scan_loin_AD 1 Lapin Deplacer 0 1
   @
-    presence_AD 0 Herbe Planter 0 1
+    presence_AD 1 Pousse Arroser 0 1
   @
-    presence_AD 0 Zombie Deplacer 1 1
+    presence_AD 1 Herbe Planter 0 1
   @
-    presence_AD 1 Zombie Deplacer 0 1
+    presence_AD 1 Zombie Deplacer 1 1
   @
-    presence_AD 1 Arbre Cacher 0 1
+    presence_AD 2 Zombie Deplacer 0 1
+  @
+    presence_AD 2 Arbre Cacher 0 1
   @ 
-    scan_loin_AD 1 Arbre Deplacer 1 1
+    scan_loin_AD 2 Arbre Deplacer 1 1
   @
     presence_AD 0 Ennemi Deplacer 1 1
   @
-    presence_AD 1 Ennemi Voler 0 1 ;;
+    presence_AD 2 Ennemi Voler 0 1 ;;
 
 
 let (automate_zombie: automate) = 
@@ -135,8 +137,9 @@ type condition =
 |ScanProche of cible*retour (*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
 |Et of condition*condition
 |Present of cible*direction
-
-
+|Case_allie
+|Case_ennemi
+|Case_neutre
 
 
 type etat = int
