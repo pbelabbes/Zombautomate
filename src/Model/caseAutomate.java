@@ -11,4 +11,19 @@ public class caseAutomate {
 		this.action=action;
 		this.condition=condition;
 	}
+
+
+	public String toString(Action action){
+		return ""+action;
+	}
+
+	public int etat_futur() {
+		return this.etat_futur;
+		
+	}
+	public Action action() {
+		return this.action;
+		
+	}
+	
 }

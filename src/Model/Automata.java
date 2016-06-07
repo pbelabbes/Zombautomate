@@ -34,20 +34,35 @@ public class Automata {
 		}
 		//Methodes
 		
+		private void ajoute(etatAutomate etat){
+			
+		if(inputs==0 ||etats==0) return;
+		int i=0;
+		int j=0;
+		while(i<etats && j<inputs && !etat.square.equals(states[i][j])){
+			
+					if(etat.square.equals(states[i][j])){
+					   states[i][etat.etat_courant]=etat.square;	
+			  		}
+					else if(j==inputs){j=0;i++;}
+					else j++;
+		}
+		
+	}	
 		public void automate(ArrayList<etatAutomate> liste){
 		
 			etatAutomate etat;
-			int i,j,k=0;
-			i=0;j=0;
-			while(k<liste.size()&& i<inputs){
-					etat=liste.get(k); 
-					if(j==etats){ i++; j=0;}
-					else {j++;}
-				  	states[i][etat.etat_courant]=etat.square;
+			for(int i=0;i<liste.size();i++){
+				etat=liste.get(i);
+				ajoute(etat);
 			}
 		}
 
+	
 		
+		/*
+		 * La fonction qui permet d'afficher le tablau d'entiers sous forme d'etats futurs 
+		 */
 		public void to_string(int width,int height){
 		//car le nombre d'entrees est de 8 pour tous les automates
 		for (int i=0;i<height;i++){
@@ -61,9 +76,10 @@ public class Automata {
 		public static void main(String[] args){
 			Automata auto= new Automata(1,2);
 			etatAutomate et_au=new etatAutomate();
+			int liste;
 			caseAutomate frame=
 			ArrayList<etatAutomate> liste=new ArrayList<etatAutomate>();
-			liste={{}
+			
 			auto.automate(liste);
 			System.out.println("nous allons afficher le tableau des actions \n");
 			auto.to_string (1,2);
