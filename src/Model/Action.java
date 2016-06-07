@@ -7,10 +7,26 @@ package Model;
  * @author pierrebelabbes
  *
  */
-public class Action {
+public enum Action {
 	
-	String nom;
+	ATTAQUER,
+	DEPLACER,
+	VOLER,
+	PLANTER,
+	ARROSER,
+	DEPOSER,
+	RAMASSER;
+}
+	
+
+
+	
+	
+ 	
+	
+	
+	
 	
 	
 
-}
+

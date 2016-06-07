@@ -22,6 +22,5 @@ public class Cell {
 		public Point position(){
 			return this.position;
 		}
-		public incrementer_abcisse
 		
 }
