@@ -31,7 +31,7 @@ let (automate_perso_1: automate) =
   @
     presence_AD 1 Ennemi Attaquer 1 1
   @
-    scan_loin_AD 1 Ennemi Attaquer 1 1
+    scan_loin_AD 1 Ennemi Deplacer 1 1
   @
     scan_loin_AD 1 Batte_baseball Deplacer 0 1
   @
