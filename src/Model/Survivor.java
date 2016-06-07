@@ -29,7 +29,7 @@ public class Survivor extends Character{
 	 * propre:
 	 * ArrayList<Arme> arme: la liste de ses armes.
 	 */
-	ArrayList<Arme> arme;
+	public ArrayList<Arme> arme;
 		
 	//constructeurs
 	/**
@@ -48,24 +48,7 @@ public class Survivor extends Character{
 	}
 
 	//Méthodes
-	/**
-	 * La fonction deplacer permet de déplacer le personnage dans une direction (Nord, Sud, Est, Ouest)
-	 * @param direction: indique la case adjacente dans laquelle effectuer l'action.
-	 */
-	public void deplacer (char direction) {
-		int x,y;
-		x=this.cell.position().x;
-		y=this.cell.position().y;
-		switch (direction){
-		//on modifie la position et donc la cellule du personnage
-		case 'O': this.cell=map.grid[x+1][y] ;break;
-		case 'S': this.cell=map.grid[x][y+1] ;break;
-		case 'N': this.cell=map.grid[x][y-1] ;break;
-		case 'E': this.cell=map.grid[x-1][y] ;break; 
-		default : //throw new Require ("visible"); 
-			     break;
-		}	
-	}
+	
 	
 	
 	/**
@@ -73,8 +56,8 @@ public class Survivor extends Character{
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void deposer ( char direction){
-		Point p=new Point(this.cell.position);
+	public void deposer (char direction){
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -82,8 +65,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].decor==Decor.GRASS){
-			map.grid[p.x][p.y].decor=Decor.ROCK;
+		if (map.grid[p.x][p.y].getDecor()==Decor.GRASS){
+			map.grid[p.x][p.y].setDecor(Decor.ROCK);
 		}				
 	}
 	
@@ -95,7 +78,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void ramasser(char direction){
-		Point p=new Point(this.cell.position);
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -103,7 +86,7 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		switch (this.map.grid[p.x][p.y-1].decor){
+		switch (this.map.grid[p.x][p.y-1].getDecor()){
 		case APPLE: this.player.foodStock=this.player.foodStock+ Nourriture.APPLE.getvalues();break;
 		case RABBIT: this.player.foodStock=this.player.foodStock+30;break;
 		case BASEBALL_BAT: 
@@ -114,43 +97,11 @@ public class Survivor extends Character{
 			this.arme.add(k);break;
 		default: ;
 		}
-		this.map.grid[p.x][p.y].decor=Decor.GRASS;
+		this.map.grid[p.x][p.y].setDecor(Decor.GRASS);
 	
 	}
 	
-	/**
-	 * La fonction attaquer porte un coup vers la case indiquée
-	 * Si un ennemi est present sur cette case, il perd des points de vie
-	 * Si il y a un rock sur cette case elle se casse et on découvre soit un katana soit un lapin à sa place
-	 * Sinon rien ne se passe
-	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
-	 */
-	public void attaquer(char direction){
-		Point p=new Point(this.cell.position);
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		
-		if (map.grid[p.x][p.y].entity_on!=null){
-			//On enlève des points de vie à l'adversaire
-			map.grid[p.x][p.y].entity_on.hp--;
-		}
-		else {
-			if (map.grid[p.x][p.y].decor==Decor.ROCK){
-				int r= (int)(Math.random()*.2);
-				if (r==0){
-					map.grid[p.x][p.y].decor=Decor.RABBIT;
-				}
-				else{
-					map.grid[p.x][p.y].decor=Decor.KATANA;
-				}
-			}
-		}
-	}
+	
 	
 	/**
 	 * La fonction voler permet à un character de tenter de voler dans la liste d'arme et dans le stock de nourriture d'un autre character ennemi
@@ -159,7 +110,7 @@ public class Survivor extends Character{
 	 */
 	public void voler (char direction){
 		
-		Point p=new Point(this.cell.position);
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -167,8 +118,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if ((this.map.grid[p.x][p.y].entity_on instanceof Survivor)&&(this.map.grid[p.x][p.y].entity_on.player!=this.player)){
-			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].entity_on;
+		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player!=this.player)){
+			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
 			int alea=ent_on.arme.size();
 			int m=(int)(Math.random()*.3);
@@ -195,7 +146,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void planter (char direction){
-		Point p=new Point(this.cell.position);
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -203,8 +154,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].decor==Decor.GRASS){
-			map.grid[p.x][p.y].decor=Decor.SPROUT ;
+		if (map.grid[p.x][p.y].getDecor()==Decor.GRASS){
+			map.grid[p.x][p.y].setDecor(Decor.SPROUT) ;
 		}		
 	}
 	
@@ -213,7 +164,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void arroser (char direction){
-		Point p=new Point(this.cell.position);
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -221,18 +172,18 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].decor==Decor.SPROUT){
-			map.grid[p.x][p.y].decor=Decor.FOREST ;
+		if (map.grid[p.x][p.y].getDecor()==Decor.SPROUT){
+			map.grid[p.x][p.y].setDecor(Decor.FOREST) ;
 		}		
 	}
 	
 	/**
-	 * La fonction echanger permet à ddeux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
+	 * La fonction echanger permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void echanger (char direction){
 		
-		Point p=new Point(this.cell.position);
+		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -240,8 +191,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if ((this.map.grid[p.x][p.y].entity_on instanceof Survivor)&&(this.map.grid[p.x][p.y].entity_on.player==this.player)){
-			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].entity_on;
+		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player==this.player)){
+			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
 			int nb_arme_allie=ent_on.arme.size();
 			int nb_arme_moi=this.arme.size();
@@ -262,18 +213,5 @@ public class Survivor extends Character{
 		}
 		
 	}
-	
-	/*
-	 * les actions a implementer sont:
-	 * 
-	 * 	  déplacer   DONE
-		  battre     DONE
-		 Ramasser   DONE
-		 Voler      DONE
-		 echanger   DONE      
-		 Planter    DONE 
-		 Arroser    DONE 
-		 Deposer    DONE
-		 */  
 	
 }
