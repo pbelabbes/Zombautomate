@@ -140,8 +140,5 @@ public abstract class Character {
 			}
 		}
 	}
-	
-	
-	
 
 }

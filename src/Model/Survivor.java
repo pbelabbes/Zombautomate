@@ -91,7 +91,7 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		switch (this.getMap().grid[p.x][p.y-1].getDecor()){
+		switch (this.getMap().grid[p.x][p.y].getDecor()){
 		case APPLE: this.getPlayer().foodStock=this.getPlayer().foodStock+ Nourriture.APPLE.getvalues();break;
 		case RABBIT: this.getPlayer().foodStock=this.getPlayer().foodStock+30;break;
 		case BASEBALL_BAT: 
@@ -182,10 +182,16 @@ public class Survivor extends Character{
 		}		
 	}
 	
+	
+	
+
+	
+	
+/*	
 	/**
 	 * La fonction swap permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
-	 */
+	 *
 	public void swap (char direction){
 		
 		Point p=new Point(this.getCell().getPosition());
@@ -199,24 +205,25 @@ public class Survivor extends Character{
 		if ((this.getMap().grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.getMap().grid[p.x][p.y].getEntity_on().getPlayer()==this.getPlayer())){
 			Survivor ent_on=(Survivor)this.getMap().grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
-			int nb_arme_allie=ent_on.weapon.size();
-			int nb_arme_moi=this.weapon.size();
-			while (nb_arme_allie>nb_arme_moi+1){
-				int m=(int)(Math.random()*nb_arme_allie);
+			int nb_weapon_ally=ent_on.weapon.size();
+			int nb_weapon_me=this.weapon.size();
+			while (nb_weapon_ally>nb_weapon_me+1){
+				int m=(int)(Math.random()*nb_weapon_ally);
 				this.weapon.add(ent_on.weapon.get(m));
 				ent_on.weapon.remove(m);
-				nb_arme_allie=ent_on.weapon.size();
-				nb_arme_moi=this.weapon.size();
+				nb_weapon_ally=ent_on.weapon.size();
+				nb_weapon_me=this.weapon.size();
 			}
-			while (nb_arme_moi>nb_arme_allie){
-				int m=(int)(Math.random()*nb_arme_moi);
+			while (nb_weapon_me>nb_weapon_ally){
+				int m=(int)(Math.random()*nb_weapon_me);
 				ent_on.weapon.add(this.weapon.get(m));
 				this.weapon.remove(m);
-				nb_arme_allie=ent_on.weapon.size();
-				nb_arme_moi=this.weapon.size();
+				nb_weapon_ally=ent_on.weapon.size();
+				nb_weapon_me=this.weapon.size();
 			}
 		}
 		
 	}
+*/
 	
 }
