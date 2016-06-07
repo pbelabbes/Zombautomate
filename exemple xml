@@ -9,6 +9,7 @@
 					<priorite>1</priorite>
 					<etat_futur>1</etat_futur>
 			</transition>
+			(dans le exmple.xml des transition on été add ici )
 		</automate>
 		<automate id="2">
 				<transition>

@@ -8,7 +8,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.xpath.XPathExpression;
+//import org.w3c.dom.xpath.XPathExpression;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,24 +71,25 @@ public class XMLReader {
 
 		 
 		
+		// se place sur le premeir noued automate.
+		Node node = racine.getFirstChild(); 
+
+		//recup la liste des transitions.
+		NodeList Noeuds = node.getChildNodes();
 		
-		//Node node = racine.getFirstChild(); 
-		//nextN = nextN.getFirstChild(); 
+		int nbNoeuds = Noeuds.getLength();
 		
-		NodeList racineNoeuds = racine.getChildNodes();
+		//System.out.println(Integer.toString(nbNoeuds));
 		
-		final int nbRacineNoeuds = racineNoeuds.getLength();
-		
-		System.out.println(Integer.toString(nbRacineNoeuds));
-		
-		for (int i = 0; i<nbRacineNoeuds; i++) {
-			System.out.println("i = "+  Integer.toString(i));
-		    System.out.println(racineNoeuds.item(i).getNodeName());
+		// parcour la liste des transition.
+		for (int i = 0; i<nbNoeuds; i++) {
+			//System.out.println("i = "+  Integer.toString(i));
+		    System.out.println(Noeuds.item(i).getNodeName());
 		}
 
 		
 		
-		// Player. add(autamate) 
+		// Player. add(automate) 
 		
 		return nbautomate ;
 	}
