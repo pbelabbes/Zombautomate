@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class Map {
 
@@ -9,12 +9,7 @@ public class Map {
 	
 
 	//Constructeurs 
-	public Map() {
-		
-	}
-
-
-	public Cell[][] init(int taille){
-      return grid=new Cell[taille][taille];
+	public Map(int taille) {
+		 grid=new Cell[taille][taille];
 	}
 }

@@ -11,12 +11,20 @@ import java.awt.Point;
 
 public class Automata {
 //Atributs
-		int etats;
-		int inputs;
+		private etats;
+		private inputs;
 		
 		caseAutomate[][] states;
         Point position; 
 	
+        public get_etats(){
+        	return this.etats;
+        }
+        
+        public get_inputs(){
+        	return this.inputs;
+        }
+                
 //constructeurs:
 		Automata(int height, int width){
 			this.etats=width;

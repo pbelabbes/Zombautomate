@@ -65,10 +65,10 @@ public class Cell {
 		public void majAutomate(){
 			if (this.owned_by!=null){
 				Point poscell=this.position;
-				Point posaut=this.owned_by.automata.position;
+				Point posaut=this.owned_by.getAutomata().position;
 				int x= poscell.x-posaut.x;
 				int y= poscell.y-posaut.y;
-				this.owned_by.automata.states[x][y].action=this.decor.getAction();
+				this.owned_by.getAutomata().states[x][y].action=this.decor.getAction();
 			}
 		}
 }
