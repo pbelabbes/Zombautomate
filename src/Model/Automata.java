@@ -11,13 +11,23 @@ import java.awt.Point;
 
 public class Automata {
 //Atributs
-		private int etats;
-		private int inputs;
+<<<<<<< HEAD
+		private etats;
+		private inputs;
 		
-		private caseAutomate[][] states;
-        private Point position; 
+		caseAutomate[][] states;
+        Point position; 
+	
+        public get_etats(){
+        	return this.etats;
+        }
         
-        //getter & setter
+        public get_inputs(){
+        	return this.inputs;
+        }
+                
+//constructeurs:
+           //getter & setter
         public int getEtats() {
 			return etats;
 		}
@@ -42,6 +52,7 @@ public class Automata {
 
 		//constructeurs:
 		public Automata(int height, int width){
+
 			this.etats=width;
 			this.inputs=height;
 			states=new caseAutomate[height][width];			
@@ -73,7 +84,17 @@ public class Automata {
 			}
 		}
 
-	
+	  //la fonction qui retourne les proportions de l'automate 
+		
+		public Point proportion(){
+		    Point p;
+		    int i,j;
+		    i=getPosition().x+getInputs();
+		    j=getPosition().y+getEtats();
+		    p.x=i;
+		    p.y=j;
+		    return p;
+		}
 		
 		/*
 		 * La fonction qui permet d'afficher le tablau d'entiers sous forme d'etats futurs 

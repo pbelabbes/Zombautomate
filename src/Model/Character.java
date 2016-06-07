@@ -4,7 +4,7 @@
 package Model;
 
 import java.awt.Point;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 /**
  * La classe abstraite Character représente chaque personnage present sur le jeu (survivant et zombies)

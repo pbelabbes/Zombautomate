@@ -69,6 +69,7 @@ public class Cell {
 				int x= poscell.x-posaut.x;
 				int y= poscell.y-posaut.y;
 				this.owned_by.getAutomata().getStates()[x][y].action=this.decor.getAction();
+
 			}
 		}
 }
