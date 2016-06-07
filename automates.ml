@@ -37,7 +37,6 @@ let (automate_perso_1: automate) =
   @
     scan_loin_AD 1 Katana Deplacer 0 1;;
 
-let test = Et(3,4);;
 
 (*Un automate de farmer *)
 let (automate_perso_2: automate) =
@@ -252,24 +251,26 @@ let (print_personnage: out_channel->automate*string->unit) = fun fic automate ->
 
 
 let rec (print_equipe: out_channel->equipe->unit) = fun fic equipe -> match equipe with
-  |aut::reste -> output_string fic "\n<persos>" ; print_personnage fic aut ; print_equipe fic reste
-  |[]->output_string fic "\n</persos>";;
+  |aut::reste ->  print_personnage fic aut ; print_equipe fic reste
+  |[]->();;
 
 
 
 
 (*exemple *)
-let equipe_1 = [(automate_perso_1,"guerrier")] @ [(automate_perso_2,"farmer")];;
 
-
-let fic = open_out "personnages_générés.xml";;
-print_entete fic "1.0" "UTF-8";;
-print_equipe fic (equipe_1);;
+let (make_xml: string->string->string->equipe->unit) = fun file_name version encodage equipe ->
+let fic = open_out file_name in
+print_entete fic version encodage;
+output_string fic "\n<persos>" ;
+print_equipe fic (equipe);
+output_string fic "\n</persos>";
 close_out fic;;
 
+let equipe_1 = [(automate_perso_1,"guerrier")] @ [(automate_perso_2,"farmer")];;
+
+make_xml "personnages_générés.xml" "1.0" "UTF-8" equipe_1;;
 
 
 
 
-
-let test = [Et(Case_alliee(N),Ou(Present(Pomme,N),Present(Lapin,N))) ; Ou(Case_alliee(N),Case_neutre(N)) ; Present(Pomme,N)];;
