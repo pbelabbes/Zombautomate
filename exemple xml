@@ -2,7 +2,7 @@
 <persos>
 		<automate id="1">
 				<transition>
-					<etat_courant>0</etat_courant>
+					<etat_courant>"0"</etat_courant>
 					<condition>Et(Ennemi(N),Ennemi(S))</condition>
 					<action>Attaquer</action>
 					<direction>N</direction>
