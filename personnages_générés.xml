@@ -258,7 +258,6 @@
 			<etat_futur>1</etat_futur>
 		</transition>
 	</automate>
-<persos>
 	<automate id ="farmer">
 		<transition>
 			<etat_courant>0</etat_courant>
