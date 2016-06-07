@@ -24,12 +24,12 @@ public abstract class Character {
 	 * 
 	 */
 	//Attributs
-	public int hp ;//points de vie 
-	public Player player;
-	public int strength ; 
-	public Cell cell;
-	public Automata automata;
-	public Map map;
+	private int hp ;//points de vie 
+	private Player player;
+	private int strength ; 
+	private Cell cell;
+	private Automata automata;
+	private Map map;
 	
 	
 	//Methodes
