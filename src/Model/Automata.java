@@ -11,27 +11,61 @@ import java.awt.Point;
 
 public class Automata {
 //Atributs
-		int etats;
-		int inputs;
+<<<<<<< HEAD
+		private etats;
+		private inputs;
 		
 		caseAutomate[][] states;
         Point position; 
 	
+        public get_etats(){
+        	return this.etats;
+        }
+        
+        public get_inputs(){
+        	return this.inputs;
+        }
+                
 //constructeurs:
 		Automata(int height, int width){
+=======
+		private int etats;
+		private int inputs;
+		
+		private caseAutomate[][] states;
+        private Point position; 
+        
+        //getter & setter
+        public int getEtats() {
+			return etats;
+		}
+
+		public int getInputs() {
+			return inputs;
+		}
+
+		public caseAutomate[][] getStates() {
+			return states;
+		}
+		public void setStates(caseAutomate[][] states) {
+			this.states = states;
+		}
+
+		public Point getPosition() {
+			return position;
+		}
+		public void setPosition(Point position) {
+			this.position = position;
+		}
+
+		//constructeurs:
+		public Automata(int height, int width){
+>>>>>>> 59685f55561dc4918ab63838ba473ab40d6739bf
 			this.etats=width;
 			this.inputs=height;
 			states=new caseAutomate[height][width];			
 		}
-		
-		public void set_position(int x,int y){
-			this.position.x=x;
-			this.position.y=y;
-		}
-		
-		public Point get_position(){
-			return this.position;
-		}
+
 		//Methodes
 		
 		private void ajoute(etatAutomate etat){
@@ -76,9 +110,8 @@ public class Automata {
 		public static void main(String[] args){
 			Automata auto= new Automata(1,2);
 			etatAutomate et_au=new etatAutomate();
-			int liste;
-			caseAutomate frame=
-			ArrayList<etatAutomate> liste=new ArrayList<etatAutomate>();
+			caseAutomate frame= ;
+			ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
 			
 			auto.automate(liste);
 			System.out.println("nous allons afficher le tableau des actions \n");

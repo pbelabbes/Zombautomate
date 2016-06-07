@@ -2,14 +2,14 @@ package Model;
 
 public enum Decor {
 
-	ROCK(Action.RAMASSER),//0
-	GRASS(Action.DEPLACER),//1
-	RABBIT(Action.ARROSER),//2
-	APPLE(Action.ATTAQUER),//3
-	SPROUT(Action.PLANTER),//4
-	FOREST(Action.DEPOSER),//5
-	BASEBALL_BAT(Action.ECHANGER),//6
-	KATANA(Action.VOLER);//7
+	ROCK(Action.PICK),//0
+	GRASS(Action.MOVE),//1
+	RABBIT(Action.WATER),//2
+	APPLE(Action.ATTACK),//3
+	SPROUT(Action.PLANT),//4
+	FOREST(Action.DROP),//5
+	BASEBALL_BAT(Action.HIDE),//6
+	KATANA(Action.STEAL);//7
 
 	private Action action;
 	
@@ -20,4 +20,5 @@ public enum Decor {
 	public Action getAction(){
 		return this.action;
 	}
+	
 }
