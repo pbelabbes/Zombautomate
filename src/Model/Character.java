@@ -39,10 +39,10 @@ public abstract class Character {
 		this.automata=automata;
 		this.map=map;
 	}
+	
 	public int getHp() {
 		return hp;
 	}
-
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
@@ -50,7 +50,6 @@ public abstract class Character {
 	public Player getPlayer() {
 		return player;
 	}
-
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
@@ -58,7 +57,6 @@ public abstract class Character {
 	public int getStrength() {
 		return strength;
 	}
-
 	public void setStrength(int strength) {
 		this.strength = strength;
 	}
@@ -66,7 +64,6 @@ public abstract class Character {
 	public Cell getCell() {
 		return cell;
 	}
-
 	public void setCell(Cell cell) {
 		this.cell = cell;
 	}
@@ -74,7 +71,6 @@ public abstract class Character {
 	public Automata getAutomata() {
 		return automata;
 	}
-
 	public void setAutomata(Automata automata) {
 		this.automata = automata;
 	}
@@ -82,7 +78,6 @@ public abstract class Character {
 	public Map getMap() {
 		return map;
 	}
-
 	public void setMap(Map map) {
 		this.map = map;
 	}
