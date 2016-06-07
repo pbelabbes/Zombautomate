@@ -10,4 +10,5 @@ public enum Decor {
 	FOREST,//5
 	BASEBALL_BAT,//6
 	KATANA;//7
+
 }

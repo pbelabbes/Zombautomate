@@ -17,16 +17,3 @@ public enum Action {
 	DEPOSER,
 	RAMASSER;
 }
-	
-
-
-	
-	
- 	
-	
-	
-	
-	
-	
-
-

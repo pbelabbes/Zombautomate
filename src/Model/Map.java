@@ -7,11 +7,13 @@ public class Map {
 	int width,height;
 	Cell[][] grid;
 	
-/*	public Map() {
-		// TODO Auto-generated constructor stub
+
+	//Constructeurs 
+	public Map() {
+		
 	}
-	*/
-//Constructeurs 
+
+
 	public Cell[][] init(int taille){
       return grid=new Cell[taille][taille];
 	}
