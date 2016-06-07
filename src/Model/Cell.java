@@ -60,4 +60,15 @@ public class Cell {
 			this.position=position;
 			return;
 		}
+		
+		
+		public void majAutomate(){
+			if (this.owned_by!=null){
+				Point poscell=this.position;
+				Point posaut=this.owned_by.getAutomata().getPosition();
+				int x= poscell.x-posaut.x;
+				int y= poscell.y-posaut.y;
+				this.owned_by.getAutomata().getStates()[x][y].action=this.decor.getAction();
+			}
+		}
 }

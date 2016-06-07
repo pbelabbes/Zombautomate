@@ -1,9 +1,9 @@
 package Model;
 
 public class caseAutomate {
-	Condition condition;
-	Action action;
-	int etat_futur;
+	public Condition condition;
+	public Action action;
+	public int etat_futur;
 	
 	
 	caseAutomate(int etat_futur,Action action,Condition condition){
@@ -11,4 +11,19 @@ public class caseAutomate {
 		this.action=action;
 		this.condition=condition;
 	}
+
+
+	public String toString(Action action){
+		return ""+action;
+	}
+
+	public int etat_futur() {
+		return this.etat_futur;
+		
+	}
+	public Action action() {
+		return this.action;
+		
+	}
+	
 }

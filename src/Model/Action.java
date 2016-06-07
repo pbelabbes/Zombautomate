@@ -9,11 +9,13 @@ package Model;
  */
 public enum Action {
 	
-	ATTAQUER,
-	DEPLACER,
-	VOLER,
-	PLANTER,
-	ARROSER,
-	DEPOSER,
-	RAMASSER;
+	ATTACK,
+	MOVE,
+	STEAL,
+	HIDE,
+	//SWAP,
+	PLANT,
+	WATER,
+	DROP,
+	PICK;
 }
