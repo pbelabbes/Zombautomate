@@ -48,11 +48,7 @@ public class Survivor extends Character{
 	 * 
 	 */
 	public Survivor(Player player, Automata automata, Map map) {
-		this.hp=100;
-		this.strength=1;
-		this.player=player;
-		this.automata=automata;
-		this.map=map;
+		super(player, automata, map);
 		this.weapon=null;
 	}
 
@@ -66,7 +62,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void drop (char direction){
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -74,8 +70,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].getDecor()==Decor.GRASS){
-			map.grid[p.x][p.y].setDecor(Decor.ROCK);
+		if (getMap().grid[p.x][p.y].getDecor()==Decor.GRASS){
+			getMap().grid[p.x][p.y].setDecor(Decor.ROCK);
 		}				
 	}
 	
@@ -87,7 +83,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void pick(char direction){
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -95,9 +91,9 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		switch (this.map.grid[p.x][p.y-1].getDecor()){
-		case APPLE: this.player.foodStock=this.player.foodStock+ Nourriture.APPLE.getvalues();break;
-		case RABBIT: this.player.foodStock=this.player.foodStock+30;break;
+		switch (this.getMap().grid[p.x][p.y-1].getDecor()){
+		case APPLE: this.getPlayer().foodStock=this.getPlayer().foodStock+ Nourriture.APPLE.getvalues();break;
+		case RABBIT: this.getPlayer().foodStock=this.getPlayer().foodStock+30;break;
 		case BASEBALL_BAT: 
 			Baseball_Bat b=new Baseball_Bat();
 			this.weapon.add(b);break;
@@ -106,7 +102,7 @@ public class Survivor extends Character{
 			this.weapon.add(k);break;
 		default: ;
 		}
-		this.map.grid[p.x][p.y].setDecor(Decor.GRASS);
+		this.getMap().grid[p.x][p.y].setDecor(Decor.GRASS);
 	
 	}
 	
@@ -119,7 +115,7 @@ public class Survivor extends Character{
 	 */
 	public void steal (char direction){
 		
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -127,8 +123,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player!=this.player)){
-			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
+		if ((this.getMap().grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.getMap().grid[p.x][p.y].getEntity_on().getPlayer()!=this.getPlayer())){
+			Survivor ent_on=(Survivor)this.getMap().grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
 			int alea=ent_on.weapon.size();
 			int m=(int)(Math.random()*.3);
@@ -138,13 +134,13 @@ public class Survivor extends Character{
 			}
 			//vol de nourriture de l'adversaire
 			m=(int)(Math.random()*.5);
-			if (ent_on.player.foodStock<m){
-				this.player.foodStock=this.player.foodStock+ent_on.player.foodStock;
-				ent_on.player.foodStock=0;
+			if (ent_on.getPlayer().foodStock<m){
+				this.getPlayer().foodStock=this.getPlayer().foodStock+ent_on.getPlayer().foodStock;
+				ent_on.getPlayer().foodStock=0;
 			}
 			else{
-				this.player.foodStock=this.player.foodStock+m;
-				ent_on.player.foodStock=ent_on.player.foodStock-m;
+				this.getPlayer().foodStock=this.getPlayer().foodStock+m;
+				ent_on.getPlayer().foodStock=ent_on.getPlayer().foodStock-m;
 			}
 		}	
 	}
@@ -155,7 +151,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void plant (char direction){
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -163,8 +159,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].getDecor()==Decor.GRASS){
-			map.grid[p.x][p.y].setDecor(Decor.SPROUT) ;
+		if (getMap().grid[p.x][p.y].getDecor()==Decor.GRASS){
+			getMap().grid[p.x][p.y].setDecor(Decor.SPROUT) ;
 		}		
 	}
 	
@@ -173,7 +169,7 @@ public class Survivor extends Character{
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void water (char direction){
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -181,8 +177,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if (map.grid[p.x][p.y].getDecor()==Decor.SPROUT){
-			map.grid[p.x][p.y].setDecor(Decor.FOREST) ;
+		if (getMap().grid[p.x][p.y].getDecor()==Decor.SPROUT){
+			getMap().grid[p.x][p.y].setDecor(Decor.FOREST) ;
 		}		
 	}
 	
@@ -192,7 +188,7 @@ public class Survivor extends Character{
 	 */
 	public void swap (char direction){
 		
-		Point p=new Point(this.cell.getPosition());
+		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
 		case 'S': p.y=p.y+1;break;
@@ -200,8 +196,8 @@ public class Survivor extends Character{
 		case 'O': p.x=p.x-1;break;
 		default: ;
 		}
-		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player==this.player)){
-			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
+		if ((this.getMap().grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.getMap().grid[p.x][p.y].getEntity_on().getPlayer()==this.getPlayer())){
+			Survivor ent_on=(Survivor)this.getMap().grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
 			int nb_arme_allie=ent_on.weapon.size();
 			int nb_arme_moi=this.weapon.size();
