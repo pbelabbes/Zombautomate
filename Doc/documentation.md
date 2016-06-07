@@ -30,6 +30,8 @@
 * Mise en place d’un menu intéractif
 * Gestion de la création et de la lecture XML.
 
+------
+
 ### Character 
 
 - Vie
