@@ -29,8 +29,17 @@ public class Survivor extends Character{
 	 * propre:
 	 * ArrayList<Arme> arme: la liste de ses armes.
 	 */
-	public ArrayList<Arme> arme;
-		
+	
+	private ArrayList<Arme> weapon;
+	
+	public ArrayList<Arme> getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(ArrayList<Arme> weapon) {
+		this.weapon = weapon;
+	}
+
 	//constructeurs
 	/**
 	 * Constructeur d'un survivant:
@@ -44,7 +53,7 @@ public class Survivor extends Character{
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.arme=null;
+		this.weapon=null;
 	}
 
 	//Méthodes
@@ -52,11 +61,11 @@ public class Survivor extends Character{
 	
 	
 	/**
-	 * La fonction deposer permet de poser une pierre sur de l'herbe
+	 * La fonction drop permet de poser une pierre sur de l'herbe
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void deposer (char direction){
+	public void drop (char direction){
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
@@ -72,12 +81,12 @@ public class Survivor extends Character{
 	
 	
 	/**
-	 * La fonction ramasser permet de récupérer de la nourriture ou des armes posées sur le sol
+	 * La fonction pick permet de récupérer de la nourriture ou des armes posées sur le sol
 	 * Elle met à jour les données du joueur et du personnage
 	 * Elle ne fait aucune action si la case indiquée ne correspond pas au décor de nourriture ou d'arme
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void ramasser(char direction){
+	public void pick(char direction){
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
@@ -91,10 +100,10 @@ public class Survivor extends Character{
 		case RABBIT: this.player.foodStock=this.player.foodStock+30;break;
 		case BASEBALL_BAT: 
 			Baseball_Bat b=new Baseball_Bat();
-			this.arme.add(b);break;
+			this.weapon.add(b);break;
 		case KATANA: 
 			Katana k=new Katana();
-			this.arme.add(k);break;
+			this.weapon.add(k);break;
 		default: ;
 		}
 		this.map.grid[p.x][p.y].setDecor(Decor.GRASS);
@@ -104,11 +113,11 @@ public class Survivor extends Character{
 	
 	
 	/**
-	 * La fonction voler permet à un character de tenter de voler dans la liste d'arme et dans le stock de nourriture d'un autre character ennemi
+	 * La fonction steal permet à un character de tenter de voler dans la liste d'arme et dans le stock de nourriture d'un autre character ennemi
 	 * Si il n'y a pas d'ennemi sur la case indiquée, il ne se passe rien
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void voler (char direction){
+	public void steal (char direction){
 		
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
@@ -121,11 +130,11 @@ public class Survivor extends Character{
 		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player!=this.player)){
 			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
-			int alea=ent_on.arme.size();
+			int alea=ent_on.weapon.size();
 			int m=(int)(Math.random()*.3);
 			if (alea<m){
-				this.arme.add(ent_on.arme.get(m));
-				ent_on.arme.remove(m);	
+				this.weapon.add(ent_on.weapon.get(m));
+				ent_on.weapon.remove(m);	
 			}
 			//vol de nourriture de l'adversaire
 			m=(int)(Math.random()*.5);
@@ -142,10 +151,10 @@ public class Survivor extends Character{
 	
 	
 	/**
-	 * La fonction planter permet de faire apparaitre une pousse dans la case indiquée si le decor de cette case était de l'herbe
+	 * La fonction plant permet de faire apparaitre une pousse dans la case indiquée si le decor de cette case était de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void planter (char direction){
+	public void plant (char direction){
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
@@ -160,10 +169,10 @@ public class Survivor extends Character{
 	}
 	
 	/**
-	 * La fonction arroser permet de faire d'une pousse un arbre 
+	 * La fonction water permet de faire d'une pousse un arbre 
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void arroser (char direction){
+	public void water (char direction){
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
 		case 'N': p.y=p.y-1;break;				
@@ -178,10 +187,10 @@ public class Survivor extends Character{
 	}
 	
 	/**
-	 * La fonction echanger permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
+	 * La fonction swap permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void echanger (char direction){
+	public void swap (char direction){
 		
 		Point p=new Point(this.cell.getPosition());
 		switch (direction){
@@ -194,21 +203,21 @@ public class Survivor extends Character{
 		if ((this.map.grid[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.map.grid[p.x][p.y].getEntity_on().player==this.player)){
 			Survivor ent_on=(Survivor)this.map.grid[p.x][p.y].getEntity_on();
 			//vol d'armes de l'adversaire
-			int nb_arme_allie=ent_on.arme.size();
-			int nb_arme_moi=this.arme.size();
+			int nb_arme_allie=ent_on.weapon.size();
+			int nb_arme_moi=this.weapon.size();
 			while (nb_arme_allie>nb_arme_moi+1){
 				int m=(int)(Math.random()*nb_arme_allie);
-				this.arme.add(ent_on.arme.get(m));
-				ent_on.arme.remove(m);
-				nb_arme_allie=ent_on.arme.size();
-				nb_arme_moi=this.arme.size();
+				this.weapon.add(ent_on.weapon.get(m));
+				ent_on.weapon.remove(m);
+				nb_arme_allie=ent_on.weapon.size();
+				nb_arme_moi=this.weapon.size();
 			}
 			while (nb_arme_moi>nb_arme_allie){
 				int m=(int)(Math.random()*nb_arme_moi);
-				ent_on.arme.add(this.arme.get(m));
-				this.arme.remove(m);
-				nb_arme_allie=ent_on.arme.size();
-				nb_arme_moi=this.arme.size();
+				ent_on.weapon.add(this.weapon.get(m));
+				this.weapon.remove(m);
+				nb_arme_allie=ent_on.weapon.size();
+				nb_arme_moi=this.weapon.size();
 			}
 		}
 		
