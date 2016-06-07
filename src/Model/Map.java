@@ -8,7 +8,7 @@ public class Map {
 	Cell[][] grid;
 	
 	public Map() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Cell[][] init( int taille){
