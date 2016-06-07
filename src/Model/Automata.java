@@ -6,6 +6,7 @@ package Model;
  */
 
 import java.util.ArrayList;
+import java.awt.Point;
 
 
 public class Automata {
@@ -13,100 +14,59 @@ public class Automata {
 		int etats;
 		int inputs;
 		
-		caseAutomate[][] actions;
-		int[][] states;
-
+		caseAutomate[][] states;
+        Point position; 
 	
 //constructeurs:
-		Automata(int nb_etats){
-			this.etats=nb_etats;
-			//le nombre de nos entrees est fixe a 8
-			this.inputs=8;
-			transition(nb_etats);
-			action(nb_etats);
-			
+		Automata(int height, int width){
+			this.etats=width;
+			this.inputs=height;
+			states=new caseAutomate[height][width];			
 		}
 		
-		private void transition (int taille){
-			
-			 states=new int[8][taille];
-			
+		public void set_position(int x,int y){
+			this.position.x=x;
+			this.position.y=y;
 		}
 		
-		private void action(int taille){
-			 actions=new Action[8][taille];
+		public Point get_position(){
+			return this.position;
 		}
-		
-		
 		//Methodes
 		
-		//la liste a donner en parametre est de type :
-		//{{0.1.POMME,1},.......}
-		public void automate(ArrayList<etatAutomate> liste,int nb_etat){
+		public void automate(ArrayList<etatAutomate> liste){
 		
 			etatAutomate etat;
-			transition(nb_etat);
-			action(nb_etat);
-			
-			for (int i=0;i<liste.size();i++){
-					etat=liste.get(i);
-				  	states[etat.condition][etat.etat_courant]=etat.etat_futur;
-					actions[etat.condition][etat.etat_courant]=etat.action;
-				}
+			int i,j,k=0;
+			i=0;j=0;
+			while(k<liste.size()&& i<inputs){
+					etat=liste.get(k); 
+					if(j==etats){ i++; j=0;}
+					else {j++;}
+				  	states[i][etat.etat_courant]=etat.square;
 			}
+		}
 
 		
-		public void to_string_etats (int taille){
-		
+		public void to_string(int width,int height){
 		//car le nombre d'entrees est de 8 pour tous les automates
-		for (int i=0;i<8;i++){
-		     for (int j=0;j<taille;j++){
-		    	 System.out.println(this.states[i][j]+",");
+		for (int i=0;i<height;i++){
+		     for (int j=0;j<width;j++){
+		    	 System.out.println(this.states[i][j].etat_futur+",");
 		     } 
 		     System.out.println("\n");
 		}
-		}
 		
-		public void to_string_actions (int taille){
-			
-			//car le nombre d'entrees est de 8 pour tous les automates
-			for (int i=0;i<8;i++){
-			     for (int j=0;j<taille;j++){
-			    	 System.out.println(this.actions[i][j]+",");
-			     } 	
-			     System.out.println("\n");
-			}
-			}
+        }		
 		public static void main(String[] args){
-			Automata auto= new Automata(3);
-			etatAutomate et=new etatAutomate();
-			et.action=Action.RAMASSER;
-			et.condition=3;
-			et.etat_futur=1;
-			et.etat_courant=0;
+			Automata auto= new Automata(1,2);
+			etatAutomate et_au=new etatAutomate();
+			caseAutomate frame=
 			ArrayList<etatAutomate> liste=new ArrayList<etatAutomate>();
-			liste.add(et);
-			et.etat_courant=1;
-			et.etat_futur=0;
-			et.condition=3;
-			liste.add(et);
-			et.etat_courant=2;
-			et.condition=6;
-			et.etat_futur=2;
-			liste.add(et);
-			et.action=Action.ARROSER;
-			et.condition=4;
-			et.etat_courant=1;
-			
-			
-			
-				//{{0,3,RAMASSER,1},{1,2,RAMASSER,0},{1,4,ARROSER,2},{2,6,RAMASSER,2}};
-			
-			auto.automate(liste,3);
+			liste={{}
+			auto.automate(liste);
 			System.out.println("nous allons afficher le tableau des actions \n");
-			auto.to_string_actions (3);
-			System.out.println("nous allons afficher le tableau des states \n");
-			auto.to_string_etats (3);
+			auto.to_string (1,2);
 		}
 }
 
