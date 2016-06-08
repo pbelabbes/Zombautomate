@@ -61,7 +61,11 @@ public class Cell {
 			return;
 		}
 		
-		
+		//Méthode
+		/**
+		 * La fonction majAutomate permet de mettre à jour l'automate du joueur si la cellule appartient à son automate
+		 * Elle change uniquement l'action effectu
+		 */
 		public void majAutomate(){
 			if (this.owned_by!=null){
 				Point poscell=this.position;
@@ -69,6 +73,7 @@ public class Cell {
 				int x= poscell.x-posaut.x;
 				int y= poscell.y-posaut.y;
 				this.owned_by.getAutomata().getStates()[x][y].action=this.decor.getAction();
+
 			}
 		}
 }

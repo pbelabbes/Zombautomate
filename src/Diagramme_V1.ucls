@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-<<<<<<< HEAD
-  <enumeration id="1" language="java" name="Model.Action" project="zombautomate" 
-    file="/zombautomate/src/Model/Action.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="297" y="245"/>    
-=======
   <class id="1" language="java" name="Model.Katana" project="zombautomate" file="/zombautomate/src/Model/Katana.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="123" y="738"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="67" y="845"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-<<<<<<< HEAD
-  </enumeration>  
-  <class id="2" language="java" name="Model.Automata" project="zombautomate" 
-    file="/zombautomate/src/Model/Automata.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="516" y="432"/>    
-=======
   </class>  
   <class id="2" language="java" name="Model.Baseball_Bat" project="zombautomate" 
     file="/zombautomate/src/Model/Baseball_Bat.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="242" y="737"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="248" y="847"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -34,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Model.Arme" project="zombautomate" file="/zombautomate/src/Model/Arme.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="189" y="566"/>    
+    <position height="-1" width="-1" x="165" y="641"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -43,7 +30,7 @@
   </class>  
   <enumeration id="4" language="java" name="Model.Decor" project="zombautomate" 
     file="/zombautomate/src/Model/Decor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1377" y="530"/>    
+    <position height="-1" width="-1" x="1270" y="-70"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -52,7 +39,7 @@
   </enumeration>  
   <enumeration id="5" language="java" name="Model.Action" project="zombautomate" 
     file="/zombautomate/src/Model/Action.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1049" y="529"/>    
+    <position height="-1" width="-1" x="1070" y="87"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -61,7 +48,7 @@
   </enumeration>  
   <class id="6" language="java" name="Model.Survivor" project="zombautomate" 
     file="/zombautomate/src/Model/Survivor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="389" y="545"/>    
+    <position height="-1" width="-1" x="390" y="670"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -70,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="Model.Zombie" project="zombautomate" file="/zombautomate/src/Model/Zombie.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="572" y="492"/>    
+    <position height="-1" width="-1" x="590" y="594"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -97,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="Model.caseAutomate" project="zombautomate" 
     file="/zombautomate/src/Model/caseAutomate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1048" y="319"/>    
+    <position height="-1" width="-1" x="1066" y="319"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -106,419 +93,278 @@
   </class>  
   <class id="11" language="java" name="Model.Cell" project="zombautomate" file="/zombautomate/src/Model/Cell.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="937" y="22"/>    
+    <position height="-1" width="-1" x="896" y="-68"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-<<<<<<< HEAD
-  <class id="9" language="java" name="Model.Survivor" project="zombautomate" 
-    file="/zombautomate/src/Model/Survivor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="655" y="682"/>    
-=======
-  <class id="12" language="java" name="Model.Condition" project="zombautomate" 
+  <enumeration id="12" language="java" name="Model.Condition" project="zombautomate" 
     file="/zombautomate/src/Model/Condition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1285" y="319"/>    
+    <position height="-1" width="-1" x="1065" y="655"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </class>  
+  </enumeration>  
   <class id="13" language="java" name="Model.etatAutomate" project="zombautomate" 
     file="/zombautomate/src/Model/etatAutomate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1291" y="188"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="1316" y="320"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-<<<<<<< HEAD
-  <class id="10" language="java" name="Model.etatAutomate" project="zombautomate" 
-    file="/zombautomate/src/Model/etatAutomate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="220" y="69"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="Model.Katana" project="zombautomate" file="/zombautomate/src/Model/Katana.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="64" y="645"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="Model.mainXML" project="zombautomate" file="/zombautomate/src/Model/mainXML.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="150" y="313"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="13" language="java" name="Model.Nourriture" project="zombautomate" 
-    file="/zombautomate/src/Model/Nourriture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="169" width="120" x="8" y="-27"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="14" language="java" name="Model.Condition" project="zombautomate" 
-    file="/zombautomate/src/Model/Condition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="469" y="205"/>    
-=======
   <class id="14" language="java" name="Model.mainXML" project="zombautomate" file="/zombautomate/src/Model/mainXML.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="248" y="94"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="323" y="-37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-<<<<<<< HEAD
-  <class id="15" language="java" name="Model.caseAutomate" project="zombautomate" 
-    file="/zombautomate/src/Model/caseAutomate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="223" y="560"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="Model.Baseball_Bat" project="zombautomate" 
-    file="/zombautomate/src/Model/Baseball_Bat.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="160" y="744"/>    
-=======
   <class id="15" language="java" name="Model.Map" project="zombautomate" file="/zombautomate/src/Model/Map.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="454" y="21"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="456" y="-7"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-<<<<<<< HEAD
-  <class id="17" language="java" name="Model.Arme" project="zombautomate" file="/zombautomate/src/Model/Arme.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="406" y="673"/>    
-=======
   <enumeration id="16" language="java" name="Model.Nourriture" project="zombautomate" 
     file="/zombautomate/src/Model/Nourriture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1240" y="653"/>    
+    <position height="-1" width="-1" x="1282" y="142"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="17" language="java" name="Model.Player" project="zombautomate" file="/zombautomate/src/Model/Player.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="226" y="318"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="Model.XMLReader" project="zombautomate" 
+  <class id="17" language="java" name="Model.XMLReader" project="zombautomate" 
     file="/zombautomate/src/Model/XMLReader.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="128" y="89"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <position height="-1" width="-1" x="156" y="-39"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-<<<<<<< HEAD
-  <association id="18">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="19" name="automata">        
-        <position height="0" width="0" x="20" y="15"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="20" y="15"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <class id="18" language="java" name="Model.Player" project="zombautomate" file="/zombautomate/src/Model/Player.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="167" y="316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="Model.Condition_fonction" project="zombautomate" 
+    file="/zombautomate/src/Model/Condition_fonction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1306" y="642"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="Model.transfer" project="zombautomate" 
+    file="/zombautomate/src/Model/transfer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="839" y="759"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="21">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="22" name="square"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <association id="25">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="26" name="owned_by">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="30" name="player">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="33" name="arme"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="36" name="decor">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="39" name="cell">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="40" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="42" name="entities">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="43" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-=======
-  <association id="19">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="20" name="arme"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="23">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="24" name="condition"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="27" name="entity_on"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="30" name="square"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="33" name="player"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-<<<<<<< HEAD
-  <association id="44">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="45" name="action"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="48" name="entity_on">        
+      <attribute id="22" name="grid">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="51">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <association id="52">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="53" name="condition"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="55">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="56" name="states"/>      
-      <multiplicity id="57" minimum="0" maximum="2147483647"/>    
-=======
-  <generalization id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="36">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="37" name="action"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="40" name="grid"/>      
-      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="43" name="states"/>      
-      <multiplicity id="44" minimum="0" maximum="2147483647"/>    
+  <association id="24">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="25" name="entities">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="28">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="29" name="action">        
+        <position height="0" width="0" x="21" y="-442"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="21" y="-442"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="32" name="square">        
+        <position height="0" width="0" x="18" y="0"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="0" width="0" x="18" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="45">    
+  <association id="34">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="35" name="states">        
+        <position height="0" width="0" x="18" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="18" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="38" name="action">        
+        <position height="0" width="0" x="21" y="-442"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="21" y="-442"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <association id="41">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="46" name="owned_by"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
+      <attribute id="42" name="owned_by">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="45" name="decor">        
+        <position height="0" width="0" x="-107" y="-600"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-107" y="-600"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
   <association id="48">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="49" name="entities"/>      
-      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="51">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="52" name="map"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
+      <attribute id="49" name="map">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="54">    
+  <association id="51">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="55" name="automata"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
+      <attribute id="52" name="automata">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="55" name="player">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="57">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="58" name="cell"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="58" name="cell">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="60">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="61" name="action"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="61" name="entity_on">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="63">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
   </generalization>  
   <association id="64">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="65" name="decor"/>      
-      <multiplicity id="66" minimum="0" maximum="1"/>    
->>>>>>> 6200ea978afbb97cfb7920ed8ac9581c0f6ee31f
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="65" name="condition">        
+        <position height="0" width="0" x="-220" y="336"/>      
+      </attribute>      
+      <multiplicity id="66" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-220" y="336"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="67">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

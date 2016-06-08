@@ -7,7 +7,7 @@ public enum Decor {
 	RABBIT(Action.WATER),//2
 	APPLE(Action.ATTACK),//3
 	SPROUT(Action.PLANT),//4
-	FOREST(Action.DROP),//5
+	TREE(Action.DROP),//5
 	BASEBALL_BAT(Action.HIDE),//6
 	KATANA(Action.STEAL);//7
 
