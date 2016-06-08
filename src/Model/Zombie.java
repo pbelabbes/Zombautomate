@@ -19,9 +19,9 @@ public class Zombie extends Character {
 		default: ;
 		}
 		
-		if (getMap().grid[p.x][p.y].getEntity_on()!=null  && getMap().getGrid()[p.x][p.y].getDecor()!=Decor.TREE){
+		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null  && getMap().getGrid()[p.x][p.y].getDecor()!=Decor.TREE){
 			//On enlève des points de vie à l'adversaire
-			getMap().getGrid()[p.x][p.y].getEntity_on().hp--;
+			getMap().getGrid()[p.x][p.y].getEntity_on().setHp(getMap().getGrid()[p.x][p.y].getEntity_on().getHp()-1);
 		}
 		else {
 			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){

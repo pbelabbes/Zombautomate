@@ -1,17 +1,26 @@
 package Model;
 
 //import java.util.ArrayList;
-
+/**
+ * La classe Map représente le terrain de jeu
+ * Elle est caractérisée par 
+ * 
+ *
+ */
 public class Map {
 
 	private int width,height;
 	private Cell[][] grid;
 	
-
+	//Constructeurs 
+	public Map(int taille) {
+		 grid=new Cell[taille][taille];
+	}
+	
+	//Getter et Setter
 	public int getWidth() {
 		return width;
 	}
-
 	public void setWidth(int width) {
 		this.width = width;
 	}
@@ -19,7 +28,6 @@ public class Map {
 	public int getHeight() {
 		return height;
 	}
-
 	public void setHeight(int height) {
 		this.height = height;
 	}
@@ -27,17 +35,10 @@ public class Map {
 	public Cell[][] getGrid() {
 		return grid;
 	}
-
 	public void setGrid(Cell[][] grid) {
 		this.grid = grid;
 	}
 
-	//Constructeurs 
-	public Map(int taille) {
-		 grid=new Cell[taille][taille];
-	}
+
 	
-	public Cell[][] getMap (){
-		return grid;
-	}
 }

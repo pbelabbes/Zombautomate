@@ -1,8 +1,10 @@
 package Model;
 
 /**
- * @author pierrebelabbes
- *
+ * La classe Automata représente le comportement d'un joueur ou d'un zombie
+ * les attributs etats et inputs correspondent respectivement au nombre d'etats de l'automate et au nombre de conditions/transitions maximums par état soit à la largeur et à la hauteur de caseautomate 
+ * states est le tableau dans lequel sera sauvé le comportement du personnage
+ * position est le point ou se trouve la case en haut à gauche de states
  */
 
 import java.util.ArrayList;
@@ -10,96 +12,106 @@ import java.awt.Point;
 
 
 public class Automata {
-//Atributs
-<<<<<<< HEAD
-		private etats;
-		private inputs;
+	//Atributs
+
+	private int etats;
+	private int inputs;
+	private caseAutomate[][] states;
+	private Point position; 
 		
-		caseAutomate[][] states;
-        Point position; 
+	//getter & setter
+	public int getEtats() {
+		return etats;
+	}
+	public void setEtats(int width){
+		this.etats=width;
+	}
 	
-        public get_etats(){
-        	return this.etats;
-        }
-        
-        public get_inputs(){
-        	return this.inputs;
-        }
-                
-//constructeurs:
-           //getter & setter
-        public int getEtats() {
-			return etats;
-		}
+	public int getInputs() {
+		return inputs;
+	}
+	public void setInputs(int height){
+		this.inputs=height;
+	}
+	
+	public caseAutomate[][] getStates() {
+		return states;
+	}
+	public void setStates(caseAutomate[][] states) {
+		this.states = states;
+	}
+	
+	public Point getPosition() {
+		return position;
+	}
+	public void setPosition(Point position) {
+		this.position = position;
+	}
+	
+	//constructeurs:
+	/**
+	 * 
+	 * @param height
+	 * @param width
+	 */
+	public Automata(int height, int width){
 
-		public int getInputs() {
-			return inputs;
-		}
-
-		public caseAutomate[][] getStates() {
-			return states;
-		}
-		public void setStates(caseAutomate[][] states) {
-			this.states = states;
-		}
-
-		public Point getPosition() {
-			return position;
-		}
-		public void setPosition(Point position) {
-			this.position = position;
-		}
-
-		//constructeurs:
-		public Automata(int height, int width){
-
-			this.etats=width;
+			setEtats(width);
 			this.inputs=height;
 			states=new caseAutomate[height][width];			
 		}
 
-		//Methodes
-		
-		private void ajoute(etatAutomate etat){
-			
-		if(inputs==0 ||etats==0) return;
+	//Methodes
+	/**
+	 * La fonction ajoute ets utilisée pour construire un automate
+	 * @param etat
+	 */
+	private void ajoute(etatAutomate etat){	
+		if(getInputs()==0 ||getEtats()==0) return;
 		int i=0;
 		int j=0;
-		while(i<etats && j<inputs && !etat.square.equals(states[i][j])){
+		while(i<getEtats() && j<getInputs() && !etat.square.equals(states[i][j])){
 			
 					if(etat.square.equals(states[i][j])){
 					   states[i][etat.etat_courant]=etat.square;	
 			  		}
-					else if(j==inputs){j=0;i++;}
+					else if(j==getInputs()){j=0;i++;}
 					else j++;
 		}
 		
-	}	
-		public void automate(ArrayList<etatAutomate> liste){
-		
-			etatAutomate etat;
-			for(int i=0;i<liste.size();i++){
-				etat=liste.get(i);
-				ajoute(etat);
-			}
+	}
+	
+	/**
+	 * 
+	 * @param liste
+	 */
+	public void automate(ArrayList<etatAutomate> liste){
+		etatAutomate etat;
+		for(int i=0;i<liste.size();i++){
+			etat=liste.get(i);
+			ajoute(etat);
 		}
+	}
+	
+	/**
+	 * la fonction qui retourne les proportions de l'automate 
+	 * @return
+	 */
+	public Point proportion(){
+	    int i,j;
+	    i=getPosition().x+getInputs();
+	    j=getPosition().y+getEtats();
+	    Point p=new Point(i,j);
 
-	  //la fonction qui retourne les proportions de l'automate 
+	    return p;
+	}
 		
-		public Point proportion(){
-		    Point p;
-		    int i,j;
-		    i=getPosition().x+getInputs();
-		    j=getPosition().y+getEtats();
-		    p.x=i;
-		    p.y=j;
-		    return p;
-		}
-		
-		/*
-		 * La fonction qui permet d'afficher le tablau d'entiers sous forme d'etats futurs 
-		 */
-		public void to_string(int width,int height){
+	/**
+	 * La fonction qui permet d'afficher le tablau d'entiers sous forme d'etats futurs 
+	 * @param width
+	 * @param height
+	 */
+	public void to_string(int width,int height){
 		//car le nombre d'entrees est de 8 pour tous les automates
 		for (int i=0;i<height;i++){
 		     for (int j=0;j<width;j++){
@@ -107,18 +119,23 @@ public class Automata {
 		     } 
 		     System.out.println("\n");
 		}
+	
+    }
+	
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args){
+		Automata auto= new Automata(1,2);
+		//etatAutomate et_au=new etatAutomate();
+		//caseAutomate frame= ;
+		ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
 		
-        }		
-		public static void main(String[] args){
-			Automata auto= new Automata(1,2);
-			etatAutomate et_au=new etatAutomate();
-			caseAutomate frame= ;
-			ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
-			
-			auto.automate(liste);
-			System.out.println("nous allons afficher le tableau des actions \n");
-			auto.to_string (1,2);
-		}
+		auto.automate(liste);
+		System.out.println("nous allons afficher le tableau des actions \n");
+		auto.to_string (1,2);
+	}
 }
 
 		

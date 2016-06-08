@@ -31,7 +31,13 @@ public abstract class Character {
 	private Automata automata;
 	private Map map;
 	
-	
+	/**
+	 * Constructeur
+	 * @param player
+	 * @param automata
+	 * @param map
+	 */
+
 	public Character(Player player, Automata automata, Map map) {
 		this.hp=100;
 		this.strength=1;
@@ -93,47 +99,14 @@ public abstract class Character {
 		y=this.cell.getPosition().y;
 		switch (direction){
 		//on modifie la position et donc la cellule du personnage
-		case 'O': this.cell=map.grid[x+1][y] ;break;
-		case 'S': this.cell=map.grid[x][y+1] ;break;
-		case 'N': this.cell=map.grid[x][y-1] ;break;
-		case 'E': this.cell=map.grid[x-1][y] ;break; 
+		case 'O': this.cell=map.getGrid()[x+1][y] ;break;
+		case 'S': this.cell=map.getGrid()[x][y+1] ;break;
+		case 'N': this.cell=map.getGrid()[x][y-1] ;break;
+		case 'E': this.cell=map.getGrid()[x-1][y] ;break; 
 		default : //throw new Require ("visible"); 
 			     break;
 		}	
 	}
 	
-	/**
-	 * La fonction attaquer porte un coup vers la case indiquée
-	 * Si un ennemi est present sur cette case, il perd des points de vie
-	 * Si il y a un rock sur cette case elle se casse et on découvre soit un katana soit un lapin à sa place
-	 * Sinon rien ne se passe
-	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
-	 */
-	public void attaquer(char direction){
-		Point p=new Point(this.cell.getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		
-		if (map.grid[p.x][p.y].getEntity_on()!=null){
-			//On enlève des points de vie à l'adversaire
-			map.grid[p.x][p.y].getEntity_on().hp--;
-		}
-		else {
-			if (map.grid[p.x][p.y].getDecor()==Decor.ROCK){
-				int r= (int)(Math.random()*.2);
-				if (r==0){
-					map.grid[p.x][p.y].setDecor(Decor.RABBIT);
-				}
-				else{
-					map.grid[p.x][p.y].setDecor(Decor.KATANA);
-				}
-			}
-		}
-	}
 
 }
