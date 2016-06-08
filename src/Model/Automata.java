@@ -11,21 +11,14 @@ import java.awt.Point;
 
 public class Automata {
 //Atributs
-<<<<<<< HEAD
-		private etats;
-		private inputs;
+
+		private int etats;
+		private int inputs;
 		
 		caseAutomate[][] states;
         Point position; 
 	
-        public get_etats(){
-        	return this.etats;
-        }
-        
-        public get_inputs(){
-        	return this.inputs;
-        }
-                
+     
 //constructeurs:
            //getter & setter
         public int getEtats() {
@@ -43,6 +36,14 @@ public class Automata {
 			this.states = states;
 		}
 
+		public void setEtats(int width){
+			this.etats=width;
+		}
+		
+		public void setInputs(int height){
+			this.inputs=height;
+		}
+		
 		public Point getPosition() {
 			return position;
 		}
@@ -53,7 +54,7 @@ public class Automata {
 		//constructeurs:
 		public Automata(int height, int width){
 
-			this.etats=width;
+			setEtats(width);
 			this.inputs=height;
 			states=new caseAutomate[height][width];			
 		}
@@ -62,15 +63,15 @@ public class Automata {
 		
 		private void ajoute(etatAutomate etat){
 			
-		if(inputs==0 ||etats==0) return;
+		if(getInputs()==0 ||getEtats()==0) return;
 		int i=0;
 		int j=0;
-		while(i<etats && j<inputs && !etat.square.equals(states[i][j])){
+		while(i<getEtats() && j<getInputs() && !etat.square.equals(states[i][j])){
 			
 					if(etat.square.equals(states[i][j])){
 					   states[i][etat.etat_courant]=etat.square;	
 			  		}
-					else if(j==inputs){j=0;i++;}
+					else if(j==getInputs()){j=0;i++;}
 					else j++;
 		}
 		
@@ -91,8 +92,8 @@ public class Automata {
 		    int i,j;
 		    i=getPosition().x+getInputs();
 		    j=getPosition().y+getEtats();
-		    p.x=i;
-		    p.y=j;
+		    p=new Point(i,j);
+		    
 		    return p;
 		}
 		
@@ -111,8 +112,8 @@ public class Automata {
         }		
 		public static void main(String[] args){
 			Automata auto= new Automata(1,2);
-			etatAutomate et_au=new etatAutomate();
-			caseAutomate frame= ;
+			//etatAutomate et_au=new etatAutomate();
+			//caseAutomate frame= ;
 			ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
 			
 			auto.automate(liste);
