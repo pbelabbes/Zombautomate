@@ -45,7 +45,6 @@ public class Player {
 	public int getFoodStock() {
 		return foodStock;
 	}
-	
 	/*public void setFoodStock(int foodStock) {
 		this.foodStock = foodStock;
 	}*/
@@ -66,12 +65,12 @@ public class Player {
 		this.seed=this.seed+plus;
 		return;
 	}
-	
 	public int getSeed() {
 		return seed;
 	}
-	
 	/*public void setSeed(int seed) {
 		this.seed = seed;
-	}*/
+	}
+	*/
+	
 }

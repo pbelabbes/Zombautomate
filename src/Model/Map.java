@@ -7,7 +7,7 @@ public class Map {
 	private int width,height;
 	private Cell[][] grid;
 	
-
+	//Getter et Setter
 	public int getWidth() {
 		return width;
 	}
