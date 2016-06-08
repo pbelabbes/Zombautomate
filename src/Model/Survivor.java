@@ -31,13 +31,28 @@ public class Survivor extends Character{
 	 */
 	
 	private ArrayList<Arme> weapon;
+	private int stone;
+	private int seed;
 	
 	public ArrayList<Arme> getWeapon() {
 		return weapon;
 	}
-
 	public void setWeapon(ArrayList<Arme> weapon) {
 		this.weapon = weapon;
+	}
+
+	public int getStone() {
+		return stone;
+	}
+	public void setStone(int stone) {
+		this.stone = stone;
+	}
+	
+	public int getSeed() {
+		return seed;
+	}
+	public void setSeed(int seed) {
+		this.seed = seed;
 	}
 
 	//constructeurs
@@ -52,10 +67,7 @@ public class Survivor extends Character{
 		this.weapon=null;
 	}
 
-	//Méthodes
-	
-	
-	
+	//Méthodes	
 	/**
 	 * La fonction drop permet de poser une pierre sur de l'herbe
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe
@@ -106,8 +118,6 @@ public class Survivor extends Character{
 	
 	}
 	
-	
-	
 	/**
 	 * La fonction steal permet à un character de tenter de voler dans la liste d'arme et dans le stock de nourriture d'un autre character ennemi
 	 * Si il n'y a pas d'ennemi sur la case indiquée, il ne se passe rien
@@ -144,8 +154,7 @@ public class Survivor extends Character{
 			}
 		}	
 	}
-	
-	
+		
 	/**
 	 * La fonction plant permet de faire apparaitre une pousse dans la case indiquée si le decor de cette case était de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
@@ -182,16 +191,10 @@ public class Survivor extends Character{
 		}		
 	}
 	
-	
-	
-
-	
-	
-/*	
 	/**
 	 * La fonction swap permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
-	 *
+	 */
 	public void swap (char direction){
 		
 		Point p=new Point(this.getCell().getPosition());
@@ -224,6 +227,6 @@ public class Survivor extends Character{
 		}
 		
 	}
-*/
+
 	
 }
