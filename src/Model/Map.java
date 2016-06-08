@@ -11,7 +11,6 @@ public class Map {
 	public int getWidth() {
 		return width;
 	}
-
 	public void setWidth(int width) {
 		this.width = width;
 	}
@@ -19,7 +18,6 @@ public class Map {
 	public int getHeight() {
 		return height;
 	}
-
 	public void setHeight(int height) {
 		this.height = height;
 	}
@@ -27,7 +25,6 @@ public class Map {
 	public Cell[][] getGrid() {
 		return grid;
 	}
-
 	public void setGrid(Cell[][] grid) {
 		this.grid = grid;
 	}
@@ -35,9 +32,5 @@ public class Map {
 	//Constructeurs 
 	public Map(int taille) {
 		 grid=new Cell[taille][taille];
-	}
-	
-	public Cell[][] getMap (){
-		return grid;
 	}
 }

@@ -11,20 +11,11 @@ import java.awt.Point;
 
 public class Automata {
 //Atributs
-<<<<<<< HEAD
-		private etats;
-		private inputs;
+		private int etats;
+		private int inputs;
 		
 		caseAutomate[][] states;
         Point position; 
-	
-        public get_etats(){
-        	return this.etats;
-        }
-        
-        public get_inputs(){
-        	return this.inputs;
-        }
                 
 //constructeurs:
            //getter & setter
@@ -87,12 +78,10 @@ public class Automata {
 	  //la fonction qui retourne les proportions de l'automate 
 		
 		public Point proportion(){
-		    Point p;
 		    int i,j;
 		    i=getPosition().x+getInputs();
 		    j=getPosition().y+getEtats();
-		    p.x=i;
-		    p.y=j;
+		    Point p=new Point(i,j);
 		    return p;
 		}
 		
