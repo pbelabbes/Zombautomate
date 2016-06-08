@@ -1,5 +1,10 @@
 package Model;
 
+/**
+ * Ce type enum liste tous les décors présents sur le terrain associés à l'action qu'ils représentent  
+ * 
+ *
+ */
 public enum Decor {
 
 	ROCK(Action.PICK),//0
