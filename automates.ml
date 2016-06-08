@@ -31,7 +31,7 @@ let (automate_perso_1: automate) =
   @
     presence_AD 1 Ennemi Attaquer 1 1
   @
-    scan_loin_AD 1 Ennemi Attaquer 1 1
+    scan_loin_AD 1 Ennemi Deplacer 1 1
   @
     scan_loin_AD 1 Batte_baseball Deplacer 0 1
   @
@@ -39,10 +39,10 @@ let (automate_perso_1: automate) =
 
 
 (*Un automate de farmer *)
-let (automate_perso_1: automate) =
-   case_allie 0 Deplacer 0 1
+let (automate_perso_2: automate) =
+  ((0, Present(Lapin,N), Deplacer,N, 0, 1)::[(0, Et(Case_ennemie(N),Ou(Present(Lapin,N),Present(Pomme,N))), Deplacer, N, 0, 1)])
   @
-   presence_AD 1 Pomme Ramasser 0 1
+    presence_AD 1 Pomme Ramasser 0 1
   @
     presence_AD 1 Lapin Ramasser 0 1
   @
@@ -59,7 +59,7 @@ let (automate_perso_1: automate) =
     presence_AD 2 Zombie Deplacer 0 1
   @
     presence_AD 2 Arbre Cacher 0 1
-  @ 
+  @
     scan_loin_AD 2 Arbre Deplacer 1 1
   @
     presence_AD 0 Ennemi Deplacer 1 1
@@ -99,8 +99,8 @@ type action =
 |Spray
 |Leave
 *)
-type retour = Dir of direction | Nbr of int
-(*Direction of direction | Nombre of int *)
+type retour = Dir of direction | Nbr of int;;
+(*Désigne ce que retourneront les Scan *)
 
 (*
 type decor =
@@ -135,11 +135,13 @@ type condition =
 |ScanLoin of cible*retour (*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
 |ScanProche of cible*retour (*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
 |Et of condition*condition
+|Ou of condition*condition
 |Present of cible*direction
-|Case_allie
-|Case_ennemi
-|Case_neutre
+|Case_alliee of direction
+|Case_ennemie of direction
+|Case_neutre of direction;;
 
+let (test: condition) = Et(Case_ennemie(N),Ou(Present(Pomme,N),Present(Lapin,N)));;
 
 type etat = int
 type priorite = int
@@ -206,7 +208,12 @@ let rec (condition_to_string: condition->string) = fun c -> match c with
   |ScanLoin(cbl,ret)->"ScanLoin("^ cible_to_string cbl ^","^ retour_to_string ret ^")"
   |ScanProche(cbl,ret)->"ScanProche(" ^ cible_to_string cbl ^","^ retour_to_string ret ^")"
   |Present(cbl,dir)->"Present(" ^ cible_to_string cbl ^","^ direction_to_string dir ^")"
-  |Et(c1,c2)->"Et(" ^ condition_to_string c1 ^","^ condition_to_string c2 ^")";;
+  |Et(c1,c2)->"Et(" ^ condition_to_string c1 ^","^ condition_to_string c2 ^")"
+  |Case_alliee(d) -> "Case_alliee("^ direction_to_string d ^")"
+  |Case_ennemie(d) -> "Case_ennemie("^ direction_to_string d ^")"
+  |Case_neutre(d) -> "Case_neutre("^ direction_to_string d ^")"
+  |Ou(c1,c2) -> "Ou("^ condition_to_string c1 ^","^ condition_to_string c2 ^")";;
+
 
    (* ecriture dans un fichier *)
 
@@ -236,8 +243,7 @@ let (print_transition: out_channel->transition->unit) = fun fic trans -> let (co
 
 let rec (print_automate: out_channel->automate->unit) = fun fic aut-> match aut with
   |trans::reste-> output_string fic "\n\t\t<transition>" ; print_transition fic trans ; output_string fic "\n\t\t</transition>" ; print_automate fic reste
-  |[]-> ()
-  |_->failwith "erreur dans print_automate";;
+  |[]-> ();;
 
 
 let (print_personnage: out_channel->automate*string->unit) = fun fic automate -> let (aut,nom) = automate in
@@ -245,14 +251,26 @@ let (print_personnage: out_channel->automate*string->unit) = fun fic automate ->
 
 
 let rec (print_equipe: out_channel->equipe->unit) = fun fic equipe -> match equipe with
-  |aut::reste -> output_string fic "\n<persos>" ; print_personnage fic aut ; print_equipe fic reste
-  |[]->output_string fic "\n</persos>"
-  |_->failwith "souci dans print_equipe"
+  |aut::reste ->  print_personnage fic aut ; print_equipe fic reste
+  |[]->();;
 
 
 
 
 (*exemple *)
-let fic = open_out "personnages_générés.xml";;
-print_personnage fic (automate_perso_1,"guerier");;
+
+let (make_xml: string->string->string->equipe->unit) = fun file_name version encodage equipe ->
+let fic = open_out file_name in
+print_entete fic version encodage;
+output_string fic "\n<persos>" ;
+print_equipe fic (equipe);
+output_string fic "\n</persos>";
 close_out fic;;
+
+let equipe_1 = [(automate_perso_1,"guerrier")] @ [(automate_perso_2,"farmer")];;
+
+make_xml "personnages_générés.xml" "1.0" "UTF-8" equipe_1;;
+
+
+
+

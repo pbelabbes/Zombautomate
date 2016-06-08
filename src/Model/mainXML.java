@@ -10,7 +10,7 @@ package Model;
 public class mainXML {
 	
 	
-	static void main (){
+	public static void main (String [] args){
 		XMLReader test = new XMLReader() ;
 		test.read();
 		

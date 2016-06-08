@@ -2,13 +2,14 @@
 <persos>
 		<automate id="1">
 				<transition>
-					<etat_courant>0</etat_courant>
+					<etat_courant>"0"</etat_courant>
 					<condition>Et(Ennemi(N),Ennemi(S))</condition>
 					<action>Attaquer</action>
 					<direction>N</direction>
 					<priorite>1</priorite>
 					<etat_futur>1</etat_futur>
 			</transition>
+			(dans le exmple.xml des transition on été add ici )
 		</automate>
 		<automate id="2">
 				<transition>

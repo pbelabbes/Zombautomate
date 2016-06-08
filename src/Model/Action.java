@@ -7,20 +7,15 @@ package Model;
  * @author pierrebelabbes
  *
  */
-public class Action {
+public enum Action {
 	
-	String nom;
-	
-	
-
+	ATTACK,
+	MOVE,
+	STEAL,
+	HIDE,
+	//SWAP,
+	PLANT,
+	WATER,
+	DROP,
+	PICK;
 }
-/*
- * deplacer
- * battre
- * ramasser
- * echanger
- * voler
- * planter
- * arroser
- * deposer
- */
