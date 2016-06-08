@@ -15,4 +15,5 @@ public class Player {
 	String name;
 	ArrayList<Character> entities;
 	int foodStock;
+	
 }

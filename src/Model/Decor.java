@@ -2,12 +2,12 @@ package Model;
 
 public enum Decor {
 
-	ROCK("Rock", "Steal"),
+	ROCK,
 	GRASS,
-	RABIT,
-	APPLE,
-	PEAR,
+	SPROUT,
 	FOREST,
+	APPLE,
+	RABBIT,
 	BASEBALL_BAT,
 	KATANA;
 }
