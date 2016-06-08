@@ -10,7 +10,6 @@ import java.util.ArrayList;
 /**
  * Cette classe représente un personnage non zombie qui sera placé sur le terrain de jeu
  * Elle hérite de Character
-
  *
  */
 public class Survivor extends Character{
@@ -29,10 +28,9 @@ public class Survivor extends Character{
 	 * propre:
 	 * ArrayList<Arme> arme: la liste de ses armes.
 	 */
-	
 	private ArrayList<Arme> weapon;
-
 	
+	//Getter et Setter
 	public ArrayList<Arme> getWeapon() {
 		return weapon;
 	}
@@ -40,9 +38,7 @@ public class Survivor extends Character{
 		this.weapon = weapon;
 	}
 
-
-
-	//constructeurs
+	//Constructeurs
 	/**
 	 * Constructeur d'un survivant:
 	 * il part avec 100 points de vie
@@ -54,7 +50,16 @@ public class Survivor extends Character{
 		this.weapon=null;
 	}
 
-	//Méthodes	
+	//Méthodes
+	/**
+	 * La fonction isAlife permet de savoir si un joueur est vivant ou non
+	 * @return true si le personnage est vivant, false si il est éliminé du jeu 
+	 */
+	public boolean isAlife(){
+		return (this.getHp()>0);
+	}
+	
+	
 	/**
 	 * La fonction drop permet de poser une pierre sur de l'herbe
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe

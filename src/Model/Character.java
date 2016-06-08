@@ -33,11 +33,10 @@ public abstract class Character {
 	
 	/**
 	 * Constructeur
-	 * @param player
+	 * @param player 
 	 * @param automata
 	 * @param map
 	 */
-
 	public Character(Player player, Automata automata, Map map) {
 		this.hp=100;
 		this.strength=1;
