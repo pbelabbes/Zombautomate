@@ -3,7 +3,11 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Model.Katana" project="zombautomate" file="/zombautomate/src/Model/Katana.java" 
     binary="false" corner="BOTTOM_RIGHT">    
+<<<<<<< HEAD
     <position height="-1" width="-1" x="67" y="845"/>    
+=======
+    <position height="-1" width="-1" x="123" y="738"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +16,11 @@
   </class>  
   <class id="2" language="java" name="Model.Baseball_Bat" project="zombautomate" 
     file="/zombautomate/src/Model/Baseball_Bat.java" binary="false" corner="BOTTOM_RIGHT">    
+<<<<<<< HEAD
     <position height="-1" width="-1" x="248" y="847"/>    
+=======
+    <position height="-1" width="-1" x="242" y="737"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +128,11 @@
   </class>  
   <class id="14" language="java" name="Model.mainXML" project="zombautomate" file="/zombautomate/src/Model/mainXML.java" 
     binary="false" corner="BOTTOM_RIGHT">    
+<<<<<<< HEAD
     <position height="-1" width="-1" x="166" y="-30"/>    
+=======
+    <position height="-1" width="-1" x="248" y="94"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +141,11 @@
   </class>  
   <class id="15" language="java" name="Model.Map" project="zombautomate" file="/zombautomate/src/Model/Map.java" 
     binary="false" corner="BOTTOM_RIGHT">    
+<<<<<<< HEAD
     <position height="-1" width="-1" x="456" y="-7"/>    
+=======
+    <position height="-1" width="-1" x="454" y="21"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,14 +172,30 @@
   </class>  
   <class id="18" language="java" name="Model.XMLReader" project="zombautomate" 
     file="/zombautomate/src/Model/XMLReader.java" binary="false" corner="BOTTOM_RIGHT">    
+<<<<<<< HEAD
     <position height="-1" width="-1" x="56" y="-39"/>    
+=======
+    <position height="-1" width="-1" x="128" y="89"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <generalization id="19">    
+=======
+  <association id="19">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="20" name="arme"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="22">    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
@@ -177,8 +209,13 @@
   </association>  
   <association id="23">    
     <end type="SOURCE" refId="11" navigable="false">      
+<<<<<<< HEAD
       <attribute id="24" name="entity_on"/>      
       <multiplicity id="25" minimum="0" maximum="1"/>    
+=======
+      <attribute id="27" name="entity_on"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
@@ -199,7 +236,11 @@
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+<<<<<<< HEAD
   <generalization id="32">    
+=======
+  <generalization id="35">    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
@@ -281,8 +322,13 @@
   </generalization>  
   <association id="61">    
     <end type="SOURCE" refId="11" navigable="false">      
+<<<<<<< HEAD
       <attribute id="62" name="decor"/>      
       <multiplicity id="63" minimum="0" maximum="1"/>    
+=======
+      <attribute id="65" name="decor"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
+>>>>>>> 4c3fba22cb13c66b2a98fcf01a73f37a869102a5
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
