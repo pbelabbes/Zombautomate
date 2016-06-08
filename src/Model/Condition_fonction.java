@@ -67,30 +67,151 @@ public class Condition_fonction {
 	}
 	
 	
+	private char  direction(int N,int E,int S,int O){
+		int min;
+		min=Math.min(Math.min(Math.min(N, E), S), O);
+		if(min==0)return '0';
+		else if(min==N)return 'N';
+		else if(min==S)return 'S';
+		else if(min==E)return 'E';
+		else return 'O';
+	}
+	
 	//(*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
-	public boolean Scanloin(int rayon, Character pers, Map map, char result, Point position){
-		int minN,minS,minE,minO;
+	public char Scanloin(int rayon, Character pers, Map map, Point position){
+		int minN=0,minS=0,minE=0,minO=0;
+		int diffx,diffy;
 		
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
-			  
-				map.getGrid()[position.x-j][position.y-i].
-				
-				
+			    if(map.getGrid()[position.x-j][position.y-i].getEntity_on()==pers){
+			    	diffx=position.x-j-position.x;
+			    	diffy=position.y-i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minE==0){minE=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);
+				    }
+			    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);
+				    }
+			    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	
+			    }	
+			    if(map.getGrid()[position.x+j][position.y+i].getEntity_on()==pers){
+			    	diffx=position.x+j-position.x;
+			    	diffy=position.y+i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
+			    		else minO=Math.min(minO, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
+			
+			    if(map.getGrid()[position.x+j][position.y-i].getEntity_on()==pers){
+			    	diffx=position.x+j-position.x;
+			    	diffy=position.y-i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position);}
+			    		else minO=Math.min(minO, distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
+			    if(map.getGrid()[position.x-j][position.y+i].getEntity_on()==pers){
+			    	diffx=position.x-j-position.x;
+			    	diffy=position.y+i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minE==0){minE=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
+			    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
 			}
+			
 		}
-	
-		
+		return direction (minN,minE,minS,minO);
 	}
+
 	
-	public char Scanloin(int rayon, Decor decor ){
+	
+	
+	public char Scanloin(int rayon, Decor decor, Map map, Point position){
+		int minN=0,minS=0,minE=0,minO=0;
+		int diffx,diffy;
 		
 		for(int i=0;i<rayon;i++){
-			for(int j=0;j<(rayon-3);j++){
-				
+			for(int j=0;j<(rayon-i);j++){
+			    if(map.getGrid()[position.x-j][position.y-i].getDecor()==decor){
+			    	diffx=position.x-j-position.x;
+			    	diffy=position.y-i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minE==0){minE=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	
+			    }	
+			    if(map.getGrid()[position.x+j][position.y+i].getDecor()==decor){
+			    	diffx=position.x+j-position.x;
+			    	diffy=position.y+i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
+			    		else minO=Math.min(minO, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position); }
+			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
+			
+			    if(map.getGrid()[position.x+j][position.y-i].getDecor()==decor){
+			    	diffx=position.x+j-position.x;
+			    	diffy=position.y-i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position); }
+			    		else minO=Math.min(minO, distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
+			    if(map.getGrid()[position.x-j][position.y+i].getDecor()==decor){
+			    	diffx=position.x-j-position.x;
+			    	diffy=position.y+i-position.y;
+			    	if(diffx>diffy){
+			    		
+			    		if(minE==0){minE=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
+			    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    	else {
+			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+			    	}
+			    }
 			}
 		}
-	
+	   return direction(minN,minE,minS,minO);
 		
 	}
 	
@@ -101,10 +222,10 @@ public class Condition_fonction {
 		
 	}
     
-	public boolean Ou(){
+/*	public boolean Ou(){
 		
 	}
-	
+*/	
 	// fonction auxiliaire pour les suivantes
 	
 	private boolean in_intervalle(Point deb, Point fin, Point p){
