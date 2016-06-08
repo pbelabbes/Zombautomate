@@ -60,16 +60,48 @@ public class Condition_fonction {
 					
 	}
 	
-	public boolean Scanloin(){
+	private int distance(Point position1, Point position2){
+		
+	    return (int) Math.sqrt(Math.pow(((float)(position2.x-position1.x)),2.0)+Math.pow(((float)(position2.y-position1.y)),2.0));
+		
+	}
+	
+	
+	//(*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
+	public boolean Scanloin(int rayon, Character pers, Map map, char result, Point position){
+		int minN,minS,minE,minO;
+		
+		for(int i=0;i<rayon;i++){
+			for(int j=0;j<(rayon-i);j++){
+			  
+				map.getGrid()[position.x-j][position.y-i].
+				
+				
+			}
+		}
 	
 		
 	}
 	
-	public boolean Et(){
+	public char Scanloin(int rayon, Decor decor ){
+		
+		for(int i=0;i<rayon;i++){
+			for(int j=0;j<(rayon-3);j++){
+				
+			}
+		}
+	
+		
+	}
+	
+	
+	public boolean Et(Condition c1, Condition c2){
+	
+		
 		
 	}
     
-	public bollean Ou(){
+	public boolean Ou(){
 		
 	}
 	
@@ -145,16 +177,108 @@ public class Condition_fonction {
 		
 		case 'O': p.x=p.x-1;break;
 		}
+		
 		ce=map.getGrid()[p.x][p.y];
 		//on teste si l'automate de cette cellule n'appartient a aucun personnage ni zombie
 		a=(ce.getOwned_by()==null);
 		return (a);
 		
 	}
+
 	
-	public boolean ScanProche(){
+	public int nb_ennemis(Point p1,Point p2, Point p3, Point p4, Map map, Player player){
+		int nb=0;
+		if(map.getGrid()[p1.x][p1.y].getEntity_on() instanceof Survivor &&
+		   map.getGrid()[p1.x][p1.y].getEntity_on().getPlayer()!=player ) nb++;
 		
+		if(map.getGrid()[p2.x][p2.y].getEntity_on() instanceof Survivor &&
+	       map.getGrid()[p2.x][p2.y].getEntity_on().getPlayer()!=player ) nb++;
+		
+		if(map.getGrid()[p3.x][p3.y].getEntity_on() instanceof Survivor &&
+	       map.getGrid()[p3.x][p3.y].getEntity_on().getPlayer()!=player ) nb++;
+		
+		if(map.getGrid()[p4.x][p4.y].getEntity_on() instanceof Survivor &&
+		   map.getGrid()[p4.x][p4.y].getEntity_on().getPlayer()!=player ) nb++;
+		
+		return nb;
 	}
 	
+	
+	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+	public boolean ScanProche(Point position, Map map , char result , Character pers){
+		int nb;
+		//on recupere les coordonnées des differentes cellules adjacentes
+		Point pN=new Point(position);pN.y=pN.y-1;
+		Point pS=new Point(position);pN.y=pN.y+1;
+		Point pE=new Point(position);pN.x=pN.x+1;
+		Point pO=new Point(position);pN.x=pN.x-1;
+		nb=nb_ennemis(pN,pS,pE,pO, map, map.getGrid()[position.x][position.y].getEntity_on().getPlayer());
+		
+		//dans ce cas on est sur que nb=1
+	if(nb == 1) {
+		if( map.getGrid()[pN.x][pN.y].getEntity_on().getPlayer()!=map.getGrid()[position.x][position.y].getEntity_on().getPlayer() ){
+			return ('N'==result);
+		}
+		else if( map.getGrid()[pS.x][pS.y].getEntity_on().getPlayer()!=map.getGrid()[position.x][position.y].getEntity_on().getPlayer() ){
+			return ('S'==result);
+		}
+		else if( map.getGrid()[pE.x][pE.y].getEntity_on().getPlayer()!=map.getGrid()[position.x][position.y].getEntity_on().getPlayer() ){
+			return ('E'==result);
+		}
+		else {
+			return ('O'==result);
+		}
+	}
+	else return (((char) nb +'0')==result);
+
+	}
+
+
+
+public int nb_decor(Point p1,Point p2, Point p3, Point p4, Map map,Decor decor){
+	int nb=0;
+	if(map.getGrid()[p1.x][p1.y].getDecor()==decor ) nb++;
+	
+	if(map.getGrid()[p2.x][p2.y].getDecor()==decor ) nb++;
+	
+	if(map.getGrid()[p3.x][p3.y].getDecor()==decor) nb++;
+	
+	if(map.getGrid()[p4.x][p4.y].getDecor()==decor ) nb++;
+	
+	return nb;
+}
+
+
+//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+public boolean ScanProche(Point position, Map map , char result , Decor decor){
+	int nb;
+	//on recupere les coordonnées des differentes cellules adjacentes
+	Point pN=new Point(position);pN.y=pN.y-1;
+	Point pS=new Point(position);pN.y=pN.y+1;
+	Point pE=new Point(position);pN.x=pN.x+1;
+	Point pO=new Point(position);pN.x=pN.x-1;
+	nb=nb_decor(pN,pS,pE,pO, map, decor);
+	
+	//dans ce cas on est sur que nb=1
+if(nb == 1) {
+	if( map.getGrid()[pN.x][pN.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor()){
+		return ('N'==result);
+	}
+	else if( map.getGrid()[pS.x][pS.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor() ){
+		return ('S'==result);
+	}
+	else if( map.getGrid()[pE.x][pE.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor()){
+		return ('E'==result);
+	}
+	else {
+		return ('O'==result);
+	}
+}
+else return (((char) nb +'0')==result);
 
 }
+
+}
+
+
+

@@ -64,18 +64,16 @@ public class Automata {
 		private void ajoute(etatAutomate etat){
 			
 		if(getInputs()==0 ||getEtats()==0) return;
-		int i=0;
 		int j=0;
-		while(i<getEtats() && j<getInputs() && !etat.square.equals(states[i][j])){
+					   
+			while ((states[etat.etat_courant][j]!=null) && (j<getInputs())){
+				j++;		   
+			}
+			states[etat.etat_courant][j]=etat.square;		   
 			
-					if(etat.square.equals(states[i][j])){
-					   states[i][etat.etat_courant]=etat.square;	
-			  		}
-					else if(j==getInputs()){j=0;i++;}
-					else j++;
 		}
 		
-	}	
+		
 		public void automate(ArrayList<etatAutomate> liste){
 		
 			etatAutomate etat;
