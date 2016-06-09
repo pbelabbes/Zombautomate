@@ -24,7 +24,8 @@ public abstract class Character extends Observable {
 	 * Map map: le plateau/terrain de jeu
 	 */
 	//Attributs
-	private int hp ;//points de vie 
+	private int hp ;//points de vie
+	private int sight_range; //portée de vision
 	private Player player;
 	private int strength ; 
 	private Cell cell;
@@ -43,6 +44,7 @@ public abstract class Character extends Observable {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
+		this.sight_range = 2;
 	}
 	
 	public int getHp() {
@@ -66,6 +68,11 @@ public abstract class Character extends Observable {
 		notifyObservers(this.player);
 	}
 
+	public int getSightRange()
+	{
+		return this.sight_range;
+	}
+	
 	public int getStrength() {
 		return strength;
 	}
