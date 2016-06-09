@@ -61,6 +61,7 @@ public class Cell {
 			return;
 		}
 		
+		
 		//Méthodes
 		/**
 		 * La fonction majAutomate permet de mettre à jour l'automate du joueur si la cellule appartient à son automate
