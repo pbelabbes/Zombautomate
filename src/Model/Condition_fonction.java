@@ -17,13 +17,9 @@ public class Condition_fonction {
 		Point p=new Point(position);
 		boolean b;
 		switch (direction){
-		
 		case 'N': p.y=p.y-1;break;
-		
 		case 'S': p.y=p.y+1;break;
-		
 		case 'E': p.x=p.x+1;break;
-		
 		case 'O': p.x=p.x-1;break;		
 		}
 		if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Character){
@@ -38,7 +34,6 @@ public class Condition_fonction {
 				}
 		}
 		else { return false; }
-			
 	}
 	
 	
@@ -47,23 +42,16 @@ public class Condition_fonction {
 	public boolean present(char direction , Decor d , Point position, Map map){
 		Point p=new Point(position);
 		switch (direction){
-		
 		case 'N': p.y=p.y-1;break;
-		
 		case 'S': p.y=p.y+1;break;
-		
 		case 'E': p.x=p.x+1;break;
-		
 		case 'O': p.x=p.x-1;break;
 		}
 		return map.getGrid()[p.x][p.y].getDecor()==d;
-					
 	}
-	
-	private int distance(Point position1, Point position2){
-		
+
+	private int distance(Point position1, Point position2){		
 	    return (int) Math.sqrt(Math.pow(((float)(position2.x-position1.x)),2.0)+Math.pow(((float)(position2.y-position1.y)),2.0));
-		
 	}
 	
 	
@@ -211,8 +199,7 @@ public class Condition_fonction {
 			    }
 			}
 		}
-	   return direction(minN,minE,minS,minO);
-		
+	   return direction(minN,minE,minS,minO);	
 	}
 	
 	

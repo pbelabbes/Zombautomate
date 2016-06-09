@@ -21,7 +21,6 @@ public abstract class Character {
 	 * Cell cell : la cellule sur le plateau qu'il occupe
 	 * Automata automata: son automate soit son comportement dans le jeu
 	 * Map map: le plateau/terrain de jeu
-	 * 
 	 */
 	//Attributs
 	private int hp ;//points de vie 
@@ -48,10 +47,13 @@ public abstract class Character {
 	public int getHp() {
 		return hp;
 	}
-	public void setHp(int hp) {
+	public void supHp(int moins){
+		this.hp=this.hp-moins;
+	}
+	/*public void setHp(int hp) {
 		this.hp = hp;
 	}
-
+*/
 	public Player getPlayer() {
 		return player;
 	}

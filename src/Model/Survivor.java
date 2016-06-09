@@ -59,7 +59,18 @@ public class Survivor extends Character{
 		return (this.getHp()>0);
 	}
 	
-	
+	/**
+	 * La fonction eat permet à chaque tour de faire manger les survivants grace au stock de nourriture
+	 * Si il n'y a plus de nourriture en stock le survivant perd un point de vie.
+	 */
+	public void eat(){
+		if (this.getPlayer().getFoodStock()>0){
+			this.getPlayer().addFoodStock(-1);
+		}
+		else {
+			this.supHp(1);
+		}
+	}
 	/**
 	 * La fonction drop permet de poser une pierre sur de l'herbe
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe
@@ -98,7 +109,7 @@ public class Survivor extends Character{
 		
 		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire
-			getMap().getGrid()[p.x][p.y].getEntity_on().setHp(getMap().getGrid()[p.x][p.y].getEntity_on().getHp()-1);
+			getMap().getGrid()[p.x][p.y].getEntity_on().supHp(-1);
 		}
 		else {
 			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){
@@ -129,8 +140,8 @@ public class Survivor extends Character{
 		default: ;
 		}
 		switch (this.getMap().getGrid()[p.x][p.y].getDecor()){
-		case APPLE: this.getPlayer().addFoodstock(Nourriture.APPLE.getvalues());break;
-		case RABBIT: this.getPlayer().addFoodstock(Nourriture.RABBIT.getvalues());break;
+		case APPLE: this.getPlayer().addFoodStock(Nourriture.APPLE.getvalues());break;
+		case RABBIT: this.getPlayer().addFoodStock(Nourriture.RABBIT.getvalues());break;
 		case BASEBALL_BAT: 
 			Baseball_Bat b=new Baseball_Bat();
 			this.weapon.add(b);break;
@@ -194,12 +205,12 @@ public class Survivor extends Character{
 			m=(int)(Math.random()*.5);
 			pl=ent_on.getPlayer().getFoodStock();
 			if (pl<m){
-				this.getPlayer().addFoodstock(pl);
-				ent_on.getPlayer().addFoodstock(-pl);
+				this.getPlayer().addFoodStock(pl);
+				ent_on.getPlayer().addFoodStock(-pl);
 			}
 			else{
-				this.getPlayer().addFoodstock(m);
-				ent_on.getPlayer().addFoodstock(-m);
+				this.getPlayer().addFoodStock(m);
+				ent_on.getPlayer().addFoodStock(-m);
 			}
 		}	
 	}
@@ -276,6 +287,9 @@ public class Survivor extends Character{
 		}
 		
 	}
+	
 
+	
+	
 	
 }

@@ -38,7 +38,7 @@ public class Player {
 		this.entities = entities;
 	}
 	
-	public void addFoodstock(int plus){
+	public void addFoodStock (int plus){
 		this.foodStock = this.foodStock +plus;
 		return;
 	}
