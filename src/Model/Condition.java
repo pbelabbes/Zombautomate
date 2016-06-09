@@ -2,14 +2,14 @@ package Model;
 
 public enum Condition {
 
-	PRESENCE,
-	ET,
+	PRESENCE(Presence),
+	ET(Et),
 	//OU,
-	CASEALLIEE,
-	CASEENNEMIE,
-	CASENEUTRE,
-	SCANLOIN,
-	SCANPROCHE;	
+	CASEALLIEE(CaseAlliee),
+	CASEENNEMIE(CaseEnnemie),
+	CASENEUTRE(CaseNeutre),
+	SCANLOIN(ScanLoin),
+	SCANPROCHE(ScanProche);	
 	
 	
 }

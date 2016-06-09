@@ -24,7 +24,7 @@ public class Ordonnanceur {
 	
 	public void next_move() {
 		for (int i = 0 ; i == Ordre.size(); i++)
-		if (Ordre.get(i).is_alive = true){ 
+		if (Ordre.get(i).is_alive == true){ 
 			
 		
 		}
