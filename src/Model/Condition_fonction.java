@@ -77,6 +77,12 @@ public class Condition_fonction {
 		else return 'O';
 	}
 	
+	
+	/*
+	 * Cette fonction petmet de Rechercher un character dans un certain rayon et envoie soit le nombre 
+	 * character present si ce nombre >1 et sinon renvoie la direction du plus proche si il n'y a 
+	 * qu'un character et sinon 0 
+	 */
 	//(*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
 	public char Scanloin(int rayon, Character pers, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
@@ -148,7 +154,11 @@ public class Condition_fonction {
 
 	
 	
-	
+	/*
+	 * Cette fonction petmet de Rechercher un element de decor dans un certain rayon et envoie soit le nombre 
+	 * d'element de decor present si ce nombre >1 et sinon renvoie la direction du plus proche si il n'y a 
+	 * qu'un exemplaire de cet element et sinon 0 
+	 */
 	public char Scanloin(int rayon, Decor decor, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
 		int diffx,diffy;
@@ -215,17 +225,24 @@ public class Condition_fonction {
 		
 	}
 	
+	/*
+	 * La fonction Et qui renvoie un booleen permet de faire un && entre deux booleen qui sont 
+	 * le retour de deux fonctions Condition
+	 */
+	public boolean Et(boolean c1, boolean c2){
 	
-	public boolean Et(Condition c1, Condition c2){
-	
-		
+	return (c1 && c2);
 		
 	}
     
-/*	public boolean Ou(){
-		
+	/*
+	 * La fonction Et qui renvoie un booleen permet de faire un || entre deux booleen qui sont 
+	 * le retour de deux fonctions Condition
+	 */
+	public boolean Ou(boolean c1, boolean c2){
+		return (c1|| c2);
 	}
-*/	
+	
 	// fonction auxiliaire pour les suivantes
 	
 	private boolean in_intervalle(Point deb, Point fin, Point p){
@@ -235,6 +252,10 @@ public class Condition_fonction {
 	   return (a && b);
 		
 	}
+	/*
+	 * Cette fonction verifie la cellule qui est dan une direction donnée et renvoie un booleen indiquant si 
+	 * a cette case la se trouve l'automate d'un allie ou non 
+	 */
 	public boolean CaseAlliee(char direction,Cell cell, Map map){
 		Point p=new Point(cell.getPosition());
 		boolean a,b;
@@ -250,17 +271,22 @@ public class Condition_fonction {
 		case 'O': p.x=p.x-1;break;
 		}
 		ce=map.getGrid()[p.x][p.y];
-		a=(ce.getOwned_by() instanceof Survivor); 
-		
-		b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
-		
-		return (b && a && (ce.getOwned_by().getPlayer()== cell.getOwned_by().getPlayer() ));
-		
+		if(ce.getOwned_by() !=null){
+			a=(ce.getOwned_by() instanceof Survivor); 
+			
+			b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
+			
+			return (b && a && (ce.getOwned_by().getPlayer()== cell.getOwned_by().getPlayer() ));
+		}
+		else return false;
 	}
 	
+  /*
+   * Cette fonction verifie si dans la case qui est dans la direction donnée appartient a un automate d'un 
+   * Ennemi ou pas 	
+   */
 	
-	
-	public boolean CaseEnnemi(char direction, Cell cell,Map map){
+	public boolean CaseEnnemie(char direction, Cell cell,Map map){
 		Point p=new Point(cell.getPosition());
 		boolean a,b;
 		Cell ce;
