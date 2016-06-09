@@ -9,4 +9,5 @@ package Model;
  */
 public abstract class Condition2 {
 
+	
 }
