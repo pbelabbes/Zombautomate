@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.awt.Point;
 
 
+
 public class Automata {
 	//Atributs
 
@@ -127,8 +128,8 @@ public class Automata {
 		Automata auto= new Automata(1,2);
 		//etatAutomate et_au=new etatAutomate();
 		//caseAutomate frame= ;
-		ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
-		
+		List<etatAutomate> liste = new ArrayList<etatAutomate>();
+		//liste={};
 		auto.automate(liste);
 		System.out.println("nous allons afficher le tableau des actions \n");
 		auto.to_string (1,2);
