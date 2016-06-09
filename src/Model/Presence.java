@@ -13,11 +13,13 @@ public class Presence extends Condition2 {
 		 this.personnage=personnage;
 		 this.direction=direction;
 		 this.cible=cible;
+		 decor = null;
 		}
 	Presence(Character personnage,char direction,Decor decor){
 		 this.personnage=personnage;
 		 this.direction=direction;
 		 this.decor=decor;
+		 cible = null;
 		}
 	
 	public boolean execute(){
@@ -32,6 +34,12 @@ public class Presence extends Condition2 {
 			
 	if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
 
+		if(decor != null)
+		{
+			return this.personnage.getMap().getGrid()[p.x][p.y].getDecor()==decor;	
+		}
+		else
+		{
 			switch (cible){
 			
 			case "allié":if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==this.personnage.getPlayer()) return true; 
@@ -41,12 +49,16 @@ public class Presence extends Condition2 {
 
 			case "ennemi" : if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()!=this.personnage.getPlayer()) return true; 
 							else return false;
-			default:break;
+			default: return false;
+			}
 		}
+	}
+	else return false;
+	
+	}
 			
 			
-			
-			
+			/*
 			
 public boolean execute(){
 	Point p=new Point(this.personnage.getCell().getPosition());
@@ -58,5 +70,5 @@ public boolean execute(){
 					
 	}	
 	return this.personnage.getMap().getGrid()[p.x][p.y].getDecor()==decor;	}
-				
+				*/
 }
