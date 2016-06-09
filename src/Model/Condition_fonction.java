@@ -10,9 +10,11 @@ public class Condition_fonction {
 	//Methodes4
 	//arg: une direction et une cible 
 	/*
-	 * on donne la position
+	 * on donne la position d'un character adjacent si il y'en a un 
 	 */
-	public boolean Present(char direction , Character per , Point position){
+	
+	
+	public boolean Presence(char direction , Character per , Point position){
 	
 		Point p=new Point(position);
 		boolean b;
@@ -22,24 +24,28 @@ public class Condition_fonction {
 		case 'E': p.x=p.x+1;break;
 		case 'O': p.x=p.x-1;break;		
 		}
-		if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Character){
-			    if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie){
-				return false;
-				}
-				else {
-					//si ils appartiennent pas au meme joueuer alors ils sont ennemies et pas alliés
-					b=(per.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer() !=
-					per.getCell().getEntity_on().getPlayer()) ;
-				    return b;
-				}
+		if(per.getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
+			if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Character){
+				    if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie){
+					return false;
+					}
+					else {
+						//si ils appartiennent pas au meme joueuer alors ils sont ennemies et pas alliés
+						b=(per.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer() !=
+						per.getCell().getEntity_on().getPlayer()) ;
+					    return b;
+					}
+			}
 		}
-		else { return false; }
+		//si on arrive la aucune condition n'a ete verifié donc on retourne false 
+		return false ;
 	}
+		
 	
 	
 //la fonction renvoie le type de decor qu'il y'a a la case a cote qui est dans la direction "direction"
 	
-	public boolean present(char direction , Decor d , Point position, Map map){
+	public boolean presence(char direction , Decor d , Point position, Map map){
 		Point p=new Point(position);
 		switch (direction){
 		case 'N': p.y=p.y-1;break;
@@ -50,11 +56,14 @@ public class Condition_fonction {
 		return map.getGrid()[p.x][p.y].getDecor()==d;
 	}
 
+	
+	
 	private int distance(Point position1, Point position2){		
 	    return (int) Math.sqrt(Math.pow(((float)(position2.x-position1.x)),2.0)+Math.pow(((float)(position2.y-position1.y)),2.0));
 	}
 	
-	
+
+	//fonction auxiliaire utilisée par celle d'apres 
 	private char  direction(int N,int E,int S,int O){
 		int min;
 		min=Math.min(Math.min(Math.min(N, E), S), O);
@@ -141,6 +150,12 @@ public class Condition_fonction {
 	}
 
 	
+	private boolean position_dans_map(int x,int y, int height , int width){
+		
+		return ((x<width) && (y<height));
+						
+	}
+	
 	
 	/*
 	 * Cette fonction petmet de Rechercher un element de decor dans un certain rayon et envoie soit le nombre 
@@ -153,7 +168,8 @@ public class Condition_fonction {
 		
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
-			    if(map.getGrid()[position.x-j][position.y-i].getDecor()==decor){
+				//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
+			   if(position_dans_map(position.x-j,position.y-i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x-j][position.y-i].getDecor()==decor){
 			    	diffx=position.x-j-position.x;
 			    	diffy=position.y-i-position.y;
 			    	if(diffx>diffy){
@@ -167,7 +183,7 @@ public class Condition_fonction {
 			    	}
 			    	
 			    }	
-			    if(map.getGrid()[position.x+j][position.y+i].getDecor()==decor){
+			    if(position_dans_map(position.x+j,position.y+i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x+j][position.y+i].getDecor()==decor){
 			    	diffx=position.x+j-position.x;
 			    	diffy=position.y+i-position.y;
 			    	if(diffx>diffy){
@@ -181,7 +197,7 @@ public class Condition_fonction {
 			    	}
 			    }
 			
-			    if(map.getGrid()[position.x+j][position.y-i].getDecor()==decor){
+			    if(position_dans_map(position.x+j,position.y-i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x+j][position.y-i].getDecor()==decor){
 			    	diffx=position.x+j-position.x;
 			    	diffy=position.y-i-position.y;
 			    	if(diffx>diffy){
@@ -194,7 +210,7 @@ public class Condition_fonction {
 			    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
 			    	}
 			    }
-			    if(map.getGrid()[position.x-j][position.y+i].getDecor()==decor){
+			    if(position_dans_map(position.x-j,position.y+i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x-j][position.y+i].getDecor()==decor){
 			    	diffx=position.x-j-position.x;
 			    	diffy=position.y+i-position.y;
 			    	if(diffx>diffy){
@@ -288,12 +304,14 @@ public class Condition_fonction {
 		case 'O': p.x=p.x-1;break;
 		}
 		ce=map.getGrid()[p.x][p.y];
-		a=(ce.getOwned_by() instanceof Survivor); 
-		
-		b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
-		
-		return (a && b && (ce.getOwned_by().getPlayer()!= cell.getOwned_by().getPlayer() ));
-		
+		if(ce.getOwned_by()!=null){
+			a=(ce.getOwned_by() instanceof Survivor); 
+			
+			b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
+			
+			return (a && b && (ce.getOwned_by().getPlayer()!= cell.getOwned_by().getPlayer() ));
+		}	
+		else return false; 	
 	}
 
 	//il suffit de savoir que la cellule sur laquelle on est n
@@ -368,7 +386,7 @@ public class Condition_fonction {
 	}
 
 
-
+//fonction auxiliaire qui sert a la fonction d'apres 
 public int nb_decor(Point p1,Point p2, Point p3, Point p4, Map map,Decor decor){
 	int nb=0;
 	if(map.getGrid()[p1.x][p1.y].getDecor()==decor ) nb++;

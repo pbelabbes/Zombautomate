@@ -10,5 +10,7 @@ public enum Condition {
 	CASENEUTRE,
 	SCANLOIN,
 	SCANPROCHE;	
+	
+	
 }
 
