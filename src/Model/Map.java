@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Observable;
+
 //import java.util.ArrayList;
 /**
  * La classe Map représente le terrain de jeu
@@ -7,7 +9,7 @@ package Model;
  * 
  *
  */
-public class Map {
+public class Map extends Observable  {
 
 	//private int width,height;
 	private Cell[][] grid;
@@ -17,6 +19,8 @@ public class Map {
 		//this.width=width;
 		//this.height=height;
 		 grid=new Cell[width][height];
+		 setChanged();
+		 notifyObservers(this.grid);
 	}
 	
 	//Getter et Setter
@@ -39,6 +43,8 @@ public class Map {
 	}
 	public void setGrid(Cell[][] grid) {
 		this.grid = grid;
+		setChanged();
+		notifyObservers(this.grid);
 	}
 
 
