@@ -9,7 +9,7 @@ package Model;
  */
 public abstract class Condition2 {
 
-	Character charact;
+	protected Character personnage;
 	
 	/**
 	 * 

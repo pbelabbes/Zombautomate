@@ -4,10 +4,9 @@ import java.lang.String;
 
 public class Presence extends Condition2 {
 	
-	Character personnage;
-	char direction;
-	String cible;
-	Decor decor;
+	private char direction;
+	private String cible;
+	private Decor decor;
 	
 	Presence(Character personnage,char direction,String cible){
 		 this.personnage=personnage;
