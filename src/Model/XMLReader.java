@@ -19,6 +19,31 @@ import org.w3c.dom.*;
 
 public class XMLReader {
 	
+	public Action toAction(String act){
+		
+		
+		switch(act){
+		case "Attaquer" : return  Action.ATTACK ;
+		case "Deplacer" : return (Action.MOVE) ;
+		case "Voler" : return Action.STEAL;
+		case "Echanger" :return Action.HIDE;
+		//SWAP,
+		case "Planter" :return Action.PLANT;
+		case "Arroser" : return Action.WATER;
+		case "Deposer" : return Action.DROP;
+		case "Ramasser" : return Action.PICK;
+		}
+		
+		return Action.MOVE; 
+	}
+	
+	public Condition toCondition(String condi){
+		
+		
+		return Condition.
+	}
+	
+	//constructeur
 	XMLReader(){}
 	
 	//renvoi le nombre d'automate 
@@ -82,9 +107,9 @@ public class XMLReader {
 		
 		int etat_courant; 
 		int etat_futur;
-		String action; 
-		String condition; 
-		String direction ;
+		Action action; 
+		Condition condition; 
+		char direction ;
 		int nbTransition = 0 ; 
 		int NumEtatsMax ;
 		int priority ; 
@@ -142,7 +167,7 @@ public class XMLReader {
 		    	//recup de la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
-		    	direction = NoeudCourant.getTextContent() ;
+		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
 		    	//recup de la priorit� 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 

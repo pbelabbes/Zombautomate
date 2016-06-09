@@ -13,7 +13,7 @@ public enum Decor {
 	APPLE(Action.ATTACK),//3
 	SPROUT(Action.PLANT),//4
 	TREE(Action.DROP),//5
-	BASEBALL_BAT(Action.HIDE),//6
+	BASEBALL_BAT(Action.SWAP),//6
 	KATANA(Action.STEAL);//7
 
 	private Action action;

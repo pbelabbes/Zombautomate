@@ -4,7 +4,7 @@
 package Model;
 
 /**
- * @author pierrebelabbes
+ * Voici la liste des actions possibles par un personnage
  *
  */
 public enum Action {
@@ -12,8 +12,7 @@ public enum Action {
 	ATTACK,
 	MOVE,
 	STEAL,
-	HIDE,
-	//SWAP,
+	SWAP,
 	PLANT,
 	WATER,
 	DROP,

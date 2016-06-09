@@ -108,6 +108,12 @@ public abstract class Character {
 			     break;
 		}	
 	}
+	public boolean is_alive () {
+		if (hp > 0){
+			return true;
+		}
+		else return false;
+	}
 	
 
 }

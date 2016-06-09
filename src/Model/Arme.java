@@ -1,34 +1,48 @@
 package Model;
-
+/**
+ * 
+ * Cette classe permet de définir une arme
+ * Cette dernière est défibie par sa puissance (value) et son usure 
+ *
+ */
 public abstract class Arme {
 	
-		//BASEBALL_BAT(5,0),
-		//KATANA(10,0);
-		private int value;
-		private int usure;
+	//Attribut
+	private int value;
+	private int usure;
+	
+	
+	//constructeur
+	public Arme(int value, int usure){
+		setValue(value);
+		setUsure(usure);
+	}
+	
+	
+	//Méthodes
+	
+	/**
+	 * pour afficher la valeur (=puissance) d'une arme et son usure 
+	 */
+	public String toString(){
+		return "("+value+","+usure+")";
+	}
+	
+	//Getter & Setter
+	public int getValue() {
+		return this.value;
+	}
+	public void setValue(int value) {
+		this.value=value;
+		return ;
+	}
+	
+	public int getUsure() {
+		return this.usure;
+	}
+	public void setUsure(int usure) {
+		this.usure=usure;
+		return ;
+	}
 
-		public Arme(int value, int usure){
-			setValue(value);
-			setUsure(usure);
-		}
-
-
-		public String toString(){
-			return "("+value+","+usure+")";
-		}
-
-		public int getValue() {
-			return this.value;
-		}
-		public int getUsure() {
-			return this.usure;
-		}
-		public void setUsure(int usure) {
-			this.usure=usure;
-			return ;
-		}
-		public void setValue(int value) {
-			this.value=value;
-			return ;
-		}
 }

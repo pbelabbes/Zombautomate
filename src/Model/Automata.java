@@ -134,12 +134,11 @@ public class Automata {
 	}
 		
 	/**
-	 * La fonction qui permet d'afficher le tablau d'entiers sous forme d'etats futurs 
+	 * La fonction qui permet d'afficher le tableau d'entiers sous forme d'etats futurs 
 	 * @param width
 	 * @param height
 	 */
 	public void to_string(int width,int height){
-		//car le nombre d'entrees est de 8 pour tous les automates
 		for (int i=0;i<height;i++){
 		     for (int j=0;j<width;j++){
 		    	 if(states[i][j]!=null){

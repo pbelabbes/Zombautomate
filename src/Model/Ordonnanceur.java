@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Ordonnanceur {
 	
 	ArrayList<Character> List;
-	ArrayList<Character> Ordre;
+	ArrayList<Character> Ordonnee;
 	
 	// Rempli la liste "Ordre" de manière aléatoire à partir des personnage de la liste "List"
 	
@@ -14,7 +14,7 @@ public class Ordonnanceur {
 			
 		if(List.size() >= 1){
 			int i = (int) (Math.random() * (List.size() - 1));
-			Ordre.add(List.get(i));
+			Ordonnee.add(List.get(i));
 			List.remove(List.get(i));	
 			}
 		}
@@ -23,12 +23,14 @@ public class Ordonnanceur {
 	// Pour chaque personnage de la liste "Ordre", si le personnage est vivant, on lui fait effectuer sa prochaine action
 	
 	public void next_move() {
-		for (int i = 0 ; i == Ordre.size(); i++)
-		if (Ordre.get(i).is_alive == true){ 
+
+		for (int i = 0 ; i == Ordonnee.size(); i++)
+		if (Ordonnee.get(i).is_alive()){ 
 			
-		
+			Ordonnee.get(i).play;			
 		}
 	}
+	
 }
 
 			

@@ -9,16 +9,18 @@ package Model;
  */
 public class Map {
 
-	private int width,height;
+	//private int width,height;
 	private Cell[][] grid;
 	
 	//Constructeurs 
-	public Map(int taille) {
-		 grid=new Cell[taille][taille];
+	public Map(int width,int height) {
+		//this.width=width;
+		//this.height=height;
+		 grid=new Cell[width][height];
 	}
 	
 	//Getter et Setter
-	public int getWidth() {
+/*	public int getWidth() {
 		return width;
 	}
 	public void setWidth(int width) {
@@ -31,7 +33,7 @@ public class Map {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
+*/
 	public Cell[][] getGrid() {
 		return grid;
 	}
