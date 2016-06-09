@@ -23,11 +23,11 @@ public class Ordonnanceur {
 	// Pour chaque personnage de la liste "Ordre", si le personnage est vivant, on lui fait effectuer sa prochaine action
 	
 	public void next_move() {
+
 		for (int i = 0 ; i == Ordonnee.size(); i++)
 		if (Ordonnee.get(i).is_alive()){ 
 			
-			Ordonnee.get(i).play;
-			
+			Ordonnee.get(i).play;			
 		}
 	}
 	

@@ -2,7 +2,7 @@
  * 
  */
 package Model;
-
+package 
 //import com.sun.org.apache.xpath.internal.operations.String;
 
 /**
@@ -13,12 +13,12 @@ public class transfer {
 	private int etat_courant; 
 	private int etat_futur;
 	private Action action; 
-	private Condition condition; 
+	private Arraylist<Condition> condition; 
 	private char direction ;
 	private int priority ; 
 	
 	
-	public transfer(int etat_courant,Condition condition, Action action , char direction, int priority, int etat_futur) {
+	public transfer(int etat_courant,Arraylist<Condition> condition, Action action , char direction, int priority, int etat_futur) {
 		//super();
 		this.etat_courant = etat_courant;
 		this.etat_futur = etat_futur;

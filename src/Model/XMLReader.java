@@ -64,7 +64,7 @@ public class XMLReader {
 			}       
 		    Document document = null;
 			try {
-				document = builder.parse(new File("D:\\travail\\java\\Zombautomate\\exemple.xml"));
+				document = builder.parse(new File("/home/zennouche/Documents/semestre6/PLA/exemple.xml"));
 				document.getDocumentElement().normalize();
 			} catch (SAXException | IOException e) {
 				// TODO Auto-generated catch block
