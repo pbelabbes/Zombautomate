@@ -1,5 +1,4 @@
-module type DOC =
-sig
+
   type direction = N | S | E | O
   type action =
   |Deplacer
@@ -49,4 +48,4 @@ sig
   val presence_AD: etat -> cible -> action -> etat -> priorite -> automate
     
   val make_xml: string->string->string->equipe->unit
-end
+

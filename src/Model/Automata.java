@@ -20,7 +20,8 @@ public class Automata {
 	private int inputs;
 	private caseAutomate[][] states;
 	private Point position; 
-		
+	private int etat_courant;	
+	
 	//getter & setter
 	public int getEtats() {
 		return etats;
@@ -52,16 +53,41 @@ public class Automata {
 	
 	//constructeurs:
 	/**
-	 * 
-	 * @param height
+	 * @param etat_courant
 	 * @param width
+	 * @param height
 	 */
-	public Automata(int height, int width){
+	//
+	public Automata( int etat_courant,int width , int height){
 			setEtats(width);
 			this.inputs=height;
+			this.etat_courant=etat_courant;
 			states=new caseAutomate[height][width];			
 		}
 
+	
+	public int getEtatCourant(){
+		return this.etat_courant;
+	
+		
+	}
+	public void setEtatCourant(int etatCourant){
+		this.etat_courant=etatCourant;
+	}
+		
+	
+	
+	public int getEtatFutur(Condition C){
+		int j=0;
+		
+			while(states[etat_courant][j].condition!=null && states[etat_courant][j].condition!=C){
+				j++;
+			}
+			if(states[etat_courant][j].condition==C) 
+				return states[etat_courant][j].etat_futur;
+			else return -1;
+	}
+	
 	//Methodes
 	/**
 	 * La fonction ajoute ets utilisée pour construire un automate
@@ -85,10 +111,13 @@ public class Automata {
 	 */
 	public void automate(ArrayList<etatAutomate> liste){
 		etatAutomate etat;
-		for(int i=0;i<liste.size();i++){
-			etat=liste.get(i);
-			ajoute(etat);
+		if(liste!=null){
+			for(int i=0;i<liste.size();i++){
+				etat=liste.get(i);
+				ajoute(etat);
+			}
 		}
+		
 	}
 	
 	/**
@@ -113,11 +142,12 @@ public class Automata {
 		//car le nombre d'entrees est de 8 pour tous les automates
 		for (int i=0;i<height;i++){
 		     for (int j=0;j<width;j++){
-		    	 System.out.println(this.states[i][j].etat_futur+",");
+		    	 if(states[i][j]!=null){
+		    		 System.out.println(this.states[i][j].etat_futur+",");
+		    	 }	 
 		     } 
 		     System.out.println("\n");
-		}
-	
+		}	
     }
 	
 	/**
@@ -125,14 +155,24 @@ public class Automata {
 	 * @param args
 	 */
 	public static void main(String[] args){
-		Automata auto= new Automata(1,2);
-		//etatAutomate et_au=new etatAutomate();
-		//caseAutomate frame= ;
-		List<etatAutomate> liste = new ArrayList<etatAutomate>();
-		//liste={};
+		Automata auto= new Automata(0,2,2);
+		int etat_futur;
+		caseAutomate frame=new caseAutomate(7,Action.DROP,Condition.PRESENCE);
+		caseAutomate frame2=new caseAutomate(2,Action.DROP,Condition.PRESENCE);
+		etatAutomate et_au1=new etatAutomate(0,'N',0,frame);
+		etatAutomate et_au2=new etatAutomate(1,'E',0,frame);
+		etatAutomate et_au3=new etatAutomate(0,'S',0,frame2);
+		ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
+		liste.add(et_au1);
+		liste.add(et_au2);
+		liste.add(et_au3);
 		auto.automate(liste);
 		System.out.println("nous allons afficher le tableau des actions \n");
-		auto.to_string (1,2);
+		auto.to_string (2,2);
+		etat_futur=auto.getEtatFutur(Condition.PRESENCE);
+		System.out.println("l'etat futur avec condition= presence et etat_courant a 0 est:\n"+etat_futur);
+
+		
 	}
 }
 
