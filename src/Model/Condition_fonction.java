@@ -65,7 +65,10 @@ public class Condition_fonction {
 		else return 'O';
 	}
 	
-	//(*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
+	/**
+	 * Désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. 
+	 * Si aucun élément recherché n'est présent, retourne 0
+	 */
 	public char Scanloin(int rayon, Character pers, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
 		int diffx,diffy;
