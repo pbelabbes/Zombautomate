@@ -58,11 +58,11 @@ public class transfer {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	} 
-	public int getPriorité() {
+	public int getPriority() {
 		return priority;
 	}
-	public void setPriorité(int priorité) {
-		this.priority = priorité;
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 
 	
