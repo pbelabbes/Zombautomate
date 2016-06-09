@@ -19,6 +19,31 @@ import org.w3c.dom.*;
 
 public class XMLReader {
 	
+	public Action toAction(String act){
+		
+		
+		switch(act){
+		case "Attaquer" : return  Action.ATTACK ;
+		case "Deplacer" : return (Action.MOVE) ;
+		case "Voler" : return Action.STEAL;
+		case "Echanger" :return Action.SWAP;
+		//SWAP,
+		case "Planter" :return Action.PLANT;
+		case "Arroser" : return Action.WATER;
+		case "Deposer" : return Action.DROP;
+		case "Ramasser" : return Action.PICK;
+		}
+		
+		return Action.MOVE; 
+	}
+	
+	public Condition toCondition(String condi){
+		
+		
+		return Condition.
+	}
+	
+	//constructeur
 	XMLReader(){}
 	
 	//renvoi le nombre d'automate 
@@ -39,7 +64,7 @@ public class XMLReader {
 			}       
 		    Document document = null;
 			try {
-				document = builder.parse(new File("D:\\travail\\java\\Zombautomate\\exemple.xml"));
+				document = builder.parse(new File("/home/zennouche/Documents/semestre6/PLA/exemple.xml"));
 				document.getDocumentElement().normalize();
 			} catch (SAXException | IOException e) {
 				// TODO Auto-generated catch block
@@ -52,7 +77,7 @@ public class XMLReader {
 			
 			final Node racine = document.getDocumentElement();
 			
-//*************enlève les espace ***************************\\
+//*************enlï¿½ve les espace ***************************\\
 			XPathFactory xpathFactory = XPathFactory.newInstance();
 			// XPath to find empty text nodes.
 			javax.xml.xpath.XPathExpression xpathExp = null;
@@ -78,13 +103,13 @@ public class XMLReader {
 			}
 
 		 
-//******************** début de la lecture ****************************\\
+//******************** dï¿½but de la lecture ****************************\\
 		
 		int etat_courant; 
 		int etat_futur;
-		String action; 
-		String condition; 
-		String direction ;
+		Action action; 
+		Condition condition; 
+		char direction ;
 		int nbTransition = 0 ; 
 		int NumEtatsMax ;
 		int priority ; 
@@ -112,10 +137,10 @@ public class XMLReader {
 		    System.out.println(Nautomate.item(i).getNodeName());
 		    
 
-		    //récupère la liste des Noueds transition.
+		    //rï¿½cupï¿½re la liste des Noueds transition.
 		    NListtransi = Nautomate.item(i).getChildNodes();
 
-		    //réucp le nombre de transition de cet automate.
+		    //rï¿½ucp le nombre de transition de cet automate.
 		    nbTransition =  NListtransi.getLength() ;
 		    		
 		    L2= new ArrayList<transfer>();
@@ -124,7 +149,7 @@ public class XMLReader {
 		    
 		    	System.out.println(NListtransi.item(j).getNodeName());
 		    
-		    	//récupe de l'état courant 
+		    	//rï¿½cupe de l'ï¿½tat courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_courant = Integer.parseInt(NoeudCourant.getTextContent());
@@ -134,7 +159,7 @@ public class XMLReader {
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	condition = NoeudCourant.getTextContent() ;
 
-		    	//recupération de l'acion
+		    	//recupï¿½ration de l'acion
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	action = NoeudCourant.getTextContent() ;
@@ -142,14 +167,14 @@ public class XMLReader {
 		    	//recup de la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
-		    	direction = NoeudCourant.getTextContent() ;
+		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
-		    	//recup de la priorité 
+		    	//recup de la prioritï¿½ 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	priority = Integer.parseInt(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de l'état futur
+		    	//recup de l'ï¿½tat futur
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_futur =Integer.parseInt( NoeudCourant.getTextContent());

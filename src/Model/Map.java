@@ -13,7 +13,6 @@ package Model;
 //j'ai aussi ajouté un setter pour initialiser une case précise de grid (surtout utile pour débug)
 
 public class Map {
-
 //	private int width,height;
 	private Cell[][] grid;
 	
@@ -30,6 +29,7 @@ public class Map {
 	public int getWidth() {
 		return grid.length;
 	}
+
 	/*
 	public void setWidth(int width) {
 		this.width = width;
@@ -44,7 +44,7 @@ public class Map {
 		this.height = height;
 	}
 */
-	
+
 	public Cell[][] getGrid() {
 		return grid;
 	}

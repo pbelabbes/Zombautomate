@@ -91,15 +91,19 @@ public class Condition_fonction {
 	}
 	
 	
-	/*
-	 * Cette fonction petmet de Rechercher un character dans un certain rayon et envoie soit le nombre 
-	 * character present si ce nombre >1 et sinon renvoie la direction du plus proche si il n'y a 
-	 * qu'un character et sinon 0 
+	/**
+	 * La fonction scanloin permet de savoir dans quelle direction se trouve un character recherché
+	 * @param rayon défini la visibilité d'un joueur: le nombre de case autour du personnage où on va vérifier la présence d'un character.
+	 * @param pers le type de personnage que l'on recherche
+	 * @param map la carte du jeu
+	 * @param position la position du joueur sur la carte 
+	 * @return N, E, S, O selon la direction du joueur le proche
 	 */
-	//(*désigne une fonction qui retourne la direction de l'élément recherché(la cible) le plus proche à une portée donnée. Si aucun élément recherché n'est présent, retourne 0*)
 	public char Scanloin(int rayon, Character pers, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
 		int diffx,diffy;
+		Point position= ;
+		
 		
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
