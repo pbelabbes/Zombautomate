@@ -4,10 +4,13 @@ public enum Condition {
 
 	PRESENCE,
 	ET,
-	OU,
+	//OU,
 	CASEALLIEE,
 	CASEENNEMIE,
 	CASENEUTRE,
 	SCANLOIN,
 	SCANPROCHE;	
+	
+	
 }
+

@@ -3,7 +3,7 @@ package Model;
 //import java.util.ArrayList;
 /**
  * La classe Map représente le terrain de jeu
- * Elle est caractérisée par 
+ * Elle est caractérisée par sa largeur et sa hauteur ainsi que son tableau de cellule(=cases)
  * 
  *
  */

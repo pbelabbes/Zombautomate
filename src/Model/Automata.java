@@ -2,13 +2,15 @@ package Model;
 
 /**
  * La classe Automata représente le comportement d'un joueur ou d'un zombie
- * les attributs etats et inputs correspondent respectivement au nombre d'etats de l'automate et au nombre de conditions/transitions maximums par état soit à la largeur et à la hauteur de caseautomate 
+ * les attributs etats et inputs correspondent respectivement au nombre d'etats de l'automate et au nombre de conditions/transitions maximums par état 
+ * soit à la largeur et à la hauteur de caseautomate 
  * states est le tableau dans lequel sera sauvé le comportement du personnage
  * position est le point ou se trouve la case en haut à gauche de states
  */
 
 import java.util.ArrayList;
 import java.awt.Point;
+
 
 
 public class Automata {
@@ -18,7 +20,8 @@ public class Automata {
 	private int inputs;
 	private caseAutomate[][] states;
 	private Point position; 
-		
+	private int etat_courant;	
+	
 	//getter & setter
 	public int getEtats() {
 		return etats;
@@ -55,12 +58,22 @@ public class Automata {
 	 * @param width
 	 */
 	public Automata(int height, int width){
-
 			setEtats(width);
 			this.inputs=height;
 			states=new caseAutomate[height][width];			
 		}
 
+	
+	public int getEtatCourant(){
+		return this.etat_courant;
+		
+	}
+	
+	public int getEtatFutur(int etat_courant,Condition C){
+		int j=0;
+		
+			while(states[etat_courant][j].)
+	}
 	//Methodes
 	/**
 	 * La fonction ajoute ets utilisée pour construire un automate
@@ -68,18 +81,15 @@ public class Automata {
 	 */
 	private void ajoute(etatAutomate etat){	
 		if(getInputs()==0 ||getEtats()==0) return;
-		int i=0;
 		int j=0;
-		while(i<getEtats() && j<getInputs() && !etat.square.equals(states[i][j])){
+					   
+			while ((states[etat.etat_courant][j]!=null) && (j<getInputs())){
+				j++;		   
+			}
+			states[etat.etat_courant][j]=etat.square;		   
 			
-					if(etat.square.equals(states[i][j])){
-					   states[i][etat.etat_courant]=etat.square;	
-			  		}
-					else if(j==getInputs()){j=0;i++;}
-					else j++;
 		}
-		
-	}
+	
 	
 	/**
 	 * 
@@ -131,7 +141,7 @@ public class Automata {
 		//etatAutomate et_au=new etatAutomate();
 		//caseAutomate frame= ;
 		ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
-		
+		//liste={};
 		auto.automate(liste);
 		System.out.println("nous allons afficher le tableau des actions \n");
 		auto.to_string (1,2);

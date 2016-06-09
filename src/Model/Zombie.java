@@ -12,7 +12,7 @@ public class Zombie extends Character {
 	public void attaquer(char direction){
 		Point p=new Point(this.getCell().getPosition());
 		switch (direction){
-		case 'N': p.y=p.y-1;break;				
+		case 'N': p.y=p.y-1;break;
 		case 'S': p.y=p.y+1;break;
 		case 'E': p.x=p.x+1;break;
 		case 'O': p.x=p.x-1;break;
@@ -21,7 +21,7 @@ public class Zombie extends Character {
 		
 		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null  && getMap().getGrid()[p.x][p.y].getDecor()!=Decor.TREE){
 			//On enlève des points de vie à l'adversaire
-			getMap().getGrid()[p.x][p.y].getEntity_on().setHp(getMap().getGrid()[p.x][p.y].getEntity_on().getHp()-1);
+			getMap().getGrid()[p.x][p.y].getEntity_on().supHp(1);
 		}
 		else {
 			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){
