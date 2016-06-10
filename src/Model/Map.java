@@ -3,6 +3,7 @@ package Model;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Random;
 
 //import java.util.ArrayList;
 /**
@@ -109,8 +110,23 @@ public class Map extends Observable{
 		}
 	}
 
-	public void setAutomatas(ArrayList<Automata> lA)
+	public void setAutomatas(ArrayList<Character> lC, ArrayList<Point> lP) //TODO générer cette liste de points qui determine les positions des automates sur la map
 	{
-		lA.
+		//on lit la liste dans un ordre aléatoire
+		Random rand_index = new Random();
+		
+		int i = 0;
+		rand_index.setSeed(System.currentTimeMillis());
+		
+		while(lC!=null)
+		{	
+			Character char_tempo = lC.get(rand_index.nextInt(lC.size()));
+			this.setAutomata(char_tempo.getAutomata(),lP.get(i),char_tempo);
+			i++;
+		}
+		
+		
 	}
+	
+	
 }

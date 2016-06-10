@@ -33,6 +33,9 @@ public class caseAutomate {
 		return this.action;
 		
 	}
+	public void setAction(Action action){
+		this.action=action;
+	}
 	
 	public char getDirection() {
 		return this.direction;
