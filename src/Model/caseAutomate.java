@@ -1,11 +1,11 @@
 package Model;
 
 public class caseAutomate {
-	public Condition condition;
-	public Action action;
-	public int etat_futur;
-	public int priorite;
-    public char direction;
+	private Condition condition;
+	private Action action;
+	private int etat_futur;
+	private int priorite;
+    private char direction;
 	
 	caseAutomate(int etat_futur,Action action,Condition condition,int priorite,char direction){
 		this.etat_futur=etat_futur;
@@ -20,13 +20,20 @@ public class caseAutomate {
 		return ""+action;
 	}
 
-	public int etat_futur() {
+	public int getEtatfutur() {
 		return this.etat_futur;
 		
 	}
-	public Action action() {
+	public Action getAction() {
 		return this.action;
 		
+	}
+	public Condition getCondition()
+	{
+		return this.condition;
+	}
+	public int getPriorite(){
+		return this.priorite;
 	}
 	
 }

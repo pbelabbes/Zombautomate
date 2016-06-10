@@ -22,7 +22,8 @@ public class Automata {
 	private int inputs;
 	private caseAutomate[][] states;
 	private Point position; 
-	private int etat_courant;	
+	private int etat_courant;
+	private caseAutomate caseAutomate;
 	
 	//getter & setter
 	public int getEtats() {
@@ -53,6 +54,11 @@ public class Automata {
 		this.position = position;
 	}
 	
+	public caseAutomate getCA(){
+		return this.caseAutomate;
+	}
+	
+	
 	//constructeurs:
 	/**
 	 * @param etat_courant
@@ -82,11 +88,11 @@ public class Automata {
 	public int getEtatFutur(Condition C){
 		int j=0;
 		
-			while(states[etat_courant][j].condition!=null && states[etat_courant][j].condition!=C){
+			while(states[etat_courant][j].getCondition()!=null && states[etat_courant][j].getCondition()!=C){
 				j++;
 			}
-			if(states[etat_courant][j].condition==C) 
-				return states[etat_courant][j].etat_futur;
+			if(states[etat_courant][j].getCondition()==C) 
+				return states[etat_courant][j].getEtatfutur();
 			else return -1;
 	}
 	
@@ -144,7 +150,7 @@ public class Automata {
 		for (int i=0;i<height;i++){
 		     for (int j=0;j<width;j++){
 		    	 if(states[i][j]!=null){
-		    		 System.out.println(this.states[i][j].etat_futur+",");
+		    		 System.out.println(this.states[i][j].getEtatfutur()+",");
 		    	 }	 
 		     } 
 		     System.out.println("\n");
@@ -155,7 +161,7 @@ public class Automata {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		Automata auto= new Automata(0,2,2);
 		int etat_futur;
 		caseAutomate frame=new caseAutomate(7,Action.DROP,Condition.PRESENCE);
@@ -175,6 +181,7 @@ public class Automata {
 
 		
 	}
+	*/
 }
 
 		

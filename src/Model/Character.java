@@ -2,9 +2,8 @@
  * 
  */
 package Model;
-
+import java.util.ArrayList;
 import java.awt.Point;
-//import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -31,6 +30,7 @@ public abstract class Character extends Observable {
 	private Cell cell;
 	private Automata automata;
 	private Map map;
+	private int state;
 	
 	/**
 	 * Constructeur
@@ -53,6 +53,7 @@ public abstract class Character extends Observable {
 		this.automata=automata;
 		this.map=map;
 		this.sight_range = 2;
+		this.state = 0;
 	}
 	
 	public int getHp() {
@@ -136,6 +137,8 @@ public abstract class Character extends Observable {
 			     break;
 		}	
 	}
+	
+	// Verifie si un personnage est vivant
 	public boolean is_alive () {
 		if (hp > 0){
 			return true;
@@ -143,5 +146,42 @@ public abstract class Character extends Observable {
 		else return false;
 	}
 	
+	
+	//Fait faire sa prochaine action a un personnage
+	
+	public void play (){
+		
+		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
+		int i=0;
+		int j=0;
+		caseAutomate [][] cA = automata.getStates();
+		
+		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
+		automata.getEtatCourant();
+		while (cA[i][j] != null){
+			while (cA[i][j] != null){
+				if (cA[i][j].getCondition().execute(this.getCell())){
+					List_cases.add(cA [i][j]);
+					i++;
+				}
+			}
+		i = 0;
+		j++;
+		}
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+		int k = 1;
+		int cle = 0;
+		while ( k!= List_cases.size()){
+			if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
+				k++;
+			}
+			else { 
+				cle = k;
+				k++;
+			}
+		}	
+		List_cases.get(cle).action();
+		state = (List_cases.get(cle)).etat_futur();
+	}
 
 }
