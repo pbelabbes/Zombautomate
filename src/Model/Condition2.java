@@ -18,6 +18,7 @@ public abstract class Condition2 {
 	 * @return boolean which verifies the condition
 	 */
 	public abstract boolean execute();
+	
 	public Cell getTargetedCell(char direction)
 	{
 		Point p = new Point(personnage.getCell().getPosition());
