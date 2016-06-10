@@ -44,8 +44,8 @@ public class XMLReader {
 	//constructeur
 	XMLReader(){}
 	
-	//renvoi le nombre d'automate 
-	ArrayList<ArrayList<transfer>> read (){ // file name 
+	//renvoi le nombre d'automate , path est l'endoirt ou est le fichier.
+	ArrayList<ArrayList<transfer>> read (String path){ // file name 
 		 
 		System.out.println("bonjour");
 		
@@ -62,7 +62,7 @@ public class XMLReader {
 			}       
 		    Document document = null;
 			try {
-				document = builder.parse(new File("/home/zennouche/Documents/semestre6/PLA/exemple.xml"));
+				document = builder.parse(new File(path));
 				document.getDocumentElement().normalize();
 			} catch (SAXException | IOException e) {
 				// TODO Auto-generated catch block
