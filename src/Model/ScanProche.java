@@ -115,6 +115,13 @@ public class ScanProche extends Condition {
 	
 	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul ou le nombre d'ennemis sinon *)
 
+	
+	/**
+	 * Cette fonction permet de renvoyer un booleen indiquant on trouve bien un element de decor 
+	 * ou un charactere a l'une des cases adjacentes 
+	 * Utilisation: si l'on cherche un decor on set la variable decor et sinon on set la deuxieme variable et
+	 * on met le resultat attendu dans parameter
+	 */
 public boolean execute(Cell cellule){
 		int nb=0;
 		//on recupere les coordonnées des differentes cellules adjacentes

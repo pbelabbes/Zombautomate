@@ -82,7 +82,11 @@ public class Automata {
 	}
 		
 	
-	
+	/**
+	 * 
+	 * @param Condition
+	 * @return etat_futur
+	 */
 	public int getEtatFutur(Condition C){
 		int j=0;
 		
@@ -96,7 +100,7 @@ public class Automata {
 	
 	//Methodes
 	/**
-	 * La fonction ajoute ets utilisée pour construire un automate
+	 * La fonction ajoute est utilisée pour construire un automate
 	 * @param etat
 	 */
 	private void ajoute(transfer etat){	
@@ -112,7 +116,7 @@ public class Automata {
 	
 	
 	/**
-	 * 
+	 * Cette fonction permet de remplir un automate a partir d'une liste
 	 * @param liste
 	 */
 	public void automate(ArrayList<transfer> liste){
@@ -155,10 +159,6 @@ public class Automata {
 		}	
     }
 	
-	/**
-	 * 
-	 * @param args
-	 */
 	/*public static void main(String[] args){
 		Automata auto= new Automata(0,2,2);
 		int etat_futur;
