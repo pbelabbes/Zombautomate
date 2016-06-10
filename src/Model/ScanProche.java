@@ -26,17 +26,17 @@ public class ScanProche extends Condition {
 	
 	//Constructeurs 
 	
-	public ScanProche(String cible) {
+	public ScanProche(String cible,char parameter) {
 		
 		this.cible=cible;
 		this.decor=null;// TODO Auto-generated constructor stub
-		this.parameter=' ';
+		this.parameter=parameter;
 	}
-	public ScanProche(Decor decor) {
+	public ScanProche(Decor decor,char parameter) {
 			
 		this.decor=decor;
 		this.cible=null;// TODO Auto-generated constructor stub
-		this.parameter=' ';
+		this.parameter=parameter;
 	}
 
 	

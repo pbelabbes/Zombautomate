@@ -71,8 +71,8 @@ public class XMLReader {
 			switch (s1[0]){
 			case "Present":
 				switch (s2[0]){
-				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie");
-				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi");
+				case "Zombie": return new Presence(s2[1].charAt(0),"zombie");
+				case "Ennemi": return new Presence(s2[1].charAt(0),"ennemi");
 				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA);
 				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT);
 				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); 
@@ -86,31 +86,31 @@ public class XMLReader {
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
-				case "Zombie": return new ScanLoin("zombie");
-				case "Ennemi": return new ScanLoin("ennemi");
-				case "Katana": return new ScanLoin(Decor.KATANA);
-				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT);
-				case "Lapin": return new ScanLoin(Decor.RABBIT);
-				case "Pomme": return new ScanLoin(Decor.APPLE);
-				case "Pousse": return new ScanLoin(Decor.SPROUT);
-				case "Herbe": return new ScanLoin(Decor.GRASS);
-				case "Arbre": return new ScanLoin(Decor.TREE);
-				case "Rocher": return new ScanLoin(Decor.ROCK);
+				case "Zombie": return new ScanLoin("zombie",s2[1].charAt(0));
+				case "Ennemi": return new ScanLoin("ennemi",s2[1].charAt(0));
+				case "Katana": return new ScanLoin(Decor.KATANA,s2[1].charAt(0));
+				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT,s2[1].charAt(0));
+				case "Lapin": return new ScanLoin(Decor.RABBIT,s2[1].charAt(0));
+				case "Pomme": return new ScanLoin(Decor.APPLE,s2[1].charAt(0));
+				case "Pousse": return new ScanLoin(Decor.SPROUT,s2[1].charAt(0));
+				case "Herbe": return new ScanLoin(Decor.GRASS,s2[1].charAt(0));
+				case "Arbre": return new ScanLoin(Decor.TREE,s2[1].charAt(0));
+				case "Rocher": return new ScanLoin(Decor.ROCK,s2[1].charAt(0));
 				default: System.out.println("error invalid argument Scanloin");
 				}
 				break;
 			case "ScanProche": 
 				switch (s2[0]){
-				case "Zombie": return new ScanProche("zombie");
-				case "Ennemi": return new ScanProche("ennemi");
-				case "Katana": return new ScanProche(Decor.KATANA);
-				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT);
-				case "Lapin": return new ScanProche(Decor.RABBIT);
-				case "Pomme": return new ScanProche(Decor.APPLE);
-				case "Pousse": return new ScanProche(Decor.SPROUT);
-				case "Herbe": return new ScanProche(Decor.GRASS);
-				case "Arbre": return new ScanProche(Decor.TREE);
-				case "Rocher": return new ScanProche(Decor.ROCK);
+				case "Zombie": return new ScanProche("zombie",s2[1].charAt(0));
+				case "Ennemi": return new ScanProche("ennemi",s2[1].charAt(0));
+				case "Katana": return new ScanProche(Decor.KATANA,s2[1].charAt(0));
+				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT,s2[1].charAt(0));
+				case "Lapin": return new ScanProche(Decor.RABBIT,s2[1].charAt(0));
+				case "Pomme": return new ScanProche(Decor.APPLE,s2[1].charAt(0));
+				case "Pousse": return new ScanProche(Decor.SPROUT,s2[1].charAt(0));
+				case "Herbe": return new ScanProche(Decor.GRASS,s2[1].charAt(0));
+				case "Arbre": return new ScanProche(Decor.TREE,s2[1].charAt(0));
+				case "Rocher": return new ScanProche(Decor.ROCK,s2[1].charAt(0));
 				default: System.out.println("error invalid argument ScanProche");
 				}
 				break;
