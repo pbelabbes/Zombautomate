@@ -21,6 +21,7 @@ public abstract class Character extends Observable {
 	 * Cell cell : la cellule sur le plateau qu'il occupe
 	 * Automata automata: son automate soit son comportement dans le jeu
 	 * Map map: le plateau/terrain de jeu
+	 * int state: l'etat dans lequel se trouve le caractère. 
 	 */
 	//Attributs
 	private int hp ;//points de vie
