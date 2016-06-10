@@ -81,13 +81,30 @@ public class Condition_fonction {
 
 	//fonction auxiliaire utilisée par celle d'apres 
 	private char direction(int N,int E,int S,int O){
-		int min;
-		min=Math.min(Math.min(Math.min(N, E), S), O);
-		if(min==0)return '0';
-		else if(min==N)return 'N';
-		else if(min==S)return 'S';
-		else if(min==E)return 'E';
-		else return 'O';
+		int min=10000000;
+		if(N!=0 && E!=0 && S!=0 && O!=0){
+			min=Math.min(Math.min(Math.min(N, E), S), O);
+			if(min==0)return '0';
+			else if(min==N)return 'N';
+			else if(min==S)return 'S';
+			else if(min==E)return 'E';
+		}
+		else {
+			if(N!=0)min=N;
+			if(S!=0)min=S;
+			if(O!=0)min=O;
+			if(E!=0)min=E;
+			if(N!=0)min=Math.min(min, N);
+			if(E!=0)min=Math.min(min, E);
+			if(S!=0)min=Math.min(min, S);
+			if(O!=0)min=Math.min(min, O);
+			if(min==N)return 'N';
+			else if(min==S)return 'S';
+			else if(min==E)return 'E';
+			else return 'O';
+			
+			}
+		return '0';
 	}
 	
 	
@@ -102,7 +119,6 @@ public class Condition_fonction {
 	public char Scanloin(int rayon, Character pers, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
 		int diffx,diffy;
-		Point position= ;
 		
 		
 		for(int i=0;i<rayon;i++){
@@ -208,11 +224,11 @@ public class Condition_fonction {
 			    	diffy=position.y+i-position.y;
 			    	if(diffx>diffy){
 			    		
-			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
+			    		if(minO==0){System.out.println("le min a l'Ouest"+minO );minO=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
 			    		else minO=Math.min(minO, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
 			    	}
 			    	else {
-			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position); }
+			    		if(minS==0){System.out.println("le min au Sud"+minS );minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position); }
 			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
 			    	}
 			    }
@@ -222,7 +238,7 @@ public class Condition_fonction {
 			    	diffy=position.y-i-position.y;
 			    	if(diffx>diffy){
 			    		
-			    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position); }
+			    		if(minO==0){System.out.println(minO);minO=distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position); }
 			    		else minO=Math.min(minO, distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position));
 			    	}
 			    	else {
@@ -239,12 +255,16 @@ public class Condition_fonction {
 			    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
 			    	}
 			    	else {
-			    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
+			    		if(minS==0){System.out.println("le min au sud"+minS );minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
 			    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
 			    	}
 			    }
 			}
 		}
+		System.out.println("le min a l'Ouest"+minO );
+		System.out.println("le min au sud"+minS );
+		System.out.println("le min au Nord"+minN );
+		System.out.println("le min a l'est"+minE );
 	   return direction(minN,minE,minS,minO);	
 	}
 	
