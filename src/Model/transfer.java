@@ -7,7 +7,7 @@ package Model;
 import java.util.ArrayList;
 
 /**
- * @author Ombre Social
+ * 
  *
  */
 public class transfer {

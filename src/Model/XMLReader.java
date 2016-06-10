@@ -16,9 +16,17 @@ import java.util.ArrayList;
 
 import org.xml.sax.SAXException;
 import org.w3c.dom.*;
-
+/**
+ * La classe XMLReader est utilisée pour lire un fichier XML et créer les bonnes instance en fonction de celui-ci.
+ * 
+ */
 public class XMLReader {
 	
+	/**
+	 * La fonction toAction permet à partir du string du XML de renvoyer la bonne action de caseAutomate
+	 * @param act le sring qui vient du fichier
+	 * @return Action
+	 */
 	public Action toAction(String act){
 		
 		
@@ -123,6 +131,10 @@ public class XMLReader {
 	XMLReader(){}
 	
 	//renvoi le nombre d'automate 
+	/**
+	 * La fonction read lit entièrement le fichier XML et renvoie une liste de transfer 
+	 * @return une liste de transfer 
+	 */
 	ArrayList<ArrayList<transfer>> read (){ // file name 
 		 
 		System.out.println("bonjour");
