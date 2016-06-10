@@ -44,9 +44,15 @@ let (farmer: automate) =
   @
     presence_AD 2 Ennemi Voler 0 1 ;;
 
-(* 2 états : état 0 -> 34 transitions  état 1 -> 12 transitions *)
+(* 3 états : état 0 -> 6 transitions  état 1 -> 28 transitions   etat 2 -> 12 conditions*)
+
+let (automate_zombie: automate) = 
+  presence_AD 0 Ennemi Attaquer 0 1
+  @
+  scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
 
+(*let equipe = [(guerrier,"guerrier"); (farmer,"farmer")];; *)
 
-let equipe = [(guerrier,"guerrier"); (farmer,"farmer")];;
+let equipe = [(automate_zombie, "zombie")];;
