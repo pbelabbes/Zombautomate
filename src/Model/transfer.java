@@ -14,12 +14,12 @@ public class transfer {
 	private int etat_courant; 
 	private int etat_futur;
 	private Action action; 
-	private ArrayList<Condition> condition; 
+	private Condition condition; 
 	private char direction ;
 	private int priority ; 
 	
 	
-	public transfer(int etat_courant,ArrayList<Condition> condition, Action action , char direction, int priority, int etat_futur) {
+	public transfer(int etat_courant,Condition condition, Action action , char direction, int priority, int etat_futur) {
 		//super();
 		this.etat_courant = etat_courant;
 		this.etat_futur = etat_futur;
@@ -48,10 +48,10 @@ public class transfer {
 	public void setAction(Action action) {
 		this.action = action;
 	}
-	public ArrayList<Condition> getCondition() {
+	public Condition getCondition() {
 		return condition;
 	}
-	public void setCondition(ArrayList<Condition>  condition) {
+	public void setCondition(Condition  condition) {
 		this.condition = condition;
 	}
 	public char getDirection() {

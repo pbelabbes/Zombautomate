@@ -9,7 +9,7 @@ import java.awt.Point;
  * @author zennouche
  *
  */
-public class ScanLoin extends Condition2 {
+public class ScanLoin extends Condition {
 
 	/**
 	 * 

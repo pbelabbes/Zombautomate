@@ -37,91 +37,85 @@ public class XMLReader {
 	}
 	
 
+	/**
+	 * Cette fonction permet à partir du XML de créer les conditions de chaque caseAutomate
+	 * @param Ncondi Le noeud correspondant au premier argument de la balise condition
+	 * @return Condition :la condition
+	 */
 	public Condition toCondition(Node Ncondi){
 		Condition c1,c2;
 		String s;
 		String[] s1,s2;
-		
-		switch(Ncondi.getTextContent()){
+		s=Ncondi.getTextContent();
+		switch(s){
 		case "Et": 
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
 			return (new Et(c1,c2));
-			break;
 		case "Ou":
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
-			return (new Ou(c1,c2));
-			;break;
-		
+			return (new Ou(c1,c2));		
 		default:
-			s=Ncondi.getFirstChild().getTextContent();
 			s=s.substring(0, s.length());
 			s1=s.split("(", 2);
 			s2=s1[1].split(",",2);
 			switch (s1[0]){
 			case "Present":
 				switch (s2[0]){
-				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie"); break;
-				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi"); break;
-				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA); break;
-				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
-				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); break;
-				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE); break;
-				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT); break;
-				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS); break;
-				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE); break;
-				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK); break;
+				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie");
+				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi");
+				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA);
+				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT);
+				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); 
+				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE);
+				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT);
+				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS);
+				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE);
+				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK);
+				default: System.out.println("error invalid argument Present");
 				}
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
-				case "Zombie": return new ScanLoin(s2[1].charAt(0),"Zombie"); break;
-				case "Ennemi": return new ScanLoin(s2[1].charAt(0),"Ennemi"); break;
-				case "Katana": return new ScanLoin(s2[1].charAt(0),Decor.KATANA); break;
-				case "Batte_baseball": return new ScanLoin(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
-				case "Lapin": return new ScanLoin(s2[1].charAt(0),Decor.RABBIT); break;
-				case "Pomme": return new ScanLoin(s2[1].charAt(0),Decor.APPLE); break;
-				case "Pousse": return new ScanLoin(s2[1].charAt(0),Decor.SPROUT); break;
-				case "Herbe": return new ScanLoin(s2[1].charAt(0),Decor.GRASS); break;
-				case "Arbre": return new ScanLoin(s2[1].charAt(0),Decor.TREE); break;
-				case "Rocher": return new ScanLoin(s2[1].charAt(0),Decor.ROCK); break;
+				case "Zombie": return new ScanLoin("zombie");
+				case "Ennemi": return new ScanLoin("ennemi");
+				case "Katana": return new ScanLoin(Decor.KATANA);
+				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanLoin(Decor.RABBIT);
+				case "Pomme": return new ScanLoin(Decor.APPLE);
+				case "Pousse": return new ScanLoin(Decor.SPROUT);
+				case "Herbe": return new ScanLoin(Decor.GRASS);
+				case "Arbre": return new ScanLoin(Decor.TREE);
+				case "Rocher": return new ScanLoin(Decor.ROCK);
+				default: System.out.println("error invalid argument Scanloin");
 				}
 				break;
 			case "ScanProche": 
 				switch (s2[0]){
-				case "Zombie": return new ScanProche(s2[1].charAt(0),"Zombie"); break;
-				case "Ennemi": return new ScanProche(s2[1].charAt(0),"Ennemi"); break;
-				case "Katana": return new ScanProche(s2[1].charAt(0),Decor.KATANA); break;
-				case "Batte_baseball": return new ScanProche(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
-				case "Lapin": return new ScanProche(s2[1].charAt(0),Decor.RABBIT); break;
-				case "Pomme": return new ScanProche(s2[1].charAt(0),Decor.APPLE); break;
-				case "Pousse": return new ScanProche(s2[1].charAt(0),Decor.SPROUT); break;
-				case "Herbe": return new ScanProche(s2[1].charAt(0),Decor.GRASS); break;
-				case "Arbre": return new ScanProche(s2[1].charAt(0),Decor.TREE); break;
-				case "Rocher": return new ScanProche(s2[1].charAt(0),Decor.ROCK); break;
+				case "Zombie": return new ScanProche("zombie");
+				case "Ennemi": return new ScanProche("ennemi");
+				case "Katana": return new ScanProche(Decor.KATANA);
+				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanProche(Decor.RABBIT);
+				case "Pomme": return new ScanProche(Decor.APPLE);
+				case "Pousse": return new ScanProche(Decor.SPROUT);
+				case "Herbe": return new ScanProche(Decor.GRASS);
+				case "Arbre": return new ScanProche(Decor.TREE);
+				case "Rocher": return new ScanProche(Decor.ROCK);
+				default: System.out.println("error invalid argument ScanProche");
 				}
 				break;
 			case "Case_alliee":
-				switch (s2[0]){
-				case "Zombie": return new Linked_cell(s2[1].charAt(0),"Zombie"); break;
-				case "Ennemi": return new Linked_cell(s2[1].charAt(0),"Ennemi"); break;
-				case "Katana": return new Linked_cell(s2[1].charAt(0),Decor.KATANA); break;
-				case "Batte_baseball": return new Linked_cell(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
-				case "Lapin": return new Linked_cell(s2[1].charAt(0),Decor.RABBIT); break;
-				case "Pomme": return new Linked_cell(s2[1].charAt(0),Decor.APPLE); break;
-				case "Pousse": return new Linked_cell(s2[1].charAt(0),Decor.SPROUT); break;
-				case "Herbe": return new Linked_cell(s2[1].charAt(0),Decor.GRASS); break;
-				case "Arbre": return new Linked_cell(s2[1].charAt(0),Decor.TREE); break;
-				case "Rocher": return new Linked_cell(s2[1].charAt(0),Decor.ROCK); break;
-				}
-				break;
-			case "Case_ennemie": ;break;
-			case "Case_neutre": ;break;
+				return new Linked_cell(s2[0].charAt(0),'A');
+			case "Case_ennemie": 
+				return new Linked_cell(s2[0].charAt(0),'E');
+			case "Case_neutre": 
+				return new Linked_cell(s2[0].charAt(0),'N');
+			default: System.out.println("error invalid argument condition");
 			}
+			return null;
 		}
-		
-		return ;
 	}
 
 	
@@ -232,38 +226,37 @@ public class XMLReader {
 		    
 		    	System.out.println(NListtransi.item(j).getNodeName());
 		    
-		    	//récupe de l'état courant 
+		    	//récupérer l'état courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_courant = Integer.parseInt(NoeudCourant.getTextContent());
 		    		    	
-		    	//récup condition
-		    	
+		    	//récupérer la condition
 		    	NoeudCourant = NoeudCourant.getNextSibling();
 		    	NoeudCondi = NoeudCourant.getFirstChild();
-		    	System.out.println(NoeudCondi.getTextContent());
-		    	condition = NoeudCourant.getTextContent() ;
+		    	condition = toCondition(NoeudCondi);
+		    	//System.out.println(NoeudCondi.getTextContent());
 
-		    	//récupération de l'action
+		    	//récupérer l'action
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	action = toAction(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de la direction 
+		    	//récupérer la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
-		    	//recup de la priorité
+		    	//récupérer la priorité
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	priority = Integer.parseInt(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de l'état futur
+		    	//récupérerl'état futur
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_futur =Integer.parseInt( NoeudCourant.getTextContent());
-		    	
+		    	//transfer(int etat_courant,ArrayList<Condition> condition, Action action , char direction, int priority, int etat_futur) 
 		    	cell = new transfer(etat_courant, condition, action, direction, priority, etat_futur);
 		    	L2.add(cell);
 		    }
