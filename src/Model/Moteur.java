@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author zennouche
  *
  */
-public class main {
+public class Moteur {
 
 	/**
 	 * 
@@ -133,12 +133,12 @@ public class main {
 	public static void main(final String[] args) {
 		XMLReader fichier = new XMLReader() ;
 		
-		ArrayList<ArrayList<transfer>> liste=fichier.read("/../ocaml/personnages_générés.xml");
+		ArrayList<ArrayList<transfer>> liste=fichier.read("/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
 		Player Zombi = new Player(0, "Zombies", 10 );
 		
 		Zombi.setEntities(CreateEntities(Zombi, liste));
 		
-		
+//		System.out.println("hello");
 		
 		
 		

@@ -26,10 +26,12 @@ public class mainXML {
 //	</condition>
 //=======
 	
-	public static void main (String [] args){
+	/*public static void main (String [] args){
 		XMLReader test = new XMLReader() ;
 		//String path=new File("").getAbsolutePath(); 
 		test.read("/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
+		
+		//System.out.println("prout");
 //		String[] s1;
 //		String s= "Present(Katana,N)";
 //		s1=s.split("\\(");
@@ -40,4 +42,4 @@ public class mainXML {
 //		String part2 = parts[1]; // 034556
 //		System.out.println(part1);
 	}
-}
+}*/

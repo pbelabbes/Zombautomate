@@ -96,7 +96,7 @@ public class Automata {
 				j++;
 			}
 			if(states[etat_courant][j].getCondition()==C) 
-				return states[etat_courant][j].getEtatfutur();
+				return states[etat_courant][j].etat_futur();
 			else return -1;
 	}
 	
@@ -154,7 +154,7 @@ public class Automata {
 		for (int i=0;i<height;i++){
 		     for (int j=0;j<width;j++){
 		    	 if(states[i][j]!=null){
-		    		 System.out.println(this.states[i][j].getEtatfutur()+",");
+		    		 System.out.println(this.states[i][j].etat_futur()+",");
 		    	 }	 
 		     } 
 		     System.out.println("\n");
