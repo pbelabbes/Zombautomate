@@ -9,20 +9,18 @@ public class Presence extends Condition2 {
 	private String cible;
 	private Decor decor;
 	
-	Presence(Character personnage,char direction,String cible){
-		 this.personnage=personnage;
+	Presence(char direction,String cible){
 		 this.direction=direction;
 		 this.cible=cible;
 		 decor = null;
 		}
-	Presence(Character personnage,char direction,Decor decor){
-		 this.personnage=personnage;
+	Presence(char direction,Decor decor){
 		 this.direction=direction;
 		 this.decor=decor;
 		 cible = null;
 		}
 	
-	public boolean execute(){
+	public boolean execute(Cell cellule){
 			Point p=new Point(this.personnage.getCell().getPosition());
 			switch (direction){
 			case 'N': p.y=p.y-1;break;
