@@ -16,9 +16,17 @@ import java.util.ArrayList;
 
 import org.xml.sax.SAXException;
 import org.w3c.dom.*;
-
+/**
+ * La classe XMLReader est utilisée pour lire un fichier XML et créer les bonnes instance en fonction de celui-ci.
+ * 
+ */
 public class XMLReader {
 	
+	/**
+	 * La fonction toAction permet à partir du string du XML de renvoyer la bonne action de caseAutomate
+	 * @param act le sring qui vient du fichier
+	 * @return Action
+	 */
 	public Action toAction(String act){
 		
 		
@@ -37,29 +45,85 @@ public class XMLReader {
 	}
 	
 
+	/**
+	 * Cette fonction permet à partir du XML de créer les conditions de chaque caseAutomate
+	 * @param Ncondi Le noeud correspondant au premier argument de la balise condition
+	 * @return Condition :la condition
+	 */
 	public Condition toCondition(Node Ncondi){
 		Condition c1,c2;
-		switch(Ncondi.getTextContent()){
+		String s;
+		String[] s1,s2;
+		s=Ncondi.getTextContent();
+		switch(s){
 		case "Et": 
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
 			return (new Et(c1,c2));
-			break;
 		case "Ou":
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
-			return (new Ou(c1,c2));
-			;break;
-		case "Present": ;break;
-		case "ScanLoin": ;break;
-		case "ScanProche": ;break;
-		case "Case_alliee": ;break;
-		case "Case_ennemie": ;break;
-		case "Case_neutre": ;break;
-		default:;
+			return (new Ou(c1,c2));		
+		default:
+			s=s.substring(0, s.length());
+			s1=s.split("(", 2);
+			s2=s1[1].split(",",2);
+			switch (s1[0]){
+			case "Present":
+				switch (s2[0]){
+				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie");
+				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi");
+				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA);
+				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT);
+				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); 
+				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE);
+				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT);
+				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS);
+				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE);
+				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK);
+				default: System.out.println("error invalid argument Present");
+				}
+				break;
+			case "ScanLoin": 
+				switch (s2[0]){
+				case "Zombie": return new ScanLoin("zombie");
+				case "Ennemi": return new ScanLoin("ennemi");
+				case "Katana": return new ScanLoin(Decor.KATANA);
+				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanLoin(Decor.RABBIT);
+				case "Pomme": return new ScanLoin(Decor.APPLE);
+				case "Pousse": return new ScanLoin(Decor.SPROUT);
+				case "Herbe": return new ScanLoin(Decor.GRASS);
+				case "Arbre": return new ScanLoin(Decor.TREE);
+				case "Rocher": return new ScanLoin(Decor.ROCK);
+				default: System.out.println("error invalid argument Scanloin");
+				}
+				break;
+			case "ScanProche": 
+				switch (s2[0]){
+				case "Zombie": return new ScanProche("zombie");
+				case "Ennemi": return new ScanProche("ennemi");
+				case "Katana": return new ScanProche(Decor.KATANA);
+				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanProche(Decor.RABBIT);
+				case "Pomme": return new ScanProche(Decor.APPLE);
+				case "Pousse": return new ScanProche(Decor.SPROUT);
+				case "Herbe": return new ScanProche(Decor.GRASS);
+				case "Arbre": return new ScanProche(Decor.TREE);
+				case "Rocher": return new ScanProche(Decor.ROCK);
+				default: System.out.println("error invalid argument ScanProche");
+				}
+				break;
+			case "Case_alliee":
+				return new Linked_cell(s2[0].charAt(0),'A');
+			case "Case_ennemie": 
+				return new Linked_cell(s2[0].charAt(0),'E');
+			case "Case_neutre": 
+				return new Linked_cell(s2[0].charAt(0),'N');
+			default: System.out.println("error invalid argument condition");
+			}
+			return null;
 		}
-		
-		return ;
 	}
 
 	
@@ -67,6 +131,10 @@ public class XMLReader {
 	XMLReader(){}
 	
 	//renvoi le nombre d'automate 
+	/**
+	 * La fonction read lit entièrement le fichier XML et renvoie une liste de transfer 
+	 * @return une liste de transfer 
+	 */
 	ArrayList<ArrayList<transfer>> read (){ // file name 
 		 
 		System.out.println("bonjour");
@@ -170,38 +238,37 @@ public class XMLReader {
 		    
 		    	System.out.println(NListtransi.item(j).getNodeName());
 		    
-		    	//récupe de l'état courant 
+		    	//récupérer l'état courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_courant = Integer.parseInt(NoeudCourant.getTextContent());
 		    		    	
-		    	//récup condition
-		    	
+		    	//récupérer la condition
 		    	NoeudCourant = NoeudCourant.getNextSibling();
 		    	NoeudCondi = NoeudCourant.getFirstChild();
-		    	System.out.println(NoeudCondi.getTextContent());
-		    	condition = NoeudCourant.getTextContent() ;
+		    	condition = toCondition(NoeudCondi);
+		    	//System.out.println(NoeudCondi.getTextContent());
 
-		    	//récupération de l'action
+		    	//récupérer l'action
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	action = toAction(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de la direction 
+		    	//récupérer la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
-		    	//recup de la priorité
+		    	//récupérer la priorité
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	priority = Integer.parseInt(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de l'état futur
+		    	//récupérerl'état futur
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_futur =Integer.parseInt( NoeudCourant.getTextContent());
-		    	
+		    	//transfer(int etat_courant,ArrayList<Condition> condition, Action action , char direction, int priority, int etat_futur) 
 		    	cell = new transfer(etat_courant, condition, action, direction, priority, etat_futur);
 		    	L2.add(cell);
 		    }

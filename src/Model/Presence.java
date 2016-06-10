@@ -2,7 +2,7 @@ package Model;
 import java.awt.Point;
 import java.lang.String;
 
-public class Presence extends Condition2 {
+public class Presence extends Condition {
 	
 
 	private char direction;

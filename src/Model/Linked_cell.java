@@ -7,7 +7,7 @@ package Model;
  * @author alexandre
  *
  */
-public class Linked_cell extends Condition2 {
+public class Linked_cell extends Condition {
 
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute()

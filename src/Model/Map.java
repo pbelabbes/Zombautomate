@@ -1,5 +1,6 @@
 package Model;
 
+import java.awt.Point;
 import java.util.Observable;
 
 //import java.util.ArrayList;
@@ -71,4 +72,30 @@ public class Map extends Observable{
 		grid[cell.getPosition().x][cell.getPosition().y] = cell;
 	}
 	
+	/**
+	 * met des décors aléatoires sur la carte. Les automates ne sont pas encore placés
+	 */
+	public void init_map()
+	{
+		for(int x = 0; x < this.getWidth(); x++)
+		{
+			for(int y = 0 ; y < this.getHeight() ; y++)
+			{
+				grid[x][y] = new Cell(new Point(x,y));
+			}
+		}
+	}
+	
+	private void setAutomata(Automata a, Point pos)
+	{
+		for(int x=0+pos.x; x < a.getEtats()+pos.x; x++)
+		{
+			for(int y = 0; y < a.getInputs()+pos.y ; y++)
+			{
+				this.
+			}
+		}
+	}
+	
+	public void setAutomatas(ArrayList<Automata>)
 }
