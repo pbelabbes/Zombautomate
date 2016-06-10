@@ -96,8 +96,7 @@ public class Cell {
 				Point posaut=this.owned_by.getAutomata().getPosition();
 				int x= poscell.x-posaut.x;
 				int y= poscell.y-posaut.y;
-				this.owned_by.getAutomata().getStates()[x][y].getAction()=this.decor.getAction();
-//TODO : case d'un automate .getAction()
+				this.owned_by.getAutomata().getStates()[x][y].setAction(this.decor.getAction());
 			}
 		}
 }
