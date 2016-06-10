@@ -15,8 +15,10 @@ import java.awt.Point;
 
 public class Automata {
 	//Atributs
-
+	
+	//nb d'états.
 	private int etats;
+	//nb d'entrée.
 	private int inputs;
 	private caseAutomate[][] states;
 	private Point position; 
@@ -68,7 +70,7 @@ public class Automata {
 			setEtats(width);
 			this.inputs=height;
 			this.etat_courant=etat_courant;
-			states=new caseAutomate[height][width];			
+			this.states=new caseAutomate[height][width];			
 		}
 
 	

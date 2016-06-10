@@ -130,12 +130,15 @@ public class XMLReader {
 	//constructeur
 	XMLReader(){}
 	
+
+
 	//renvoi le nombre d'automate 
 	/**
 	 * La fonction read lit entièrement le fichier XML et renvoie une liste de transfer 
 	 * @return une liste de transfer 
 	 */
-	ArrayList<ArrayList<transfer>> read (){ // file name 
+	ArrayList<ArrayList<transfer>> read (String path){ // file name 
+
 		 
 		System.out.println("bonjour");
 		
@@ -152,7 +155,7 @@ public class XMLReader {
 			}       
 		    Document document = null;
 			try {
-				document = builder.parse(new File("/home/zennouche/Documents/semestre6/PLA/exemple.xml"));
+				document = builder.parse(new File(path));
 				document.getDocumentElement().normalize();
 			} catch (SAXException | IOException e) {
 				// TODO Auto-generated catch block

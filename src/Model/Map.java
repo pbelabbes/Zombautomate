@@ -1,6 +1,7 @@
 package Model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Observable;
 
 //import java.util.ArrayList;
@@ -86,16 +87,30 @@ public class Map extends Observable{
 		}
 	}
 	
-	private void setAutomata(Automata a, Point pos)
+	/**
+	 * 
+	 * @param a : un automate à placer sur la carte
+	 * @param pos : la position à laquelle l'automate est placé (coin supérieur gauche)
+	 */
+	private void setAutomata(Automata a, Point pos, Character perso)
 	{
-		for(int x=0+pos.x; x < a.getEtats()+pos.x; x++)
+		int gridheight = this.getHeight();
+		int gridwidth = this.getWidth();
+		for(int x=0+pos.x ; x < a.getEtats()+pos.x; x++)
 		{
-			for(int y = 0; y < a.getInputs()+pos.y ; y++)
+			for(int y = 0+pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
-				this.
+				int x_r = x%gridheight; //x_reel (c'est un tor)
+				int y_r = y%gridwidth; //y_reel (c'est un tor)
+				this.grid[x_r][y_r].setOwned_by(perso);
+				this.grid[x_r][y_r].setDecor(a.getStates()[x-pos.x][y-pos.y].action().getDecor());
+				this.grid[x_r][y_r].setPosition(pos);
 			}
 		}
 	}
-	
-	public void setAutomatas(ArrayList<Automata>)
+
+	public void setAutomatas(ArrayList<Automata> lA)
+	{
+		lA.
+	}
 }
