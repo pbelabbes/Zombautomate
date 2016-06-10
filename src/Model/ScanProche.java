@@ -113,7 +113,7 @@ public class ScanProche extends Condition {
 	}
 	
 	
-	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul ou le nombre d'ennemis sinon *)
 
 public boolean execute(Cell cellule){
 		int nb=0;
@@ -158,7 +158,7 @@ public boolean execute(Cell cellule){
 					return ('O'==parameter);
 				}
 			}
-	 }	 
+	 	 
 	else if(decor!=null){
 		nb=nb_cible(cN,cS,cE,cO,cellule);	
 			if( cN.getDecor()==decor ){
@@ -176,10 +176,10 @@ public boolean execute(Cell cellule){
 			}
 		
 	}
-			
-}
-	else return  (((char) nb +'0')==parameter);
-		// TODO Auto-generated method stub
+   }		
+  }
+   return  (((char) nb +'0')==parameter);
+   // TODO Auto-generated method stub
 }
 
 }
