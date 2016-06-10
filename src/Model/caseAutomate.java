@@ -20,11 +20,11 @@ public class caseAutomate {
 		return ""+action;
 	}
 
-	public int etat_futur() {
+	public int getEtatfutur() {
 		return this.etat_futur;
 		
 	}
-	public Action action() {
+	public Action getAction() {
 		return this.action;
 		
 	}
