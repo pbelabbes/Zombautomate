@@ -88,8 +88,34 @@ public class XMLReader {
 				case "Rocher": return new ScanLoin(s2[1].charAt(0),Decor.ROCK); break;
 				}
 				break;
-			case "ScanProche": ;break;
-			case "Case_alliee": ;break;
+			case "ScanProche": 
+				switch (s2[0]){
+				case "Zombie": return new ScanProche(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new ScanProche(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new ScanProche(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new ScanProche(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new ScanProche(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new ScanProche(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new ScanProche(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new ScanProche(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new ScanProche(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new ScanProche(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
+			case "Case_alliee":
+				switch (s2[0]){
+				case "Zombie": return new Linked_cell(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new Linked_cell(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new Linked_cell(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new Linked_cell(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new Linked_cell(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new Linked_cell(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new Linked_cell(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new Linked_cell(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new Linked_cell(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new Linked_cell(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
 			case "Case_ennemie": ;break;
 			case "Case_neutre": ;break;
 			}
