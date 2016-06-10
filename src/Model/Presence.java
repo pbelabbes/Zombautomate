@@ -2,14 +2,14 @@ package Model;
 
 public class Presence extends Condition2 {
 	
-	Character personnage;
-	char direction;
-	Player player;
-	Zombie zombie;
-	Decor decor;
+	private Character personnage;
+	private char direction;
+	private Player player;
+	private Zombie zombie;
+	private Decor decor;
 	
 	
-	Presence(Character personnage,char direction,Player player){
+	public Presence(Character personnage,char direction,Player player){
       this.personnage=personnage;
       this.player=player;
       this.direction=direction;
