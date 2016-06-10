@@ -4,12 +4,13 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * @author pierrebelabbes
  *
  */
-public class Player {
+public class Player extends Observable{
 	
 	private int id;
 	private String name;
@@ -24,22 +25,30 @@ public class Player {
 	}
 	public void setId(int id) {
 		this.id = id;
+		setChanged();
+		notifyObservers(this.id);
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+		setChanged();
+		notifyObservers(this.name);
 	}
 	public ArrayList<Character> getEntities() {
 		return entities;
 	}
 	public void setEntities(ArrayList<Character> entities) {
 		this.entities = entities;
+		setChanged();
+		notifyObservers(this.entities);
 	}
 	
 	public void addFoodStock (int plus){
 		this.foodStock = this.foodStock +plus;
+		setChanged();
+		notifyObservers(this.foodStock);
 		return;
 	}
 	public int getFoodStock() {
@@ -51,6 +60,8 @@ public class Player {
 	
 	public void addStone(int plus){
 		this.stone=this.stone+plus;
+		setChanged();
+		notifyObservers(this.stone);
 		return;
 	}
 	public int getStone() {
@@ -63,6 +74,8 @@ public class Player {
 	
 	public void addSeed(int plus){
 		this.seed=this.seed+plus;
+		setChanged();
+		notifyObservers(this.seed);
 		return;
 	}
 	public int getSeed() {
