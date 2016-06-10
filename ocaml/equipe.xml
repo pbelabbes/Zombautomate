@@ -3,7 +3,7 @@
 	<automate id ="guerrier">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Katana,N)</condition>
+			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -11,7 +11,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Katana,S)</condition>
+			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -19,7 +19,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Katana,E)</condition>
+			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -27,7 +27,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Katana,O)</condition>
+			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -35,7 +35,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Batte_baseball,N)</condition>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -43,7 +43,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Batte_baseball,S)</condition>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -51,7 +51,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Batte_baseball,E)</condition>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -59,7 +59,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Batte_baseball,O)</condition>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -67,7 +67,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Katana,N)</condition>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -75,7 +75,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Katana,S)</condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -83,7 +83,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Katana,E)</condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -91,7 +91,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Katana,O)</condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -99,7 +99,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Batte_baseball,N)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -107,7 +107,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Batte_baseball,S)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -115,7 +115,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Batte_baseball,E)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -123,7 +123,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>ScanLoin(Batte_baseball,O)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -131,7 +131,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Ennemi,N)</condition>
+			<condition><texte>Present(Ennemi,N)</texte></condition>
 			<action>Attaquer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -139,7 +139,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Ennemi,S)</condition>
+			<condition><texte>Present(Ennemi,S)</texte></condition>
 			<action>Attaquer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -147,7 +147,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Ennemi,E)</condition>
+			<condition><texte>Present(Ennemi,E)</texte></condition>
 			<action>Attaquer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -155,7 +155,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Ennemi,O)</condition>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
 			<action>Attaquer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -163,7 +163,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Ennemi,N)</condition>
+			<condition><texte>ScanLoin(Ennemi,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -171,7 +171,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Ennemi,S)</condition>
+			<condition><texte>ScanLoin(Ennemi,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -179,7 +179,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Ennemi,E)</condition>
+			<condition><texte>ScanLoin(Ennemi,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -187,7 +187,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Ennemi,O)</condition>
+			<condition><texte>ScanLoin(Ennemi,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -195,7 +195,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Batte_baseball,N)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -203,7 +203,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Batte_baseball,S)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -211,7 +211,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Batte_baseball,E)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -219,7 +219,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Batte_baseball,O)</condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -227,7 +227,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Katana,N)</condition>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -235,7 +235,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Katana,S)</condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -243,7 +243,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Katana,E)</condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -251,7 +251,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Katana,O)</condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -261,25 +261,17 @@
 	<automate id ="farmer">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Lapin,N)</condition>
+			<condition><texte>Present(Lapin,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition>
-				<texte>Et</texte>
-				<condition>
-							<texte>Case_ennemie(N)</texte>
-				</condition>
-				
-				<condition> <texte>Ou</texte>
-							<condition>Present(Lapin,N)</condition>
-							<condition>Present(Pomme,N)</condition> 
-				</condition>
-			</condition>
+			<etat_courant>0</etat_courant><texte>Et</texte><condition>
+			<condition><texte>Case_ennemie(N)</texte></condition></condition><condition><texte>Ou</texte><condition>
+			<condition><texte>Present(Lapin,N)</texte></condition></condition><condition>
+			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -287,7 +279,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pomme,N)</condition>
+			<condition><texte>Present(Pomme,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -295,7 +287,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pomme,S)</condition>
+			<condition><texte>Present(Pomme,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -303,7 +295,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pomme,E)</condition>
+			<condition><texte>Present(Pomme,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -311,7 +303,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pomme,O)</condition>
+			<condition><texte>Present(Pomme,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -319,7 +311,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Lapin,N)</condition>
+			<condition><texte>Present(Lapin,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -327,7 +319,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Lapin,S)</condition>
+			<condition><texte>Present(Lapin,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -335,7 +327,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Lapin,E)</condition>
+			<condition><texte>Present(Lapin,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -343,7 +335,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Lapin,O)</condition>
+			<condition><texte>Present(Lapin,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -351,7 +343,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Pomme,N)</condition>
+			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -359,7 +351,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Pomme,S)</condition>
+			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -367,7 +359,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Pomme,E)</condition>
+			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -375,7 +367,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Pomme,O)</condition>
+			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -383,7 +375,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Lapin,N)</condition>
+			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -391,7 +383,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Lapin,S)</condition>
+			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -399,7 +391,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Lapin,E)</condition>
+			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -407,7 +399,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>ScanLoin(Lapin,O)</condition>
+			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -415,7 +407,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pousse,N)</condition>
+			<condition><texte>Present(Pousse,N)</texte></condition>
 			<action>Arroser</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -423,7 +415,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pousse,S)</condition>
+			<condition><texte>Present(Pousse,S)</texte></condition>
 			<action>Arroser</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -431,7 +423,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pousse,E)</condition>
+			<condition><texte>Present(Pousse,E)</texte></condition>
 			<action>Arroser</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -439,7 +431,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Pousse,O)</condition>
+			<condition><texte>Present(Pousse,O)</texte></condition>
 			<action>Arroser</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -447,7 +439,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Herbe,N)</condition>
+			<condition><texte>Present(Herbe,N)</texte></condition>
 			<action>Planter</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -455,7 +447,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Herbe,S)</condition>
+			<condition><texte>Present(Herbe,S)</texte></condition>
 			<action>Planter</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -463,7 +455,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Herbe,E)</condition>
+			<condition><texte>Present(Herbe,E)</texte></condition>
 			<action>Planter</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -471,7 +463,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Herbe,O)</condition>
+			<condition><texte>Present(Herbe,O)</texte></condition>
 			<action>Planter</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -479,7 +471,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Zombie,N)</condition>
+			<condition><texte>Present(Zombie,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -487,7 +479,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Zombie,S)</condition>
+			<condition><texte>Present(Zombie,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -495,7 +487,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Zombie,E)</condition>
+			<condition><texte>Present(Zombie,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -503,7 +495,7 @@
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition>Present(Zombie,O)</condition>
+			<condition><texte>Present(Zombie,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -511,7 +503,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Zombie,N)</condition>
+			<condition><texte>Present(Zombie,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -519,7 +511,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Zombie,S)</condition>
+			<condition><texte>Present(Zombie,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -527,7 +519,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Zombie,E)</condition>
+			<condition><texte>Present(Zombie,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -535,7 +527,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Zombie,O)</condition>
+			<condition><texte>Present(Zombie,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
@@ -543,7 +535,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>ScanLoin(Arbre,N)</condition>
+			<condition><texte>ScanLoin(Arbre,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -551,7 +543,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>ScanLoin(Arbre,S)</condition>
+			<condition><texte>ScanLoin(Arbre,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -559,7 +551,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>ScanLoin(Arbre,E)</condition>
+			<condition><texte>ScanLoin(Arbre,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -567,7 +559,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>ScanLoin(Arbre,O)</condition>
+			<condition><texte>ScanLoin(Arbre,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -575,7 +567,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Ennemi,N)</condition>
+			<condition><texte>Present(Ennemi,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -583,7 +575,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Ennemi,S)</condition>
+			<condition><texte>Present(Ennemi,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -591,7 +583,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Ennemi,E)</condition>
+			<condition><texte>Present(Ennemi,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -599,7 +591,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition>Present(Ennemi,O)</condition>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
@@ -607,7 +599,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Ennemi,N)</condition>
+			<condition><texte>Present(Ennemi,N)</texte></condition>
 			<action>Voler</action>
 			<direction>N</direction>
 			<priorite>0</priorite>
@@ -615,7 +607,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Ennemi,S)</condition>
+			<condition><texte>Present(Ennemi,S)</texte></condition>
 			<action>Voler</action>
 			<direction>S</direction>
 			<priorite>0</priorite>
@@ -623,7 +615,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Ennemi,E)</condition>
+			<condition><texte>Present(Ennemi,E)</texte></condition>
 			<action>Voler</action>
 			<direction>E</direction>
 			<priorite>0</priorite>
@@ -631,7 +623,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition>Present(Ennemi,O)</condition>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
 			<action>Voler</action>
 			<direction>O</direction>
 			<priorite>0</priorite>

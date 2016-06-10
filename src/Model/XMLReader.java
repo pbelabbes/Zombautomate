@@ -55,6 +55,7 @@ public class XMLReader {
 		String s;
 		String[] s1,s2;
 		s=Ncondi.getTextContent();
+		
 		switch(s){
 		case "Et": 
 			c1= toCondition(Ncondi.getNextSibling());
@@ -66,7 +67,7 @@ public class XMLReader {
 			return (new Ou(c1,c2));		
 		default:
 			s=s.substring(0, s.length());
-			s1=s.split("(", 2);
+			s1=s.split("\\(", 2);
 			s2=s1[1].split(",",2);
 			switch (s1[0]){
 			case "Present":
@@ -196,13 +197,14 @@ public class XMLReader {
 		 
 //******************** début de la lecture ****************************\\
 		
+			System.out.println("debut de la lecture");
 		int etat_courant; 
 		int etat_futur;
 		Action action; 
 		Condition condition; 
 		char direction ;
 		int nbTransition = 0 ; 
-		int NumEtatsMax ;
+		//int NumEtatsMax ;
 		int priority ; 
 		Node NoeudCourant; 
 		Node NoeudCondi;
@@ -240,6 +242,7 @@ public class XMLReader {
 		    for (int j = 0; j < nbTransition ; j++ ){
 		    
 		    	System.out.println(NListtransi.item(j).getNodeName());
+		    	
 		    
 		    	//récupérer l'état courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
@@ -249,8 +252,9 @@ public class XMLReader {
 		    	//récupérer la condition
 		    	NoeudCourant = NoeudCourant.getNextSibling();
 		    	NoeudCondi = NoeudCourant.getFirstChild();
+		    	System.out.println(NoeudCondi.getTextContent());
 		    	condition = toCondition(NoeudCondi);
-		    	//System.out.println(NoeudCondi.getTextContent());
+		    	
 
 		    	//récupérer l'action
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
