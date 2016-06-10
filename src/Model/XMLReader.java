@@ -37,11 +37,9 @@ public class XMLReader {
 		return Action.MOVE; 
 	}
 	
-	public Condition toCondition(String condi){
-		
-		
-		return Condition.
-	}
+
+	
+	
 	
 	//constructeur
 	XMLReader(){}
@@ -162,7 +160,7 @@ public class XMLReader {
 		    	//recup�ration de l'acion
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
-		    	action = NoeudCourant.getTextContent() ;
+		    	action = toAction(NoeudCourant.getTextContent()) ;
 		    	
 		    	//recup de la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
