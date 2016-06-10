@@ -32,5 +32,8 @@ public class caseAutomate {
 	{
 		return this.condition;
 	}
+	public int getPriorite(){
+		return this.priorite;
+	}
 	
 }

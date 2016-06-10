@@ -30,6 +30,7 @@ public abstract class Character extends Observable {
 	private Cell cell;
 	private Automata automata;
 	private Map map;
+	private int state;
 	
 	/**
 	 * Constructeur
@@ -44,6 +45,7 @@ public abstract class Character extends Observable {
 		this.automata=automata;
 		this.map=map;
 		this.sight_range = 2;
+		this.state = 0;
 	}
 	
 	public int getHp() {
@@ -141,7 +143,7 @@ public abstract class Character extends Observable {
 	
 	public void play (){
 		
-		ArrayList<caseAutomate> List_cases;
+		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
 		int i=0;
 		int j=0;
 		caseAutomate [][] cA = automata.getStates();
@@ -162,7 +164,7 @@ public abstract class Character extends Observable {
 		int k = 1;
 		int cle = 0;
 		while ( k!= List_cases.size()){
-			if(List_cases.get(cle).priorite > List_cases.get(k).priorite){
+			if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
 				k++;
 			}
 			else { 
@@ -170,17 +172,8 @@ public abstract class Character extends Observable {
 				k++;
 			}
 		}	
-		getAutomata().get(List_cases.get(cle)).getdecor.getAction();
-		etat_courant = etat.get(List_cases.get(cle));
-	
+		List_cases.get(cle).action();
+		state = (List_cases.get(cle)).etat_futur();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
