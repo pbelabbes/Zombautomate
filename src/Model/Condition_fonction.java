@@ -13,8 +13,8 @@ public class Condition_fonction {
 	 * on donne la position d'un character adjacent si il y'en a un 
 	 */
 	
-	
-	public boolean Presence(char direction , Character per , Point position){
+	//Attention, les arguments devraient fonctionner de la meme maniere pour toutes les fonctions (éviter de prendre parfois une cellule et parfois un point par exemple)
+	public boolean presence(char direction , Player joueur , Point position,Map map){
 	
 		Point p=new Point(position);
 		boolean b;
@@ -24,25 +24,41 @@ public class Condition_fonction {
 		case 'E': p.x=p.x+1;break;
 		case 'O': p.x=p.x-1;break;		
 		}
-		if(per.getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
-			if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Character){
-				    if(per.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie){
-					return false;
-					}
-					else {
-						//si ils appartiennent pas au meme joueuer alors ils sont ennemies et pas alliés
-						b=(per.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer() !=
-						per.getCell().getEntity_on().getPlayer()) ;
-					    return b;
-					}
-			}
-		}
-		//si on arrive la aucune condition n'a ete verifié donc on retourne false 
-		return false ;
-	}
 		
+		if(position_dans_map(p.x,p.y, map.getHeight(),map.getWidth()) && (map.getGrid()[p.x][p.y].getEntity_on()!=null)){
+					
+			//si ils appartiennent pas au meme joueuer alors ils sont ennemies et pas alliés
+						b=(map.getGrid()[p.x][p.y].getEntity_on().getPlayer() != joueur) ;
+						System.out.println(map.getGrid()[p.x][p.y].getEntity_on().getPlayer().getId());	
+						System.out.println(joueur.getId());
+						System.out.println(b);
+					    return b;
+		}
+		else return false;
+	}
+
 	
 	
+	public boolean presence(char direction , Zombie zombie , Point position,Map map){
+		
+		Point p=new Point(position);
+		boolean b;
+		switch (direction){
+		case 'N': p.y=p.y-1;break;
+		case 'S': p.y=p.y+1;break;
+		case 'E': p.x=p.x+1;break;
+		case 'O': p.x=p.x-1;break;		
+		}
+		
+		if(position_dans_map(p.x,p.y, map.getHeight(),map.getWidth()) && (map.getGrid()[p.x][p.y].getEntity_on()!=null)){
+						//si ils appartiennent pas au meme joueuer alors ils sont ennemies et pas alliés
+						b=(map.getGrid()[p.x][p.y].getEntity_on() instanceof Zombie) ;
+					    return b;
+		}
+		else return false;
+	}
+
+
 //la fonction renvoie le type de decor qu'il y'a a la case a cote qui est dans la direction "direction"
 	
 	public boolean presence(char direction , Decor d , Point position, Map map){
@@ -64,7 +80,7 @@ public class Condition_fonction {
 	
 
 	//fonction auxiliaire utilisée par celle d'apres 
-	private char  direction(int N,int E,int S,int O){
+	private char direction(int N,int E,int S,int O){
 		int min;
 		min=Math.min(Math.min(Math.min(N, E), S), O);
 		if(min==0)return '0';
@@ -278,14 +294,15 @@ public class Condition_fonction {
 		case 'O': p.x=p.x-1;break;
 		}
 		ce=map.getGrid()[p.x][p.y];
+		
 		if(ce.getOwned_by() !=null){
-			a=(ce.getOwned_by() instanceof Survivor); 
-			
-			b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
-			
-			return (b && a && (ce.getOwned_by().getPlayer()== cell.getOwned_by().getPlayer() ));
+		 
+			b=(ce.getOwned_by().getPlayer() == cell.getEntity_on().getPlayer());
+			return (b ); 
 		}
-		else return false;
+		else return false;   
+			
+			
 	}
 	
   /*
@@ -309,11 +326,8 @@ public class Condition_fonction {
 		}
 		ce=map.getGrid()[p.x][p.y];
 		if(ce.getOwned_by()!=null){
-			a=(ce.getOwned_by() instanceof Survivor); 
 			
-			b=in_intervalle(ce.getOwned_by().getAutomata().getPosition(),ce.getOwned_by().getAutomata().proportion(),p);	
-			
-			return (a && b && (ce.getOwned_by().getPlayer()!= cell.getOwned_by().getPlayer() ));
+			return (ce.getOwned_by().getPlayer()!= cell.getEntity_on().getPlayer() );
 		}	
 		else return false; 	
 	}
@@ -390,47 +404,51 @@ public class Condition_fonction {
 	}
 
 
-//fonction auxiliaire qui sert a la fonction d'apres 
-public int nb_decor(Point p1,Point p2, Point p3, Point p4, Map map,Decor decor){
+	//fonction auxiliaire qui sert a la fonction d'apres 
+	public int nb_decor(Point p1,Point p2, Point p3, Point p4, Map map,Decor decor){
 	int nb=0;
-	if(map.getGrid()[p1.x][p1.y].getDecor()==decor ) nb++;
 	
-	if(map.getGrid()[p2.x][p2.y].getDecor()==decor ) nb++;
+	if(map.getGrid()[p1.x][p1.y].getDecor()==decor ) {	System.out.println("first if ");nb++;}
 	
-	if(map.getGrid()[p3.x][p3.y].getDecor()==decor) nb++;
+	if(map.getGrid()[p2.x][p2.y].getDecor()==decor ){	System.out.println("second if"); nb++;}
 	
-	if(map.getGrid()[p4.x][p4.y].getDecor()==decor ) nb++;
+	if(map.getGrid()[p3.x][p3.y].getDecor()==decor){	System.out.println("second if"); nb++;}
+	
+	if(map.getGrid()[p4.x][p4.y].getDecor()==decor ) {	System.out.println("second if"); nb++;}
 	
 	return nb;
 }
 
 
-//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
-public boolean ScanProche(Point position, Map map , char result , Decor decor){
+	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+	public boolean ScanProche(Point position, Map map , char result , Decor decor){
 	int nb;
 	//on recupere les coordonnées des differentes cellules adjacentes
 	Point pN=new Point(position);pN.y=pN.y-1;
-	Point pS=new Point(position);pN.y=pN.y+1;
-	Point pE=new Point(position);pN.x=pN.x+1;
-	Point pO=new Point(position);pN.x=pN.x-1;
+	Point pS=new Point(position);pS.y=pS.y+1;
+	Point pE=new Point(position);pE.x=pE.x-1;
+	Point pO=new Point(position);pO.x=pO.x+1;
+	
 	nb=nb_decor(pN,pS,pE,pO, map, decor);
 	
-	//dans ce cas on est sur que nb=1
+	System.out.println("le nombre dans le decor :" +nb+"\n");
+	//dans ce cas on est autsur que nb=1
 if(nb == 1) {
-	if( map.getGrid()[pN.x][pN.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor()){
+	System.out.println("nb vaut  1");
+	if( map.getGrid()[pN.x][pN.y].getDecor()==decor){
 		return ('N'==result);
 	}
-	else if( map.getGrid()[pS.x][pS.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor() ){
+	else if( map.getGrid()[pS.x][pS.y].getDecor()==decor ){
 		return ('S'==result);
 	}
-	else if( map.getGrid()[pE.x][pE.y].getDecor()!=map.getGrid()[position.x][position.y].getDecor()){
+	else if( map.getGrid()[pE.x][pE.y].getDecor()==decor){
 		return ('E'==result);
 	}
 	else {
 		return ('O'==result);
 	}
 }
-else return (((char) nb +'0')==result);
+else { 	System.out.println("nb vaut  plus que 1");return (((char) nb +'0')==result);}
 
 }
 

@@ -5,13 +5,14 @@ package Model;
 
 import java.awt.Point;
 //import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * La classe abstraite Character représente chaque personnage present sur le jeu (survivant et zombies)
  * Elle regroupe les attributs et les fonctions communes aux survivants et aux zombies
  *
  */
-public abstract class Character {
+public abstract class Character extends Observable {
 	/**
 	 * Attributs:
 	 * hérités de Character
@@ -23,7 +24,8 @@ public abstract class Character {
 	 * Map map: le plateau/terrain de jeu
 	 */
 	//Attributs
-	private int hp ;//points de vie 
+	private int hp ;//points de vie
+	private int sight_range; //portée de vision
 	private Player player;
 	private int strength ; 
 	private Cell cell;
@@ -42,6 +44,7 @@ public abstract class Character {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
+		this.sight_range = 2;
 	}
 	
 	public int getHp() {
@@ -49,6 +52,8 @@ public abstract class Character {
 	}
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
+		setChanged();
+		notifyObservers(this.hp);
 	}
 	/*public void setHp(int hp) {
 		this.hp = hp;
@@ -59,13 +64,22 @@ public abstract class Character {
 	}
 	public void setPlayer(Player player) {
 		this.player = player;
+		setChanged();
+		notifyObservers(this.player);
 	}
 
+	public int getSightRange()
+	{
+		return this.sight_range;
+	}
+	
 	public int getStrength() {
 		return strength;
 	}
 	public void setStrength(int strength) {
 		this.strength = strength;
+		setChanged();
+		notifyObservers(this.strength);
 	}
 
 	public Cell getCell() {
@@ -73,6 +87,8 @@ public abstract class Character {
 	}
 	public void setCell(Cell cell) {
 		this.cell = cell;
+		setChanged();
+		notifyObservers(this.cell);
 	}
 
 	public Automata getAutomata() {
@@ -80,6 +96,8 @@ public abstract class Character {
 	}
 	public void setAutomata(Automata automata) {
 		this.automata = automata;
+		setChanged();
+		notifyObservers(this.automata);
 	}
 
 	public Map getMap() {
@@ -87,6 +105,8 @@ public abstract class Character {
 	}
 	public void setMap(Map map) {
 		this.map = map;
+		setChanged();
+		notifyObservers(this.map);
 	}
 
 	//Methodes

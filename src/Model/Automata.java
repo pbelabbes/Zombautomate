@@ -93,14 +93,14 @@ public class Automata {
 	 * La fonction ajoute ets utilisée pour construire un automate
 	 * @param etat
 	 */
-	private void ajoute(etatAutomate etat){	
+	private void ajoute(transfer etat){	
 		if(getInputs()==0 ||getEtats()==0) return;
 		int j=0;
-					   
-			while ((states[etat.etat_courant][j]!=null) && (j<getInputs())){
+		caseAutomate ca=new caseAutomate(etat.getEtat_futur(),etat.getAction(), etat.getCondition(),etat.getPriority(),etat.getDirection());
+			while ((states[etat.getEtat_courant()][j]!=null) && (j<getInputs())){
 				j++;		   
 			}
-			states[etat.etat_courant][j]=etat.square;		   
+			states[etat.getEtat_courant()][j]=ca;		   
 			
 		}
 	
@@ -109,8 +109,8 @@ public class Automata {
 	 * 
 	 * @param liste
 	 */
-	public void automate(ArrayList<etatAutomate> liste){
-		etatAutomate etat;
+	public void automate(ArrayList<transfer> liste){
+		transfer etat;
 		if(liste!=null){
 			for(int i=0;i<liste.size();i++){
 				etat=liste.get(i);
