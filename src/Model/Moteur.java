@@ -74,6 +74,7 @@ public class Moteur {
 		}
 		for(transfer el : automata){
 			nbtransition[el.getEtat_courant()]++;
+			
 			if (nbtransition[el.getEtat_courant()]>max){
 				max = nbtransition[el.getEtat_courant()] ;
 			}
@@ -92,7 +93,7 @@ public class Moteur {
 			}
 			
 		}
-		return etat_max;
+		return etat_max +1;
 	}
 	
 	//main
@@ -133,12 +134,28 @@ public class Moteur {
 	public static void main(final String[] args) {
 		XMLReader fichier = new XMLReader() ;
 		
+		//geurrier
+		//hauteur = 16
+		//nb etat = 2
+		
+		//faremeur 
+		//hauteur = 34 
+		//nb etat = 3
 		ArrayList<ArrayList<transfer>> liste=fichier.read("/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
 		Player Zombi = new Player(0, "Zombies", 10 );
 		
-		Zombi.setEntities(CreateEntities(Zombi, liste));
+		System.out.println("\n\n\n debut");
+//		System.out.println(Integer.toString(width(liste.get(0))));
+//		System.out.println(Integer.toString(height(liste.get(0))));
+//		System.out.println(Integer.toString(width(liste.get(1))));
+//		System.out.println(Integer.toString(height(liste.get(1))));
+//		
+//		System.out.println( Integer.toString(CreateEntities(Zombi, liste).size()));
 		
-//		System.out.println("hello");
+		//ajout de l'automate au perso ZOmbi ) 
+		Zombi.setEntities(CreateEntities(Zombi, liste));
+	
+
 		
 		
 		
