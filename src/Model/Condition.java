@@ -1,23 +1,36 @@
+/**
+ * 
+ */
 package Model;
 
-public enum Condition {
+import java.awt.Point;
 
-	PRESENCE(Presence),
-	ET(Et),
-	//OU,
-	CASEALLIEE(CaseAlliee),
-	CASEENNEMIE(CaseEnnemie),
-	CASENEUTRE(CaseNeutre),
-
-	SCANLOIN(ScanLoin),
-	SCANPROCHE(ScanProche);	
+/**
+ * @author zennouche
+ *
+ */
+public abstract class Condition {
 
 	
-	private Condition2 c1;
+	/**
+	 * 
+	 * @return boolean which verifies the condition
+	 */
 
-	private Condition(Condition2 c1){
-		this.c1=c1;
+	public abstract boolean execute(Cell cellule);
+
+	protected Cell getTargetedCell(char direction, Cell cellule )
+	{
+		Point p = new Point(cellule.getPosition());
+		switch(direction)
+		{
+		case 'N' : p.y%=(p.y-1); break;
+		case 'E' : p.x%=(p.x+1); break;
+		case 'S' : p.y%=(p.y+1); break;
+		case 'O' : p.x%=(p.x-1);
+		default :;
+		
+		}
+		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
 	}
-	
 }
-

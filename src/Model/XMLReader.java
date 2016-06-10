@@ -39,6 +39,9 @@ public class XMLReader {
 
 	public Condition toCondition(Node Ncondi){
 		Condition c1,c2;
+		String s;
+		String[] s1,s2;
+		
 		switch(Ncondi.getTextContent()){
 		case "Et": 
 			c1= toCondition(Ncondi.getNextSibling());
@@ -50,13 +53,72 @@ public class XMLReader {
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
 			return (new Ou(c1,c2));
 			;break;
-		case "Present": ;break;
-		case "ScanLoin": ;break;
-		case "ScanProche": ;break;
-		case "Case_alliee": ;break;
-		case "Case_ennemie": ;break;
-		case "Case_neutre": ;break;
-		default:;
+		
+		default:
+			s=Ncondi.getFirstChild().getTextContent();
+			s=s.substring(0, s.length());
+			s1=s.split("(", 2);
+			s2=s1[1].split(",",2);
+			switch (s1[0]){
+			case "Present":
+				switch (s2[0]){
+				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
+			case "ScanLoin": 
+				switch (s2[0]){
+				case "Zombie": return new ScanLoin(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new ScanLoin(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new ScanLoin(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new ScanLoin(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new ScanLoin(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new ScanLoin(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new ScanLoin(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new ScanLoin(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new ScanLoin(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new ScanLoin(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
+			case "ScanProche": 
+				switch (s2[0]){
+				case "Zombie": return new ScanProche(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new ScanProche(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new ScanProche(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new ScanProche(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new ScanProche(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new ScanProche(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new ScanProche(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new ScanProche(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new ScanProche(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new ScanProche(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
+			case "Case_alliee":
+				switch (s2[0]){
+				case "Zombie": return new Linked_cell(s2[1].charAt(0),"Zombie"); break;
+				case "Ennemi": return new Linked_cell(s2[1].charAt(0),"Ennemi"); break;
+				case "Katana": return new Linked_cell(s2[1].charAt(0),Decor.KATANA); break;
+				case "Batte_baseball": return new Linked_cell(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
+				case "Lapin": return new Linked_cell(s2[1].charAt(0),Decor.RABBIT); break;
+				case "Pomme": return new Linked_cell(s2[1].charAt(0),Decor.APPLE); break;
+				case "Pousse": return new Linked_cell(s2[1].charAt(0),Decor.SPROUT); break;
+				case "Herbe": return new Linked_cell(s2[1].charAt(0),Decor.GRASS); break;
+				case "Arbre": return new Linked_cell(s2[1].charAt(0),Decor.TREE); break;
+				case "Rocher": return new Linked_cell(s2[1].charAt(0),Decor.ROCK); break;
+				}
+				break;
+			case "Case_ennemie": ;break;
+			case "Case_neutre": ;break;
+			}
 		}
 		
 		return ;
