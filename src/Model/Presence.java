@@ -2,7 +2,7 @@ package Model;
 import java.awt.Point;
 import java.lang.String;
 
-public class Presence extends Condition2 {
+public class Presence extends Condition {
 	
 
 	private char direction;
@@ -10,18 +10,21 @@ public class Presence extends Condition2 {
 	private Decor decor;
 	
 	Presence(char direction,String cible){
+
 		 this.direction=direction;
 		 this.cible=cible;
 		 decor = null;
 		}
 	Presence(char direction,Decor decor){
+
 		 this.direction=direction;
 		 this.decor=decor;
 		 cible = null;
 		}
 	
 	public boolean execute(Cell cellule){
-			Point p=new Point(this.personnage.getCell().getPosition());
+
+			Point p=new Point(cellule.getPosition());
 			switch (direction){
 			case 'N': p.y=p.y-1;break;
 			case 'S': p.y=p.y+1;break;
@@ -30,22 +33,22 @@ public class Presence extends Condition2 {
 			
 			}	
 			
-	if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
+	if(cellule.getEntity_on()!=null){
 
 		if(decor != null)
 		{
-			return this.personnage.getMap().getGrid()[p.x][p.y].getDecor()==decor;	
+			return cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()==decor;	
 		}
 		else
 		{
 			switch (cible){
 			
-			case "allié":if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==this.personnage.getPlayer()) return true; 
+			case "allié":if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) return true; 
 						 else return false;
-			case "zombie" :if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie)return true; 
+			case "zombie" :if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie)return true; 
 						   else return false; 
 
-			case "ennemi" : if(this.personnage.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()!=this.personnage.getPlayer()) return true; 
+			case "ennemi" : if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) return true; 
 							else return false;
 			default: return false;
 			}
