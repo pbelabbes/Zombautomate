@@ -118,10 +118,10 @@ public class ScanProche extends Condition2 {
 public boolean execute(Cell cellule){
 		int nb=0;
 		//on recupere les coordonnées des differentes cellules adjacentes
-		Cell cN=getTargetedCell('N');
-		Cell cS=getTargetedCell('S');
-		Cell cE=getTargetedCell('E');
-		Cell cO=getTargetedCell('O');
+		Cell cN=getTargetedCell('N',cellule);
+		Cell cS=getTargetedCell('S',cellule);
+		Cell cE=getTargetedCell('E',cellule);
+		Cell cO=getTargetedCell('O',cellule);
 		
 		
    if(cible!=null && (cellule.getEntity_on()!=null)){		
@@ -158,9 +158,7 @@ public boolean execute(Cell cellule){
 					return ('O'==parameter);
 				}
 			}
-		}
-	
-   }
+	 }	 
 	else if(decor!=null){
 		nb=nb_cible(cN,cS,cE,cO,cellule);	
 			if( cN.getDecor()==decor ){
@@ -177,11 +175,11 @@ public boolean execute(Cell cellule){
 				return ('O'==parameter);
 			}
 		
+	}
+			
 }
 	else return  (((char) nb +'0')==parameter);
 		// TODO Auto-generated method stub
-		
 }
-
 
 }

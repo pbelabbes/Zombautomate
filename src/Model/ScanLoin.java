@@ -65,10 +65,10 @@ public ScanLoin(String cible) {
 		this.decor=decor;
 	}
 	
-	public void setParameter(char parameter){
+/*	public void setParameter(char parameter){
 		this.parameter=parameter;
 	}
-	
+*/	
 	public void setRayon(int rayon){
 		this.rayon=rayon;
 	}
@@ -76,7 +76,9 @@ public ScanLoin(String cible) {
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute(Model.Cell)
 	 */
-
+	private int distance(Point position1, Point position2){		
+	    return (int) Math.sqrt(Math.pow(((float)(position2.x-position1.x)),2.0)+Math.pow(((float)(position2.y-position1.y)),2.0));
+	}
 	
 	public boolean execute(Cell cellule){
 		int minN=0,minS=0,minE=0,minO=0;
@@ -98,71 +100,188 @@ public ScanLoin(String cible) {
 						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
 						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
 					    	diffx=pN.x-cellule.getPosition().x;
-					    	diffy=(pN.y-cellule.getPosition().y);
+					    	diffy=pN.y-cellule.getPosition().y;
 					    	
 					    	if(diffx>diffy){
-					    		if(minE==0){minE=distance(map.getGrid()[p1.x][p1.y].getPosition(),cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
 					    	}
 					    	else {
 					    		
-					    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
-					    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
 					    	}
 						}	
 					    	
-					    if(position_dans_map(position.x+j,position.y+i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x+j][position.y+i].getDecor()==decor){
-					    	diffx=position.x+j-position.x;
-					    	diffy=position.y+i-position.y;
+					    if( cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getDecor()==decor){
+					    	diffx=pS.x-cellule.getPosition().x;
+					    	diffy=pS.y-cellule.getPosition().y;
 					    	if(diffx>diffy){
 					    		
-					    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
-					    		else minO=Math.min(minO, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minO==0){minO=distance(pS,cellule.getPosition());}
+					    		else minO=Math.min(minO, distance(pS,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position); }
-					    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
 					    	}
 					    }
 					
-					    if(position_dans_map(position.x+j,position.y-i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x+j][position.y-i].getDecor()==decor){
-					    	diffx=position.x+j-position.x;
-					    	diffy=position.y-i-position.y;
+					    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getDecor()==decor){
+					    	diffx=pO.x-cellule.getPosition().x;
+					    	diffy=pO.y-cellule.getPosition().y;
 					    	if(diffx>diffy){
 					    		
-					    		if(minO==0){minO=distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position); }
-					    		else minO=Math.min(minO, distance(map.getGrid()[position.x+j][position.y-i].getPosition(),position));
+					    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
+					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minN==0){minN=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
-					    		else minN=Math.min(minN, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
 					    	}
 					    }
-					    if(position_dans_map(position.x-j,position.y+i, map.getHeight(),map.getWidth()) && map.getGrid()[position.x-j][position.y+i].getDecor()==decor){
-					    	diffx=position.x-j-position.x;
-					    	diffy=position.y+i-position.y;
+					    if( cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getDecor()==decor){
+					    	diffx=pE.x-cellule.getPosition().x;
+					    	diffy=pE.y-cellule.getPosition().y;
 					    	if(diffx>diffy){
 					    		
-					    		if(minE==0){minE=distance(map.getGrid()[position.x+j][position.y+i].getPosition(),position);}
-					    		else minE=Math.min(minE, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minS==0){minS=distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position);}
-					    		else minS=Math.min(minS, distance(map.getGrid()[position.x-j][position.y-i].getPosition(),position));
+					    		if(minS==0){minS=distance(pS,cellule.getPosition());}
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
 					    	}
 					    }
 					}
+				if(cible=="ennemi"){
+					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() &&
+							cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on() instanceof Survivor){
+						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
+					    	diffx=pN.x-cellule.getPosition().x;
+					    	diffy=pN.y-cellule.getPosition().y;
+					    	
+					    	if(diffx>diffy){
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    	}
+					    	else {
+					    		
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    	}
+						}	
+					    	
+					    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() &&
+								cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on() instanceof Survivor){
+					    	diffx=pS.x-cellule.getPosition().x;
+					    	diffy=pS.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minO==0){minO=distance(pS,cellule.getPosition());}
+					    		else minO=Math.min(minO, distance(pS,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    	}
+					    }
+					
+					    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() &&
+								cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Survivor){
+					    	diffx=pO.x-cellule.getPosition().x;
+					    	diffy=pO.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
+					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    	}
+					    }
+					    if( cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() &&
+								cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Survivor){
+					    	diffx=pE.x-cellule.getPosition().x;
+					    	diffy=pE.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minS==0){minS=distance(pS,cellule.getPosition());}
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    	}
+					    }
 				}
-			 return direction(minN,minE,minS,minO);
+				
+				if(cible=="zombie"){
+					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on() instanceof Zombie){
+						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
+					    	diffx=pN.x-cellule.getPosition().x;
+					    	diffy=pN.y-cellule.getPosition().y;
+					    	
+					    	if(diffx>diffy){
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    	}
+					    	else {
+					    		
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    	}
+						}	
+					    	
+					    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on() instanceof Zombie){
+					    	diffx=pS.x-cellule.getPosition().x;
+					    	diffy=pS.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minO==0){minO=distance(pS,cellule.getPosition());}
+					    		else minO=Math.min(minO, distance(pS,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    	}
+					    }
+					
+					    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Zombie){
+					    	diffx=pO.x-cellule.getPosition().x;
+					    	diffy=pO.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
+					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    	}
+					    }
+					    if( cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Zombie){
+					    	diffx=pE.x-cellule.getPosition().x;
+					    	diffy=pE.y-cellule.getPosition().y;
+					    	if(diffx>diffy){
+					    		
+					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    	}
+					    	else {
+					    		if(minS==0){minS=distance(pS,cellule.getPosition());}
+					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    	}
+					    }
+				}
+				}
 		}
-	  	
-	}
-	public boolean execute(Cell cellule) {
-		
-		
-		
-		// TODO Auto-generated method stub
-		return false;
+		  parameter=direction(minN,minE,minS,minO);
+		  if(parameter!='0')return true; 
+		  else return false;
 	}
 
-}
+	}
+
+

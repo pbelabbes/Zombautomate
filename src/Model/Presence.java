@@ -23,7 +23,7 @@ public class Presence extends Condition2 {
 		}
 	
 	public boolean execute(Cell cellule){
-
+//TODO On pourrait réduire un peu le code en utilisant getTargetedCell
 			Point p=new Point(cellule.getPosition());
 			switch (direction){
 			case 'N': p.y=p.y-1;break;
