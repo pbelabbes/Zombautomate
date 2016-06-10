@@ -110,8 +110,8 @@ public class test_condition_fonction {
 		
 		System.out.println(c.presence('N', j1, perso_test.getCell().getPosition(),carte));
 		
-		
-		System.out.println(c.Scanloin(perso_test.getSightRange(),(Character) ennemi_cible,carte,new Point(2,4))=='S'); //probleme sur scanLoin
+		System.out.println(perso_test.getSightRange());
+		System.out.println(c.Scanloin(perso_test.getSightRange(),Decor.BASEBALL_BAT,carte,new Point(2,4))); //probleme sur scanLoin
 	}
 
 }
