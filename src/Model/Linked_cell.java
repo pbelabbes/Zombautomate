@@ -21,19 +21,28 @@ public class Linked_cell extends Condition2 {
 	 * 
 	 * @param personnage le possesseur l'automate qui utilise cette condition
 	 * @param direction 'N', 'E', 'S', 'O'
-	 * @param id N : neutre, A : alliee ou E : ennemie
+	 * @param id 'N' : neutre, 'A' : alliee ou 'E' : ennemie
 	 */
-	public Linked_cell(Character personnage, char direction, char id)
+	public Linked_cell(char direction, char id)
 	{
-		this.personnage = personnage;
 		this.direction = direction;
 		this.id_searched = id;
 	}
 	@Override
-	public boolean execute() {
+	public boolean execute(Cell cellule) {
 
-		//TODO
-		return true;
+		if(id_searched == 'N') return getTargetedCell(direction, cellule).getEntity_on().getPlayer() == null;
+
+		else 
+		{
+			Player p1 = cellule.getEntity_on().getPlayer();
+			Player p2 = getTargetedCell(direction, cellule).getEntity_on().getPlayer();
+
+			if (id_searched == 'A')
+				return p1 == p2;
+
+			else return p1 != p2;
+		}
 	}
 
 }
