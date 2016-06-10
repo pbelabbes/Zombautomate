@@ -11,13 +11,13 @@ import java.awt.Point;
  */
 public abstract class Condition2 {
 
-	Character personnage;
+	
 	
 	/**
 	 * 
 	 * @return boolean which verifies the condition
 	 */
-	public abstract boolean execute();
+	public abstract boolean execute(Cell cellule);
 	
 	public Cell getTargetedCell(char direction)
 	{
@@ -27,7 +27,7 @@ public abstract class Condition2 {
 		case 'N' : p.y%=(p.y-1); break;
 		case 'E' : p.x%=(p.x+1); break;
 		case 'S' : p.y%=(p.y+1); break;
-		case 'O' : p.x%=(p.x-1);
+		case 'O' : p.x%=(p.x-1); break;
 		default :;
 		
 		}
