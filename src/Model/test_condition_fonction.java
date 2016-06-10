@@ -92,6 +92,17 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 		
+
+		cellule_temporaire = new Cell();
+		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+		
+		
+		
 		
 		Condition_fonction c = new Condition_fonction();
 
@@ -100,7 +111,7 @@ public class test_condition_fonction {
 		System.out.println(c.presence('N', j1, perso_test.getCell().getPosition(),carte));
 		
 		
-		System.out.println(c.Scanloin(perso_test.getSightRange(),(Character) ennemi_cible,carte,new Point(2,4))=='2'); //probleme sur scanLoin
+		System.out.println(c.Scanloin(perso_test.getSightRange(),(Character) ennemi_cible,carte,new Point(2,4))=='S'); //probleme sur scanLoin
 	}
 
 }
