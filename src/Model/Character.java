@@ -148,7 +148,9 @@ public abstract class Character extends Observable {
 	
 	
 	//Fait faire sa prochaine action a un personnage
-	
+	/**
+	 * 
+	 */
 	public void play (){
 		
 		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
@@ -180,8 +182,8 @@ public abstract class Character extends Observable {
 				k++;
 			}
 		}	
-		List_cases.get(cle).action();
-		state = (List_cases.get(cle)).etat_futur();
+		List_cases.get(cle).getAction();
+		state = (List_cases.get(cle)).getEtatfutur();
 	}
 
 }

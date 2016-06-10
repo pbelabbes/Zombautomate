@@ -268,10 +268,21 @@
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant><texte>Et</texte><condition>
-			<condition><texte>Case_ennemie(N)</texte></condition></condition><condition><texte>Ou</texte><condition>
-			<condition><texte>Present(Lapin,N)</texte></condition></condition><condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Et</texte>
+				<condition>
+					<texte>Case_ennemie(N)</texte>
+				</condition>
+				<condition>
+					<texte>Ou</texte>
+					<condition>
+						<texte>Present(Lapin,N)</texte>
+					</condition>
+					<condition>
+						<texte>Present(Pomme,N)</texte>
+					</condition>
+				</condition>
+			</condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>0</priorite>

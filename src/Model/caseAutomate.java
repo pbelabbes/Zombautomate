@@ -15,7 +15,12 @@ public class caseAutomate {
 		this.priorite=priorite;
 	}
 
-
+/**
+ * 
+ * @param action
+ * @return
+ */
+ 
 	public String toString(Action action){
 		return ""+action;
 	}
@@ -26,6 +31,11 @@ public class caseAutomate {
 	}
 	public Action getAction() {
 		return this.action;
+		
+	}
+	
+	public char getDirection() {
+		return this.direction;
 		
 	}
 	public Condition getCondition()
