@@ -71,4 +71,17 @@ public class Map extends Observable{
 		grid[cell.getPosition().x][cell.getPosition().y] = cell;
 	}
 	
+	/**
+	 * met des décors aléatoires sur la carte
+	 */
+	public void init_map()
+	{
+		for(int x = 0; x < this.getWidth(); x++)
+		{
+			for(int y = 0 ; y < this.getHeight() ; y++)
+			{
+				grid[x][y] = new cell(new Point(x,y));
+			}
+		}
+	}
 }
