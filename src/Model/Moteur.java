@@ -10,23 +10,23 @@ import java.util.ArrayList;
  * @author zennouche
  *
  */
-public class main {
+public class Moteur {
 
 	/**
 	 * 
 	 */
 
-	private ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
+	private static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
 		ArrayList<Character> res  = new ArrayList<Character>() ;
 		Automata aut ; 
 		caseAutomate[][] remplirautomate ; 
-		int hauteur,largeur, k, taille;
+		int hauteur,largeur, k;
 		
 		//parcours de tous les automates.
 		for (int i = 0 ; i< L.size() ; i++){
 			hauteur = height(L.get(i)) ;
 			largeur= width(L.get(i)); 
-			taille = L.get(i).size();
+
 			aut = new Automata(0, largeur, hauteur);
 			remplirautomate = new caseAutomate[largeur][hauteur ];
 			
@@ -62,7 +62,7 @@ public class main {
 	}
 	
 	//calcule la taille pour un automate
-	private int height(ArrayList<transfer> automata){
+	private static int height(ArrayList<transfer> automata){
 //		ArrayList<transfer> dejavu= new ArrayList<Integer>();
 //		transfer El;
 		int taille = width(automata) ;
@@ -82,7 +82,7 @@ public class main {
 	}
 	
 	//calcule la largeur d'un automate.
-	private int width(ArrayList<transfer> automata){
+	private static int width(ArrayList<transfer> automata){
 		//ArrayList<int> dejavu= new ArrayList<int>();
 		//transfer El;
 		int etat_max = automata.get(0).getEtat_courant();
@@ -96,7 +96,7 @@ public class main {
 	}
 	
 	//main
-	public main() {
+	public static void test() {
 		ArrayList<ArrayList<transfer>> liste=new ArrayList<ArrayList<transfer>> ();
 		/*1/-On lit le fichier xml et on renvoie la liste des personnages ainsi que leur
 		 * automate
@@ -130,10 +130,15 @@ public class main {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
+		XMLReader fichier = new XMLReader() ;
 		
+		ArrayList<ArrayList<transfer>> liste=fichier.read("/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
+		Player Zombi = new Player(0, "Zombies", 10 );
 		
+		Zombi.setEntities(CreateEntities(Zombi, liste));
 		
+//		System.out.println("hello");
 		
 		
 		
