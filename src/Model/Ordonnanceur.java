@@ -27,7 +27,7 @@ public class Ordonnanceur {
 		for (int i = 0 ; i == Ordonnee.size(); i++)
 		if (Ordonnee.get(i).is_alive()){ 
 			
-			Ordonnee.get(i).play;
+		(Ordonnee.get(i)).play();
 		
 		}
 	}

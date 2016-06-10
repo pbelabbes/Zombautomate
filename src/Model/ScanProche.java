@@ -26,17 +26,17 @@ public class ScanProche extends Condition {
 	
 	//Constructeurs 
 	
-	public ScanProche(String cible) {
+	public ScanProche(String cible,char parameter) {
 		
 		this.cible=cible;
 		this.decor=null;// TODO Auto-generated constructor stub
-		this.parameter=' ';
+		this.parameter=parameter;
 	}
-	public ScanProche(Decor decor) {
+	public ScanProche(Decor decor,char parameter) {
 			
 		this.decor=decor;
 		this.cible=null;// TODO Auto-generated constructor stub
-		this.parameter=' ';
+		this.parameter=parameter;
 	}
 
 	
@@ -113,15 +113,15 @@ public class ScanProche extends Condition {
 	}
 	
 	
-	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul et le nombre d'ennemis sinon *)
+	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul ou le nombre d'ennemis sinon *)
 
 public boolean execute(Cell cellule){
 		int nb=0;
 		//on recupere les coordonnées des differentes cellules adjacentes
-		Cell cN=getTargetedCell('N');
-		Cell cS=getTargetedCell('S');
-		Cell cE=getTargetedCell('E');
-		Cell cO=getTargetedCell('O');
+		Cell cN=getTargetedCell('N',cellule);
+		Cell cS=getTargetedCell('S',cellule);
+		Cell cE=getTargetedCell('E',cellule);
+		Cell cO=getTargetedCell('O',cellule);
 		
 		
    if(cible!=null && (cellule.getEntity_on()!=null)){		
@@ -158,9 +158,7 @@ public boolean execute(Cell cellule){
 					return ('O'==parameter);
 				}
 			}
-		}
-	
-   }
+	 	 
 	else if(decor!=null){
 		nb=nb_cible(cN,cS,cE,cO,cellule);	
 			if( cN.getDecor()==decor ){
@@ -177,11 +175,11 @@ public boolean execute(Cell cellule){
 				return ('O'==parameter);
 			}
 		
+	}
+   }		
+  }
+   return  (((char) nb +'0')==parameter);
+   // TODO Auto-generated method stub
 }
-	else return  (((char) nb +'0')==parameter);
-		// TODO Auto-generated method stub
-		
-}
-
 
 }

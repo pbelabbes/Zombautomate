@@ -122,9 +122,9 @@ let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun
     output_string fic ("\n\t\t\t<etat_courant>"^etat_to_string courant ^"</etat_courant>")
   
   let rec (print_condition: out_channel->condition->unit) = fun fic condition -> match condition with
-    |Et(c1,c2)-> output_string fic "<texte>Et</texte><condition1>" ; print_condition fic c1 ; output_string fic "</condition1><condition2>" ; print_condition fic c2 ; output_string fic "</condition2>" 
-    |Ou(c1,c2)-> output_string fic "<texte>Ou</texte><condition1>" ; print_condition fic c1 ; output_string fic "</condition1><condition2>" ; print_condition fic c2 ; output_string fic "</condition2>" 
-    |_->output_string fic ("\n\t\t\t<condition>"^condition_to_string condition^ "</condition>")
+    |Et(c1,c2)-> output_string fic "<texte>Et</texte><condition>" ; print_condition fic c1 ; output_string fic "</condition><condition>" ; print_condition fic c2 ; output_string fic "</condition>" 
+    |Ou(c1,c2)-> output_string fic "<texte>Ou</texte><condition>" ; print_condition fic c1 ; output_string fic "</condition><condition>" ; print_condition fic c2 ; output_string fic "</condition>" 
+    |_->output_string fic ("\n\t\t\t<condition><texte>"^condition_to_string condition^ "</texte></condition>")
   
   let (print_action: out_channel->action->unit) = fun fic action ->
     output_string fic ("\n\t\t\t<action>"^action_to_string action ^"</action>")
