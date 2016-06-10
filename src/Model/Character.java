@@ -2,9 +2,8 @@
  * 
  */
 package Model;
-
+import java.util.ArrayList;
 import java.awt.Point;
-//import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -128,12 +127,60 @@ public abstract class Character extends Observable {
 			     break;
 		}	
 	}
+	
+	// Verifie si un personnage est vivant
 	public boolean is_alive () {
 		if (hp > 0){
 			return true;
 		}
 		else return false;
 	}
+	
+	
+	//Fait faire sa prochaine action a un personnage
+	
+	public void play (){
+		
+		ArrayList<caseAutomate> List_cases;
+		int i=0;
+		int j=0;
+		caseAutomate [][] cA = automata.getStates();
+		
+		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
+		automata.getEtatCourant();
+		while (cA[i][j] != null){
+			while (cA[i][j] != null){
+				if (cA[i][j].getCondition().execute(this.getCell())){
+					List_cases.add(cA [i][j]);
+					i++;
+				}
+			}
+		i = 0;
+		j++;
+		}
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+		int k = 1;
+		int cle = 0;
+		while ( k!= List_cases.size()){
+			if(List_cases.get(cle).priorite > List_cases.get(k).priorite){
+				k++;
+			}
+			else { 
+				cle = k;
+				k++;
+			}
+		}	
+		getAutomata().get(List_cases.get(cle)).getdecor.getAction();
+		etat_courant = etat.get(List_cases.get(cle));
+	
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

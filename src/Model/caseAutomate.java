@@ -28,5 +28,9 @@ public class caseAutomate {
 		return this.action;
 		
 	}
+	public Condition getCondition()
+	{
+		return this.condition;
+	}
 	
 }

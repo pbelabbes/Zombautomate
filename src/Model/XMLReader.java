@@ -52,13 +52,10 @@ public class XMLReader {
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
 			return (new Et(c1,c2));
-			break;
 		case "Ou":
 			c1= toCondition(Ncondi.getNextSibling());
 			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
-			return (new Ou(c1,c2));
-			;break;
-		
+			return (new Ou(c1,c2));		
 		default:
 			s=s.substring(0, s.length());
 			s1=s.split("(", 2);
@@ -66,56 +63,58 @@ public class XMLReader {
 			switch (s1[0]){
 			case "Present":
 				switch (s2[0]){
-				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie"); break;
-				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi"); break;
-				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA); break;
-				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT); break;
-				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); break;
-				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE); break;
-				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT); break;
-				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS); break;
-				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE); break;
-				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK); break;
+				case "Zombie": return new Presence(s2[1].charAt(0),"Zombie");
+				case "Ennemi": return new Presence(s2[1].charAt(0),"Ennemi");
+				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA);
+				case "Batte_baseball": return new Presence(s2[1].charAt(0),Decor.BASEBALL_BAT);
+				case "Lapin": return new Presence(s2[1].charAt(0),Decor.RABBIT); 
+				case "Pomme": return new Presence(s2[1].charAt(0),Decor.APPLE);
+				case "Pousse": return new Presence(s2[1].charAt(0),Decor.SPROUT);
+				case "Herbe": return new Presence(s2[1].charAt(0),Decor.GRASS);
+				case "Arbre": return new Presence(s2[1].charAt(0),Decor.TREE);
+				case "Rocher": return new Presence(s2[1].charAt(0),Decor.ROCK);
+				default: System.out.println("error invalid argument Present");
 				}
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
-				case "Zombie": return new ScanLoin("zombie"); break;
-				case "Ennemi": return new ScanLoin("ennemi"); break;
-				case "Katana": return new ScanLoin(Decor.KATANA); break;
-				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT); break;
-				case "Lapin": return new ScanLoin(Decor.RABBIT); break;
-				case "Pomme": return new ScanLoin(Decor.APPLE); break;
-				case "Pousse": return new ScanLoin(Decor.SPROUT); break;
-				case "Herbe": return new ScanLoin(Decor.GRASS); break;
-				case "Arbre": return new ScanLoin(Decor.TREE); break;
-				case "Rocher": return new ScanLoin(Decor.ROCK); break;
+				case "Zombie": return new ScanLoin("zombie");
+				case "Ennemi": return new ScanLoin("ennemi");
+				case "Katana": return new ScanLoin(Decor.KATANA);
+				case "Batte_baseball": return new ScanLoin(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanLoin(Decor.RABBIT);
+				case "Pomme": return new ScanLoin(Decor.APPLE);
+				case "Pousse": return new ScanLoin(Decor.SPROUT);
+				case "Herbe": return new ScanLoin(Decor.GRASS);
+				case "Arbre": return new ScanLoin(Decor.TREE);
+				case "Rocher": return new ScanLoin(Decor.ROCK);
+				default: System.out.println("error invalid argument Scanloin");
 				}
 				break;
 			case "ScanProche": 
 				switch (s2[0]){
-				case "Zombie": return new ScanProche("zombie"); break;
-				case "Ennemi": return new ScanProche("ennemi"); break;
-				case "Katana": return new ScanProche(Decor.KATANA); break;
-				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT); break;
-				case "Lapin": return new ScanProche(Decor.RABBIT); break;
-				case "Pomme": return new ScanProche(Decor.APPLE); break;
-				case "Pousse": return new ScanProche(Decor.SPROUT); break;
-				case "Herbe": return new ScanProche(Decor.GRASS); break;
-				case "Arbre": return new ScanProche(Decor.TREE); break;
-				case "Rocher": return new ScanProche(Decor.ROCK); break;
+				case "Zombie": return new ScanProche("zombie");
+				case "Ennemi": return new ScanProche("ennemi");
+				case "Katana": return new ScanProche(Decor.KATANA);
+				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT);
+				case "Lapin": return new ScanProche(Decor.RABBIT);
+				case "Pomme": return new ScanProche(Decor.APPLE);
+				case "Pousse": return new ScanProche(Decor.SPROUT);
+				case "Herbe": return new ScanProche(Decor.GRASS);
+				case "Arbre": return new ScanProche(Decor.TREE);
+				case "Rocher": return new ScanProche(Decor.ROCK);
+				default: System.out.println("error invalid argument ScanProche");
 				}
 				break;
 			case "Case_alliee":
 				return new Linked_cell(s2[0].charAt(0),'A');
-				break;
 			case "Case_ennemie": 
 				return new Linked_cell(s2[0].charAt(0),'E');
-				break;
 			case "Case_neutre": 
 				return new Linked_cell(s2[0].charAt(0),'N');
-				break;
+			default: System.out.println("error invalid argument condition");
 			}
+			return null;
 		}
 	}
 
