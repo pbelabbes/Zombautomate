@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="sprite" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="tuiles/terrain_atlas.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Calque 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2sFSgzAUQFHGn2bhz7vSVibQpLwkD3rOytHaYq6BkHZZ+GTr7APgz7roAQA8WBvkowmj+X/LRY/rWxfn8iy2HTSZqzQvzJW59sZekzn25shS+D79HfXYfn1FV1uv7B2vOZKPJrn06KHtOdFN9Dhnr8e6vHet1OOc0lqrNKbGeZza9a8mYzzPCz1yqL1WaDLOcw/zZK7WPRRN+tIjzvZe4Z39tXcaaFIWcb9Q20OT10b1iHqtuxvZo/RYPf4b3aP0eE0eZvTo9Rx3ELG++n2eiOMgTkSTmb9/N8Yzl1nXER339Zwjxr2dtVY+riP5aJLL0Wexa+5z9Ii3fV+kdS9Ak3g182H7M59F7at2L8R+/Bgte1P2fscwR3JpuSaYI2OYI/FGvc/RY47c8T2WyHE5Wgf3OmfdsUmklvvByCaUzejBsdb7dvrq3UPHdjVNjOtYe+ss56x5XjXRY7y9ddWnNsnw95bOU3rM99xAjxzOfraYc472tPTIRY9c9AAAAAAAAAAAruD7a/YRAAAAANDqB6bAc08=
+  </data>
+ </layer>
+ <layer name="Calque de Tile 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2sENgkAQBdCtwlIoRa1ErEQtVxJDTIhX2T/LO7wLp7/5kAwDc2tt5rCmgAx8u9AHALAyG2TSCXtyv2XRBwBAf6O/K1c8X7W8MKpTQAb0kUofUEf159VsDAB9nBeXjWtArqO6/bh2D8iV7J9zpD6y6COLPrLoI8tj8dx4dcpSfV+EPoFM9vkAAB9Tq/nvMgDAHirPSCPOeNXPUz0/APvxXR0A6M08ArlG3PsBAAAAAAAAAAAAAAAAVPUGuegf3Q==
+  </data>
+ </layer>
+ <layer name="arbres" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEKhSAUQNFwl22lWkm12BJ+VJSO0vpwDjh4Dr2oTQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZbUhP1NPt559H/YG2zz8Zm3qiWc9hnODOE/rmsO1DeWkGhy1iX2el2sQuRvvuWuQ6kVZuQb+8vpSDbxX7/NefYsGAAAA/JsFjjIiRg==
+  </data>
+ </layer>
+ <layer name="feuilles" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1TEOwjAMBVCntyg9CfT+hyosjQSRPDQTaoPQe5IHZ/SXnQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgW1uJeNZ6leOea81TxK3WMr0zyL1srtNmfa9zf9RaPxnkPmfDufKscwbNVo7fOUcvg3af7MYYvQzsxhi9DPzlY/QycK/Gc69+iwwAAAAA/scOGR8inA==
+  </data>
+ </layer>
+ <layer name="feuilles2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0zEOgCAQBMCDX6gvUf7/KLWRksKChmjITLLNlXvZCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID5nCniqrlT352xlhyx1my5785Ye+37qClN7+02in98zjb+5W0zAAAAAADA3B6Nxgt1
+  </data>
+ </layer>
+</map>

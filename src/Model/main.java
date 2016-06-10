@@ -16,10 +16,53 @@ public class main {
 	 * 
 	 */
 
+	private static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
+		ArrayList<Character> res  = new ArrayList<Character>() ;
+		Automata aut ; 
+		caseAutomate[][] remplirautomate ; 
+		int hauteur,largeur, k;
+		
+		//parcours de tous les automates.
+		for (int i = 0 ; i< L.size() ; i++){
+			hauteur = height(L.get(i)) ;
+			largeur= width(L.get(i)); 
+
+			aut = new Automata(0, largeur, hauteur);
+			remplirautomate = new caseAutomate[largeur][hauteur ];
+			
+			//initialisation du tableau remplirautomate
+			for(int x = 0 ; x < largeur ; x++){
+				for (int z = 0 ; z < hauteur ; z ++)
+					remplirautomate[x][z]= null ;;
+			}
+			
+			
+			//parcours de toutes les transitions
+			for(transfer tr : L.get(i)){
+				k = 0 ;
+				// on se place sur le nombre de 
+				while (remplirautomate[tr.getEtat_courant()][k] != null ) {
+					k++;
+				}
+				
+				remplirautomate[tr.getEtat_courant()][k] = new caseAutomate(tr.getEtat_futur(), tr.getAction(), tr.getCondition(), tr.getPriority(), tr.getDirection());
+				
+			}
+			aut.setStates(remplirautomate);
+			//res.add(new Character(J , aut ) ) ;
+			
+			if (J.getId() == 0 )
+				res.add(new Zombie(J,aut,null));
+			else 
+				res.add(new Survivor(J, aut, null));
+			 
+		}
+		
+		return res;
+	}
 	
-	
-	
-	private int height(ArrayList<transfer> automata){
+	//calcule la taille pour un automate
+	private static int height(ArrayList<transfer> automata){
 //		ArrayList<transfer> dejavu= new ArrayList<Integer>();
 //		transfer El;
 		int taille = width(automata) ;
@@ -38,7 +81,8 @@ public class main {
 		return max ;
 	}
 	
-	private int width(ArrayList<transfer> automata){
+	//calcule la largeur d'un automate.
+	private static int width(ArrayList<transfer> automata){
 		//ArrayList<int> dejavu= new ArrayList<int>();
 		//transfer El;
 		int etat_max = automata.get(0).getEtat_courant();
@@ -50,7 +94,9 @@ public class main {
 		}
 		return etat_max;
 	}
-	public main() {
+	
+	//main
+	public static void test() {
 		ArrayList<ArrayList<transfer>> liste=new ArrayList<ArrayList<transfer>> ();
 		/*1/-On lit le fichier xml et on renvoie la liste des personnages ainsi que leur
 		 * automate
@@ -59,26 +105,43 @@ public class main {
 		 * 
 		 */
 		//on recupere la liste de liste 
-		XMLReader fichier = new XMLReader() ; 
-		liste=fichier.read();
-		//on creer les personnages ainsi que les automates correpsondants
+		XMLReader fichier = new XMLReader() ;
 		
-		for(int i=0;i<liste.size();i++){
-			for(int j=0;j<liste.get(i).size();j++){
-				
-				
-				
-			}
-		}
-		// TODO Auto-generated constructor stub
+		//TODO remplir le path
+		liste=fichier.read("/home/zennouche/Documents/semestre6/PLA/exemple.xml");
+		//on creer les personnages ainsi que les automates correpsondants
+		Player Zombi = new Player(0, "Zombies", 10 );
+		Zombi.setEntities(CreateEntities(Zombi, liste));
+		
+		//TODO remplir le path
+		liste = fichier.read("/");
+		Player j1 = new Player(0,"J1",10);
+		j1.setEntities(CreateEntities(j1, liste));
+		
+		//TODO remplir le path
+		liste = fichier.read("/");
+		Player j2 = new Player(0,"J2",10);
+		j2.setEntities(CreateEntities(j2, liste));
+		
+
+
 	}
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(final String[] args) {
+		XMLReader fichier = new XMLReader() ;
+		
+		ArrayList<ArrayList<transfer>> liste=fichier.read("/../ocaml/personnages_générés.xml");
+		Player Zombi = new Player(0, "Zombies", 10 );
+		
+		Zombi.setEntities(CreateEntities(Zombi, liste));
+		
+		
+		
+		
+		
 	}
 
 }

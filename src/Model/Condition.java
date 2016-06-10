@@ -19,6 +19,14 @@ public abstract class Condition {
 
 	public abstract boolean execute(Cell cellule);
 
+	/**
+	 * cette fonction permet de recuperer la cellule 
+	 * qui est a une direction precise de la cellule donnée en paramtere
+	 * 
+	 * @param direction
+	 * @param cellule
+	 * @return
+	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
 	{
 		Point p = new Point(cellule.getPosition());

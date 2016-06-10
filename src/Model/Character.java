@@ -39,6 +39,14 @@ public abstract class Character extends Observable {
 	 * @param automata
 	 * @param map
 	 */
+//	public Character(Player player, Automata automata) {
+//		this.hp=100;
+//		this.strength=1;
+//		this.player=player;
+//		this.automata=automata;
+//		this.sight_range = 2;
+//	}
+	
 	public Character(Player player, Automata automata, Map map) {
 		this.hp=100;
 		this.strength=1;
@@ -141,7 +149,9 @@ public abstract class Character extends Observable {
 	
 	
 	//Fait faire sa prochaine action a un personnage
-	
+	/**
+	 * 
+	 */
 	public void play (){
 		
 		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
@@ -173,8 +183,8 @@ public abstract class Character extends Observable {
 				k++;
 			}
 		}	
-		List_cases.get(cle).action();
-		state = (List_cases.get(cle)).etat_futur();
+		List_cases.get(cle).getAction();
+		state = (List_cases.get(cle)).getEtatfutur();
 	}
 
 }
