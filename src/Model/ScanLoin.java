@@ -24,14 +24,14 @@ public class ScanLoin extends Condition {
 public ScanLoin(String cible, char parameter) {
 		
 		this.cible=cible;
-		this.decor=null;// TODO Auto-generated constructor stub
+		this.decor=null;
 		this.parameter=parameter;
 		this.rayon=0;
 	}
 	public ScanLoin(Decor decor,char parameter) {
 			
 		this.decor=decor;
-		this.cible=null;// TODO Auto-generated constructor stub
+		this.cible=null;
 		this.parameter=parameter;
 		this.rayon=0;
 	}
