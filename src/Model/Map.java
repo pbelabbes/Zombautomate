@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Observable;
+
 //import java.util.ArrayList;
 /**
  * La classe Map représente le terrain de jeu
@@ -8,11 +10,14 @@ package Model;
  *
  */
 
+
+
+
 //Remarque d'alexandre : je me suis permis de retirer width et height car ils ne sont finalement pas nécessaires.
 //J'ai aussi retiré les setters car ils ne modifiaient pas "grid"
 //j'ai aussi ajouté un setter pour initialiser une case précise de grid (surtout utile pour débug)
 
-public class Map {
+public class Map extends Observable{
 //	private int width,height;
 	private Cell[][] grid;
 	
@@ -20,9 +25,13 @@ public class Map {
 	// Petite modif d'alex : la carte peut maintenant être rectangulaire.
 	public Map(int width, int height) {
 		 grid=new Cell[width][height];
+		 setChanged();
+		 notifyObservers(this.grid);
+
 /*		 this.width=width;
 		 this.height = height;
 */		 
+
 	}
 	
 	//Getter et Setter
@@ -52,6 +61,8 @@ public class Map {
 	
 	public void setGrid(Cell[][] grid) {
 		this.grid = grid;
+		setChanged();
+		notifyObservers(this.grid);
 	}
 
 

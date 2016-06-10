@@ -37,3 +37,4 @@
 * Ajout d'un système de sauvegarde de profil joueur avec ses automates, son expérience et un historique de ses parties
 * Faire en sorte que les zombies attaquent en horde
 * Faire en sorte que les zombies soient controlables
+* Permettre un échange d'information entre les personnages d'une même équipe

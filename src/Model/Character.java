@@ -5,13 +5,14 @@ package Model;
 
 import java.awt.Point;
 //import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * La classe abstraite Character représente chaque personnage present sur le jeu (survivant et zombies)
  * Elle regroupe les attributs et les fonctions communes aux survivants et aux zombies
  *
  */
-public abstract class Character {
+public abstract class Character extends Observable {
 	/**
 	 * Attributs:
 	 * hérités de Character
@@ -51,6 +52,8 @@ public abstract class Character {
 	}
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
+		setChanged();
+		notifyObservers(this.hp);
 	}
 	/*public void setHp(int hp) {
 		this.hp = hp;
@@ -61,6 +64,8 @@ public abstract class Character {
 	}
 	public void setPlayer(Player player) {
 		this.player = player;
+		setChanged();
+		notifyObservers(this.player);
 	}
 
 	public int getSightRange()
@@ -73,6 +78,8 @@ public abstract class Character {
 	}
 	public void setStrength(int strength) {
 		this.strength = strength;
+		setChanged();
+		notifyObservers(this.strength);
 	}
 
 	public Cell getCell() {
@@ -80,6 +87,8 @@ public abstract class Character {
 	}
 	public void setCell(Cell cell) {
 		this.cell = cell;
+		setChanged();
+		notifyObservers(this.cell);
 	}
 
 	public Automata getAutomata() {
@@ -87,6 +96,8 @@ public abstract class Character {
 	}
 	public void setAutomata(Automata automata) {
 		this.automata = automata;
+		setChanged();
+		notifyObservers(this.automata);
 	}
 
 	public Map getMap() {
@@ -94,6 +105,8 @@ public abstract class Character {
 	}
 	public void setMap(Map map) {
 		this.map = map;
+		setChanged();
+		notifyObservers(this.map);
 	}
 
 	//Methodes
