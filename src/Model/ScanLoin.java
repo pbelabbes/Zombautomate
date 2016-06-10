@@ -123,17 +123,20 @@ public ScanLoin(String cible) {
 		int minN=0,minS=0,minE=0,minO=0;
 		Point pN,pS,pE,pO;
 		int diffx,diffy;
-		
+		pN=new Point(cellule.getPosition());
+		pS=new Point(cellule.getPosition());
+		pE=new Point(cellule.getPosition());
+		pO=new Point(cellule.getPosition());
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
-				pN.x%=cellule.getPosition().x-j;
-	    		pN.y%=cellule.getPosition().y-i;
-	    		pS.x%=cellule.getPosition().x+j;
-	    		pS.y%=cellule.getPosition().y+i;
-	    		pE.x%=cellule.getPosition().x-j;
-	    		pE.y%=cellule.getPosition().y+i;
-	    		pO.x%=cellule.getPosition().x+j;
-	    		pO.y%=cellule.getPosition().y-i;
+				pN.x=(cellule.getPosition().x-j)%cellule.getEntity_on().getMap().getWidth();
+	    		pN.y=(cellule.getPosition().y-i)%cellule.getEntity_on().getMap().getHeight();
+	    		pS.x=(cellule.getPosition().x+j)%cellule.getEntity_on().getMap().getWidth();
+	    		pS.y=(cellule.getPosition().y+i)%cellule.getEntity_on().getMap().getHeight();
+	    		pE.x=(cellule.getPosition().x-j)%cellule.getEntity_on().getMap().getWidth();
+	    		pE.y=(cellule.getPosition().y+i)%cellule.getEntity_on().getMap().getHeight();
+	    		pO.x=(cellule.getPosition().x+j)%cellule.getEntity_on().getMap().getWidth();
+	    		pO.y=(cellule.getPosition().y-i)%cellule.getEntity_on().getMap().getHeight();
 				if(decor!=null){		
 				
 						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
