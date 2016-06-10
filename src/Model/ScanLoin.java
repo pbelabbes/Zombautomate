@@ -43,6 +43,10 @@ public ScanLoin(String cible) {
 	public String getCible(){
 		return this.cible;
 	}
+	
+	public void setParameter(char parameter){
+		this.parameter=parameter;
+	}
 
 	public char getParameter(){
 		return this.parameter;
@@ -99,6 +103,14 @@ public ScanLoin(String cible) {
 		return '0';
 	}
 	
+	/**
+	 * La fonction scanloin permet de savoir dans quelle direction se trouve un character recherché
+	 * @param rayon défini la visibilité d'un joueur: le nombre de case autour du personnage où on va vérifier la présence d'un character.
+	 * @param pers le type de personnage que l'on recherche
+	 * @param map la carte du jeu
+	 * @param position la position du joueur sur la carte 
+	 * @return N, E, S, O selon la direction du joueur le proche
+	 */
 	
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute(Model.Cell)
@@ -304,9 +316,8 @@ public ScanLoin(String cible) {
 				}
 				}
 		}
-		  parameter=direction(minN,minE,minS,minO);
-		  if(parameter!='0')return true; 
-		  else return false;
+		  return parameter==direction(minN,minE,minS,minO);
+		  
 	}
 
 	}
