@@ -1,11 +1,11 @@
 package Model;
 
 public class caseAutomate {
-	public Condition condition;
-	public Action action;
-	public int etat_futur;
-	public int priorite;
-    public char direction;
+	private Condition condition;
+	private Action action;
+	private int etat_futur;
+	private int priorite;
+    private char direction;
 	
 	caseAutomate(int etat_futur,Action action,Condition condition,int priorite,char direction){
 		this.etat_futur=etat_futur;

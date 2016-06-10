@@ -11,17 +11,19 @@ import java.awt.Point;
  */
 public abstract class Condition2 {
 
-	
-	
+
 	/**
 	 * 
 	 * @return boolean which verifies the condition
 	 */
+
 	public abstract boolean execute(Cell cellule);
 	
-	public Cell getTargetedCell(char direction)
+	
+
+	protected Cell getTargetedCell(char direction, Cell cellule )
 	{
-		Point p = new Point(personnage.getCell().getPosition());
+		Point p = new Point(cellule.getPosition());
 		switch(direction)
 		{
 		case 'N' : p.y%=(p.y-1); break;
@@ -31,7 +33,6 @@ public abstract class Condition2 {
 		default :;
 		
 		}
-		return personnage.getMap().getGrid()[p.x][p.y];
+		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
 	}
-	
 }

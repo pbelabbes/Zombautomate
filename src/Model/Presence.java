@@ -4,24 +4,26 @@ import java.lang.String;
 
 public class Presence extends Condition2 {
 	
+
 	private char direction;
 	private String cible;
 	private Decor decor;
 	
 	Presence(char direction,String cible){
-		 
+
 		 this.direction=direction;
 		 this.cible=cible;
 		 decor = null;
 		}
 	Presence(char direction,Decor decor){
-		
+
 		 this.direction=direction;
 		 this.decor=decor;
 		 cible = null;
 		}
 	
 	public boolean execute(Cell cellule){
+
 			Point p=new Point(cellule.getPosition());
 			switch (direction){
 			case 'N': p.y=p.y-1;break;

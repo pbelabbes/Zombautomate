@@ -4,7 +4,7 @@
   |Deplacer
   |Attaquer
   |Voler
-  |Cacher
+  |Echanger
   |Ramasser
   |Planter
   |Arroser

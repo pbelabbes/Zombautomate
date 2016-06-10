@@ -27,7 +27,6 @@ public class XMLReader {
 		case "Deplacer" : return (Action.MOVE) ;
 		case "Voler" : return Action.STEAL;
 		case "Echanger" :return Action.SWAP;
-		//SWAP,
 		case "Planter" :return Action.PLANT;
 		case "Arroser" : return Action.WATER;
 		case "Deposer" : return Action.DROP;
@@ -37,11 +36,32 @@ public class XMLReader {
 		return Action.MOVE; 
 	}
 	
-	public Condition toCondition(String condi){
+
+	public Condition toCondition(Node Ncondi){
+		Condition c1,c2;
+		switch(Ncondi.getTextContent()){
+		case "Et": 
+			c1= toCondition(Ncondi.getNextSibling());
+			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
+			return (new Et(c1,c2));
+			break;
+		case "Ou":
+			c1= toCondition(Ncondi.getNextSibling());
+			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
+			return (new Ou(c1,c2));
+			;break;
+		case "Present": ;break;
+		case "ScanLoin": ;break;
+		case "ScanProche": ;break;
+		case "Case_alliee": ;break;
+		case "Case_ennemie": ;break;
+		case "Case_neutre": ;break;
+		default:;
+		}
 		
-		
-		return Condition.
+		return ;
 	}
+
 	
 	//constructeur
 	XMLReader(){}
@@ -103,7 +123,7 @@ public class XMLReader {
 			}
 
 		 
-//******************** d�but de la lecture ****************************\\
+//******************** début de la lecture ****************************\\
 		
 		int etat_courant; 
 		int etat_futur;
@@ -113,7 +133,8 @@ public class XMLReader {
 		int nbTransition = 0 ; 
 		int NumEtatsMax ;
 		int priority ; 
-		Node NoeudCourant; 	
+		Node NoeudCourant; 
+		Node NoeudCondi;
 		NodeList NListtransi ; 
 		transfer cell; 
 		ArrayList<ArrayList<transfer>> L = new ArrayList<ArrayList<transfer>>(); 
@@ -125,7 +146,7 @@ public class XMLReader {
 		
 		int nbNoeudsAutomate = Nautomate.getLength();
 		 
-		// Ce place sur le premier noueds automate.
+		// Se place sur le premier noueds automate.
 	//    nodeAuto = racine.getFirstChild(); 
 		
 			
@@ -137,10 +158,10 @@ public class XMLReader {
 		    System.out.println(Nautomate.item(i).getNodeName());
 		    
 
-		    //r�cup�re la liste des Noueds transition.
+		    //récupère la liste des Noeuds transition.
 		    NListtransi = Nautomate.item(i).getChildNodes();
 
-		    //r�ucp le nombre de transition de cet automate.
+		    //récup le nombre de transition de cet automate.
 		    nbTransition =  NListtransi.getLength() ;
 		    		
 		    L2= new ArrayList<transfer>();
@@ -149,32 +170,34 @@ public class XMLReader {
 		    
 		    	System.out.println(NListtransi.item(j).getNodeName());
 		    
-		    	//r�cupe de l'�tat courant 
+		    	//récupe de l'état courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_courant = Integer.parseInt(NoeudCourant.getTextContent());
 		    		    	
-		    	//recup condition
-		    	NoeudCourant = NoeudCourant.getNextSibling(); 
-		    	System.out.println(NoeudCourant.getTextContent());
+		    	//récup condition
+		    	
+		    	NoeudCourant = NoeudCourant.getNextSibling();
+		    	NoeudCondi = NoeudCourant.getFirstChild();
+		    	System.out.println(NoeudCondi.getTextContent());
 		    	condition = NoeudCourant.getTextContent() ;
 
-		    	//recup�ration de l'acion
+		    	//récupération de l'action
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
-		    	action = NoeudCourant.getTextContent() ;
+		    	action = toAction(NoeudCourant.getTextContent()) ;
 		    	
 		    	//recup de la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
-		    	//recup de la priorit� 
+		    	//recup de la priorité
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	priority = Integer.parseInt(NoeudCourant.getTextContent()) ;
 		    	
-		    	//recup de l'�tat futur
+		    	//recup de l'état futur
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
 		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_futur =Integer.parseInt( NoeudCourant.getTextContent());
