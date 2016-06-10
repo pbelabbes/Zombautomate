@@ -4,18 +4,14 @@
 package Model;
 
 /**
- * @author zennouche
+ * @author alexandre
  *
  */
-public class Et extends Condition2 {
+public class Linked_cell extends Condition2 {
 
-	/**
-	 * 
+	/* (non-Javadoc)
+	 * @see Model.Condition2#execute()
 	 */
-	public Et() {
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
 	public boolean execute() {
 		// TODO Auto-generated method stub
