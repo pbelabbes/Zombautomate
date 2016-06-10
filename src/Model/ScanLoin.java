@@ -72,7 +72,34 @@ public ScanLoin(String cible) {
 	public void setRayon(int rayon){
 		this.rayon=rayon;
 	}
-
+	
+	//fonction auxiliaire utilisée par celle d'apres 
+	private char direction(int N,int E,int S,int O){
+		int min=1000000000;
+		if(N!=0 && E!=0 && S!=0 && O!=0){
+				min=Math.min(Math.min(Math.min(N, E), S), O);
+				if(min==0)return '0';
+				else if(min==N)return 'N';
+				else if(min==S)return 'S';
+				else if(min==E)return 'E';
+				else return 'O';
+		}
+		if(N!=0)min=N;
+		if(E!=0)min=E;
+		if(O!=0)min=O;
+		if(S!=0)min=S;
+		if(N!=0)min=Math.min(N,min);
+		if(E!=0)min=Math.min(E,min);
+		if(O!=0)min=Math.min(O,min);
+		if(S!=0)min=Math.min(S,min);
+		if(N==min)return 'N';
+		if(E==min)return 'E';
+		if(O==min)return 'O';
+		if(S==min)return 'S';
+		return '0';
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute(Model.Cell)
 	 */
