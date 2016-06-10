@@ -20,7 +20,8 @@ public class Automata {
 	private int inputs;
 	private caseAutomate[][] states;
 	private Point position; 
-	private int etat_courant;	
+	private int etat_courant;
+	private caseAutomate caseAutomate;
 	
 	//getter & setter
 	public int getEtats() {
@@ -50,6 +51,11 @@ public class Automata {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+	
+	public caseAutomate getCA(){
+		return this.caseAutomate;
+	}
+	
 	
 	//constructeurs:
 	/**
