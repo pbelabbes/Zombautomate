@@ -24,8 +24,31 @@ public class Cell {
 		private Point position;
 		
 		//Constructeurs
-		public Cell(){
-			
+		public Cell(Point pos){
+			decor = this.randomDecor();
+			entity_on=null;
+			owned_by=null;
+			position = pos;
+		}
+		
+		/**
+		 * génère un décor aléatoire
+		 * @return Decor aléatoire
+		 */
+		private Decor randomDecor()
+		{
+			switch((int) Math.random()*8)
+			{
+			case 0 : return Decor.BASEBALL_BAT;
+			case 1 : return Decor.APPLE;
+			case 2 : return Decor.GRASS;
+			case 3 : return Decor.KATANA;
+			case 4 : return Decor.RABBIT;
+			case 5 : return Decor.ROCK;
+			case 6 : return Decor.SPROUT;
+			case 7 : 
+			default :return Decor.TREE; 
+			}
 		}
 		
 		//Methodes
@@ -73,8 +96,8 @@ public class Cell {
 				Point posaut=this.owned_by.getAutomata().getPosition();
 				int x= poscell.x-posaut.x;
 				int y= poscell.y-posaut.y;
-				this.owned_by.getAutomata().getStates()[x][y].action=this.decor.getAction();
-
+				this.owned_by.getAutomata().getStates()[x][y].getAction()=this.decor.getAction();
+//TODO : case d'un automate .getAction()
 			}
 		}
 }

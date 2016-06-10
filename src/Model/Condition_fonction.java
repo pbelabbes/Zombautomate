@@ -119,8 +119,7 @@ public class Condition_fonction {
 	public char Scanloin(int rayon, Character pers, Map map, Point position){
 		int minN=0,minS=0,minE=0,minO=0;
 		int diffx,diffy;
-		
-		
+	
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
 			    if(map.getGrid()[position.x-j][position.y-i].getEntity_on()==pers){
