@@ -15,12 +15,13 @@ public abstract class DisplayCharacter implements Observer {
 	private Animation[] animations;
 	private SpriteSheet walkSprite;
 	
-	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String Spritelink ) throws SlickException {
+	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String spritelink ) throws SlickException {
 		setX(posX);
 		setY(posY);
 		this.direction = direction;
 		animations = new Animation[nbAnimations];
-		walkSprite = new SpriteSheet(Spritelink,64,64);
+		System.out.println(spritelink);
+		walkSprite = new SpriteSheet(spritelink,64,64);
 		moving = false;
 		initAnimations();
 	}

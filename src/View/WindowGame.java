@@ -13,7 +13,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WindowGame extends BasicGame {
     private GameContainer container;
-    private ArrayList<DisplayCharacter> characters;
+    private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
 	private TiledMap map;
     
 	public WindowGame() {
@@ -23,7 +23,7 @@ public class WindowGame extends BasicGame {
     @Override
     public void init(GameContainer container) throws SlickException {
         this.container = container;
-        this.map = new TiledMap("../ressources/map/map.tmx");
+        //this.map = new TiledMap("ressources/map/map2.tmx");
         this.characters.add(new DisplaySurvivor());
     }
 
@@ -36,7 +36,7 @@ public class WindowGame extends BasicGame {
     
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-    	this.map.render(0, 0);
+    	//this.map.render(0, 0);
     	for (DisplayCharacter c : characters) {
     		g.drawAnimation(c.getCurrentAnimation(), c.getX(), c.getY());
     	}
