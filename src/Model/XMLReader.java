@@ -51,21 +51,37 @@ public class XMLReader {
 	 * @return Condition :la condition
 	 */
 	public Condition toCondition(Node Ncondi){
+		//System.out.println("Noeuud param�tre = " + Ncondi.getNodeName()) ;
 		Condition c1,c2;
 		String s;
 		String[] s1,s2;
-		s=Ncondi.getTextContent();
+		s=Ncondi.getFirstChild().getFirstChild().getNodeValue();
+//		s=Ncondi.getTextContent();
+		System.out.println(s);
 		
 		System.out.println(s);
 		
 		switch(s){
 		case "Et": 
-			c1= toCondition(Ncondi.getNextSibling());
-			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
+			//System.out.println("noueud name sibling  = " + Ncondi.getFirstChild().getNextSibling().getNodeName()) ;
+			c1= toCondition(Ncondi.getFirstChild().getNextSibling());
+			
+			//System.out.println("noueud name sibling 2  = " + Ncondi.getNextSibling().getNextSibling().getNodeName()) ;
+			
+			c2= toCondition(Ncondi.getFirstChild().getNextSibling().getNextSibling());
+			
+			
+			
 			return (new Et(c1,c2));
 		case "Ou":
-			c1= toCondition(Ncondi.getNextSibling());
-			c2= toCondition(Ncondi.getNextSibling().getNextSibling());
+			//System.out.println("\nnoueud name sibling  = " + Ncondi.getNextSibling().getNodeName()) ;
+			c1= toCondition(Ncondi.getFirstChild().getNextSibling());
+			
+			//System.out.println("\nnoueud name sibling 2  = " + Ncondi.getNextSibling().getNextSibling().getNodeName()) ;
+			
+			c2= toCondition(Ncondi.getFirstChild().getNextSibling().getNextSibling());
+			
+			
 			return (new Ou(c1,c2));		
 		default:
 			s=s.substring(0, s.length());
@@ -153,7 +169,7 @@ public class XMLReader {
 			try {
 				builder = factory.newDocumentBuilder();
 			} catch (ParserConfigurationException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}       
 		    Document document = null;
@@ -161,7 +177,6 @@ public class XMLReader {
 				document = builder.parse(new File(path));
 				document.getDocumentElement().normalize();
 			} catch (SAXException | IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -178,7 +193,6 @@ public class XMLReader {
 			try {
 				xpathExp =  xpathFactory.newXPath().compile("//text()[normalize-space(.) = '']");
 			} catch (XPathExpressionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  
 			NodeList emptyTextNodes = null;
@@ -186,7 +200,6 @@ public class XMLReader {
 				emptyTextNodes = (NodeList) 
 				        xpathExp.evaluate(racine, XPathConstants.NODESET);
 			} catch (XPathExpressionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -253,7 +266,8 @@ public class XMLReader {
 		    		    	
 		    	//récupérer la condition
 		    	NoeudCourant = NoeudCourant.getNextSibling();
-		    	NoeudCondi = NoeudCourant.getFirstChild();
+		    	//NoeudCondi = NoeudCourant.getFirstChild();
+		    	NoeudCondi = NoeudCourant ;
 //		    	System.out.println(NoeudCondi.getTextContent());
 		    	condition = toCondition(NoeudCondi);
 		    	
@@ -286,7 +300,7 @@ public class XMLReader {
 		 
 		}
 
-		
+		System.out.println("fin");
 		
 		// Player. add(automate) 
 		

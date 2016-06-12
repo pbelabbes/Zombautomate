@@ -48,5 +48,9 @@ public class caseAutomate {
 	public int getPriorite(){
 		return this.priorite;
 	}
+
+	public int etat_futur() {
+		return this.etat_futur;
+	}
 	
 }
