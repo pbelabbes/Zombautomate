@@ -244,7 +244,7 @@ public class Moteur {
 	/**
 	 * @param args
 	 */
-	public static void main(final String[] args) {
+	/*public static void main(final String[] args) {
 		XMLReader fichier = new XMLReader() ;
 		
 		//geurrier
@@ -289,5 +289,5 @@ public class Moteur {
 		carte.setAutomatas(lC, getList_coords_automatas(j1,j2));
 		
 	}
-
+*/
 }
