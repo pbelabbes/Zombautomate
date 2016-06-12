@@ -20,10 +20,10 @@ public class Automata {
 	private int etats;
 	//nb d'entrée.
 	private int inputs;
-	private caseAutomate[][] states;
+	private CaseAutomate[][] states;
 	private Point position; 
 	private int etat_courant;
-	private caseAutomate caseAutomate;
+	private CaseAutomate caseAutomate;
 	
 	//getter & setter
 	public int getEtats() {
@@ -40,10 +40,10 @@ public class Automata {
 		this.inputs=height;
 	}
 	
-	public caseAutomate[][] getStates() {
+	public CaseAutomate[][] getStates() {
 		return states;
 	}
-	public void setStates(caseAutomate[][] states) {
+	public void setStates(CaseAutomate[][] states) {
 		this.states = states;
 	}
 	
@@ -54,7 +54,7 @@ public class Automata {
 		this.position = position;
 	}
 	
-	public caseAutomate getCA(){
+	public CaseAutomate getCA(){
 		return this.caseAutomate;
 	}
 	
@@ -70,7 +70,7 @@ public class Automata {
 			setEtats(width);
 			this.inputs=height;
 			this.etat_courant=etat_courant;
-			this.states=new caseAutomate[height][width];			
+			this.states=new CaseAutomate[width][height]; //Attention, ligne modifiée par alexandre : inversion de hauteur et largeur			
 		}
 
 	
@@ -92,12 +92,13 @@ public class Automata {
 	public int getEtatFutur(Condition C){
 		int j=0;
 		
-			while(states[etat_courant][j].getCondition()!=null && states[etat_courant][j].getCondition()!=C){
-				j++;
-			}
-			if(states[etat_courant][j].getCondition()==C) 
-				return states[etat_courant][j].etat_futur();
-			else return -1;
+		while(states[etat_courant][j].getCondition()!=null && states[etat_courant][j].getCondition()!=C)
+		{
+			j++;
+		}
+		if(states[etat_courant][j].getCondition()==C) 
+			return states[etat_courant][j].getEtatfutur();
+		else return -1;
 	}
 	
 	//Methodes
@@ -108,7 +109,7 @@ public class Automata {
 	private void ajoute(transfer etat){	
 		if(getInputs()==0 ||getEtats()==0) return;
 		int j=0;
-		caseAutomate ca=new caseAutomate(etat.getEtat_futur(),etat.getAction(), etat.getCondition(),etat.getPriority(),etat.getDirection());
+		CaseAutomate ca=new CaseAutomate(etat.getEtat_futur(),etat.getAction(), etat.getCondition(),etat.getPriority(),etat.getDirection());
 			while ((states[etat.getEtat_courant()][j]!=null) && (j<getInputs())){
 				j++;		   
 			}
@@ -146,20 +147,21 @@ public class Automata {
 	}
 		
 	/**
-	 * La fonction qui permet d'afficher le tableau d'entiers sous forme d'etats futurs 
-	 * @param width
-	 * @param height
+	 * La fonction qui permet d'afficher le tableau d'entiers sous forme d'actions
 	 */
-	public void to_string(int width,int height){
-		for (int i=0;i<height;i++){
-		     for (int j=0;j<width;j++){
-		    	 if(states[i][j]!=null){
-		    		 System.out.println(this.states[i][j].etat_futur()+",");
-		    	 }	 
+	public void to_string(){ //modif d'alexandre : j'ai enlevé les arguments de to_string(). C'est plus logique comme ça
+		for (int y=0;y<states[0].length;y++){
+		     for (int x=0;x<states.length;x++){
+		    	 if(states[x][y]!=null){
+		    		 System.out.printf("states[%d][%d] = "+states[x][y].getAction().toString(),x,y); //this.states[i][j].getEtatfutur()+",");
+		    	 }
+		    	 else System.out.printf("states[%d][%d] = null",x,y);
+			     System.out.println("\n");
 		     } 
 		     System.out.println("\n");
 		}	
-    }
+
+	}
 	
 	/*public static void main(String[] args){
 		Automata auto= new Automata(0,2,2);

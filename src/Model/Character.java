@@ -154,10 +154,10 @@ public abstract class Character extends Observable {
 	 */
 	public void play (){
 		
-		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
+		ArrayList<CaseAutomate> List_cases = new ArrayList<CaseAutomate>();
 		int i=0;
 		int j=0;
-		caseAutomate [][] cA = automata.getStates();
+		CaseAutomate [][] cA = automata.getStates();
 		
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
 		automata.getEtatCourant();
@@ -187,4 +187,16 @@ public abstract class Character extends Observable {
 		state = (List_cases.get(cle)).getEtatfutur();
 	}
 
+
+	/**
+	 * @return nom du joueur auquel appartient le personnage
+	 */
+	public String toString()
+	{
+		return this.getPlayer().getName();
+	}
+
+
 }
+
+

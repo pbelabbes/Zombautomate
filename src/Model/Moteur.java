@@ -20,7 +20,7 @@ public class Moteur {
 	private static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
 		ArrayList<Character> res  = new ArrayList<Character>() ;
 		Automata aut ; 
-		caseAutomate[][] remplirautomate ; 
+		CaseAutomate[][] remplirautomate ; 
 		int hauteur,largeur, k;
 		
 		//parcours de tous les automates.
@@ -29,7 +29,7 @@ public class Moteur {
 			largeur= width(L.get(i)); 
 
 			aut = new Automata(0, largeur, hauteur);
-			remplirautomate = new caseAutomate[largeur][hauteur ];
+			remplirautomate = new CaseAutomate[largeur][hauteur ];
 			
 			//initialisation du tableau remplirautomate
 			for(int x = 0 ; x < largeur ; x++){
@@ -46,7 +46,7 @@ public class Moteur {
 					k++;
 				}
 				
-				remplirautomate[tr.getEtat_courant()][k] = new caseAutomate(tr.getEtat_futur(), tr.getAction(), tr.getCondition(), tr.getPriority(), tr.getDirection());
+				remplirautomate[tr.getEtat_courant()][k] = new CaseAutomate(tr.getEtat_futur(), tr.getAction(), tr.getCondition(), tr.getPriority(), tr.getDirection());
 				
 			}
 			aut.setStates(remplirautomate);
@@ -186,7 +186,7 @@ public class Moteur {
 				compteur--; //On créé autant de points qu'il y a d'automates à placer. d'où le compteur
 			}
 		}
-		
+		System.out.println("nb_charact==lP.size()  ->  " + (nb_charact==lP.size())  +  nb_charact);
 		return lP;
 	}
 	
@@ -271,6 +271,7 @@ public class Moteur {
 		
 		
 		System.out.println("\n\n\n\n\nTest alexandre \n\n\n\n");
+		
 		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
 		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/ocaml/equipe2.xml");
 		
@@ -284,10 +285,16 @@ public class Moteur {
 		ArrayList<Character> lC = j1.getEntities();
 		lC.addAll(j2.getEntities());
 		
+		ArrayList<Point> lP = getList_coords_automatas(j1,j2);
+		System.out.println(lP.toString());
+		
 		Map carte = create_map(j1,j2);
 		carte.init_map();
-		carte.setAutomatas(lC, getList_coords_automatas(j1,j2));
+		carte.setAutomatas(lC, lP);
 		
+		
+		
+//		carte.print_automatas();
 	}
 
 }

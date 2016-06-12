@@ -56,6 +56,8 @@ public class XMLReader {
 		String[] s1,s2;
 		s=Ncondi.getTextContent();
 		
+		System.out.println(s);
+		
 		switch(s){
 		case "Et": 
 			c1= toCondition(Ncondi.getNextSibling());
