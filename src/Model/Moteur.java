@@ -3,6 +3,7 @@
  */
 package Model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 
@@ -96,6 +97,118 @@ public class Moteur {
 		return etat_max +1;
 	}
 	
+	/**
+	 * permet de récuperer la hauteur maximale à envisager pour placer les automates sur la carte
+	 * @param j1 Joueur 1
+	 * @param j2 Joueur 2
+	 * @return Hauteur maximale parmi tous les automates des joueurs
+	 */
+	private static int getHmax(Player j1, Player j2)
+	{
+		int h_max = 0;
+
+		ArrayList<Character> lC1 = j1.getEntities();
+		ArrayList<Character> lC2 = j2.getEntities();
+		
+		
+		//2 for each
+		for(Character c : lC1) 
+		{
+		 if(c.getAutomata().getInputs() > h_max) h_max = c.getAutomata().getInputs(); 
+
+		}
+
+		for(Character c : lC2) 
+		{
+		 if(c.getAutomata().getInputs() > h_max) h_max = c.getAutomata().getInputs(); 
+
+		}
+		return h_max;
+	}
+
+	
+	/**
+	 * permet de récuperer la largeur maximale à envisager pour placer les automates sur la carte
+	 * @param j1 Joueur 1
+	 * @param j2 Joueur 2
+	 * @return Largeur maximale parmi tous les automates des joueurs
+	 */
+	private static int getWmax(Player j1, Player j2)
+	{
+		ArrayList<Character> lC1 = j1.getEntities();
+		ArrayList<Character> lC2 = j2.getEntities();
+
+		int w_max = 0;
+
+		//2 for each
+		for(Character c : lC1) 
+		{
+		 if(c.getAutomata().getEtats() > w_max) w_max = c.getAutomata().getEtats();
+
+		}
+
+		for(Character c : lC2) 
+		{
+		 if(c.getAutomata().getEtats() > w_max) w_max = c.getAutomata().getEtats();
+
+		}
+		return w_max;
+	}
+	
+	/**
+	 * Permet de calculer la liste des points qui définiront les emplacement des automates
+	 * @param j1 Joueur1
+	 * @param j2 Joueur2
+	 * @return Liste de points espacés des dimensions maximales d'un automate.
+	 */
+	public static ArrayList<Point> getList_coords_automatas(Player j1, Player j2)
+	{
+		
+		ArrayList<Point> lP = new ArrayList<Point>(); //résultat qui sera retourné
+		
+		int nb_charact = j1.getEntities().size() + j2.getEntities().size(); //nombre de personnages dont on devra placer l'automate sur la carte
+		int compteur = nb_charact; //Comptera le nombre de coordonnées créées pour ne pas faire une liste inutilement trop longue de coordonnées
+		
+		//dimensions maximales d'un automate
+		int h_max = getHmax(j1,j2);
+		int w_max = getWmax(j1,j2);
+		
+		//On place à peu près autant d'automates sur la hauteur que sur la largeur de la carte (sqrt permet d'équilibrer ces 2 dimensions)
+		for(int x = 0 ; (int) x < Math.sqrt(nb_charact) +1 ; x++)
+		{
+			for(int y = 0 ; (int) y < Math.sqrt(nb_charact) +1 ; y++)
+			{
+				//On calcule les coordonnées des automates sur la carte
+				int x_reel = (int) (x*w_max+  5*Math.random() +5*x); //on prend en compte le décalage aléatoire en ajoutant en plus : 5*x
+				int y_reel = (int) (x*h_max+  5*Math.random() +5*y);
+				
+				if(compteur>0) lP.add(new Point(x_reel,y_reel));
+				compteur--; //On créé autant de points qu'il y a d'automates à placer. d'où le compteur
+			}
+		}
+		
+		return lP;
+	}
+	
+	/**
+	 * A utiliser comme un constructeur de map
+	 * @param j1 Joueur 1
+	 * @param j2 Joueur 2
+	 * @return une map dont les coordonnées conviennent au joueurs
+	 */
+	public static Map create_map(Player j1, Player j2)
+	{
+		ArrayList<Character> l1 = j1.getEntities();
+		ArrayList<Character> l2 = j2.getEntities();
+		
+		int nb_character = l1.size() + l2.size();
+		
+		//dimensions de la map : (voir la fonction get_list_coords_automatas(..) pour comprendre les coordonnées de la map 
+		int x_map = (int) ((5+getWmax(j1,j2))*(Math.sqrt(nb_character)+2));
+		int y_map = (int) ((5+getHmax(j1,j2))*(Math.sqrt(nb_character)+2));
+		return new Map(x_map,y_map);
+	}
+			 
 	//main
 	public static void test() {
 		ArrayList<ArrayList<transfer>> liste=new ArrayList<ArrayList<transfer>> ();
@@ -141,7 +254,7 @@ public class Moteur {
 		//faremeur 
 		//hauteur = 34 
 		//nb etat = 3
-		ArrayList<ArrayList<transfer>> liste=fichier.read("/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
+		ArrayList<ArrayList<transfer>> liste=fichier.read("../Zombautomate/ocaml/equipe.xml");
 		Player Zombi = new Player(0, "Zombies", 10 );
 		
 		System.out.println("\n\n\n debut");
@@ -155,9 +268,25 @@ public class Moteur {
 		//ajout de l'automate au perso ZOmbi ) 
 		Zombi.setEntities(CreateEntities(Zombi, liste));
 	
+		
+		
+		System.out.println("\n\n\n\n\nTest alexandre \n\n\n\n");
+		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
+		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/ocaml/equipe2.xml");
+		
 
+		Player j1 = new Player(1 ,"Joueur 1", 10);
+		Player j2 = new Player(1 ,"Joueur 2", 10);
 		
+		j1.setEntities(CreateEntities(j1,liste1));
+		j2.setEntities(CreateEntities(j2,liste2));
 		
+		ArrayList<Character> lC = j1.getEntities();
+		lC.addAll(j2.getEntities());
+		
+		Map carte = create_map(j1,j2);
+		carte.init_map();
+		carte.setAutomatas(lC, getList_coords_automatas(j1,j2));
 		
 	}
 

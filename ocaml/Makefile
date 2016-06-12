@@ -1,9 +1,9 @@
-OBJ= doc.cmo exemple_fichier_user.cmo main.cmo
+OBJ= doc.cmo exemple_fichier_user1.cmo exemple_fichier_user2.cmo main.cmo
 BIN = xml_writter
 
-all : xml_writter clean run
+all : xml_writter clean
 
-xml_writter : doc.cmo exemple_fichier_user.cmo main.cmo
+xml_writter : doc.cmo exemple_fichier_user1.cmo exemple_fichier_user1.cmo main.cmo
 	ocamlc $(OBJ) -o $(BIN)
 
 doc.cmi : doc.mli
@@ -12,10 +12,13 @@ doc.cmi : doc.mli
 doc.cmo : doc.cmi doc.ml
 	ocamlc -c doc.ml
 
-exemple_fichier_user.cmo: exemple_fichier_user.ml doc.cmi
-	ocamlc -c exemple_fichier_user.ml 
+exemple_fichier_user1.cmo: exemple_fichier_user1.ml doc.cmi
+	ocamlc -c exemple_fichier_user1.ml 
 
-main.cmo: doc.cmi exemple_fichier_user.cmo main.ml
+exemple_fichier_user2.cmo: exemple_fichier_user2.ml doc.cmi
+	ocamlc -c exemple_fichier_user2.ml 
+
+main.cmo: doc.cmi exemple_fichier_user1.cmo exemple_fichier_user2.cmo main.ml
 	ocamlc -c main.ml
 
 clean:

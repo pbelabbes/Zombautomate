@@ -121,7 +121,7 @@ public class XMLReader {
 				return new Linked_cell(s2[0].charAt(0),'E');
 			case "Case_neutre": 
 				return new Linked_cell(s2[0].charAt(0),'N');
-			default: System.out.println("error invalid argument condition");
+			default: System.out.println("error invalid argument condition : "+s1[0]);
 			}
 			return null;
 		}
@@ -228,7 +228,7 @@ public class XMLReader {
 		// parcour la liste des transition.
 		for (int i = 0; i<nbNoeudsAutomate; i++) {
 
-		    System.out.println(Nautomate.item(i).getNodeName());
+//		    System.out.println(Nautomate.item(i).getNodeName());
 		    
 
 		    //récupère la liste des Noeuds transition.
@@ -241,39 +241,39 @@ public class XMLReader {
 		    
 		    for (int j = 0; j < nbTransition ; j++ ){
 		    
-		    	System.out.println(NListtransi.item(j).getNodeName());
+//		    	System.out.println(NListtransi.item(j).getNodeName());
 		    	
 		    
 		    	//récupérer l'état courant 
 		    	NoeudCourant = NListtransi.item(j).getFirstChild();
-		    	System.out.println(NoeudCourant.getTextContent());
+//		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_courant = Integer.parseInt(NoeudCourant.getTextContent());
 		    		    	
 		    	//récupérer la condition
 		    	NoeudCourant = NoeudCourant.getNextSibling();
 		    	NoeudCondi = NoeudCourant.getFirstChild();
-		    	System.out.println(NoeudCondi.getTextContent());
+//		    	System.out.println(NoeudCondi.getTextContent());
 		    	condition = toCondition(NoeudCondi);
 		    	
 
 		    	//récupérer l'action
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
-		    	System.out.println(NoeudCourant.getTextContent());
+//		    	System.out.println(NoeudCourant.getTextContent());
 		    	action = toAction(NoeudCourant.getTextContent()) ;
 		    	
 		    	//récupérer la direction 
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
-		    	System.out.println(NoeudCourant.getTextContent());
+//		    	System.out.println(NoeudCourant.getTextContent());
 		    	direction = NoeudCourant.getTextContent().charAt(0) ;
 		    	
 		    	//récupérer la priorité
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
-		    	System.out.println(NoeudCourant.getTextContent());
+//		    	System.out.println(NoeudCourant.getTextContent());
 		    	priority = Integer.parseInt(NoeudCourant.getTextContent()) ;
 		    	
 		    	//récupérerl'état futur
 		    	NoeudCourant = NoeudCourant.getNextSibling(); 
-		    	System.out.println(NoeudCourant.getTextContent());
+//		    	System.out.println(NoeudCourant.getTextContent());
 		    	etat_futur =Integer.parseInt( NoeudCourant.getTextContent());
 		    	//transfer(int etat_courant,ArrayList<Condition> condition, Action action , char direction, int priority, int etat_futur) 
 		    	cell = new transfer(etat_courant, condition, action, direction, priority, etat_futur);

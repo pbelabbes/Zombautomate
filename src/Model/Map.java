@@ -97,14 +97,20 @@ public class Map extends Observable{
 	{
 		int gridheight = this.getHeight();
 		int gridwidth = this.getWidth();
+		System.out.println(gridheight);
+		System.out.println(gridwidth);
+		
 		for(int x=0+pos.x ; x < a.getEtats()+pos.x; x++)
 		{
 			for(int y = 0+pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
 				int x_r = x%gridheight; //x_reel (c'est un tor)
 				int y_r = y%gridwidth; //y_reel (c'est un tor)
+				
+				System.out.println(x_r);
+				System.out.println(y_r);
 				this.grid[x_r][y_r].setOwned_by(perso);
-				this.grid[x_r][y_r].setDecor(a.getStates()[x-pos.x][y-pos.y].action().getDecor());
+				this.grid[x_r][y_r].setDecor(a.getStates()[x-pos.x][y-pos.y].getAction().getDecor());
 				this.grid[x_r][y_r].setPosition(pos);
 			}
 		}
