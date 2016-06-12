@@ -140,11 +140,9 @@ public abstract class Character extends Observable {
 	}
 	
 	// Verifie si un personnage est vivant
-	public boolean is_alive () {
-		if (hp > 0){
-			return true;
-		}
-		else return false;
+	public boolean is_alive () 
+	{
+		return hp>0;
 	}
 	
 	

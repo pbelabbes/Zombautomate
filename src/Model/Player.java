@@ -98,4 +98,17 @@ public class Player extends Observable{
 	}
 	*/
 	
+	/**
+	 * verifie si le joueur a perdu.
+	 * @return true si aucune entité n'est encore en vie. faux sinon
+	 */
+	public boolean defeated()
+	{
+		for(Character c : this.entities)
+		{
+			if(c.is_alive()) return false;
+		}
+		return true;
+	}
+	
 }
