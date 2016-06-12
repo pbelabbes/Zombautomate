@@ -21,13 +21,19 @@ public class WindowGame extends BasicGame {
     private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
     private DisplayCellule[][] mapDisplay;
     
-	public WindowGame() throws SlickException {
+	public WindowGame(){
         super("Zombautomate by PANDAS");
-
+    }
+	
+    
+	
+	@Override
+    public void init(GameContainer container) throws SlickException{
+        this.container = container;
+        //this.map = new TiledMap("ressources/map/map2.tmx");
         //Creation joueur bidon
-    	SpriteSheet spriteSheet = new SpriteSheet("ressources/characters/sprites/male_walkcycle.png", 64, 64);
-        this.characters.add(new DisplaySurvivor());
-
+    	this.characters.add(new DisplaySurvivor());
+        
         //Creation map bidon
         int width = 100 , height = 100;
         Map map = new Map(width, height);
@@ -46,15 +52,6 @@ public class WindowGame extends BasicGame {
         		this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
         	}
         }
-    }
-	
-    
-	
-	@Override
-    public void init(GameContainer container){
-        this.container = container;
-        //this.map = new TiledMap("ressources/map/map2.tmx");
-        
         
 	}
     
@@ -79,6 +76,11 @@ public class WindowGame extends BasicGame {
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
     	//this.map.render(0, 0);
+    	for (DisplayCellule[] c : mapDisplay) {
+			for (DisplayCellule displayCellule : c) {
+				g.drawAnimation(displayCellule.getCurrentAnimation(), displayCellule.getX(), displayCellule.getY());
+			}
+		}
     	for (DisplayCharacter c : characters) {
     		g.setColor(new Color(255,255,255, .5f));
     		g.fillOval(c.getX()-16, c.getY()-8, 32, 16);
