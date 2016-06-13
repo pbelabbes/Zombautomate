@@ -233,7 +233,7 @@ public class Moteur {
 		//nb etat = 2
 		
 		//faremeur 
-		//hauteur = 34 
+		//hauteur = 28
 		//nb etat = 3
 //		ArrayList<ArrayList<transfer>> liste=fichier.read("../Zombautomate/ocaml/equipe.xml");
 //		Player Zombi = new Player(0, "Zombies", 10 );
