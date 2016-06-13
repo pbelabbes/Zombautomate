@@ -112,27 +112,28 @@ public class Survivor extends Character{
 		Survivor ent_on = (Survivor) cellule.getEntity_on();
 		//On vérifie qu'il y a bien un survivant sur la case désignée et qu'il n'est pas de notre équipe
 		if (ent_on != null && ent_on.getPlayer() != this.player && !(cellule.getEntity_on() instanceof Zombie)){
-
+			
 			//vol d'armes de l'adversaire
-			int alea=ent_on.getWeapon().size();
-			int m=(int)(Math.random()*.3);
+			int m=ent_on.getWeapon().size();
+			int alea=(int)(Math.random()*3);
 			if (alea<m){
 				this.weapon.add(ent_on.getWeapon().get(m));
 				ent_on.getWeapon().remove(m);	
 			}
 			//vol de graines
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			int pl=ent_on.getPlayer().getSeed();
 			if (pl<m){
 				this.getPlayer().addSeed(pl);
 				ent_on.getPlayer().addSeed(-pl);
+				System.out.println("vol de graine");
 			}
 			else{
 				this.getPlayer().addSeed(m);
 				ent_on.getPlayer().addSeed(-m);
 			}
 			//vol de cailloux
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			pl=ent_on.getPlayer().getStone();
 			if (pl<m){
 				this.getPlayer().addStone(pl);
@@ -143,7 +144,7 @@ public class Survivor extends Character{
 				ent_on.getPlayer().addStone(-m);
 			}
 			//vol de nourriture de l'adversaire
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			pl=ent_on.getPlayer().getFoodStock();
 			if (pl<m){
 				this.getPlayer().addFoodStock(pl);

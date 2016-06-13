@@ -106,6 +106,7 @@ public class Player extends Observable{
 		for (Character ch : entities){
 			System.out.println("\tcharactère nb :" +entities.indexOf(ch));
 			ch.showstat();
+			System.out.println("\n");
 		}
 		System.out.println("foodstock = "+Integer.toString( foodStock));
 		System.out.println("stone = "+Integer.toString(stone));
