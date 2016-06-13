@@ -109,7 +109,7 @@ public class Map extends Observable{
 				{	
 					
 //					int x_r = x%gridheight; //x_reel (c'est un tor)
-//					int y_r = y%gridwidth; //y_reel (c'est un tor)
+//					int y_r = y%gridwidth; //y_reel (c'est un to
 	
 					System.out.println(this.grid[x][y].getOwned_by() != null);
 					

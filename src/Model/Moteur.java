@@ -225,6 +225,9 @@ public class Moteur {
 	/**
 	 * @param args
 	 */
+	/**
+	 * @param args
+	 */
 	public static void main(final String[] args) {
 		XMLReader fichier = new XMLReader() ;
 		
