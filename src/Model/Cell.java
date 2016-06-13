@@ -47,7 +47,7 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch(5)  //(int) (8*Math.random()))
+			switch(2)  //(int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;

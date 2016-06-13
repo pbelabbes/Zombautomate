@@ -60,7 +60,10 @@ public class testAction {
 		j1.show();
 
 		ennemi_cible.setCell(tab[0][1]);
-		ennemi_cible2.setCell(tab[7][7]) ;
+		ennemi_cible2.setCell(tab[1][0]) ;
+		tab[0][1].setEntity_on(ennemi_cible);
+		tab[1][0].setEntity_on(ennemi_cible2);
+		j2.addFoodStock(80);
 		j2.show(); 
 
 		//perso_test.deplacer(S);
@@ -69,13 +72,14 @@ public class testAction {
 //		perso_test.plant(tab[2][2]);
 		
 //		perso_test.act(Action.MOVE,O);
-		perso_test.act(Action.ATTACK,S);
+		perso_test.act(Action.STEAL,S);
 //		perso_test.act(Action.PICK,O);
 //		perso_test.act(Action.STEAL,O);
 		
 		System.out.println("\n\n");
 		perso_test.showaround();
 		j1.show();
+		j2.show();
 
 
 
