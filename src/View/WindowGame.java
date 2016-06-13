@@ -26,8 +26,6 @@ public class WindowGame extends BasicGame {
     }
 	
     
-	
-	@Override
     public void init(GameContainer container) throws SlickException{
         this.container = container;
         //this.map = new TiledMap("ressources/map/map2.tmx");

@@ -278,6 +278,17 @@ public abstract class Character extends Observable {
 		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
 		
 	}
+	
+	public void showaround(){
+		int x,y;
+		x=this.cell.getPosition().x;
+		y=this.cell.getPosition().y;
+		Cell[][] tab = this.map.getGrid() ;
+		System.out.println("Cell N = " + tab[x-1][y].getDecor()  );
+		System.out.println("Cell E = " + tab[x][y+1].getDecor()  );
+		System.out.println("Cell S = " + tab[x+1][y].getDecor()  );
+		System.out.println("Cell O = " + tab[x][y-1].getDecor()  );
+	}
 
 
 

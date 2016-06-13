@@ -1,8 +1,8 @@
 package Model;
 
 public enum Nourriture {
-RABBIT(10),
-APPLE(30);
+RABBIT(18),
+APPLE(8);
 private int value;
 
 private Nourriture(int value){

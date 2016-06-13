@@ -4,6 +4,7 @@
 package Model;
 
 import java.awt.Point;
+import java.util.Random;
 
 /**
  * La classe cellule représente une case du plateau de jeu
@@ -34,13 +35,19 @@ public class Cell {
 		
 		public Cell(){}
 		
+		public static double randomGenerator(long seed) {
+		    Random generator = new Random(seed);
+		    double num = generator.nextDouble() * (0.5);
+		    return num;
+		}
+		
 		/**
 		 * génère un décor aléatoire
 		 * @return Decor aléatoire
 		 */
 		private Decor randomDecor()
 		{
-			switch((int) (8*Math.random()))
+			switch(2)  //(int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
