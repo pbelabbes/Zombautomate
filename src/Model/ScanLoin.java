@@ -130,8 +130,11 @@ public ScanLoin(String cible, char parameter) {
 		pS=new Point(cellule.getPosition());
 		pE=new Point(cellule.getPosition());
 		pO=new Point(cellule.getPosition());
+		int hmap = cellule.getEntity_on().getMap().getHeight();
+		int wmap = cellule.getEntity_on().getMap().getWidth();
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
+
 				pN.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
 	    		pN.y=(cellule.getPosition().y-i+mapheight)%mapheight;
 	    		pS.x=(cellule.getPosition().x+j)%mapwidth;
@@ -145,6 +148,9 @@ public ScanLoin(String cible, char parameter) {
 	
 //on test si la cellule en question !=null et aussi si le decor correspondant est celui rechrché
 					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
+
+						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
+
 						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
 					    	diffx=Math.abs(pN.x-cellule.getPosition().x);
 					    	diffy=Math.abs(pN.y-cellule.getPosition().y);

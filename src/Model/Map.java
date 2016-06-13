@@ -96,9 +96,6 @@ public class Map extends Observable{
 	private void setAutomata(Automata a, Point pos, Character perso)
 	{
 //		a.to_string();
-		int gridheight = this.getHeight();
-		int gridwidth = this.getWidth();
-		System.out.printf("hauteur de grille = %d, largeur de grille = %d\n",gridheight, gridwidth);
 
 		for(int x= pos.x ; x < a.getEtats()+pos.x; x++)
 		{
@@ -109,14 +106,14 @@ public class Map extends Observable{
 				{	
 					
 //					int x_r = x%gridheight; //x_reel (c'est un tor)
-//					int y_r = y%gridwidth; //y_reel (c'est un tor)
+//					int y_r = y%gridwidth; //y_reel (c'est un to
 	
-					System.out.println(this.grid[x][y].getOwned_by() != null);
+//					System.out.println(this.grid[x][y].getOwned_by() != null);
 					
 //					System.out.printf("x = %d ; y = %d    ;    x_r = %d ;  y_r = %d\n",x,y,x_r,y_r);
 
-					System.out.printf("x = %d ; y = %d \n",x,y);
-					System.out.printf("x-pos.x = %d ; y-pos.y = %d\n", x-pos.x,y-pos.y);
+//					System.out.printf("x = %d ; y = %d \n",x,y);
+//					System.out.printf("x-pos.x = %d ; y-pos.y = %d\n", x-pos.x,y-pos.y);
 					this.grid[x][y].setOwned_by(perso);
 					this.grid[x][y].setDecor(case_tempo.getAction().getDecor());
 					this.grid[x][y].setPosition(pos);
@@ -146,6 +143,37 @@ public class Map extends Observable{
 	}
 	
 	/**
+	 * Place un personnage à la position indiquée
+	 * @param c personnage à placer
+	 * @param p position du personnage
+	 */
+	public void set_charact(Character c, Point p)
+	{
+		c.setMap(this);
+		c.setCell(this.getGrid()[p.x][p.y]);
+		this.getGrid()[p.x][p.y].setEntity_on(c);
+	}
+	
+	/**
+	 * @param lC -> Liste des personnages à placer
+	 * Place aléatoirement les personnages sur la map
+	 */
+	public void set_charact_position(ArrayList<Character> lC)
+	{
+		for(Character c : lC) 
+		{
+			int x,y;
+			do
+			{
+				x =(int) (this.getWidth()*Math.random());
+				y =(int) (this.getHeight()*Math.random());
+			}
+			while(this.getGrid()[x][y].getEntity_on()!=null);
+			this.set_charact(c,new Point(x,y));
+		}
+	}
+	
+	/**
 	 * affiche les positions de la carte qui sont reliées à un automate
 	 */
 	public void print_automatas()
@@ -156,7 +184,7 @@ public class Map extends Observable{
 			{
 				if(this.grid[x][y].getOwned_by() != null)
 					System.out.printf("[%d][%d]"+this.grid[x][y].getOwned_by().toString() + " ",x,y);
-//				else System.out.printf("[%d][%d] : libre (decor = "+this.grid[x][y].getDecor() + ") " ,x,y);
+				else System.out.printf("[%d][%d] : libre (decor = "+this.grid[x][y].getDecor() + ") " ,x,y);
 			}
 			System.out.print("\n");
 		}
