@@ -15,7 +15,7 @@ public class Ordonnanceur {
 	
 
 	
-	// Remplit la liste "Ordre" de manière aléatoire à partir des personnage de la liste "List"
+	// Remplit la liste "Ordonnee" de manière aléatoire à partir des personnage de la liste "Liste"
 	public void next_player (){
 		
 		ArrayList<Character> liste_tempo = new ArrayList<Character>();
@@ -34,7 +34,7 @@ public class Ordonnanceur {
 	}
 	
 	
-	// Pour chaque personnage de la liste "Ordre", si le personnage est vivant, on lui fait effectuer sa prochaine action
+	// Pour chaque personnage de la liste "Ordonnee", si le personnage est vivant, on lui fait effectuer sa prochaine action
 	public void next_move() {
 
 	for (int i = 0 ; i < Ordonnee.size(); i++)
