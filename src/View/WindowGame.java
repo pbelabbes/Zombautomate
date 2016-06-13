@@ -26,8 +26,6 @@ public class WindowGame extends BasicGame {
     }
 	
     
-	
-	@Override
     public void init(GameContainer container) throws SlickException{
         this.container = container;
         //this.map = new TiledMap("ressources/map/map2.tmx");
@@ -35,7 +33,7 @@ public class WindowGame extends BasicGame {
     	this.characters.add(new DisplaySurvivor());
         
         //Creation map bidon
-        int width = 300 , height = 300;
+        int width = 500 , height = 500;
         Map map = new Map(width, height);
         Cell[][] grid = new Cell[width][height];
         for (int i = 0 ; i < grid.length;i++) {

@@ -69,8 +69,8 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 		poscell=new Point();
-		poscell.x=9;
-		poscell.y=1;
+		poscell.x=2;
+		poscell.y=2;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.KATANA);
 		cellule_temporaire.setEntity_on(null);
@@ -108,6 +108,19 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 	
+		carte.setCell(cellule_temporaire);
+		poscell=new Point();
+       poscell.x=1;
+       poscell.y=6;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.APPLE);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+	
+		
 		poscell=new Point();
 		poscell.x=9;
 		poscell.y=2;
@@ -121,10 +134,10 @@ public class test_condition_fonction {
 		carte.setCell(cellule_temporaire);
 		
 		
-		ScanLoin c = new ScanLoin(Decor.BASEBALL_BAT,'S');
+		ScanLoin c = new ScanLoin(Decor.RABBIT,'E');
 		//c.execute(cellule);
        
-		c.setRayon(4);
+		c.setRayon(3);
 		System.out.println(c.execute(cellule));
 		
 		//System.out.println(perso_test.getSightRange());

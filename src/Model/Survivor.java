@@ -97,7 +97,7 @@ public class Survivor extends Character{
 		case KATANA: 
 			Katana k=new Katana();
 			this.weapon.add(k);break;
-		default: ;
+		default: return ;
 		}
 		cellule.setDecor(Decor.GRASS);
 	}
@@ -162,13 +162,14 @@ public class Survivor extends Character{
 	 */
 	public void plant (Cell cellule){
 		
-		if (cellule.getDecor()==Decor.GRASS){
+		if (cellule.getDecor()==Decor.GRASS && this.player.getSeed() > 3){
 			cellule.setDecor(Decor.SPROUT) ;
+			this.player.addSeed(-5);
 		}		
 	}
 	
 	/**
-	 * La fonction water permet de faire d'une pousse un arbre 
+	 * La fonction permet de faire d'une pousse un arbre 
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void water (Cell cellule){
@@ -223,7 +224,7 @@ public class Survivor extends Character{
 		case ATTACK : attaquer(cellule); break;
 		case MOVE: deplacer(cellule); break;
 		case DROP: drop(cellule);
-		default :;
+		default : System.out.println("PAS d'action");;
 		}
 	}
 	

@@ -144,7 +144,10 @@ public abstract class Character extends Observable {
 		}
 	}
 	
-	// Verifie si un personnage est vivant
+	/**
+	 * la fonction is_alive verifie si un personnage est vivant
+	 * @return true si un personnage est vivant
+	 */
 	public boolean is_alive () 
 	{
 		return hp>0;
@@ -152,9 +155,10 @@ public abstract class Character extends Observable {
 
 	public abstract void eat();
 	
-	//Fait faire sa prochaine action a un personnage
 	/**
-	 * 
+	 * La fonction play fait faire sa prochaine action à un personnage
+	 * Elle récupère la condition de l'état courant puis vérifie quelles sont les transitions possibles
+	 * Elle choisi la transition en fonction des priorité puis effectue l'action associée à la transition
 	 */
 	public void play (){
 		
@@ -176,7 +180,6 @@ public abstract class Character extends Observable {
 //			i = 0;
 			j++;
 		}
-		
 
 		if(List_cases.size()==0) return;
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
@@ -273,6 +276,19 @@ public abstract class Character extends Observable {
 		System.out.println("\tstrength = "+Integer.toString( strength)) ; 
 		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
 		
+	}
+	
+	public void showaround(){
+		int x,y;
+		x=this.cell.getPosition().x;
+		y=this.cell.getPosition().y;
+		Cell[][] tab = this.map.getGrid() ;
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
+		System.out.println("Cell N = " + tab[x][(y-1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell E = " + tab[(x+1+mapwidth)%mapwidth][y].getDecor());
+		System.out.println("Cell S = " + tab[x][(y+1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell O = " + tab[(x-1+mapwidth)%mapwidth][y].getDecor());
 	}
 
 
