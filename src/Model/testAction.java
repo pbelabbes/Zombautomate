@@ -48,12 +48,12 @@ public class testAction {
 		j2.setId(2);
 		j2.setEntities(l2);
 
-		//tab[2][3].setEntity_on(perso_test);
-		//tab[2][3].setOwned_by(perso_test);
+		tab[0][0].setEntity_on(perso_test);
+		//tab[0][0].setOwned_by(perso_test);
 		//System.out.println(cellule_temporaire.getOwned_by()==null);
 
 
-		perso_test.setCell(tab[2][3]);
+		perso_test.setCell(tab[0][0]);
 		perso_test.showaround();
 		j1.show();
 
@@ -63,7 +63,10 @@ public class testAction {
 		//perso_test.pick(tab[2][4]);
 //		perso_test.drop(tab[2][4]);
 //		perso_test.plant(tab[2][2]);
-		perso_test.
+		
+//		perso_test.act(Action.MOVE,O);
+		perso_test.act(Action.ATTACK,O);
+		
 		
 		System.out.println("\n\n");
 		perso_test.showaround();

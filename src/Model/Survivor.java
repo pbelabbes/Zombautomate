@@ -222,7 +222,7 @@ public class Survivor extends Character{
 		case ATTACK : attaquer(cellule); break;
 		case MOVE: deplacer(cellule); break;
 		case DROP: drop(cellule);
-		default :;
+		default : System.out.println("PAS d'action");;
 		}
 	}
 	
