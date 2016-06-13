@@ -70,17 +70,11 @@ public class Survivor extends Character{
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void drop (char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.GRASS){
-			getMap().getGrid()[p.x][p.y].setDecor(Decor.ROCK);
+	public void drop (Cell cellule){
+
+		if (cellule.getDecor()==Decor.GRASS && this.getPlayer().getStone()>10){
+			cellule.setDecor(Decor.ROCK);
+			this.getPlayer().addStone(-10);
 		}				
 	}
 	
@@ -91,16 +85,9 @@ public class Survivor extends Character{
 	 * Elle ne fait aucune action si la case indiquée ne correspond pas au décor de nourriture ou d'arme
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void pick(char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		switch (this.getMap().getGrid()[p.x][p.y].getDecor()){
+	public void pick(Cell cellule)
+	{
+		switch (cellule.getDecor()){
 		case APPLE: this.getPlayer().addFoodStock(Nourriture.APPLE.getvalues());break;
 		case RABBIT: this.getPlayer().addFoodStock(Nourriture.RABBIT.getvalues());break;
 		case BASEBALL_BAT: 
@@ -111,8 +98,7 @@ public class Survivor extends Character{
 			this.weapon.add(k);break;
 		default: ;
 		}
-		this.getMap().getGrid()[p.x][p.y].setDecor(Decor.GRASS);
-	
+		cellule.setDecor(Decor.GRASS);
 	}
 	
 	/**
@@ -120,25 +106,18 @@ public class Survivor extends Character{
 	 * Si il n'y a pas d'ennemi sur la case indiquée, il ne se passe rien
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void steal (char direction){
+	public void steal (Cell cellule){
 		
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
+		Survivor ent_on = (Survivor) cellule.getEntity_on();
 		//On vérifie qu'il y a bien un survivant sur la case désignée et qu'il n'est pas de notre équipe
-		if ((this.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()!=this.getPlayer())){
-			Survivor ent_on=(Survivor)this.getMap().getGrid()[p.x][p.y].getEntity_on();
+		if (ent_on != null && ent_on.getPlayer() != this.player && !(cellule.getEntity_on() instanceof Zombie)){
+
 			//vol d'armes de l'adversaire
-			int alea=ent_on.weapon.size();
+			int alea=ent_on.getWeapon().size();
 			int m=(int)(Math.random()*.3);
 			if (alea<m){
-				this.weapon.add(ent_on.weapon.get(m));
-				ent_on.weapon.remove(m);	
+				this.weapon.add(ent_on.getWeapon().get(m));
+				ent_on.getWeapon().remove(m);	
 			}
 			//vol de graines
 			m=(int)(Math.random()*.5);
@@ -180,17 +159,10 @@ public class Survivor extends Character{
 	 * La fonction plant permet de faire apparaitre une pousse dans la case indiquée si le decor de cette case était de l'herbe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void plant (char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.GRASS){
-			getMap().getGrid()[p.x][p.y].setDecor(Decor.SPROUT) ;
+	public void plant (Cell cellule){
+		
+		if (cellule.getDecor()==Decor.GRASS){
+			cellule.setDecor(Decor.SPROUT) ;
 		}		
 	}
 	
@@ -198,17 +170,10 @@ public class Survivor extends Character{
 	 * La fonction water permet de faire d'une pousse un arbre 
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void water (char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.SPROUT){
-			getMap().getGrid()[p.x][p.y].setDecor(Decor.TREE) ;
+	public void water (Cell cellule){
+		
+		if (cellule.getDecor()==Decor.SPROUT){
+			cellule.setDecor(Decor.TREE) ;
 		}		
 	}
 	
@@ -216,33 +181,26 @@ public class Survivor extends Character{
 	 * La fonction swap permet à deux joueurs de la même equipe de partager equitablement ou avec un leger avantage pour l'autre le nombre d'arme que l'on possède.
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void swap (char direction){
-		
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		if ((this.getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Survivor)&&(this.getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==this.getPlayer())){
-			Survivor ent_on=(Survivor)this.getMap().getGrid()[p.x][p.y].getEntity_on();
-			//vol d'armes de l'adversaire
-			int nb_weapon_ally=ent_on.weapon.size();
+	public void swap (Cell cellule){
+
+		Survivor target = (Survivor) cellule.getEntity_on();
+		if(target == null || target.getPlayer() != this.getPlayer())
+			return;
+		else {
+			int nb_weapon_ally=target.getWeapon().size();
 			int nb_weapon_me=this.weapon.size();
 			while (nb_weapon_ally>nb_weapon_me+1){
 				int m=(int)(Math.random()*nb_weapon_ally);
-				this.weapon.add(ent_on.weapon.get(m));
-				ent_on.weapon.remove(m);
-				nb_weapon_ally=ent_on.weapon.size();
+				this.weapon.add(target.getWeapon().get(m));
+				target.getWeapon().remove(m);
+				nb_weapon_ally=target.getWeapon().size();
 				nb_weapon_me=this.weapon.size();
 			}
 			while (nb_weapon_me>nb_weapon_ally){
 				int m=(int)(Math.random()*nb_weapon_me);
-				ent_on.weapon.add(this.weapon.get(m));
+				target.getWeapon().add(this.weapon.get(m));
 				this.weapon.remove(m);
-				nb_weapon_ally=ent_on.weapon.size();
+				nb_weapon_ally=target.getWeapon().size();
 				nb_weapon_me=this.weapon.size();
 			}
 		}
@@ -252,16 +210,17 @@ public class Survivor extends Character{
 	@Override
 	public void act(Action action, char direction)
 	{
+		Cell cellule = this.getTargetedCell(direction, this.getCell());
 		switch(action)
 		{
-		case WATER: water(direction); break;
-		case SWAP: swap(direction); break;
-		case STEAL: steal(direction); break;
-		case PLANT: plant(direction); break;
-		case PICK: pick(direction); break;
-		case ATTACK : attaquer(direction); break;
-		case MOVE: deplacer(direction); break;
-		case DROP: drop(direction);
+		case WATER: water(cellule); break;
+		case SWAP: swap(cellule); break;
+		case STEAL: steal(cellule); break;
+		case PLANT: plant(cellule); break;
+		case PICK: pick(cellule); break;
+		case ATTACK : attaquer(cellule); break;
+		case MOVE: deplacer(cellule); break;
+		case DROP: drop(cellule);
 		default :;
 		}
 	}

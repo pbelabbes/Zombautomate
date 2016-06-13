@@ -24,14 +24,14 @@ public abstract class Character extends Observable {
 	 * int state: l'etat dans lequel se trouve le caractère. 
 	 */
 	//Attributs
-	private int hp ;//points de vie
-	private int sight_range; //portée de vision
-	private Player player;
-	private int strength ; 
-	private Cell cell;
-	private Automata automata;
-	private Map map;
-	private int state;
+	protected int hp ;//points de vie
+	protected int sight_range; //portée de vision
+	protected Player player;
+	protected int strength ; 
+	protected Cell cell;
+	protected Automata automata;
+	protected Map map;
+	protected int state;
 	
 	/**
 	 * Constructeur
@@ -56,6 +56,14 @@ public abstract class Character extends Observable {
 		this.sight_range = 2;
 		this.state = 0;
 	}
+	
+	/**
+	 * execute l'action indiquée par le type Action dans la direction donnée
+	 * @param action
+	 * @param direction
+	 */
+	public abstract void act(Action action, char direction);
+
 	
 	public int getHp() {
 		return hp;
@@ -243,8 +251,23 @@ public abstract class Character extends Observable {
 	{
 		return this.getPlayer().getName();
 	}
-
-	public abstract void act(Action action, char direction);
+	
+	
+	protected Cell getTargetedCell(char direction, Cell cellule )
+	{  	System.out.println(cellule.getPosition().toString());
+		Point p = new Point(cellule.getPosition());
+		int mapheight = cellule.getEntity_on().getMap().getHeight();
+		int mapwidth = cellule.getEntity_on().getMap().getWidth();
+		switch(direction)
+		{
+		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
+		case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
+		case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
+		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		
+		}
+		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
+	}
 
 }
 

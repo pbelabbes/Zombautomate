@@ -127,16 +127,18 @@ public ScanLoin(String cible, char parameter) {
 		pS=new Point(cellule.getPosition());
 		pE=new Point(cellule.getPosition());
 		pO=new Point(cellule.getPosition());
+		int hmap = cellule.getEntity_on().getMap().getHeight();
+		int wmap = cellule.getEntity_on().getMap().getWidth();
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
-				pN.x=(cellule.getPosition().x-j)%cellule.getEntity_on().getMap().getWidth();
-	    		pN.y=(cellule.getPosition().y-i)%cellule.getEntity_on().getMap().getHeight();
-	    		pS.x=(cellule.getPosition().x+j)%cellule.getEntity_on().getMap().getWidth();
-	    		pS.y=(cellule.getPosition().y+i)%cellule.getEntity_on().getMap().getHeight();
-	    		pE.x=(cellule.getPosition().x-j)%cellule.getEntity_on().getMap().getWidth();
-	    		pE.y=(cellule.getPosition().y+i)%cellule.getEntity_on().getMap().getHeight();
-	    		pO.x=(cellule.getPosition().x+j)%cellule.getEntity_on().getMap().getWidth();
-	    		pO.y=(cellule.getPosition().y-i)%cellule.getEntity_on().getMap().getHeight();
+				pN.x=(cellule.getPosition().x-j+wmap)%wmap;
+	    		pN.y=(cellule.getPosition().y-i+hmap)%hmap;
+	    		pS.x=(cellule.getPosition().x+j)%wmap;
+	    		pS.y=(cellule.getPosition().y+i)%hmap;
+	    		pE.x=(cellule.getPosition().x-j+wmap)%wmap;
+	    		pE.y=(cellule.getPosition().y+i)%hmap;
+	    		pO.x=(cellule.getPosition().x+j)%wmap;
+	    		pO.y=(cellule.getPosition().y-i+hmap)%hmap;
 				if(decor!=null){		
 				
 						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
