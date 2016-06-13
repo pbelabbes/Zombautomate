@@ -134,7 +134,7 @@ public abstract class Character extends Observable {
 	 */
 	public void deplacer (Cell cellule) {
 
-		if(cellule.getEntity_on() != null && cellule.getDecor() != Decor.ROCK)
+		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
 			this.cell = cellule;
 			cellule.setEntity_on(this);
@@ -216,7 +216,7 @@ public abstract class Character extends Observable {
 		else 
 		{
 			if (cellule.getDecor()==Decor.ROCK){
-				int r= (int)(Math.random()*.10);
+				int r= (int)(Math.random()*10);
 				if (r<2)		cellule.setDecor(Decor.RABBIT);
 				else if (r<4)	cellule.setDecor(Decor.KATANA);
 				else			cellule.setDecor(Decor.GRASS);
@@ -275,10 +275,12 @@ public abstract class Character extends Observable {
 		x=this.cell.getPosition().x;
 		y=this.cell.getPosition().y;
 		Cell[][] tab = this.map.getGrid() ;
-		System.out.println("Cell N = " + tab[x-1][y].getDecor()  );
-		System.out.println("Cell E = " + tab[x][y+1].getDecor()  );
-		System.out.println("Cell S = " + tab[x+1][y].getDecor()  );
-		System.out.println("Cell O = " + tab[x][y-1].getDecor()  );
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
+		System.out.println("Cell N = " + tab[x][(y-1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell E = " + tab[(x+1+mapwidth)%mapwidth][y].getDecor());
+		System.out.println("Cell S = " + tab[x][(y+1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell O = " + tab[(x-1+mapwidth)%mapwidth][y].getDecor());
 	}
 
 
