@@ -35,7 +35,7 @@ public class WindowGame extends BasicGame {
     	this.characters.add(new DisplaySurvivor());
         
         //Creation map bidon
-        int width = 300 , height = 300;
+        int width = 100 , height = 100;
         Map map = new Map(width, height);
         Cell[][] grid = new Cell[width][height];
         for (int i = 0 ; i < grid.length;i++) {
