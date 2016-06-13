@@ -268,23 +268,52 @@ public class Moteur {
 		j1.setEntities(CreateEntities(j1,liste1));
 		j2.setEntities(CreateEntities(j2,liste2));
 		
-		ArrayList<Character> lC = j1.getEntities();
+		
+		ArrayList<Character> lC = new ArrayList<Character>();
+		lC.addAll(j1.getEntities());
 		lC.addAll(j2.getEntities());
-		
-		
+
+	
 		ArrayList<Point> lP = getList_coords_automatas(lC);
 //		System.out.println(lP.toString());
+
 		
 		Map carte = create_map(lC);
 		carte.init_map();
 		carte.setAutomatas(lC, lP);
+
 		
 		carte.set_charact_position(lC);
-				
-//		while(!(j1.defeated()||j2.defeated()))
+			
+		int compteur = 0;
+		Ordonnanceur ordo = new Ordonnanceur(lC);
+
+		System.out.println("positions initiales du joueur 1 :");
+		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
+
+		System.out.println("positions initiales du joueur 2 :");
+		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
+
+		
+		while(!(j1.defeated()||j2.defeated()))
 		{
-		//TODO lancer la partie => ordonnancement
+			ordo.next_player();
+			ordo.next_move();
+			compteur++;
 		}
+		System.out.println("Partie terminée");
+		if(j1.defeated())
+		{
+			System.out.println("j1 a perdu en "+compteur+" tours");
+		}
+		else System.out.println("j2 a perdu en" + compteur+ " tours" );
+
+		System.out.println("positions finales du joueur 1 :");
+		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
+
+		System.out.println("positions finales du joueur 2 :");
+		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
+
 	}
 
 }

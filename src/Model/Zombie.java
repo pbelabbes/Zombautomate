@@ -7,8 +7,10 @@ public class Zombie extends Character {
 	public Zombie(Player player,Automata automata,Map map) 
 	{
 		super(player,automata,map);	
+		strength = 3;
 	}
 
+	
 	@Override
 	public void act(Action action, char direction) 
 	{
@@ -19,6 +21,13 @@ public class Zombie extends Character {
 		case MOVE : deplacer(cellule);
 		default:;
 		}
+	}
+
+
+	@Override
+	public void eat()
+	{
+		//les zombies ne mangent pas
 	}
 
 		

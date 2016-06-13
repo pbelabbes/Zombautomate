@@ -31,12 +31,14 @@ public class Linked_cell extends Condition {
 	@Override
 	public boolean execute(Cell cellule) {
 
-		if(id_searched == 'N') return getTargetedCell(direction, cellule).getEntity_on().getPlayer() == null;
+		Character owner = getTargetedCell(direction, cellule).getOwned_by();
+		if(id_searched == 'N') return owner == null;
 
 		else 
 		{
+			if(owner == null) return false;
 			Player p1 = cellule.getEntity_on().getPlayer();
-			Player p2 = getTargetedCell(direction, cellule).getEntity_on().getPlayer();
+			Player p2 = owner.getPlayer();
 
 			if (id_searched == 'A')
 				return p1 == p2;

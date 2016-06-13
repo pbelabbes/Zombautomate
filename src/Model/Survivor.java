@@ -47,7 +47,7 @@ public class Survivor extends Character{
 	 */
 	public Survivor(Player player, Automata automata, Map map) {
 		super(player, automata, map);
-		this.weapon=null;
+		this.weapon=new ArrayList<Arme>();
 	}
 
 	//Méthodes
@@ -57,7 +57,8 @@ public class Survivor extends Character{
 	 * La fonction eat permet à chaque tour de faire manger les survivants grace au stock de nourriture
 	 * Si il n'y a plus de nourriture en stock le survivant perd un point de vie.
 	 */
-	public void eat(){
+	public void eat()
+	{
 		if (this.getPlayer().getFoodStock()>0){
 			this.getPlayer().addFoodStock(-1);
 		}
@@ -210,6 +211,7 @@ public class Survivor extends Character{
 	@Override
 	public void act(Action action, char direction)
 	{
+		System.out.println(action);
 		Cell cellule = this.getTargetedCell(direction, this.getCell());
 		switch(action)
 		{

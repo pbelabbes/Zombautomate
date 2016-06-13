@@ -48,7 +48,7 @@ public abstract class Character extends Observable {
 //	}
 	
 	public Character(Player player, Automata automata, Map map) {
-		this.hp=100;
+		this.hp=10;
 		this.strength=1;
 		this.player=player;
 		this.automata=automata;
@@ -68,15 +68,18 @@ public abstract class Character extends Observable {
 	public int getHp() {
 		return hp;
 	}
+	
+	/**
+	 * Retire de la vie au personnage
+	 * @param moins : Montant de vie retiré au personnage
+	 */
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
 		setChanged();
 		notifyObservers(this.hp);
 	}
-	/*public void setHp(int hp) {
-		this.hp = hp;
-	}
-*/
+
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -134,7 +137,7 @@ public abstract class Character extends Observable {
 	 */
 	public void deplacer (Cell cellule) {
 
-		if(cellule.getEntity_on() != null && cellule.getDecor() != Decor.ROCK)
+		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
 			this.cell = cellule;
 			cellule.setEntity_on(this);
@@ -146,7 +149,8 @@ public abstract class Character extends Observable {
 	{
 		return hp>0;
 	}
-	
+
+	public abstract void eat();
 	
 	//Fait faire sa prochaine action a un personnage
 	/**
@@ -161,7 +165,7 @@ public abstract class Character extends Observable {
 		
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
 //		int etat_courant = automata.getEtatCourant();
-		while (cA[state][j] != null)
+		while ( j < this.getAutomata().getInputs() && cA[state][j] != null)
 		{
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
@@ -174,19 +178,23 @@ public abstract class Character extends Observable {
 		}
 		
 
+		if(List_cases.size()==0) return;
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
 
 		int k = 1;
 		int cle = 0;
-		while ( k!= List_cases.size()){
-			if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
-				k++;
-			}
-			else { 
-				cle = k;
-				k++;
-			}
-		}	
+		if(List_cases.size()>1)
+		{
+			while ( k != List_cases.size()){
+				if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
+					k++;
+				}
+				else { 
+					cle = k;
+					k++;
+				}
+			}	
+		}
 		Action act = List_cases.get(cle).getAction();
 		char dir = List_cases.get(cle).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
@@ -213,7 +221,7 @@ public abstract class Character extends Observable {
 		else 
 		{
 			if (cellule.getDecor()==Decor.ROCK){
-				int r= (int)(Math.random()*.10);
+				int r= (int)(Math.random()*10);
 				if (r<2)		cellule.setDecor(Decor.RABBIT);
 				else if (r<4)	cellule.setDecor(Decor.KATANA);
 				else			cellule.setDecor(Decor.GRASS);
@@ -242,7 +250,7 @@ public abstract class Character extends Observable {
 	
 	
 	protected Cell getTargetedCell(char direction, Cell cellule )
-	{  	System.out.println(cellule.getPosition().toString());
+	{
 		Point p = new Point(cellule.getPosition());
 		int mapheight = cellule.getEntity_on().getMap().getHeight();
 		int mapwidth = cellule.getEntity_on().getMap().getWidth();
