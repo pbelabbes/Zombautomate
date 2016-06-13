@@ -30,19 +30,23 @@ public class Linked_cell extends Condition {
 	}
 	@Override
 	public boolean execute(Cell cellule) {
-
-		if(id_searched == 'N') return getTargetedCell(direction, cellule).getEntity_on().getPlayer() == null;
-
-		else 
-		{
-			Player p1 = cellule.getEntity_on().getPlayer();
-			Player p2 = getTargetedCell(direction, cellule).getEntity_on().getPlayer();
-
-			if (id_searched == 'A')
-				return p1 == p2;
-
-			else return p1 != p2;
+        Cell ce=new Cell();
+        ce=getTargetedCell(direction, cellule);
+		if(ce!=null && ce.getEntity_on()!=null) {
+				if(id_searched == 'N') return ce.getEntity_on().getPlayer() == null;
+		
+				else 
+				{ 
+					Player p1 = cellule.getEntity_on().getPlayer();
+					Player p2 = ce.getEntity_on().getPlayer();
+		
+					if (id_searched == 'A')
+						return p1 == p2;
+		
+					else return p1 != p2;
+				}
 		}
+		else return false;
 	}
 
 }

@@ -122,7 +122,7 @@ public class test_condition_fonction {
 	
 		
 		poscell=new Point();
-		poscell.x=9;
+		poscell.x=2;
 		poscell.y=2;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.RABBIT);
@@ -134,10 +134,10 @@ public class test_condition_fonction {
 		carte.setCell(cellule_temporaire);
 		
 		
-		ScanLoin c = new ScanLoin(Decor.RABBIT,'E');
+		Linked_cell c = new Linked_cell('E','A');
 		//c.execute(cellule);
        
-		c.setRayon(3);
+		//c.setRayon(5);
 		System.out.println(c.execute(cellule));
 		
 		//System.out.println(perso_test.getSightRange());

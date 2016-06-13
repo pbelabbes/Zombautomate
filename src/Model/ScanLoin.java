@@ -130,8 +130,6 @@ public ScanLoin(String cible, char parameter) {
 		pS=new Point(cellule.getPosition());
 		pE=new Point(cellule.getPosition());
 		pO=new Point(cellule.getPosition());
-		int hmap = cellule.getEntity_on().getMap().getHeight();
-		int wmap = cellule.getEntity_on().getMap().getWidth();
 		for(int i=0;i<rayon;i++){
 			for(int j=0;j<(rayon-i);j++){
 
@@ -144,7 +142,7 @@ public ScanLoin(String cible, char parameter) {
 	    		pO.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
 	    		pO.y=(cellule.getPosition().y+i+mapheight)%mapheight;
 				if(decor!=null){	
-		    	//System.out.println("je suis dans decor");
+		    	System.out.println("je suis dans decor");
 	
 //on test si la cellule en question !=null et aussi si le decor correspondant est celui rechrché
 					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
@@ -334,6 +332,7 @@ public ScanLoin(String cible, char parameter) {
 					    }
 				}
 				}
+		}
 		}
 		System.out.println(minN);
 		System.out.println(minE);
