@@ -24,6 +24,7 @@ public class testAction {
 		ArrayList<Character> l2 = new ArrayList<Character>();
 
 		Player j1 = new Player();
+		j1.setName("joueur1");
 
 		Survivor perso_test = new Survivor(j1,null,carte);
 		j1.addStone(20);
@@ -36,6 +37,7 @@ public class testAction {
 
 
 		Player j2 = new Player();
+		j2.setName("joueur2");
 		j2.addStone(30);
 		j2.addSeed(40);
 		
@@ -57,7 +59,9 @@ public class testAction {
 		perso_test.showaround();
 		j1.show();
 
-		
+		ennemi_cible.setCell(tab[0][1]);
+		ennemi_cible2.setCell(tab[7][7]) ;
+		j2.show(); 
 
 		//perso_test.deplacer(S);
 		//perso_test.pick(tab[2][4]);
@@ -65,8 +69,9 @@ public class testAction {
 //		perso_test.plant(tab[2][2]);
 		
 //		perso_test.act(Action.MOVE,O);
-		perso_test.act(Action.ATTACK,O);
-		
+		perso_test.act(Action.ATTACK,S);
+//		perso_test.act(Action.PICK,O);
+//		perso_test.act(Action.STEAL,O);
 		
 		System.out.println("\n\n");
 		perso_test.showaround();

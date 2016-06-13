@@ -244,8 +244,8 @@ public abstract class Character extends Observable {
 	protected Cell getTargetedCell(char direction, Cell cellule )
 	{  	System.out.println(cellule.getPosition().toString());
 		Point p = new Point(cellule.getPosition());
-		int mapheight = cellule.getEntity_on().getMap().getHeight();
-		int mapwidth = cellule.getEntity_on().getMap().getWidth();
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
 		switch(direction)
 		{
 		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
