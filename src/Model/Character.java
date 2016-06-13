@@ -132,19 +132,13 @@ public abstract class Character extends Observable {
 	 * La fonction deplacer permet de déplacer le personnage dans une direction (Nord, Sud, Est, Ouest)
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action.
 	 */
-	public void deplacer (char direction) {
-		int x,y;
-		x=this.cell.getPosition().x;
-		y=this.cell.getPosition().y;
-		switch (direction){
-		//on modifie la position et donc la cellule du personnage
-		case 'O': this.cell=map.getGrid()[x+1][y] ;break;
-		case 'S': this.cell=map.getGrid()[x][y+1] ;break;
-		case 'N': this.cell=map.getGrid()[x][y-1] ;break;
-		case 'E': this.cell=map.getGrid()[x-1][y] ;break; 
-		default : //throw new Require ("visible"); 
-			     break;
-		}	
+	public void deplacer (Cell cellule) {
+
+		if(cellule.getEntity_on() != null && cellule.getDecor() != Decor.ROCK)
+		{
+			this.cell = cellule;
+			cellule.setEntity_on(this);
+		}
 	}
 	
 	// Verifie si un personnage est vivant
@@ -209,34 +203,28 @@ public abstract class Character extends Observable {
 	 * Sinon rien ne se passe
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
-	public void attaquer(char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
+	public void attaquer(Cell cellule){
+
 		
-		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
+		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire
-			getMap().getGrid()[p.x][p.y].getEntity_on().supHp(this.getStrength());
+			cellule.getEntity_on().supHp(this.getStrength());
 		}
-		else {
-			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){
+		else 
+		{
+			if (cellule.getDecor()==Decor.ROCK){
 				int r= (int)(Math.random()*.10);
-				if (r<2)		getMap().getGrid()[p.x][p.y].setDecor(Decor.RABBIT);
-				else if (r<4)	getMap().getGrid()[p.x][p.y].setDecor(Decor.KATANA);
-				else			getMap().getGrid()[p.x][p.y].setDecor(Decor.GRASS);
+				if (r<2)		cellule.setDecor(Decor.RABBIT);
+				else if (r<4)	cellule.setDecor(Decor.KATANA);
+				else			cellule.setDecor(Decor.GRASS);
 
 			}
-			else if(getMap().getGrid()[p.x][p.y].getDecor()==Decor.TREE)
+			else if(cellule.getDecor()==Decor.TREE)
 			{
 				int r = (int) (Math.random()*10);
-				if(r<5)			getMap().getGrid()[p.x][p.y].setDecor(Decor.APPLE);
-				else if(r<8)	getMap().getGrid()[p.x][p.y].setDecor(Decor.BASEBALL_BAT);
-				else			getMap().getGrid()[p.x][p.y].setDecor(Decor.GRASS);
+				if(r<5)			cellule.setDecor(Decor.APPLE);
+				else if(r<8)	cellule.setDecor(Decor.BASEBALL_BAT);
+				else			cellule.setDecor(Decor.GRASS);
 
 			}
 		}
