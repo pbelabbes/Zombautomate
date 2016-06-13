@@ -13,18 +13,24 @@ import Model.Decor;
 public class DisplayCellule extends Display implements Observer {
 
 	public static final int SIZE = 32;
+	public static SpriteSheet SPRITE = null;
+	public static Animation[] ANIMATIONS = null;
+
 	Cell cellule;
 
 	public DisplayCellule(float posX, float posY, Cell c) throws SlickException{
-		super(posX, posY, setSpriteSheet(c.getDecor()), 8);
+		super(posX, posY, setSpriteSheet(), 8);
 		this.cellule = c;
 
 	}
 
-	private static SpriteSheet setSpriteSheet(Decor d) throws SlickException{
-		String spritePath = "ressources/map/tuiles/terrain_atlas_2.png";
-		System.out.println(spritePath);
-		return new SpriteSheet(spritePath, SIZE, SIZE);
+	private static SpriteSheet setSpriteSheet() throws SlickException{
+		if(SPRITE == null){
+			String spritePath = "ressources/map/tuiles/terrain_atlas_2.png";
+			SPRITE = new SpriteSheet(spritePath, SIZE, SIZE);
+		}
+
+		return SPRITE;
 	}
 
 	@Override
@@ -35,15 +41,17 @@ public class DisplayCellule extends Display implements Observer {
 
 	@Override
 	public void initAnimations() {
-		this.animations[0] = loadAnimation(sprite, 0, 1, 25); // Grass
-		this.animations[1] = loadAnimation(sprite, 26, 27, 25); //Rock
-		this.animations[2] = loadAnimation(sprite, 12, 13, 24); //Apple ( Tomato )
-		this.animations[3] = loadAnimation(sprite, 14, 15, 27); //Sprout
-		this.animations[4] = loadAnimation(sprite, 13, 14, 31); //Tree
-		this.animations[5] = loadAnimation(sprite, 10, 11, 5); //Katana
-		this.animations[6] = loadAnimation(sprite, 23, 24, 20); //Baseball_bat
-		this.animations[7] = loadAnimation(sprite, 15, 16, 15);//Rabbit
-
+		if( ANIMATIONS == null ){
+			this.animations[0] = loadAnimation(sprite, 0, 1, 25); // Grass
+			this.animations[1] = loadAnimation(sprite, 26, 27, 25); //Rock
+			this.animations[2] = loadAnimation(sprite, 12, 13, 24); //Apple ( Tomato )
+			this.animations[3] = loadAnimation(sprite, 14, 15, 27); //Sprout
+			this.animations[4] = loadAnimation(sprite, 13, 14, 31); //Tree
+			this.animations[5] = loadAnimation(sprite, 10, 11, 5); //Katana
+			this.animations[6] = loadAnimation(sprite, 23, 24, 20); //Baseball_bat
+			this.animations[7] = loadAnimation(sprite, 15, 16, 15);//Rabbit
+			ANIMATIONS = this.animations;
+		}else this.animations = ANIMATIONS;
 	}
 
 	@Override
