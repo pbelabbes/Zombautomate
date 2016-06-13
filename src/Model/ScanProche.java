@@ -80,23 +80,27 @@ public class ScanProche extends Condition {
 			
 		 
 			if(cible== "ennemi"){
-						    System.out.println("la ou il faut \n");
-							if(c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
-							c1.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 	
-							   System.out.println("after first if \n");
-							 if(c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
+						 
+						  if(c1!=null && c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
+							  c1.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 							   
+						   if(c2!=null &&c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
 						       c2.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) nb++; 	
-							 System.out.println("apres 2eme \n");
-						     if(c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
+						   if(c3!=null && c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
 						       c3.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
-						       System.out.println("apres 3eme  \n");
-						       System.out.println(c4.getEntity_on()!=null);
-						       System.out.println(c4.getEntity_on() instanceof Survivor );
-						       System.out.println(c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer());
-						    if(c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
+						   if(c4!=null && c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
 							   c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
-						    System.out.println(nb +"\n");
-			}   
+			}  
+			else if(cible== "allie"){
+				 
+				  if(c1!=null && c1.getEntity_on()!=null  &&
+					  c1.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 							   
+				   if(c2!=null &&c2.getEntity_on()!=null &&
+				       c2.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) nb++; 	
+				   if(c3!=null && c3.getEntity_on()!=null &&
+				       c3.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
+				   if(c4!=null && c4.getEntity_on()!=null &&
+					   c4.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
+	}  
 			else if(cible== "zombie"){
 							if(c1.getEntity_on() instanceof Zombie ) nb++; 	
 							if(c2.getEntity_on() instanceof Zombie ) nb++; 	
@@ -106,16 +110,14 @@ public class ScanProche extends Condition {
 		 }	 
 		}
 		else{ System.out.println("dans le else \n");
-		      System.out.println(c1.getDecor()==decor);
-			if(c1.getDecor()!=null &&c1.getDecor()==decor ) { System.out.println("dans le else \n"); nb++;}
-			if(c2.getDecor()!=null &&c2.getDecor()==decor ){  System.out.println("dans le else \n");nb++;}		
-			if(c3.getDecor()!=null &&c3.getDecor()==decor){ System.out.println(c3.getDecor()==null);nb++;}
-			if(c4.getDecor()!=null &&c4.getDecor()==decor ) {nb++;}
-			System.out.println(nb+"\n ");
+		   
+			if(c1!=null &&c1.getDecor()==decor ) { nb++;}
+			if(c2!=null &&c2.getDecor()==decor ){nb++;}		
+			if(c3!=null &&c3.getDecor()==decor){nb++;}
+			if(c4!=null &&c4.getDecor()==decor ) {nb++;}
+			//System.out.println(nb+"\n ");
 			return nb;
-		}
-		 
-		System.out.println(nb+"\n ");
+		} 
 
       return nb;
 	}
@@ -137,24 +139,26 @@ public boolean execute(Cell cellule){
 		Cell cS=getTargetedCell('S',cellule);
 		Cell cE=getTargetedCell('E',cellule);
 		Cell cO=getTargetedCell('O',cellule);
-		
+		//System.out.println(cE==null);
 		nb=nb_cible(cN,cS,cE,cO,cellule);
-   if(cible!=null && (cellule.getEntity_on()!=null)){		
-				
+		System.out.println("juste apres nb");
+     if(nb == 1 ) {	
+		if(cible!=null){		
+		System.out.println("apres le premier test");		
 		//dans ce cas on est sur que nb=1
-	 if(nb == 1 ) {
+	
 			if(cible=="ennemi"){
 	
-				if( cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+				if(cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
 					return ('N'==parameter);
 				}
-				else if(cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+				else if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
 					return ('S'==parameter);
 				}
-				else if( cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+				else if( cE!=null &&cE.getEntity_on()!=null&& cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
 					return ('E'==parameter);
 				}
-				else if(cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+				else if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
 					return ('O'==parameter);
 				}
 			}
@@ -173,31 +177,50 @@ public boolean execute(Cell cellule){
 					return ('O'==parameter);
 				}
 			}
-	 	 
-	else if(decor!=null){
+			else if(cible=="allie"){
 	
+				if( cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+					return ('N'==parameter);
+				}
+				else if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+					return ('S'==parameter);
+				}
+				else if(cE!=null &&cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+					return ('E'==parameter);
+				}
+				else if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+					return ('O'==parameter);
+				}
+			}	
+		}
+	        	 
+	if(decor!=null){
+		System.out.println("dans decor");
 	
-			if( cN.getDecor()==decor ){
-				System.out.println(nb);
-
+			if(cN!=null && cN.getDecor()==decor ){
+				System.out.println(parameter);
+        
 				return ('N'==parameter);
 			}
-			else if(cS.getDecor()==decor){
+			else if(cS!=null &&cS.getDecor()==decor){
 				return ('S'==parameter);
 			}
-			else if( cE.getDecor()==decor ){
+			else if(cE!=null && cE.getDecor()==decor ){
 				return ('E'==parameter);
 			}
-			else if(cO.getDecor()==decor){
+			else if(cO!=null &&cO.getDecor()==decor){
 				return ('O'==parameter);
 			}
 		
 	}
-	
-   }		
+	 
   }
+  	
+  
+	System.out.println("a la sortie");
    return  (((char) nb +'0')==parameter);
-   // TODO Auto-generated method stub
+  
+  // TODO Auto-generated method stub
 }
 
 }

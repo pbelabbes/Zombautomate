@@ -29,7 +29,10 @@ public class test_condition_fonction {
 		Player j1 = new Player( 1,"toto", 20);
 
 		Survivor perso_test = new Survivor(j1,null,carte);
+		Survivor allie = new Survivor(j1,null,carte);
+
 		l1.add(perso_test);
+		l1.add(allie);
 		perso_test.setStrength(12);
 		j1.setEntities(l1);
 
@@ -76,8 +79,8 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 		poscell=new Point();
-		poscell.x=1;
-		poscell.y=6;
+		poscell.x=9;
+		poscell.y=9;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.APPLE);
 		cellule_temporaire.setEntity_on(ennemi_cible2);
@@ -104,14 +107,24 @@ public class test_condition_fonction {
 		//cellule_temporaire.setPosition(new Point(0,4));
 		
 		carte.setCell(cellule_temporaire);
+	
+		poscell=new Point();
+		poscell.x=9;
+		poscell.y=2;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.RABBIT);
+		cellule_temporaire.setEntity_on(allie);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(2,4));
+		perso_test.setCell(cellule_temporaire);
+		
+		carte.setCell(cellule_temporaire);
 		
 		
-		
-		
-		ScanProche c = new ScanProche(Decor.KATANA,'N');
+		ScanLoin c = new ScanLoin(Decor.BASEBALL_BAT,'S');
 		//c.execute(cellule);
        
-		
+		c.setRayon(4);
 		System.out.println(c.execute(cellule));
 		
 		//System.out.println(perso_test.getSightRange());

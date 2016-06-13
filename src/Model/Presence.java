@@ -25,15 +25,16 @@ public class Presence extends Condition {
 	public boolean execute(Cell cellule){
 //TODO On pourrait réduire un peu le code en utilisant getTargetedCell
 			Point p=new Point(cellule.getPosition());
-			System.out.println(cellule.getPosition().toString());
-			switch (direction){
-			case 'N': p.y=(p.y-1)%cellule.getEntity_on().getMap().getHeight();break;
-			case 'S': p.y=(p.y+1)%cellule.getEntity_on().getMap().getHeight();break;
-			case 'E': p.x=(p.x+1)%cellule.getEntity_on().getMap().getWidth();break;
-			case 'O': p.x=(p.x-1)%cellule.getEntity_on().getMap().getWidth();break;
+			int mapheight = cellule.getEntity_on().getMap().getHeight();
+			int mapwidth = cellule.getEntity_on().getMap().getWidth();
+			switch(direction)
+			{
+			case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
+			case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
+			case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
+			default : p.x=(p.x-1+mapwidth)%mapwidth; break;
+			}
 			
-			}	
-
 	if(cellule.getEntity_on()!=null){
 
 
@@ -47,7 +48,7 @@ public class Presence extends Condition {
 		{
 			switch (cible){
 			
-			case "allié":if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) return true; 
+			case "allie":if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) return true; 
 						 else return false;
 			case "zombie" :if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie)return true; 
 						   else return false; 
