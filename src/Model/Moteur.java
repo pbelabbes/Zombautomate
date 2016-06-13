@@ -297,7 +297,7 @@ public class Moteur {
 		
 		while(!(j1.defeated()||j2.defeated()))
 		{
-			ordo.next_player();
+			ordo.melanger();
 			ordo.next_move();
 			compteur++;
 		}

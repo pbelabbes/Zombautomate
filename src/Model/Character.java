@@ -171,6 +171,7 @@ public abstract class Character extends Observable {
 //		int etat_courant = automata.getEtatCourant();
 		while ( j < this.getAutomata().getInputs() && cA[state][j] != null)
 		{
+			System.out.println(cA[state][j].getCondition() + " direction : " + cA[state][j].getDirection() );
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
 				List_cases.add(cA [state][j]);
@@ -198,6 +199,7 @@ public abstract class Character extends Observable {
 				}
 			}	
 		}
+		System.out.println(List_cases.get(cle).getCondition());
 		Action act = List_cases.get(cle).getAction();
 		char dir = List_cases.get(cle).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
@@ -255,8 +257,8 @@ public abstract class Character extends Observable {
 	protected Cell getTargetedCell(char direction, Cell cellule )
 	{
 		Point p = new Point(cellule.getPosition());
-		int mapheight = cellule.getEntity_on().getMap().getHeight();
-		int mapwidth = cellule.getEntity_on().getMap().getWidth();
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
 		switch(direction)
 		{
 		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
@@ -265,7 +267,7 @@ public abstract class Character extends Observable {
 		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
 		
 		}
-		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
+		return this.map.getGrid()[p.x][p.y];
 	}
 
 

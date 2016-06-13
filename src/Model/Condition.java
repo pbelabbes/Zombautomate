@@ -40,6 +40,7 @@ public abstract class Condition {
 		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
 		
 		}
+//		System.out.println(p);
 		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
 	}
 }
