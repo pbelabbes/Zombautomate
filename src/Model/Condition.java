@@ -28,15 +28,14 @@ public abstract class Condition {
 	 * @return
 	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
-	{
+	{  	System.out.println(cellule.getPosition().toString());
 		Point p = new Point(cellule.getPosition());
 		switch(direction)
 		{
-		case 'N' : p.y%=(p.y-1); break;
-		case 'E' : p.x%=(p.x+1); break;
-		case 'S' : p.y%=(p.y+1); break;
-		case 'O' : p.x%=(p.x-1);
-		default :;
+		case 'N' : p.y=(p.y-1)%cellule.getEntity_on().getMap().getHeight(); break;
+		case 'E' : p.x=(p.x+1)%cellule.getEntity_on().getMap().getWidth(); break;
+		case 'S' : p.y=(p.y+1)%cellule.getEntity_on().getMap().getHeight(); break;
+		default : p.x=(p.x-1)%cellule.getEntity_on().getMap().getWidth(); break;
 		
 		}
 		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];

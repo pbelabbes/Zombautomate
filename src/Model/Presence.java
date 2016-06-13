@@ -25,19 +25,23 @@ public class Presence extends Condition {
 	public boolean execute(Cell cellule){
 //TODO On pourrait réduire un peu le code en utilisant getTargetedCell
 			Point p=new Point(cellule.getPosition());
+			System.out.println(cellule.getPosition().toString());
 			switch (direction){
-			case 'N': p.y=p.y-1;break;
-			case 'S': p.y=p.y+1;break;
-			case 'E': p.x=p.x+1;break;
-			case 'O': p.x=p.x-1;break;
+			case 'N': p.y=(p.y-1)%cellule.getEntity_on().getMap().getHeight();break;
+			case 'S': p.y=(p.y+1)%cellule.getEntity_on().getMap().getHeight();break;
+			case 'E': p.x=(p.x+1)%cellule.getEntity_on().getMap().getWidth();break;
+			case 'O': p.x=(p.x-1)%cellule.getEntity_on().getMap().getWidth();break;
 			
 			}	
-			
+
 	if(cellule.getEntity_on()!=null){
 
-		if(decor != null)
+
+		if(this.decor != null)
 		{
-			return cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()==decor;	
+
+			System.out.println(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()!=null);
+			return (cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()==this.decor);	
 		}
 		else
 		{

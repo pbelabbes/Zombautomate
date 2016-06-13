@@ -74,21 +74,28 @@ public class ScanProche extends Condition {
 	
 	private int nb_cible(Cell c1,Cell c2, Cell c3, Cell c4, Cell cellule){
 		int nb=0;
+		 System.out.println("debut \n");
+
 		if(cible!=null){
 			
 		 
 			if(cible== "ennemi"){
-							if(c1.getEntity_on() instanceof Survivor &&
+						    System.out.println("la ou il faut \n");
+							if(c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
 							c1.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 	
-				
-							 if(c2.getEntity_on() instanceof Survivor &&
+							   System.out.println("after first if \n");
+							 if(c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
 						       c2.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) nb++; 	
-							
-						       if(c3.getEntity_on() instanceof Survivor &&
+							 System.out.println("apres 2eme \n");
+						     if(c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
 						       c3.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
-							
-						    if(c4.getEntity_on() instanceof Survivor &&
+						       System.out.println("apres 3eme  \n");
+						       System.out.println(c4.getEntity_on()!=null);
+						       System.out.println(c4.getEntity_on() instanceof Survivor );
+						       System.out.println(c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer());
+						    if(c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
 							   c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
+						    System.out.println(nb +"\n");
 			}   
 			else if(cible== "zombie"){
 							if(c1.getEntity_on() instanceof Zombie ) nb++; 	
@@ -98,18 +105,19 @@ public class ScanProche extends Condition {
 						
 		 }	 
 		}
-		else if(decor!=null){
-			if(c1.getDecor()==decor ) {nb++;}
-			
-			if(c2.getDecor()==decor ){ nb++;}
-			
-			if(c3.getDecor()==decor){ nb++;}
-			
-			if(c4.getDecor()==decor ) {nb++;}
-			
+		else{ System.out.println("dans le else \n");
+		      System.out.println(c1.getDecor()==decor);
+			if(c1.getDecor()!=null &&c1.getDecor()==decor ) { System.out.println("dans le else \n"); nb++;}
+			if(c2.getDecor()!=null &&c2.getDecor()==decor ){  System.out.println("dans le else \n");nb++;}		
+			if(c3.getDecor()!=null &&c3.getDecor()==decor){ System.out.println(c3.getDecor()==null);nb++;}
+			if(c4.getDecor()!=null &&c4.getDecor()==decor ) {nb++;}
+			System.out.println(nb+"\n ");
 			return nb;
 		}
-		return nb;
+		 
+		System.out.println(nb+"\n ");
+
+      return nb;
 	}
 	
 	
@@ -130,9 +138,9 @@ public boolean execute(Cell cellule){
 		Cell cE=getTargetedCell('E',cellule);
 		Cell cO=getTargetedCell('O',cellule);
 		
-		
+		nb=nb_cible(cN,cS,cE,cO,cellule);
    if(cible!=null && (cellule.getEntity_on()!=null)){		
-		nb=nb_cible(cN,cS,cE,cO,cellule);		
+				
 		//dans ce cas on est sur que nb=1
 	 if(nb == 1 ) {
 			if(cible=="ennemi"){
@@ -167,9 +175,11 @@ public boolean execute(Cell cellule){
 			}
 	 	 
 	else if(decor!=null){
-		nb=nb_cible(cN,cS,cE,cO,cellule);	
+	
+	
 			if( cN.getDecor()==decor ){
-			
+				System.out.println(nb);
+
 				return ('N'==parameter);
 			}
 			else if(cS.getDecor()==decor){
@@ -183,6 +193,7 @@ public boolean execute(Cell cellule){
 			}
 		
 	}
+	
    }		
   }
    return  (((char) nb +'0')==parameter);
