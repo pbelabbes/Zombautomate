@@ -95,22 +95,39 @@ public class Map extends Observable{
 	 */
 	private void setAutomata(Automata a, Point pos, Character perso)
 	{
+//		a.to_string();
 		int gridheight = this.getHeight();
 		int gridwidth = this.getWidth();
-		for(int x=0+pos.x ; x < a.getEtats()+pos.x; x++)
+		System.out.printf("hauteur de grille = %d, largeur de grille = %d\n",gridheight, gridwidth);
+
+		for(int x= pos.x ; x < a.getEtats()+pos.x; x++)
 		{
-			for(int y = 0+pos.y ; y < a.getInputs()+pos.y ; y++)
+			for(int y = pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
-				int x_r = x%gridheight; //x_reel (c'est un tor)
-				int y_r = y%gridwidth; //y_reel (c'est un tor)
-				this.grid[x_r][y_r].setOwned_by(perso);
-				this.grid[x_r][y_r].setDecor(a.getStates()[x-pos.x][y-pos.y].action().getDecor());
-				this.grid[x_r][y_r].setPosition(pos);
+				CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
+				if(case_tempo!=null)
+				{	
+					
+//					int x_r = x%gridheight; //x_reel (c'est un tor)
+//					int y_r = y%gridwidth; //y_reel (c'est un tor)
+	
+					System.out.println(this.grid[x][y].getOwned_by() != null);
+					
+//					System.out.printf("x = %d ; y = %d    ;    x_r = %d ;  y_r = %d\n",x,y,x_r,y_r);
+
+					System.out.printf("x = %d ; y = %d \n",x,y);
+					System.out.printf("x-pos.x = %d ; y-pos.y = %d\n", x-pos.x,y-pos.y);
+					this.grid[x][y].setOwned_by(perso);
+					this.grid[x][y].setDecor(case_tempo.getAction().getDecor());
+					this.grid[x][y].setPosition(pos);
+					
+
+				}
 			}
 		}
 	}
 
-	public void setAutomatas(ArrayList<Character> lC, ArrayList<Point> lP) //TODO générer cette liste de points qui determine les positions des automates sur la map
+	public void setAutomatas(ArrayList<Character> lC, ArrayList<Point> lP)
 	{
 		//on lit la liste dans un ordre aléatoire
 		Random rand_index = new Random();
@@ -118,15 +135,30 @@ public class Map extends Observable{
 		int i = 0;
 		rand_index.setSeed(System.currentTimeMillis());
 		
-		while(lC!=null)
+		while(lC.size()>0)
 		{	
 			Character char_tempo = lC.get(rand_index.nextInt(lC.size()));
 			this.setAutomata(char_tempo.getAutomata(),lP.get(i),char_tempo);
+			lC.remove(char_tempo);
 			i++;
 		}
-		
-		
+			
 	}
 	
-	
+	/**
+	 * affiche les positions de la carte qui sont reliées à un automate
+	 */
+	public void print_automatas()
+	{
+		for(int y = 0 ; y<getHeight() ; y++)
+		{
+			for(int x = 0 ; x<getWidth() ; x++)
+			{
+				if(this.grid[x][y].getOwned_by() != null)
+					System.out.printf("[%d][%d]"+this.grid[x][y].getOwned_by().toString() + " ",x,y);
+//				else System.out.printf("[%d][%d] : libre (decor = "+this.grid[x][y].getDecor() + ") " ,x,y);
+			}
+			System.out.print("\n");
+		}
+	}
 }

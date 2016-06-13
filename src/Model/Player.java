@@ -19,6 +19,10 @@ public class Player extends Observable{
 	private int stone;
 	private int seed;
 	
+	public Player(){
+		
+	}
+	
 	public Player(int id ,String name, int foodStock){
 		this.id = id ;
 		this.name = name;

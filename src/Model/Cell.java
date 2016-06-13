@@ -23,6 +23,7 @@ public class Cell {
 		private Character owned_by;
 		private Point position;
 		
+		
 		//Constructeurs
 		public Cell(Point pos){
 			decor = this.randomDecor();
@@ -31,13 +32,15 @@ public class Cell {
 			position = pos;
 		}
 		
+		public Cell(){}
+		
 		/**
 		 * génère un décor aléatoire
 		 * @return Decor aléatoire
 		 */
 		private Decor randomDecor()
 		{
-			switch((int) Math.random()*8)
+			switch((int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
