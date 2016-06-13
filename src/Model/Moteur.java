@@ -229,6 +229,8 @@ public class Moteur {
 	 * @param args
 	 */
 	public static void main(final String[] args) {
+		//TODO demander à l'utilisateur d'entrer son fichier
+		
 		XMLReader fichier = new XMLReader() ;
 		
 		//geurrier
@@ -271,15 +273,18 @@ public class Moteur {
 		
 		
 		ArrayList<Point> lP = getList_coords_automatas(lC);
-		System.out.println(lP.toString());
+//		System.out.println(lP.toString());
 		
 		Map carte = create_map(lC);
 		carte.init_map();
 		carte.setAutomatas(lC, lP);
 		
-		
-		
-//		carte.print_automatas();
+		carte.set_charact_position(lC);
+				
+//		while(!(j1.defeated()||j2.defeated()))
+		{
+		//TODO lancer la partie => ordonnancement
+		}
 	}
 
 }

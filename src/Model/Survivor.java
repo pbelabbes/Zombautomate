@@ -51,13 +51,7 @@ public class Survivor extends Character{
 	}
 
 	//Méthodes
-	/**
-	 * La fonction isAlife permet de savoir si un joueur est vivant ou non
-	 * @return true si le personnage est vivant, false si il est éliminé du jeu 
-	 */
-	public boolean isAlife(){
-		return (this.getHp()>0);
-	}
+
 	
 	/**
 	 * La fonction eat permet à chaque tour de faire manger les survivants grace au stock de nourriture
@@ -90,39 +84,6 @@ public class Survivor extends Character{
 		}				
 	}
 	
-	/**
-	 * La fonction attaquer porte un coup vers la case indiquée
-	 * Si un ennemi est present sur cette case, il perd des points de vie
-	 * Si il y a un rock sur cette case elle se casse et on découvre soit un katana soit un lapin à sa place
-	 * Sinon rien ne se passe
-	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
-	 */
-	public void attaquer(char direction){
-		Point p=new Point(this.getCell().getPosition());
-		switch (direction){
-		case 'N': p.y=p.y-1;break;				
-		case 'S': p.y=p.y+1;break;
-		case 'E': p.x=p.x+1;break;
-		case 'O': p.x=p.x-1;break;
-		default: ;
-		}
-		
-		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
-			//On enlève des points de vie à l'adversaire
-			getMap().getGrid()[p.x][p.y].getEntity_on().supHp(-1);
-		}
-		else {
-			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){
-				int r= (int)(Math.random()*.2);
-				if (r==0){
-					getMap().getGrid()[p.x][p.y].setDecor(Decor.RABBIT);
-				}
-				else{
-					getMap().getGrid()[p.x][p.y].setDecor(Decor.KATANA);
-				}
-			}
-		}
-	}
 	
 	/**
 	 * La fonction pick permet de récupérer de la nourriture ou des armes posées sur le sol
@@ -288,8 +249,22 @@ public class Survivor extends Character{
 		
 	}
 	
-
-	
+	@Override
+	public void act(Action action, char direction)
+	{
+		switch(action)
+		{
+		case WATER: water(direction); break;
+		case SWAP: swap(direction); break;
+		case STEAL: steal(direction); break;
+		case PLANT: plant(direction); break;
+		case PICK: pick(direction); break;
+		case ATTACK : attaquer(direction); break;
+		case MOVE: deplacer(direction); break;
+		case DROP: drop(direction);
+		default :;
+		}
+	}
 	
 	
 }
