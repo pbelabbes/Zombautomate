@@ -26,23 +26,11 @@ public class mainXML {
 //	</condition>
 //=======
 	
-	public static void main (String [] args){
+	/*public static void main (String [] args){
 		XMLReader test = new XMLReader() ;
 		//String path=new File("").getAbsolutePath(); 
 		test.read("D:\\travail\\java\\Zombautomate\\ocaml\\equipe.xml");//"/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
-		
-		/*
-		 * 
-		 * Ou
-noueud name = texte
-Case_ennemie(N)
-
-noueud name sibling  = condition
-Present(Pomme,N)
-
-noueud name sibling 2  = condition
-Present(Pomme,N)
-		 */
+	
 		
 		//System.out.println("prout");
 //		String[] s1;
@@ -54,5 +42,5 @@ Present(Pomme,N)
 //		String part1 = parts[0]; // 004
 //		String part2 = parts[1]; // 034556
 //		System.out.println(part1);
-	}
+	}*/
 }
