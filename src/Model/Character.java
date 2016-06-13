@@ -179,9 +179,9 @@ public abstract class Character extends Observable {
 			j++;
 		}
 		
-		
-		
-		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associée
+
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+
 		int k = 1;
 		int cle = 0;
 		while ( k!= List_cases.size()){
@@ -268,6 +268,18 @@ public abstract class Character extends Observable {
 		}
 		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
 	}
+
+
+	public void showstat(){
+		System.out.println("\thp = "+Integer.toString(hp) );//points de vie
+		System.out.println("\tsight range  = "+ Integer.toString(sight_range)); //portée de vision
+		
+		System.out.println("\tstrength = "+Integer.toString( strength)) ; 
+		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
+		
+	}
+
+
 
 }
 

@@ -94,11 +94,11 @@ public class Cell {
 		 * Elle change uniquement l'action effectuée par le personnage dans son automate.
 		 */
 		public void majAutomate(){
-			if (this.owned_by!=null){
-				Point poscell=this.position;
-				Point posaut=this.owned_by.getAutomata().getPosition();
-				int x= poscell.x-posaut.x;
-				int y= poscell.y-posaut.y;
+			if (this.owned_by != null){
+				Point poscell = this.position;
+				Point posaut = this.owned_by.getAutomata().getPosition();
+				int x = poscell.x-posaut.x;
+				int y = poscell.y - posaut.y ;
 				this.owned_by.getAutomata().getStates()[x][y].setAction(this.decor.getAction());
 			}
 		}

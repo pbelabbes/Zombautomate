@@ -98,6 +98,20 @@ public class Player extends Observable{
 	}
 	*/
 	
+
+	public void show() {
+		System.out.println("id = "+Integer.toString( id));
+		System.out.println("name =" + name );
+		
+		for (Character ch : entities){
+			System.out.println("\tcharactère nb :" +entities.indexOf(ch));
+			ch.showstat();
+		}
+		System.out.println("foodstock = "+Integer.toString( foodStock));
+		System.out.println("stone = "+Integer.toString(stone));
+		System.out.println("seed = "+Integer.toString(seed));
+	}
+
 	/**
 	 * verifie si le joueur a perdu.
 	 * @return true si aucune entité n'est encore en vie. faux sinon
@@ -109,6 +123,7 @@ public class Player extends Observable{
 			if(c.is_alive()) return false;
 		}
 		return true;
+
 	}
 	
 }
