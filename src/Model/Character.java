@@ -141,16 +141,20 @@ public abstract class Character extends Observable {
 		}
 	}
 	
-	// Verifie si un personnage est vivant
+	/**
+	 * la fonction is_alive verifie si un personnage est vivant
+	 * @return true si un personnage est vivant
+	 */
 	public boolean is_alive () 
 	{
 		return hp>0;
 	}
 	
 	
-	//Fait faire sa prochaine action a un personnage
 	/**
-	 * 
+	 * La fonction play fait faire sa prochaine action à un personnage
+	 * Elle récupère la condition de l'état courant puis vérifie quelles sont les transitions possibles
+	 * Elle choisi la transition en fonction des priorité puis effectue l'action associée à la transition
 	 */
 	public void play (){
 		
@@ -172,7 +176,6 @@ public abstract class Character extends Observable {
 //			i = 0;
 			j++;
 		}
-		
 
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
 
