@@ -12,19 +12,16 @@ import Model.Decor;
 
 public class DisplayCellule extends Display implements Observer {
 
+	public static int COUNT=0;
 	public static final int SIZE = 32;
+	public static final String SPRITEPATH = "ressources/map/tuiles/terrain_atlas_2.png";
+	public static final SpriteSheet SPRITE = getSprite();
 	Cell cellule;
 
 	public DisplayCellule(float posX, float posY, Cell c) throws SlickException{
-		super(posX, posY, setSpriteSheet(c.getDecor()), 8);
+		super(posX, posY, SPRITE , 8);
 		this.cellule = c;
 
-	}
-
-	private static SpriteSheet setSpriteSheet(Decor d) throws SlickException{
-		String spritePath = "ressources/map/tuiles/terrain_atlas_2.png";
-		System.out.println(spritePath);
-		return new SpriteSheet(spritePath, SIZE, SIZE);
 	}
 
 	@Override
@@ -33,8 +30,20 @@ public class DisplayCellule extends Display implements Observer {
 
 	}
 
+	public final static SpriteSheet getSprite(){
+		System.out.println("Create SpriteSheet");
+		try {
+			return new SpriteSheet(SPRITEPATH, SIZE, SIZE);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	@Override
 	public void initAnimations() {
+		System.out.println("Init Animation : "+(COUNT++));
 		this.animations[0] = loadAnimation(sprite, 0, 1, 25); // Grass
 		this.animations[1] = loadAnimation(sprite, 26, 27, 25); //Rock
 		this.animations[2] = loadAnimation(sprite, 12, 13, 24); //Apple ( Tomato )
@@ -48,6 +57,7 @@ public class DisplayCellule extends Display implements Observer {
 
 	@Override
 	public Animation getCurrentAnimation() {
+		System.out.println("Return current Animation : "+(COUNT++));
 		Animation selected;
 		switch(this.cellule.getDecor())
 		{
