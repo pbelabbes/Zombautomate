@@ -153,23 +153,27 @@ public abstract class Character extends Observable {
 	public void play (){
 		
 		ArrayList<CaseAutomate> List_cases = new ArrayList<CaseAutomate>();
-		int i=0;
+//		int i=0;
 		int j=0;
 		CaseAutomate [][] cA = automata.getStates();
 		
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
-		automata.getEtatCourant();
-		while (cA[i][j] != null){
-			while (cA[i][j] != null){
-				if (cA[i][j].getCondition().execute(this.getCell())){
-					List_cases.add(cA [i][j]);
-					i++;
-				}
+//		int etat_courant = automata.getEtatCourant();
+		while (cA[state][j] != null)
+		{
+			if (cA[state][j].getCondition().execute(this.getCell()))
+			{
+				List_cases.add(cA [state][j]);
+//				i++;
 			}
-		i = 0;
-		j++;
+
+//			i = 0;
+			j++;
 		}
-		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+		
+		
+		
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associée
 		int k = 1;
 		int cle = 0;
 		while ( k!= List_cases.size()){
@@ -181,11 +185,57 @@ public abstract class Character extends Observable {
 				k++;
 			}
 		}	
-		List_cases.get(cle).getAction();
+		Action act = List_cases.get(cle).getAction();
+		char dir = List_cases.get(cle).getDirection();
+		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
 		state = (List_cases.get(cle)).getEtatfutur();
 	}
 
 
+	
+	
+	/**
+	 * La fonction attaquer porte un coup vers la case indiquée
+	 * Si un ennemi est present sur cette case, il perd des points de vie
+	 * Si il y a un rock sur cette case elle se casse et on découvre soit un katana soit un lapin à sa place
+	 * Sinon rien ne se passe
+	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
+	 */
+	public void attaquer(char direction){
+		Point p=new Point(this.getCell().getPosition());
+		switch (direction){
+		case 'N': p.y=p.y-1;break;				
+		case 'S': p.y=p.y+1;break;
+		case 'E': p.x=p.x+1;break;
+		case 'O': p.x=p.x-1;break;
+		default: ;
+		}
+		
+		if (getMap().getGrid()[p.x][p.y].getEntity_on()!=null){
+			//On enlève des points de vie à l'adversaire
+			getMap().getGrid()[p.x][p.y].getEntity_on().supHp(this.getStrength());
+		}
+		else {
+			if (getMap().getGrid()[p.x][p.y].getDecor()==Decor.ROCK){
+				int r= (int)(Math.random()*.10);
+				if (r<2)		getMap().getGrid()[p.x][p.y].setDecor(Decor.RABBIT);
+				else if (r<4)	getMap().getGrid()[p.x][p.y].setDecor(Decor.KATANA);
+				else			getMap().getGrid()[p.x][p.y].setDecor(Decor.GRASS);
+
+			}
+			else if(getMap().getGrid()[p.x][p.y].getDecor()==Decor.TREE)
+			{
+				int r = (int) (Math.random()*10);
+				if(r<5)			getMap().getGrid()[p.x][p.y].setDecor(Decor.APPLE);
+				else if(r<8)	getMap().getGrid()[p.x][p.y].setDecor(Decor.BASEBALL_BAT);
+				else			getMap().getGrid()[p.x][p.y].setDecor(Decor.GRASS);
+
+			}
+		}
+	}
+	
+	
+	
 	/**
 	 * @return nom du joueur auquel appartient le personnage
 	 */
@@ -194,6 +244,7 @@ public abstract class Character extends Observable {
 		return this.getPlayer().getName();
 	}
 
+	public abstract void act(Action action, char direction);
 
 }
 

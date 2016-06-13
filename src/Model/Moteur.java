@@ -278,7 +278,7 @@ public class Moteur {
 		
 		carte.set_charact_position(lC);
 				
-		while(!(j1.defeated()||j2.defeated()))
+//		while(!(j1.defeated()||j2.defeated()))
 		{
 		//TODO lancer la partie => ordonnancement
 		}

@@ -25,7 +25,7 @@ public abstract class Condition {
 	 * 
 	 * @param direction
 	 * @param cellule
-	 * @return
+	 * @return Cellule ciblée
 	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
 	{
