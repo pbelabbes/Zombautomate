@@ -108,10 +108,10 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 	
-		carte.setCell(cellule_temporaire);
+	
 		poscell=new Point();
-       poscell.x=1;
-       poscell.y=6;
+        poscell.x=2;
+        poscell.y=4;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.APPLE);
 		cellule_temporaire.setEntity_on(null);
@@ -119,10 +119,20 @@ public class test_condition_fonction {
 		//cellule_temporaire.setPosition(new Point(0,4));
 		
 		carte.setCell(cellule_temporaire);
-	
 		
 		poscell=new Point();
-		poscell.x=2;
+        poscell.x=1;
+        poscell.y=6;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.APPLE);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+		
+		poscell=new Point();
+		poscell.x=9;
 		poscell.y=2;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.RABBIT);
@@ -133,11 +143,21 @@ public class test_condition_fonction {
 		
 		carte.setCell(cellule_temporaire);
 		
+		poscell=new Point();
+		poscell.x=2;
+		poscell.y=4;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
+		cellule_temporaire.setEntity_on(allie);
+		cellule_temporaire.setOwned_by(null);
+		perso_test.setCell(cellule_temporaire);
 		
-		Linked_cell c = new Linked_cell('E','A');
+		carte.setCell(cellule_temporaire);
+		ScanLoin c = new ScanLoin(Decor.RABBIT,'N');
 		//c.execute(cellule);
        
-		//c.setRayon(5);
+		c.setRayon(8);
+		System.out.println(cellule.getEntity_on().getMap().getGrid()[3][3].getDecor()==Decor.RABBIT);
 		System.out.println(c.execute(cellule));
 		
 		//System.out.println(perso_test.getSightRange());
