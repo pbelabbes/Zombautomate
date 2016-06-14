@@ -61,6 +61,7 @@ public class AutomataTest {
 		XMLReader xml=new XMLReader() ;
 		ArrayList<ArrayList<transfer>> liste;
 		liste=xml.read("/home/alice/Zombautomate/ocaml/equipe.xml");
+		System.out.println();
 		fail("Not yet implemented");
 	}
 
