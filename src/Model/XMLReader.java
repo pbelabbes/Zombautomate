@@ -57,9 +57,9 @@ public class XMLReader {
 		String[] s1,s2;
 		s=Ncondi.getFirstChild().getFirstChild().getNodeValue();
 //		s=Ncondi.getTextContent();
-		System.out.println(s);
+//		System.out.println(s);
 		
-		System.out.println(s);
+//		System.out.println(s);
 		
 		switch(s){
 		case "Et": 

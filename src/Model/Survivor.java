@@ -214,7 +214,7 @@ public class Survivor extends Character{
 	@Override
 	public void act(Action action, char direction)
 	{
-		System.out.println(action);
+//		System.out.println(action);
 		Cell cellule = this.getTargetedCell(direction, this.getCell());
 		switch(action)
 		{
@@ -222,8 +222,8 @@ public class Survivor extends Character{
 		case SWAP: swap(cellule); break;
 		case STEAL: steal(cellule); break;
 		case PLANT: plant(cellule); break;
-		case PICK: pick(cellule); break;
-		case ATTACK : attaquer(cellule); break;
+		case PICK: showaround(); pick(cellule); System.out.println(action+ " effectuee par " + this.getPlayer().getId());  break;
+		case ATTACK : attaquer(cellule); System.out.println(action+ " effectuee par " + this.getPlayer().getId());break;
 		case MOVE: deplacer(cellule); break;
 		case DROP: drop(cellule);
 		default : System.out.println("PAS d'action");;

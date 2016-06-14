@@ -9,13 +9,17 @@ let (guerrier: automate) =
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 1
   @
-    presence_AD 1 Ennemi Attaquer 1 4
+    presence_AD 1 Ennemi Attaquer 1 6
   @
-    scan_loin_AD 1 Ennemi Deplacer 1 3
+    scan_loin_AD 1 Ennemi Deplacer 1 5
   @
-    scan_loin_AD 1 Batte_baseball Deplacer 0 1
+    scan_loin_AD 1 Batte_baseball Deplacer 1 1
   @
-    scan_loin_AD 1 Katana Deplacer 0 2
+    scan_loin_AD 1 Katana Deplacer 1 2
+  @
+    presence_AD 1 Batte_baseball Ramasser 1 3
+  @
+    presence_AD 1 Katana Ramasser 1 4
   @
     [(0,Defaut,Deplacer,N,0,0)]
   @
@@ -63,6 +67,6 @@ let (automate_zombie: automate) =
 
 
 
-let equipe2 = [(guerrier,"guerrier"); (farmer,"farmer")];; 
+let equipe2 = [(guerrier,"guerrier") (*; (farmer,"farmer") *)];; 
 
 (* let equipe = [(automate_zombie, "zombie")];; *)

@@ -61,6 +61,6 @@ let (automate_zombie: automate) =
 
 
 
-let equipe1 = [(guerrier,"guerrier"); (farmer,"farmer")];; 
+let equipe1 = [(* (guerrier,"guerrier"); *) (farmer,"farmer")];; 
 
 (* let equipe = [(automate_zombie, "zombie")];; *)

@@ -53,7 +53,7 @@ public abstract class Character extends Observable {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 2;
+		this.sight_range = 20;
 		this.state = 0;
 	}
 	
@@ -169,8 +169,8 @@ public abstract class Character extends Observable {
 		
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
 //		int etat_courant = automata.getEtatCourant();
-		System.out.println("j = " + j + " inputs = " + automata.getInputs() + " state = " + state);
-		if(state==2)	showaround();
+//		System.out.println("j = " + j + " inputs = " + automata.getInputs() + " state = " + state);
+//		showaround();
 		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
 			if (cA[state][j].getCondition().execute(this.getCell()))
@@ -200,7 +200,7 @@ public abstract class Character extends Observable {
 				}
 			}	
 		}
-		System.out.println(List_cases.get(cle).getCondition());
+//		System.out.println(List_cases.get(cle).getCondition());
 		Action act = List_cases.get(cle).getAction();
 		char dir = List_cases.get(cle).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
