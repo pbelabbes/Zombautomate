@@ -33,6 +33,7 @@
   |Case_alliee of direction
   |Case_ennemie of direction
   |Case_neutre of direction
+  |Defaut  (* Retourne toujours vrai. Permet de faire des actions par défaut *)
       
   type etat = int
   type priorite = int
@@ -101,10 +102,11 @@ let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun
     |Case_ennemie(d) -> "Case_ennemie("^ direction_to_string d ^")"
     |Case_neutre(d) -> "Case_neutre("^ direction_to_string d ^")"
     |Ou(c1,c2) -> "Ou("^ condition_to_string c1 ^","^ condition_to_string c2 ^")"
+    |Defaut -> "Defaut"
 
 
 
-
+(*
   let rec (condition_to_string: condition->string) = fun c -> match c with 
     |ScanLoin(cbl,ret)->"ScanLoin("^ cible_to_string cbl ^","^ retour_to_string ret ^")"
     |ScanProche(cbl,ret)->"ScanProche(" ^ cible_to_string cbl ^","^ retour_to_string ret ^")"
@@ -115,7 +117,7 @@ let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun
     |Case_neutre(d) -> "Case_neutre("^ direction_to_string d ^")"
     |Ou(c1,c2) -> "Ou("^ condition_to_string c1 ^","^ condition_to_string c2 ^")"
   
-
+ *)
 
   
   let (print_etat_courant: out_channel->etat->unit) = fun fic courant ->
@@ -142,7 +144,7 @@ let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun
   let (print_entete: out_channel->string->string->unit) = fun fic version encodage ->
     output_string fic ("<?xml version=\""^version^"\" encoding=\""^ encodage ^"\"?>")
   
-  let (print_transition: out_channel->transition->unit) = fun fic trans -> let (courant,condition,action,direction,priorite,futur) = trans in print_etat_courant fic courant ; print_condition fic condition ; print_action fic action ; print_direction fic direction ; print_priorite fic priorite ; print_etat_futur fic futur
+  let (print_transition: out_channel->transition->unit) = fun fic trans -> let (courant,condition,action,direction,futur,priorite) = trans in print_etat_courant fic courant ; print_condition fic condition ; print_action fic action ; print_direction fic direction ; print_priorite fic priorite ; print_etat_futur fic futur
   
   let rec (print_automate: out_channel->automate->unit) = fun fic aut-> match aut with
     |trans::reste-> output_string fic "\n\t\t<transition>" ; print_transition fic trans ; output_string fic "\n\t\t</transition>" ; print_automate fic reste

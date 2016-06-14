@@ -34,6 +34,7 @@
   |Case_alliee of direction
   |Case_ennemie of direction
   |Case_neutre of direction
+  |Defaut  (* Retourne toujours vrai. Permet de faire des actions par défaut *)
       
   type etat = int
   type priorite = int
