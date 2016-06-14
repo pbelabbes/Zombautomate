@@ -139,6 +139,8 @@ public class XMLReader {
 				return new Linked_cell(s2[0].charAt(0),'E');
 			case "Case_neutre": 
 				return new Linked_cell(s2[0].charAt(0),'N');
+			case "Default" : 
+				return new Default() ; 
 			default: System.out.println("error invalid argument condition : "+s1[0]);
 			}
 			return null;

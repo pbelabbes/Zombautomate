@@ -130,9 +130,11 @@ public ScanLoin(String cible, char parameter) {
 		pS=new Point(cellule.getPosition());
 		pE=new Point(cellule.getPosition());
 		pO=new Point(cellule.getPosition());
+		//System.out.println("avant le for");
 		for(int i=0;i<rayon;i++){
+			//System.out.println("apres le premier for");
 			for(int j=0;j<(rayon-i);j++){
-
+				//System.out.println("apres le deuxieme for");
 				pN.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
 	    		pN.y=(cellule.getPosition().y-i+mapheight)%mapheight;
 	    		pS.x=(cellule.getPosition().x+j)%mapwidth;
@@ -142,12 +144,12 @@ public ScanLoin(String cible, char parameter) {
 	    		pO.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
 	    		pO.y=(cellule.getPosition().y+i+mapheight)%mapheight;
 				if(decor!=null){	
-		    	System.out.println("je suis dans decor");
+		    	//System.out.println("je suis dans decor");
 	
 //on test si la cellule en question !=null et aussi si le decor correspondant est celui rechrché
-					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
-
-						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
+					
+						//System.out.println( cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getDecor()==Decor.BASEBALL_BAT);
+						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null&& cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
 
 						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
 					    	diffx=Math.abs(pN.x-cellule.getPosition().x);
@@ -156,8 +158,8 @@ public ScanLoin(String cible, char parameter) {
 				    		
 					    	if(diffx>diffy){
 					    		//System.out.println("je suis dans le premier 1if");
-					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    		if(minO==0){minO=distance(pN,cellule.getPosition());}
+					    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
 					    	}
 					    	else {
 					    		//System.out.println("je suis dans le premier if");
@@ -165,15 +167,16 @@ public ScanLoin(String cible, char parameter) {
 					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
 					    	}
 						}	
-					    	
+				    	//System.out.println(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]==null);
+
 					    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]!=null&& cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getDecor()==decor){
 					    	diffx=Math.abs(pS.x-cellule.getPosition().x);
 					    	diffy=Math.abs(pS.y-cellule.getPosition().y);
 					    	System.out.println("je suis dans le deuxieme  if");
 					    	if(diffx>diffy){
 					    		
-					    		if(minO==0){minO=distance(pS,cellule.getPosition());}
-					    		else minO=Math.min(minO, distance(pS,cellule.getPosition()));
+					    		if(minE==0){minE=distance(pS,cellule.getPosition());}
+					    		else minE=Math.min(minE, distance(pS,cellule.getPosition()));
 					    	}
 					    	else {
 					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
@@ -191,8 +194,8 @@ public ScanLoin(String cible, char parameter) {
 					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    		if(minN==0){minN=distance(pO,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
 					    	}
 					    }
 					    if(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y]!=null &&cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getDecor()==decor){
@@ -205,8 +208,8 @@ public ScanLoin(String cible, char parameter) {
 					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minS==0){minS=distance(pS,cellule.getPosition());}
-					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    		if(minS==0){minS=distance(pE,cellule.getPosition());}
+					    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
 					    	}
 					    }
 					}
@@ -280,8 +283,8 @@ public ScanLoin(String cible, char parameter) {
 					    	diffy=pN.y-cellule.getPosition().y;
 					    	
 					    	if(diffx>diffy){
-					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
+					    		if(minO==0){minO=distance(pN,cellule.getPosition());}
+					    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
 					    	}
 					    	else {
 					    		
@@ -313,8 +316,8 @@ public ScanLoin(String cible, char parameter) {
 					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
+					    		if(minN==0){minN=distance(pO,cellule.getPosition());}
+					    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
 					    	}
 					    }
 					    if( cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Zombie){
@@ -326,20 +329,22 @@ public ScanLoin(String cible, char parameter) {
 					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
 					    	}
 					    	else {
-					    		if(minS==0){minS=distance(pS,cellule.getPosition());}
-					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
+					    		if(minS==0){minS=distance(pE,cellule.getPosition());}
+					    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
 					    	}
 					    }
 				}
 				}
+		
 		}
-		}
+	
 		System.out.println(minN);
 		System.out.println(minE);
 		  System.out.println(minS);
 		  System.out.println(minO);
+		
 		  return parameter==direction(minN,minE,minS,minO);
-		  
+  
 	}
 
 	}

@@ -47,7 +47,7 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch(2)  //(int) (8*Math.random()))
+			switch(2)   //(int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
@@ -100,6 +100,7 @@ public class Cell {
 		 * La fonction majAutomate permet de mettre à jour l'automate du joueur si la cellule appartient à son automate
 		 * Elle change uniquement l'action effectuée par le personnage dans son automate.
 		 */
+		
 		public void majAutomate(){
 			if (this.owned_by != null)
 			{
