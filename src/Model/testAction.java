@@ -72,7 +72,7 @@ public class testAction {
 //		perso_test.plant(tab[2][2]);
 		
 //		perso_test.act(Action.MOVE,O);
-		perso_test.act(Action.STEAL,S);
+		perso_test.act(Action.PLANT,S);
 //		perso_test.act(Action.PICK,O);
 //		perso_test.act(Action.STEAL,O);
 		
