@@ -51,7 +51,7 @@ public class XMLReader {
 	 * @return Condition :la condition
 	 */
 	public Condition toCondition(Node Ncondi){
-		//System.out.println("Noeuud paramètre = " + Ncondi.getNodeName()) ;
+		//System.out.println("Noeuud paramï¿½tre = " + Ncondi.getNodeName()) ;
 		Condition c1,c2;
 		String s;
 		String[] s1,s2;
@@ -139,6 +139,8 @@ public class XMLReader {
 				return new Linked_cell(s2[0].charAt(0),'E');
 			case "Case_neutre": 
 				return new Linked_cell(s2[0].charAt(0),'N');
+			case "Default" : 
+				return new Default() ; 
 			default: System.out.println("error invalid argument condition : "+s1[0]);
 			}
 			return null;

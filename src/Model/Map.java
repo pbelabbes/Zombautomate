@@ -129,14 +129,17 @@ public class Map extends Observable{
 		//on lit la liste dans un ordre aléatoire
 		Random rand_index = new Random();
 		
+		ArrayList<Character> lC_copie = new ArrayList<Character>();
+		lC_copie.addAll(lC);
+		
 		int i = 0;
 		rand_index.setSeed(System.currentTimeMillis());
 		
-		while(lC.size()>0)
+		while(lC_copie.size()>0)
 		{	
-			Character char_tempo = lC.get(rand_index.nextInt(lC.size()));
+			Character char_tempo = lC_copie.get(rand_index.nextInt(lC_copie.size()));
 			this.setAutomata(char_tempo.getAutomata(),lP.get(i),char_tempo);
-			lC.remove(char_tempo);
+			lC_copie.remove(char_tempo);
 			i++;
 		}
 			

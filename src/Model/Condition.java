@@ -28,7 +28,10 @@ public abstract class Condition {
 	 * @return Cellule ciblée
 	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
+
 	{  	//System.out.println(cellule.getPosition().toString());
+
+	
 		Point p = new Point(cellule.getPosition());
 		int mapheight = cellule.getEntity_on().getMap().getHeight();
 		int mapwidth = cellule.getEntity_on().getMap().getWidth();
@@ -39,8 +42,8 @@ public abstract class Condition {
 		case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
 		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
 		
-		}
-		//System.out.println(p.toString());
+		}		
+
 		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
 	}
 }

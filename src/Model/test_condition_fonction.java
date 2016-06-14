@@ -153,7 +153,7 @@ public class test_condition_fonction {
 		perso_test.setCell(cellule_temporaire);
 		
 		carte.setCell(cellule_temporaire);
-		ScanLoin c = new ScanLoin(Decor.APPLE,'N');
+		ScanLoin c = new ScanLoin(Decor.RABBIT,'N');
 		//c.execute(cellule);
        
 		c.setRayon(8);
