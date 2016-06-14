@@ -89,7 +89,8 @@ public class Survivor extends Character{
 	public void pick(Cell cellule)
 	{
 		switch (cellule.getDecor()){
-		case APPLE: this.getPlayer().addFoodStock(Nourriture.APPLE.getvalues());break;
+		case APPLE: this.getPlayer().addFoodStock(Nourriture.APPLE.getvalues());
+			this.getPlayer().addSeed(3);   break;
 		case RABBIT: this.getPlayer().addFoodStock(Nourriture.RABBIT.getvalues());break;
 		case BASEBALL_BAT: 
 			Baseball_Bat b=new Baseball_Bat();

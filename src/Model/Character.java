@@ -170,7 +170,7 @@ public abstract class Character extends Observable {
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
 //		int etat_courant = automata.getEtatCourant();
 		System.out.println("j = " + j + " inputs = " + automata.getInputs() + " state = " + state);
-		if(state==1)	showaround();
+		if(state==2)	showaround();
 		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
 			if (cA[state][j].getCondition().execute(this.getCell()))

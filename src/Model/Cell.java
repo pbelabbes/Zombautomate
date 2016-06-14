@@ -47,7 +47,7 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch(2)   //(int) (8*Math.random()))
+			switch((int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
@@ -81,8 +81,14 @@ public class Cell {
 			this.decor=decor;
 			return;
 		}
+		
+		/**
+		 * indique à la cellule et à l'entité qu'ils sont reliés entre eux
+		 * @param entity_on
+		 */
 		public void setEntity_on(Character entity_on){
 			this.entity_on=entity_on;
+			entity_on.setCell(this);
 			return;
 		}
 		public void setOwned_by(Character owned_by){

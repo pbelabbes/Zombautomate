@@ -82,7 +82,9 @@ public class XMLReader {
 			c2= toCondition(Ncondi.getFirstChild().getNextSibling().getNextSibling());
 			
 			
-			return (new Ou(c1,c2));		
+			return (new Ou(c1,c2));
+		case "Defaut" : 
+			return new Defaut() ;			
 		default:
 			s=s.substring(0, s.length());
 			s1=s.split("\\(", 2);
@@ -138,9 +140,7 @@ public class XMLReader {
 			case "Case_ennemie": 
 				return new Linked_cell(s2[0].charAt(0),'E');
 			case "Case_neutre": 
-				return new Linked_cell(s2[0].charAt(0),'N');
-			case "Default" : 
-				return new Default() ; 
+				return new Linked_cell(s2[0].charAt(0),'N'); 
 			default: System.out.println("error invalid argument condition : "+s1[0]);
 			}
 			return null;

@@ -479,7 +479,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition><texte>ScanLoin(Arbre,N)</texte></condition>
+			<condition><texte>Present(Arbre,N)</texte></condition>
 			<action>Attaquer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -487,7 +487,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition><texte>ScanLoin(Arbre,S)</texte></condition>
+			<condition><texte>Present(Arbre,S)</texte></condition>
 			<action>Attaquer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -495,7 +495,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition><texte>ScanLoin(Arbre,E)</texte></condition>
+			<condition><texte>Present(Arbre,E)</texte></condition>
 			<action>Attaquer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -503,7 +503,7 @@
 		</transition>
 		<transition>
 			<etat_courant>2</etat_courant>
-			<condition><texte>ScanLoin(Arbre,O)</texte></condition>
+			<condition><texte>Present(Arbre,O)</texte></condition>
 			<action>Attaquer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>

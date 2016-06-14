@@ -192,4 +192,17 @@ public class Map extends Observable{
 			System.out.print("\n");
 		}
 	}
+	
+	/**
+	 * Fait apparaitre un zombie sur la cellule donnée. Il faut cependant être certain qu'aucune entité n'est présent sur l'emplacement indiqué
+	 * @param cellule cellule d'apparition du zombie
+	 * @param p0 Joueur 0 (controle les zombies)
+	 * @param a automate de zombie
+	 * @param map carte sur laquelle se déroule la partie
+	 */
+	public void pop_zombie(Cell cellule, Player p0, Automata a,Map map)
+	{
+		Zombie new_z = new Zombie(p0,a,map);
+		cellule.setEntity_on(new_z);
+	}
 }

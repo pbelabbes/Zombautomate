@@ -41,7 +41,7 @@ let (farmer: automate) =
   @
     presence_AD 1 Pousse Arroser 2 1
   @
-    scan_loin_AD 2 Arbre Attaquer 0 1
+    presence_AD 2 Arbre Attaquer 0 1
   @
     [(0,Ou(Present(Ennemi,N),Present(Ennemi,E)), Deplacer, S, 0, 5)]
   @
