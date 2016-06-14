@@ -28,8 +28,10 @@ public class Linked_cell extends Condition {
 		this.direction = direction;
 		this.id_searched = id;
 	}
+
 	@Override
 	public boolean execute(Cell cellule) {
+
         Cell ce=new Cell();
         ce=getTargetedCell(direction, cellule);
 		if(ce!=null && ce.getEntity_on()!=null) {

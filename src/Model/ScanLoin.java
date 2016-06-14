@@ -334,11 +334,11 @@ public ScanLoin(String cible, char parameter) {
 				}
 		}
 		}
-		System.out.println(minN);
+/*		System.out.println(minN);
 		System.out.println(minE);
 		  System.out.println(minS);
 		  System.out.println(minO);
-		  return parameter==direction(minN,minE,minS,minO);
+*/		  return parameter==direction(minN,minE,minS,minO);
 		  
 	}
 
