@@ -47,7 +47,7 @@ public class Survivor extends Character{
 	 */
 	public Survivor(Player player, Automata automata, Map map) {
 		super(player, automata, map);
-		this.weapon=null;
+		this.weapon=new ArrayList<Arme>();
 	}
 
 	//Méthodes
@@ -57,7 +57,8 @@ public class Survivor extends Character{
 	 * La fonction eat permet à chaque tour de faire manger les survivants grace au stock de nourriture
 	 * Si il n'y a plus de nourriture en stock le survivant perd un point de vie.
 	 */
-	public void eat(){
+	public void eat()
+	{
 		if (this.getPlayer().getFoodStock()>0){
 			this.getPlayer().addFoodStock(-1);
 		}
@@ -96,7 +97,7 @@ public class Survivor extends Character{
 		case KATANA: 
 			Katana k=new Katana();
 			this.weapon.add(k);break;
-		default: ;
+		default: return ;
 		}
 		cellule.setDecor(Decor.GRASS);
 	}
@@ -111,27 +112,28 @@ public class Survivor extends Character{
 		Survivor ent_on = (Survivor) cellule.getEntity_on();
 		//On vérifie qu'il y a bien un survivant sur la case désignée et qu'il n'est pas de notre équipe
 		if (ent_on != null && ent_on.getPlayer() != this.player && !(cellule.getEntity_on() instanceof Zombie)){
-
+			
 			//vol d'armes de l'adversaire
-			int alea=ent_on.getWeapon().size();
-			int m=(int)(Math.random()*.3);
+			int m=ent_on.getWeapon().size();
+			int alea=(int)(Math.random()*3);
 			if (alea<m){
 				this.weapon.add(ent_on.getWeapon().get(m));
 				ent_on.getWeapon().remove(m);	
 			}
 			//vol de graines
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			int pl=ent_on.getPlayer().getSeed();
 			if (pl<m){
 				this.getPlayer().addSeed(pl);
 				ent_on.getPlayer().addSeed(-pl);
+				System.out.println("vol de graine");
 			}
 			else{
 				this.getPlayer().addSeed(m);
 				ent_on.getPlayer().addSeed(-m);
 			}
 			//vol de cailloux
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			pl=ent_on.getPlayer().getStone();
 			if (pl<m){
 				this.getPlayer().addStone(pl);
@@ -142,7 +144,7 @@ public class Survivor extends Character{
 				ent_on.getPlayer().addStone(-m);
 			}
 			//vol de nourriture de l'adversaire
-			m=(int)(Math.random()*.5);
+			m=(int)(Math.random()*5);
 			pl=ent_on.getPlayer().getFoodStock();
 			if (pl<m){
 				this.getPlayer().addFoodStock(pl);
@@ -161,13 +163,14 @@ public class Survivor extends Character{
 	 */
 	public void plant (Cell cellule){
 		
-		if (cellule.getDecor()==Decor.GRASS){
+		if (cellule.getDecor()==Decor.GRASS && this.player.getSeed() > 3){
 			cellule.setDecor(Decor.SPROUT) ;
+			this.player.addSeed(-5);
 		}		
 	}
 	
 	/**
-	 * La fonction water permet de faire d'une pousse un arbre 
+	 * La fonction permet de faire d'une pousse un arbre 
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void water (Cell cellule){
@@ -210,6 +213,7 @@ public class Survivor extends Character{
 	@Override
 	public void act(Action action, char direction)
 	{
+		System.out.println(action);
 		Cell cellule = this.getTargetedCell(direction, this.getCell());
 		switch(action)
 		{
@@ -221,7 +225,7 @@ public class Survivor extends Character{
 		case ATTACK : attaquer(cellule); break;
 		case MOVE: deplacer(cellule); break;
 		case DROP: drop(cellule);
-		default :;
+		default : System.out.println("PAS d'action");;
 		}
 	}
 	

@@ -48,7 +48,7 @@ public abstract class Character extends Observable {
 //	}
 	
 	public Character(Player player, Automata automata, Map map) {
-		this.hp=100;
+		this.hp=10;
 		this.strength=1;
 		this.player=player;
 		this.automata=automata;
@@ -68,15 +68,18 @@ public abstract class Character extends Observable {
 	public int getHp() {
 		return hp;
 	}
+	
+	/**
+	 * Retire de la vie au personnage
+	 * @param moins : Montant de vie retiré au personnage
+	 */
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
 		setChanged();
 		notifyObservers(this.hp);
 	}
-	/*public void setHp(int hp) {
-		this.hp = hp;
-	}
-*/
+
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -134,23 +137,28 @@ public abstract class Character extends Observable {
 	 */
 	public void deplacer (Cell cellule) {
 
-		if(cellule.getEntity_on() != null && cellule.getDecor() != Decor.ROCK)
+		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
 			this.cell = cellule;
 			cellule.setEntity_on(this);
 		}
 	}
 	
-	// Verifie si un personnage est vivant
+	/**
+	 * la fonction is_alive verifie si un personnage est vivant
+	 * @return true si un personnage est vivant
+	 */
 	public boolean is_alive () 
 	{
 		return hp>0;
 	}
+
+	public abstract void eat();
 	
-	
-	//Fait faire sa prochaine action a un personnage
 	/**
-	 * 
+	 * La fonction play fait faire sa prochaine action à un personnage
+	 * Elle récupère la condition de l'état courant puis vérifie quelles sont les transitions possibles
+	 * Elle choisi la transition en fonction des priorité puis effectue l'action associée à la transition
 	 */
 	public void play (){
 		
@@ -161,7 +169,9 @@ public abstract class Character extends Observable {
 		
 		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
 //		int etat_courant = automata.getEtatCourant();
-		while (cA[state][j] != null)
+		System.out.println("j = " + j + " inputs = " + automata.getInputs() + " state = " + state);
+		if(state==1)	showaround();
+		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
@@ -172,21 +182,25 @@ public abstract class Character extends Observable {
 //			i = 0;
 			j++;
 		}
-		
 
+		if(List_cases.size()==0) return;
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
 
 		int k = 1;
 		int cle = 0;
-		while ( k!= List_cases.size()){
-			if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
-				k++;
-			}
-			else { 
-				cle = k;
-				k++;
-			}
-		}	
+		if(List_cases.size()>1)
+		{
+			while ( k != List_cases.size()){
+				if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
+					k++;
+				}
+				else { 
+					cle = k;
+					k++;
+				}
+			}	
+		}
+		System.out.println(List_cases.get(cle).getCondition());
 		Action act = List_cases.get(cle).getAction();
 		char dir = List_cases.get(cle).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
@@ -213,7 +227,7 @@ public abstract class Character extends Observable {
 		else 
 		{
 			if (cellule.getDecor()==Decor.ROCK){
-				int r= (int)(Math.random()*.10);
+				int r= (int)(Math.random()*10);
 				if (r<2)		cellule.setDecor(Decor.RABBIT);
 				else if (r<4)	cellule.setDecor(Decor.KATANA);
 				else			cellule.setDecor(Decor.GRASS);
@@ -242,10 +256,10 @@ public abstract class Character extends Observable {
 	
 	
 	protected Cell getTargetedCell(char direction, Cell cellule )
-	{  	System.out.println(cellule.getPosition().toString());
+	{
 		Point p = new Point(cellule.getPosition());
-		int mapheight = cellule.getEntity_on().getMap().getHeight();
-		int mapwidth = cellule.getEntity_on().getMap().getWidth();
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
 		switch(direction)
 		{
 		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
@@ -254,7 +268,7 @@ public abstract class Character extends Observable {
 		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
 		
 		}
-		return cellule.getEntity_on().getMap().getGrid()[p.x][p.y];
+		return this.map.getGrid()[p.x][p.y];
 	}
 
 
@@ -265,6 +279,19 @@ public abstract class Character extends Observable {
 		System.out.println("\tstrength = "+Integer.toString( strength)) ; 
 		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
 		
+	}
+	
+	public void showaround(){
+		int x,y;
+		x=this.cell.getPosition().x;
+		y=this.cell.getPosition().y;
+		Cell[][] tab = this.map.getGrid() ;
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
+		System.out.println("Cell N = " + tab[x][(y-1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell E = " + tab[(x+1+mapwidth)%mapwidth][y].getDecor());
+		System.out.println("Cell S = " + tab[x][(y+1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell O = " + tab[(x-1+mapwidth)%mapwidth][y].getDecor());
 	}
 
 
