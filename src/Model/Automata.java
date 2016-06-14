@@ -59,6 +59,13 @@ public class Automata {
 	}
 	
 	
+	public int getEtatCourant(){
+		return this.etat_courant;	
+	}
+	public void setEtatCourant(int etatCourant){
+		this.etat_courant=etatCourant;
+	}
+	
 	//constructeurs:
 	/**
 	 * @param etat_courant
@@ -67,23 +74,19 @@ public class Automata {
 	 */
 	//
 	public Automata( int etat_courant,int width , int height){
+		if (etat_courant<0 || width<0 || height<0){
+			System.out.println("initialisation fausse entier negatif");
+		}
+		else{
 			setEtats(width);
 			this.inputs=height;
 			this.etat_courant=etat_courant;
 			this.states=new CaseAutomate[width][height]; //Attention, ligne modifiée par alexandre : inversion de hauteur et largeur			
 		}
+	}
 
-	
-	public int getEtatCourant(){
-		return this.etat_courant;
-	
 		
-	}
-	public void setEtatCourant(int etatCourant){
-		this.etat_courant=etatCourant;
-	}
-		
-	
+	//Methodes
 	/**
 	 * 
 	 * @param Condition
@@ -101,7 +104,7 @@ public class Automata {
 		else return -1;
 	}
 	
-	//Methodes
+
 	/**
 	 * La fonction ajoute est utilisée pour construire un automate
 	 * @param etat
