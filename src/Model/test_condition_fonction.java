@@ -47,7 +47,8 @@ public class test_condition_fonction {
 		j2.setEntities(l2);
 		
 		Point poscell=new Point (1,1);
-		Cell cellule_temporaire = new Cell(poscell);
+		Cell cellule_temporaire = new Cell();
+		cellule_temporaire.setPosition(poscell);
 		cellule_temporaire.setDecor(Decor.KATANA);
 		cellule_temporaire.setEntity_on(ennemi_cible);
 		cellule_temporaire.setOwned_by(perso_test);
@@ -136,7 +137,7 @@ public class test_condition_fonction {
 		poscell.y=2;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.RABBIT);
-		cellule_temporaire.setEntity_on(allie);
+		cellule_temporaire.setEntity_on(null);
 		cellule_temporaire.setOwned_by(null);
 		//cellule_temporaire.setPosition(new Point(2,4));
 		perso_test.setCell(cellule_temporaire);
@@ -144,8 +145,8 @@ public class test_condition_fonction {
 		carte.setCell(cellule_temporaire);
 		
 		poscell=new Point();
-		poscell.x=2;
-		poscell.y=4;
+		poscell.x=9;
+		poscell.y=2;
 		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
 		cellule_temporaire.setEntity_on(allie);
@@ -153,11 +154,11 @@ public class test_condition_fonction {
 		perso_test.setCell(cellule_temporaire);
 		
 		carte.setCell(cellule_temporaire);
-		ScanLoin c = new ScanLoin(Decor.RABBIT,'N');
+		ScanLoin c = new ScanLoin("allie",'O');
 		//c.execute(cellule);
        
 		c.setRayon(8);
-		System.out.println(cellule.getEntity_on().getMap().getGrid()[3][3].getDecor()==Decor.RABBIT);
+		//System.out.println(cellule.getEntity_on().getMap().getGrid()[2][2].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer());
 		System.out.println(c.execute(cellule));
 		
 		//System.out.println(perso_test.getSightRange());
