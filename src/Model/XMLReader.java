@@ -51,7 +51,7 @@ public class XMLReader {
 	 * @return Condition :la condition
 	 */
 	public Condition toCondition(Node Ncondi){
-		//System.out.println("Noeuud paramètre = " + Ncondi.getNodeName()) ;
+		//System.out.println("Noeuud paramï¿½tre = " + Ncondi.getNodeName()) ;
 		Condition c1,c2;
 		String s;
 		String[] s1,s2;
@@ -147,7 +147,7 @@ public class XMLReader {
 
 	
 	//constructeur
-	XMLReader(){}
+	public XMLReader(){}
 	
 
 
@@ -156,7 +156,7 @@ public class XMLReader {
 	 * La fonction read lit entiÃ¨rement le fichier XML et renvoie une liste de transfer 
 	 * @return une liste de transfer 
 	 */
-	ArrayList<ArrayList<transfer>> read (String path){ // file name 
+	public ArrayList<ArrayList<transfer>> read (String path){ // file name 
 
 		 
 		System.out.println("bonjour");
@@ -229,18 +229,18 @@ public class XMLReader {
 		ArrayList<transfer> L2 =null; 
 		
 
-		//recup la liste des autaomes.
+		//recup la liste des automates.
 		NodeList Nautomate = racine.getChildNodes();
 		
 		int nbNoeudsAutomate = Nautomate.getLength();
 		 
-		// Se place sur le premier noueds automate.
+		// Se place sur le premier noeuds automate.
 	//    nodeAuto = racine.getFirstChild(); 
 		
 			
 		//System.out.println(Integer.toString(nbNoeuds));
 		
-		// parcour la liste des transition.
+		// parcours la liste des transitions.
 		for (int i = 0; i<nbNoeudsAutomate; i++) {
 
 //		    System.out.println(Nautomate.item(i).getNodeName());
