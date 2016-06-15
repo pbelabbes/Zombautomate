@@ -9,13 +9,13 @@ public class Presence extends Condition {
 	private String cible;
 	private Decor decor;
 
-	Presence(char direction,String cible){
+	public Presence(char direction,String cible){
 
 		this.direction=direction;
 		this.cible=cible;
 		decor = null;
 	}
-	Presence(char direction,Decor decor){
+	public Presence(char direction,Decor decor){
 
 		this.direction=direction;
 		this.decor=decor;

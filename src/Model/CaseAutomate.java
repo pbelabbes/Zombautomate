@@ -15,7 +15,7 @@ public class CaseAutomate {
      * @param priorite
      * @param direction
      */
-	CaseAutomate(int etat_futur,Action action,Condition condition,int priorite,char direction){
+	public CaseAutomate(int etat_futur,Action action,Condition condition,int priorite,char direction){
 		this.etat_futur=etat_futur;
 		this.action=action;
 		this.condition=condition;
@@ -55,6 +55,13 @@ public class CaseAutomate {
 	}
 	public int getPriorite(){
 		return this.priorite;
+	}
+
+	@Override
+	public String toString() {
+		return "CaseAutomate [condition=" + condition + ", action=" + action
+				+ ", etat_futur=" + etat_futur + ", priorite=" + priorite
+				+ ", direction=" + direction + "]";
 	}
 	
 }

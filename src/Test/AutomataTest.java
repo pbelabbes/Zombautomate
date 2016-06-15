@@ -49,20 +49,29 @@ public class AutomataTest {
 
 	@Test
 	public void testAutomate() {
-		/*public transfer(int etat_courant,Condition condition, Action action , char direction, int priority, int etat_futur) {
-			//super();
-			this.etat_courant = etat_courant;
-			this.etat_futur = etat_futur;
-			this.action = action;
-			this.condition = condition;
-			this.direction = direction;
-			this.priority = priority; 
-		}*/
-		XMLReader xml=new XMLReader() ;
-		ArrayList<ArrayList<transfer>> liste;
-		liste=xml.read("/home/alice/Zombautomate/ocaml/equipe.xml");
-		System.out.println();
-		fail("Not yet implemented");
+		ArrayList<transfer> t=new ArrayList<transfer>();
+		t.add(new transfer(0,new Presence('N',"ennemi"),Action.ATTACK, 'N', 1,0));
+		t.add(new transfer(0,new ScanLoin(Decor.APPLE,'N'),Action.MOVE, 'N', 0, 1));
+		t.add(new transfer(1, new ScanLoin(Decor.APPLE,'N'), Action.MOVE, 'N', 0, 1));
+		t.add(new transfer(1, new ScanProche(Decor.APPLE,'N'),Action.PICK, 'N', 1, 0));
+		Automata a=new Automata(0,2,2);
+		a.automate(t);
+		System.out.println("test automate");
+		CaseAutomate tmp = new CaseAutomate(t.get(0).getEtat_futur(), t.get(0).getAction(),  t.get(0).getCondition(),  t.get(0).getPriority(),  t.get(0).getDirection());
+		if (a.getStates()[0][0].equals(tmp)){
+			System.out.println(a.getStates()[0][0]);
+			System.out.println(tmp);
+			fail("case 0 0");
+		}
+		if (a.getStates()[0][1].equals(new CaseAutomate(t.get(1).getEtat_futur(), t.get(1).getAction(),  t.get(1).getCondition(),  t.get(1).getPriority(),  t.get(1).getDirection()))){
+			fail("case 0 1");
+		}
+		if (a.getStates()[1][0].equals(new CaseAutomate(t.get(2).getEtat_futur(), t.get(2).getAction(),  t.get(2).getCondition(),  t.get(2).getPriority(),  t.get(2).getDirection()))){
+			fail("case 1 0");
+		}
+		if (a.getStates()[1][1].equals(new CaseAutomate(t.get(3).getEtat_futur(), t.get(3).getAction(),  t.get(3).getCondition(),  t.get(3).getPriority(),  t.get(3).getDirection()))){
+			fail("case 1 1");
+		}
 	}
 
 	@Test
