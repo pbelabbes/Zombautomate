@@ -193,25 +193,7 @@ public class ScanLoin extends Condition {
 		return res;
 	}
 
-	/**
-	 * Permet de vérifier les 4 points equidistants au personnage à partir d'un point initial
-	 * @param id entier entre 0 et 2 représentant l'id du joueur recherché (ennemi, ami ou zombie)
-	 * @param p  point initial
-	 * @param map carte sur laquelle s'effectue la vérifiaction
-	 * @return point désignant l'emplacement d'un personnage recherché
-	 */
-/*	private Point check_sym(Point p, Map map)
-	{
-		Point res = null;
-		Cell[][] grid = map.getGrid();
-		if (check_point(grid[p.x][p.y], id)) res = p;
-		else if(check_point(grid[p.x*-1][p.y], id)) res = p;
-		else if(check_point(grid[p.x*-1][p.y*-1], id)) res = p;
-		else if(check_point(grid[p.x][p.y*-1], id)) res = p;
 
-		return res;
-	}
-	*/
 	/**
 	 * permet de savoir si la cible se trouve sur la cellule donnée
 	 * @param cellule cellule sur laquelle on vérifie la présence de la cible
@@ -230,31 +212,4 @@ public class ScanLoin extends Condition {
 
 
 
-	
-	/**
-	 * effectue le scan sur la cible demandée (un personnage) à partir de la cellule donnée
-	 * @param cellule cellule du personnage appelant cette condition
-	 * @param id identifiant du joueur recherché
-	 * @return résultat du scan
-	 */
-/*	public boolean scan(Cell cellule)
-	{
-		//on définit un point temporaire qui permet d'analyser les cases aux alentours
-		Point point = new Point(cellule.getPosition());
-		Point closest = null;
-
-		Map map = cellule.getEntity_on().getMap();
-
-		for(int x=0 ; x<rayon ; x++)
-		{
-			for(int y=0 ; y<rayon-x ; y++)
-			{
-				Point temp = check_sym(point, map);
-				if(closest == null) closest=temp;
-				else if(temp.distance(point)<closest.distance(point))
-					closest = temp;
-			}
-		}
-		return calc_retour(point, closest)==parameter;
-	} */
 }
