@@ -10,14 +10,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+//import org.newdawn.slick.SpriteSheet;
+//import org.newdawn.slick.tiled.TiledMap;
 
-import Model.Cell;
-import Model.Map;
-import Model.Survivor;
+import Model.Character;
+import Model.*;
 
-public class WindowGame extends BasicGame {
+public class WindowGame extends BasicGameState {
 	//
 	
     private GameContainer container;
@@ -30,7 +31,7 @@ public class WindowGame extends BasicGame {
     public Map map;
     
 	public WindowGame(ArrayList<Model.Character> charactersList,Map map) throws SlickException{
-        super("Zombautomate by PANDAS");
+        //super("Zombautomate by PANDAS");
         this.map = map;
         for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -41,14 +42,20 @@ public class WindowGame extends BasicGame {
 		}
     }
 	
-    public void setScreenDimension(int width, int height){
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void setScreenDimension(int width, int height){
     	if(width > 0 && height > 0){
     		this.screenWidth = width;
     		this.screenHeight = height;
     	}
     }
 	
-	    public void init(GameContainer container) throws SlickException{
+	    public void init(GameContainer container, StateBasedGame arg1) throws SlickException{
         this.container = container;
         //this.map = new TiledMap("ressources/map/map2.tmx");
     
@@ -97,15 +104,15 @@ public class WindowGame extends BasicGame {
     }
     
     @Override
-    public void render(GameContainer container, Graphics g) throws SlickException {
+    public void render(GameContainer container, StateBasedGame arg1, Graphics g) throws SlickException {
     	
-    	for (int screenOriginX = 0,mapOriginX = this.mapOrigin.x; screenOriginX < screenWidth && (screenOriginX/TILED_SIZE)+mapOriginX < mapSize; screenOriginX += TILED_SIZE) {
-    		for (int screenOriginY = 0,mapOriginY = this.mapOrigin.y; screenOriginY < screenHeight && (screenOriginY/TILED_SIZE)+mapOriginY < mapSize ; screenOriginY += TILED_SIZE) {
+    	for (int screenOriginX = 0,mapOriginX = this.mapOrigin.x; screenOriginX < screenWidth && (screenOriginX/TILED_SIZE)+mapOriginX < map.getWidth(); screenOriginX += TILED_SIZE) {
+    		for (int screenOriginY = 0,mapOriginY = this.mapOrigin.y; screenOriginY < screenHeight && (screenOriginY/TILED_SIZE)+mapOriginY < map.getHeight() ; screenOriginY += TILED_SIZE) {
     			g.drawAnimation(mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)].getCurrentAnimation(),screenOriginX , screenOriginY);
     		}
 		}
     	
-    	for (DisplayCharacter c : characters) {
+    	/*for (DisplayCharacter c : characters) {
     		float charPosY = c.getY()-mapOrigin.y-32;
     		float charPosX = c.getX()-mapOrigin.x-32;
     		
@@ -113,11 +120,11 @@ public class WindowGame extends BasicGame {
     		g.setColor(new Color(255,255,255, .5f));
     		g.fillOval(c.getX()-16, c.getY()-8, 32, 16);
     		g.drawAnimation(c.getCurrentAnimation(), c.getX()-mapOrigin.x-32, c.getY()-mapOrigin.y-60);
-    	}
+    	}*/
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void update(GameContainer container, StateBasedGame arg1, int delta) throws SlickException {
     	DisplayCharacter dc = characters.get(0); 
 //    	System.out.println(delta);
     	if (dc.isMoving()) {
@@ -130,10 +137,11 @@ public class WindowGame extends BasicGame {
     	    }
     }
     
-    public static void main(String[] args) throws SlickException {
-    	WindowGame wg = new WindowGame();
+    /*public static void main(String[] args) throws SlickException {
+    	ArrayList<Character> =jeu (1) ;
+    	WindowGame wg = new WindowGame(lC , Moteur.create_map(lC ).init_map().setAutomate();
         AppGameContainer app= new AppGameContainer(wg,1920,1080,false);
         wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
         app.start();
-    }
+    }*/
 }
