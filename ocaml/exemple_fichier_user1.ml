@@ -23,7 +23,7 @@ let (guerrier: automate) =
   @
     [(0,Defaut,Deplacer,E,1,0)]
   @
-    [(1,Defaut,Deplacer,E,1,0)]
+    [(1,Defaut,Deplacer,E,1,0)] 
   @
     [(0,Defaut,Deplacer,N,1,0)]
   @
@@ -74,6 +74,5 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
-let equipe1 = [ (guerrier,"guerrier"); (* (farmer,"farmer")*)];; 
-let equipe1 = [(simplet,"simplet")];;
+let equipe1 = [ (guerrier,"guerrier"); (farmer,"farmer");(guerrier,"guerrier"); (farmer,"farmer")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)

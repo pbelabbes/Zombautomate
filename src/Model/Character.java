@@ -75,6 +75,9 @@ public abstract class Character extends Observable {
 	 */
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
+		if(!is_alive())
+			cell.setEntity_on(null);
+		
 		setChanged();
 		notifyObservers(this.hp);
 	}
@@ -194,7 +197,7 @@ public abstract class Character extends Observable {
 
 		if(List_cases.size()==0) return;
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
-System.out.println("List_cases.size() = "+ List_cases.size());
+//System.out.println("List_cases.size() = "+ List_cases.size());
 		int k = 1;
 		int cle = 0;
 		if(List_cases.size()>1)

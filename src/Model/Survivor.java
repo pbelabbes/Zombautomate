@@ -228,6 +228,7 @@ public class Survivor extends Character{
 		case DROP: drop(cellule);
 		default : System.out.println("PAS d'action");;
 		}
+		cellule.majAutomate();
 	}
 	
 	

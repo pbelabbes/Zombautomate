@@ -32,7 +32,7 @@ public class ScanLoin extends Condition {
 	public ScanLoin(Decor decor,char parameter) {
 
 		this.decor=decor;
-		this.cible=null;
+		this.cible="decor";
 		this.parameter=parameter;
 		this.rayon=0;
 	}
@@ -147,7 +147,7 @@ public class ScanLoin extends Condition {
 	 */
 	private char calc_retour(Point point, Point closest)
 	{
-		System.out.println("Closest = "+ closest+" et point = "+point);
+//		System.out.println("Closest = "+ closest+" et point = "+point);
 		char res = '0';
 
 		if(closest != null)
