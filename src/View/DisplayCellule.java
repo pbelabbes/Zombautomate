@@ -15,6 +15,7 @@ public class DisplayCellule extends Display implements Observer {
 	public static final int SIZE = 32;
 	public static SpriteSheet SPRITE = null;
 	public static Animation[] ANIMATIONS = null;
+	public static boolean UPDATE = false;
 
 	Cell cellule;
 
@@ -59,14 +60,14 @@ public class DisplayCellule extends Display implements Observer {
 		Animation selected;
 		switch(this.cellule.getDecor())
 		{
-		case ROCK : selected = this.animations[1];break;
-		case APPLE : selected = this.animations[2];break;
-		case SPROUT : selected = this.animations[3];break;
-		case TREE : selected = this.animations[4];break;
-		case KATANA : selected = this.animations[5];break;
-		case BASEBALL_BAT : selected = this.animations[6];break;
-		case RABBIT : selected = this.animations[7];break;
-		default : selected = this.animations[0]; 
+			case ROCK : selected = this.animations[1];break;
+			case APPLE : selected = this.animations[2];break;
+			case SPROUT : selected = this.animations[3];break;
+			case TREE : selected = this.animations[4];break;
+			case KATANA : selected = this.animations[5];break;
+			case BASEBALL_BAT : selected = this.animations[6];break;
+			case RABBIT : selected = this.animations[7];break;
+			default : selected = this.animations[0]; 
 		}
 		return selected;
 	}
