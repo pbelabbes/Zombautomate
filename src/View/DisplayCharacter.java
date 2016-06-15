@@ -6,15 +6,18 @@ import java.util.Observer;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import Model.Character;
 
 public abstract class DisplayCharacter extends Display implements Observer {
 	
 	private int direction;
 	private boolean moving;
-
+	private Character character;
 	
-	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String spriteName) throws SlickException {
-		super(posX, posY, new SpriteSheet(spriteName, 64, 64), nbAnimations);
+//	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String spriteName) throws SlickException {
+	public DisplayCharacter(Character c, int nbAnimations, String spriteName) throws SlickException {
+		super(c.getCell().getPosition().x, c.getCell().getPosition().y, new SpriteSheet(spriteName, 64, 64), nbAnimations);
+//		super(posX, posY, new SpriteSheet(spriteName, 64, 64), nbAnimations);
 		this.setDirection(direction);
 		setMoving(false);
 		}
