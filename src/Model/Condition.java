@@ -29,8 +29,7 @@ public abstract class Condition {
 	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
 
-	{  	//System.out.println(cellule.getPosition().toString());
-
+	{  	
 	
 		Point p = new Point(cellule.getPosition());
 		int mapheight = cellule.getEntity_on().getMap().getHeight();
