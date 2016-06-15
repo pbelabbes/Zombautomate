@@ -126,11 +126,14 @@ public class ScanLoin extends Condition {
 		{
 			for(int y=0 ; y<rayon-x ; y++)
 			{
-				Point temp = check_sym(point, new Point(x,y) , map);
-				if(closest == null) 
-					closest=temp;
-				else 
-					if(temp != null && temp.distance(point)<closest.distance(point))   closest = temp;
+				if(x!=0 || y!=0)
+				{
+					Point temp = check_sym(point, new Point(x,y) , map);
+					if(closest == null) 
+						closest=temp;
+					else 
+						if(temp != null && temp.distance(point)<closest.distance(point))   closest = temp;
+				}
 			}
 		}
 		return calc_retour(point, closest)==parameter;
@@ -209,7 +212,6 @@ public class ScanLoin extends Condition {
 		else
 			return cellule.getDecor() == decor;
 	}
-
 
 
 }
