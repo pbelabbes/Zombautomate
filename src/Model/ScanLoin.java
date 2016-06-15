@@ -98,13 +98,22 @@ public class ScanLoin extends Condition {
 		rayon = charact.getSightRange();
 		int id = charact.getPlayer().getId();
 
-		switch(this.cible)
-		{
-		case "allie": this.id = id;  break; 
-		case "zombie": this.id = 0;  break;  
-		case "ennemi": this.id = id == 1? 2:1;  break; 
-		default : ;
-		}
+		if(cellule.getEntity_on() instanceof Survivor)
+			switch(this.cible)
+			{
+			case "allie": this.id = id;  break; 
+			case "zombie": this.id = 0;  break;  
+			case "ennemi": this.id = id == 1? 2:1;  break; 
+			default : ;
+			}
+		else
+			switch(this.cible)
+			{
+			case "allie": 
+			case "zombie": this.id = 0; break;
+			case "ennemi": this.id = 3;
+			default : ;
+			}
 		
 		return scan(cellule);
 	}
@@ -154,6 +163,7 @@ public class ScanLoin extends Condition {
 		{
 			int diffx = closest.x - point.x;
 			int diffy = closest.y - point.y;
+			
 
 			if(Math.abs(diffx)>Math.abs(diffy))	
 				res = diffx>0? 'E':'O';
@@ -207,7 +217,14 @@ public class ScanLoin extends Condition {
 		if(decor == null)
 		{
 			Character ent_on = cellule.getEntity_on();
-			return ent_on != null && ent_on.getPlayer().getId() == id;
+				if(this.id<3)
+				{				
+					return ent_on != null && ent_on.getPlayer().getId() == id;
+				}
+				else
+				{
+					return ent_on != null && ent_on instanceof Survivor;
+				}
 		}
 		else
 			return cellule.getDecor() == decor;

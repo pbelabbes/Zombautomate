@@ -232,6 +232,28 @@ public class Moteur {
 			if(!(c.is_alive())) lC.remove(c);
 		}
 	}
+	
+	
+	public static Map initiate_map(Player j0, Player j1, Player j2)
+	{
+		ArrayList<Character> lC = new ArrayList<Character>();
+		lC.addAll(j1.getEntities());
+		lC.addAll(j2.getEntities());
+
+	
+		ArrayList<Point> lP = getList_coords_automatas(lC);
+
+		
+		Map carte = create_map(lC);
+		carte.init_map(); 
+		carte.setAutomatas(lC, lP);
+
+		lC.addAll(j0.getEntities());		
+		carte.set_charact_position(lC);
+
+		return carte;
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -264,9 +286,6 @@ public class Moteur {
 		//ajout de l'automate au perso ZOmbi ) 
 //		Zombi.setEntities(CreateEntities(Zombi, liste));
 	
-		
-		
-		System.out.println("\n\n\n\n\nTest alexandre \n\n\n\n");
 		
 		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
 		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/ocaml/equipe2.xml");
@@ -310,7 +329,7 @@ public class Moteur {
 		
 		while(!(j1.defeated()||j2.defeated()))
 		{
-			carte.random_pop_zombies(lC,j0, compteur/10000);
+			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.melanger();
 			ordo.next_move();
 			compteur++;

@@ -58,8 +58,11 @@ public class Presence extends Condition {
 				case "zombie" :if(c2 instanceof Zombie)return true; 
 				else return false; 
 	
-				case "ennemi" : if(c1.getPlayer()!=c2.getPlayer()) return true; 
-				else return false;
+				case "ennemi" : 
+					if(c1 instanceof Zombie)
+						return (c1.getPlayer()!=c2.getPlayer());
+					else return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
+				
 				default: return false;
 				}
 		
