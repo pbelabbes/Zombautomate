@@ -32,7 +32,7 @@ public class ScanLoin extends Condition {
 	public ScanLoin(Decor decor,char parameter) {
 
 		this.decor=decor;
-		this.cible=null;
+		this.cible="decor";
 		this.parameter=parameter;
 		this.rayon=0;
 	}
@@ -98,13 +98,22 @@ public class ScanLoin extends Condition {
 		rayon = charact.getSightRange();
 		int id = charact.getPlayer().getId();
 
-		switch(this.cible)
-		{
-		case "allie": this.id = id;  break; 
-		case "zombie": this.id = 0;  break;  
-		case "ennemi": this.id = id == 1? 2:1;  break; 
-		default : ;
-		}
+		if(cellule.getEntity_on() instanceof Survivor)
+			switch(this.cible)
+			{
+			case "allie": this.id = id;  break; 
+			case "zombie": this.id = 0;  break;  
+			case "ennemi": this.id = id == 1? 2:1;  break; 
+			default : ;
+			}
+		else
+			switch(this.cible)
+			{
+			case "allie": 
+			case "zombie": this.id = 0; break;
+			case "ennemi": this.id = 3;
+			default : ;
+			}
 		
 		return scan(cellule);
 	}
@@ -147,13 +156,14 @@ public class ScanLoin extends Condition {
 	 */
 	private char calc_retour(Point point, Point closest)
 	{
-		System.out.println("Closest = "+ closest+" et point = "+point);
+//		System.out.println("Closest = "+ closest+" et point = "+point);
 		char res = '0';
 
 		if(closest != null)
 		{
 			int diffx = closest.x - point.x;
 			int diffy = closest.y - point.y;
+			
 
 			if(Math.abs(diffx)>Math.abs(diffy))	
 				res = diffx>0? 'E':'O';
@@ -196,6 +206,7 @@ public class ScanLoin extends Condition {
 		return res;
 	}
 
+
 	/**
 	 * permet de savoir si la cible se trouve sur la cellule donnée
 	 * @param cellule cellule sur laquelle on vérifie la présence de la cible
@@ -206,10 +217,18 @@ public class ScanLoin extends Condition {
 		if(decor == null)
 		{
 			Character ent_on = cellule.getEntity_on();
-			return ent_on != null && ent_on.getPlayer().getId() == id;
+				if(this.id<3)
+				{				
+					return ent_on != null && ent_on.getPlayer().getId() == id;
+				}
+				else
+				{
+					return ent_on != null && ent_on instanceof Survivor;
+				}
 		}
 		else
 			return cellule.getDecor() == decor;
 	}
+
 
 }

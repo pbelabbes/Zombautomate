@@ -71,15 +71,29 @@ public class Cell {
 		public Decor getDecor(){
 			return this.decor;
 		}
+
+		
+		/**
+		 * @return personnage présent sur la cellule 
+		 */
 		public Character getEntity_on(){
 			return this.entity_on;
 		}
+		/**
+		 * 
+		 * @return personnage dont l'automate est relié à cette case
+		 */
 		public Character getOwned_by(){
 			return this.owned_by;
 		}
+		
+		/**
+		 * @return position de la cellule sur la map
+		 */
 		public Point getPosition(){
 			return this.position;
 		}
+		
 		
 		//setter
 		public void setDecor(Decor decor){
@@ -93,9 +107,9 @@ public class Cell {
 		 */
 		public void setEntity_on(Character entity_on){
 			this.entity_on=entity_on;
-	//		entity_on.setCell(this);
-			return;
+			if(entity_on!=null) entity_on.setCell(this);
 		}
+		
 		public void setOwned_by(Character owned_by){
 			this.owned_by=owned_by;
 			return;
@@ -119,7 +133,8 @@ public class Cell {
 				Point posaut = this.owned_by.getAutomata().getPosition();
 				int x = poscell.x-posaut.x;
 				int y = poscell.y - posaut.y ;
-				this.owned_by.getAutomata().getStates()[x][y].setAction(this.decor.getAction());
+				CaseAutomate cA = this.owned_by.getAutomata().getStates()[x][y];
+				if(cA != null) cA.setAction(this.decor.getAction());
 			}
 		}
 }

@@ -95,6 +95,8 @@ public class Map extends Observable{
 	 */
 	private void setAutomata(Automata a, Point pos, Character perso)
 	{
+		a.setPosition(pos);
+		
 		for(int x= pos.x ; x < a.getEtats()+pos.x; x++)
 		{
 			for(int y = pos.y ; y < a.getInputs()+pos.y ; y++)
@@ -188,10 +190,37 @@ public class Map extends Observable{
 	 * @param a automate de zombie
 	 * @param map carte sur laquelle se déroule la partie
 	 */
-	public void pop_zombie(Cell cellule, Player p0, Automata a,Map map)
+	public void pop_zombie(Cell cellule, Player p0, Automata a)
 	{
-		Zombie new_z = new Zombie(p0,a,map);
+		Zombie new_z = new Zombie(p0,a,this);
 		cellule.setEntity_on(new_z);
+	}
+	
+	public void random_pop_zombies(ArrayList<Character> lC, Player p0, int nb)
+	{
+		int dimx = getWidth();
+		int dimy = getHeight();
+		Automata auto_zombie = p0.getEntities().get(0).getAutomata();
+
+		
+		
+		for(int i = 0 ; i < nb ; i++)
+		{
+			Cell cellule;
+			do
+			{
+				int rand_x = (int) (dimx*Math.random());
+				int rand_y = (int) (dimy*Math.random());
+			
+			
+				cellule = grid[rand_x][rand_y];
+				
+			}while (cellule.getEntity_on()!=null);
+			
+			pop_zombie(cellule,p0, auto_zombie);
+			
+		}
+		
 	}
 	
 	public void print_map()
