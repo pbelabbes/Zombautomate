@@ -17,6 +17,8 @@ import Model.Cell;
 import Model.Map;
 
 public class WindowGame extends BasicGame {
+	//
+	
     private GameContainer container;
     private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
     private DisplayCellule[][] mapDisplay;
