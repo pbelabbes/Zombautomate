@@ -17,7 +17,7 @@ public class Moteur {
 	 * 
 	 */
 
-	private static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
+	public static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
 		ArrayList<Character> res  = new ArrayList<Character>() ;
 		Automata aut ; 
 		CaseAutomate[][] remplirautomate ; 
@@ -292,7 +292,7 @@ public class Moteur {
 
 		
 		Map carte = create_map(lC);
-		carte.init_map();
+		carte.init_map(); 
 //		carte.setAutomatas(lC, lP);
 
 		lC.addAll(j0.getEntities());		
