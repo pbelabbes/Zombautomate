@@ -23,11 +23,11 @@ let (guerrier: automate) =
   @
     [(0,Defaut,Deplacer,E,1,0)]
   @
-    [(1,Defaut,Deplacer,E,1,0)] 
+    [(1,Defaut,Deplacer,E,1,0)]
   @
     [(0,Defaut,Deplacer,N,1,0)]
   @
-    [(1,Defaut,Deplacer,N,1,0)];;
+    [(1,Defaut,Deplacer,N,1,0)] ;;
 
 
 (*guerrier : 2 états chacun 16 transitions ... plus à jour*)
