@@ -1,5 +1,7 @@
 package View;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -19,6 +21,7 @@ public class StateGame extends StateBasedGame {
 
 	
 	/*
+	 * fonciton qui lit les xml et revnoi la liste des charactere
 	 * Mode 1 : 1 human vs Zombie
 	 * Mode 2 : 2 humain vs Zombie
 	 * Mode 3 : variante ...
@@ -27,6 +30,15 @@ public class StateGame extends StateBasedGame {
 	public static ArrayList<Character> jeu ( int mode ){
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
+		
+		/*try {
+			Runtime.getRuntime().exec("gedit ../Zombautomate/ocaml/equipe1.xml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		
+		//Runtime.getRuntime().exec("");
+		
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
 		ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
 		Player j1 = new Player(1 ,"Joueur 1", 10);
