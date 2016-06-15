@@ -20,12 +20,14 @@ public class Presence extends Condition {
 		this.cible=cible;
 		decor = null;
 	}
+
 	/**
 	 * 
 	 * @param direction
 	 * @param decor
 	 */
-	Presence(char direction,Decor decor){
+	
+	public Presence(char direction,Decor decor){
 
 		this.direction=direction;
 		this.decor=decor;
