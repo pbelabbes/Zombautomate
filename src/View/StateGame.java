@@ -19,7 +19,7 @@ public class StateGame extends StateBasedGame {
 
 	
 	/*
-	 * Mode 1 : 1 human vs Zombie
+	 * Mode 1 : 1 human vs Zombies
 	 * Mode 2 : 2 humain v Zombie
 	 * Mode 3 : variante ...
 	 * 
@@ -39,7 +39,7 @@ public class StateGame extends StateBasedGame {
 		
 		lC.addAll(j1.getEntities());
 		lC.addAll(j2.getEntities());
-
+		System.out.println(lC);
 		return lC;
 
 	}

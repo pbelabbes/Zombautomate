@@ -11,6 +11,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 //import org.newdawn.slick.SpriteSheet;
@@ -35,8 +36,12 @@ public class WindowGame extends BasicGameState {
 	public WindowGame(ArrayList<Model.Character> charactersList,Map map) throws SlickException{
         //super("Zombautomate by PANDAS");
         this.map = map;
+
         for (Model.Character character : charactersList) {
-			if(character instanceof Survivor){
+            System.out.println(character);
+            System.out.println(character.getCell());
+            new SpriteSheet("ressources/characters/sprites/male_walkcycle.png", 64, 64);
+        	if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
 				characters.add(new DisplayZombie(character));
@@ -142,6 +147,7 @@ public class WindowGame extends BasicGameState {
     	ArrayList<Character> lC = StateGame.jeu(1) ; 
 		Map carte = Moteur.create_map(lC);
 		carte.init_map(); 
+		carte.set_charact_position(lC);
     	WindowGame wg = new WindowGame(lC , carte);
         AppGameContainer app= new AppGameContainer((Game) wg,1920,1080,false);
         wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
