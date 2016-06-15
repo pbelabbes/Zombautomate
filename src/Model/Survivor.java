@@ -212,6 +212,11 @@ public class Survivor extends Character{
 	}
 	
 	@Override
+	/**
+	 * cette fonction permet d'executer une action dans une direction donnée
+	 * @param:Action action  
+	 * @param: Char direction
+	 */
 	public void act(Action action, char direction)
 	{
 //		System.out.println(action);

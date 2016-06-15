@@ -81,7 +81,7 @@ public class Automata {
 			setEtats(width);
 			this.inputs=height;
 			this.etat_courant=etat_courant;
-			this.states=new CaseAutomate[width][height]; //Attention, ligne modifiée par alexandre : inversion de hauteur et largeur			
+			this.states=new CaseAutomate[width][height];
 		}
 	}
 
@@ -106,7 +106,7 @@ public class Automata {
 	
 
 	/**
-	 * La fonction ajoute est utilisée pour construire un automate
+	 *Cette fonction est utilisée pour construire un automate
 	 * @param etat
 	 */
 	private void ajoute(transfer etat){	
@@ -152,11 +152,11 @@ public class Automata {
 	/**
 	 * La fonction qui permet d'afficher le tableau d'entiers sous forme d'actions
 	 */
-	public void to_string(){ //modif d'alexandre : j'ai enlevé les arguments de to_string(). C'est plus logique comme ça
+	public void to_string(){ 
 		for (int y=0;y<states[0].length;y++){
 		     for (int x=0;x<states.length;x++){
 		    	 if(states[x][y]!=null){
-		    		 System.out.printf("states[%d][%d] = "+states[x][y].getAction().toString(),x,y); //this.states[i][j].getEtatfutur()+",");
+		    		 System.out.printf("states[%d][%d] = "+states[x][y].getAction().toString(),x,y); 
 		    	 }
 		    	 else System.out.printf("states[%d][%d] = null",x,y);
 			     System.out.println("\n");
@@ -165,28 +165,6 @@ public class Automata {
 		}	
 
 	}
-	
-	/*public static void main(String[] args){
-		Automata auto= new Automata(0,2,2);
-		int etat_futur;
-		caseAutomate frame=new caseAutomate(7,Action.DROP,Condition.PRESENCE);
-		caseAutomate frame2=new caseAutomate(2,Action.DROP,Condition.PRESENCE);
-		etatAutomate et_au1=new etatAutomate(0,'N',0,frame);
-		etatAutomate et_au2=new etatAutomate(1,'E',0,frame);
-		etatAutomate et_au3=new etatAutomate(0,'S',0,frame2);
-		ArrayList<etatAutomate> liste = new ArrayList<etatAutomate>();
-		liste.add(et_au1);
-		liste.add(et_au2);
-		liste.add(et_au3);
-		auto.automate(liste);
-		System.out.println("nous allons afficher le tableau des actions \n");
-		auto.to_string (2,2);
-		etat_futur=auto.getEtatFutur(Condition.PRESENCE);
-		System.out.println("l'etat futur avec condition= presence et etat_courant a 0 est:\n"+etat_futur);
-
-		
-	}
-	*/
 }
 
 		

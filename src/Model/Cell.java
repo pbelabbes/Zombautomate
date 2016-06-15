@@ -35,6 +35,11 @@ public class Cell {
 		
 		public Cell(){}
 		
+		/**
+		 * Cette fonction permet de renvoyer un double au hasard 
+		 * @param seed
+		 * @return
+		 */
 		public static double randomGenerator(long seed) {
 		    Random generator = new Random(seed);
 		    double num = generator.nextDouble() * (0.5);

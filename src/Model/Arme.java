@@ -32,6 +32,7 @@ public abstract class Arme {
 	public int getValue() {
 		return this.value;
 	}
+	
 	public void setValue(int value) {
 		this.value=value;
 		return ;
@@ -40,6 +41,7 @@ public abstract class Arme {
 	public int getUsure() {
 		return this.usure;
 	}
+	
 	public void setUsure(int usure) {
 		this.usure=usure;
 		return ;

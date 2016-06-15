@@ -1,9 +1,10 @@
 /**
+
  * 
  */
 package Model;
 
-import java.awt.Point;
+//import java.awt.Point;
 
 /**
  * @author zennouche
@@ -25,17 +26,21 @@ public class ScanProche extends Condition {
 	
 	
 	//Constructeurs 
-	
+	/**
+	 * 
+	 * @param cible
+	 * @param parameter
+	 */
 	public ScanProche(String cible,char parameter) {
 		
 		this.cible=cible;
-		this.decor=null;// TODO Auto-generated constructor stub
+		this.decor=null;
 		this.parameter=parameter;
 	}
 	public ScanProche(Decor decor,char parameter) {
 			
 		this.decor=decor;
-		this.cible=null;// TODO Auto-generated constructor stub
+		this.cible=null;
 		this.parameter=parameter;
 	}
 
@@ -71,10 +76,17 @@ public class ScanProche extends Condition {
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute()
 	 */
-	
+	/**
+	 * Cette fonction permet de verifier le nombre de cible ou decor presents dans les cellules adjacentes 
+	 * @param c1
+	 * @param c2
+	 * @param c3
+	 * @param c4
+	 * @param cellule
+	 * @return
+	 */
 	private int nb_cible(Cell c1,Cell c2, Cell c3, Cell c4, Cell cellule){
 		int nb=0;
-		 System.out.println("debut \n");
 
 		if(cible!=null){
 			
@@ -109,44 +121,35 @@ public class ScanProche extends Condition {
 						
 		 }	 
 		}
-		else{ System.out.println("dans le else \n");
+		else{ 
 		   
 			if(c1!=null &&c1.getDecor()==decor ) { nb++;}
 			if(c2!=null &&c2.getDecor()==decor ){nb++;}		
 			if(c3!=null &&c3.getDecor()==decor){nb++;}
 			if(c4!=null &&c4.getDecor()==decor ) {nb++;}
-			//System.out.println(nb+"\n ");
+		
 			return nb;
 		} 
 
       return nb;
 	}
 	
-	
-	//(*fonctionne de la meme maniere mais en ne regardant que les cases adjacentes (portée 1) au personnage. Retourne alors la direction d'un ennemi si il est seul ou le nombre d'ennemis sinon *)
-
-	
 	/**
-	 * Cette fonction permet de renvoyer un booleen indiquant on trouve bien un element de decor 
+	 * Cette fonction permet de renvoyer un booleen indiquant si on trouve bien un element de decor 
 	 * ou un charactere a l'une des cases adjacentes 
 	 * Utilisation: si l'on cherche un decor on set la variable decor et sinon on set la deuxieme variable et
 	 * on met le resultat attendu dans parameter
 	 */
 public boolean execute(Cell cellule){
 		int nb=0;
-		//on recupere les coordonnées des differentes cellules adjacentes
 		Cell cN=getTargetedCell('N',cellule);
 		Cell cS=getTargetedCell('S',cellule);
 		Cell cE=getTargetedCell('E',cellule);
 		Cell cO=getTargetedCell('O',cellule);
-		//System.out.println(cE==null);
-		nb=nb_cible(cN,cS,cE,cO,cellule);
-		System.out.println("juste apres nb");
+		
+	 nb=nb_cible(cN,cS,cE,cO,cellule);
      if(nb == 1 ) {	
-		if(cible!=null){		
-		System.out.println("apres le premier test");		
-		//dans ce cas on est sur que nb=1
-	
+		if(cible!=null){			
 			if(cible=="ennemi"){
 	
 				if(cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
@@ -215,12 +218,7 @@ public boolean execute(Cell cellule){
 	}
 	 
   }
-  	
-  
-	System.out.println("a la sortie");
-   return  (((char) nb +'0')==parameter);
-  
-  // TODO Auto-generated method stub
+  	   return  (((char) nb +'0')==parameter);
 }
 
 }
