@@ -22,7 +22,8 @@ import Model.*;
 
 public class WindowGame extends BasicGame {
 	//
-	public static final int ID = 2;
+
+	public static final int ID = 0;
 
 	private GameContainer container;
 	private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
@@ -42,10 +43,6 @@ public class WindowGame extends BasicGame {
 		this.charactersList = charactersList;
 	}
 
-	public int getID() {
-		return 2;
-	}
-
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
 			this.screenWidth = width;
@@ -59,7 +56,7 @@ public class WindowGame extends BasicGame {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
-				characters.add(new DisplayZombie(character));
+//				characters.add(new DisplayZombie(character)); 
 			}
 		}
 
@@ -95,11 +92,15 @@ public class WindowGame extends BasicGame {
 		}
 	}
 
-	@Override
 	public void keyReleased(int key, char c) {
 		DisplayCharacter dc = characters.get(0);
 		dc.setMoving(false);
 		this.isMoving = false;
+	}
+	
+	
+	public int getID() {
+		return 0;
 	}
 
 	@Override

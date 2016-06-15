@@ -1,6 +1,6 @@
 package Model;
 
-import java.awt.Point;
+//import java.awt.Point;
 
 public class Zombie extends Character {
 

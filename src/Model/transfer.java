@@ -19,6 +19,15 @@ public class transfer {
 	private int priority ; 
 	
 	
+	@Override
+	public String toString() {
+		return "transfer [etat_courant=" + etat_courant + ", etat_futur="
+				+ etat_futur + ", action=" + action + ", condition="
+				+ condition + ", direction=" + direction + ", priority="
+				+ priority + "]";
+	}
+
+
 	public transfer(int etat_courant,Condition condition, Action action , char direction, int priority, int etat_futur) {
 		//super();
 		this.etat_courant = etat_courant;

@@ -30,6 +30,12 @@ public class Linked_cell extends Condition {
 	}
 
 	@Override
+	/**
+	 * cette fonction permet de verifier si a la cellule a la direction donnée appartient  à un automate 
+	 * d'un allié ou d'un ennemi
+	 * @parma:Cell cellule: on passe la cellule du personnage en parametre 
+	 * @return boolean
+	 */
 	public boolean execute(Cell cellule) {
 
         Cell ce=new Cell();

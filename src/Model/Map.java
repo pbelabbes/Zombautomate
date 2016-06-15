@@ -95,8 +95,6 @@ public class Map extends Observable{
 	 */
 	private void setAutomata(Automata a, Point pos, Character perso)
 	{
-//		a.to_string();
-
 		a.setPosition(pos);
 		
 		for(int x= pos.x ; x < a.getEtats()+pos.x; x++)
@@ -106,16 +104,6 @@ public class Map extends Observable{
 				CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
 				if(case_tempo!=null)
 				{	
-					
-//					int x_r = x%gridheight; //x_reel (c'est un tor)
-//					int y_r = y%gridwidth; //y_reel (c'est un to
-	
-//					System.out.println(this.grid[x][y].getOwned_by() != null);
-					
-//					System.out.printf("x = %d ; y = %d    ;    x_r = %d ;  y_r = %d\n",x,y,x_r,y_r);
-
-//					System.out.printf("x = %d ; y = %d \n",x,y);
-//					System.out.printf("x-pos.x = %d ; y-pos.y = %d\n", x-pos.x,y-pos.y);
 					this.grid[x][y].setOwned_by(perso);
 					this.grid[x][y].setDecor(case_tempo.getAction().getDecor());
 					this.grid[x][y].setPosition(pos);
