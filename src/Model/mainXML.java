@@ -29,7 +29,7 @@ public class mainXML {
 	public static void main (String [] args){
 		XMLReader test = new XMLReader() ;
 		//String path=new File("").getAbsolutePath(); 
-		test.read("D:\\travail\\java\\Zombautomate\\ocaml\\equipe.xml");//"/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
+		test.read("D:\\travail\\java\\Zombautomate\\ocaml\\equipe1.xml");//"/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
 		
 		/*
 		 * 
