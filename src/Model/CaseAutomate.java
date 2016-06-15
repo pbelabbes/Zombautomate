@@ -32,11 +32,18 @@ public class CaseAutomate {
 	public String toString(Action action){
 		return ""+action;
 	}
-
+/**
+ * 
+ * @return
+ */
 	public int getEtatfutur() {
 		return this.etat_futur;
 		
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public Action getAction() {
 		return this.action;
 		
