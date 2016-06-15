@@ -17,7 +17,7 @@ public class DisplayCellule extends Display implements Observer {
 	public static Animation[] ANIMATIONS = null;
 	public static boolean UPDATE = false;
 
-	Cell cellule;
+	private Cell cellule;
 
 	public DisplayCellule(float posX, float posY, Cell c) throws SlickException{
 		super(posX, posY, setSpriteSheet(), 8);

@@ -17,7 +17,7 @@ public class Moteur {
 	 * 
 	 */
 
-	private static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
+	public static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
 		ArrayList<Character> res  = new ArrayList<Character>() ;
 		Automata aut ; 
 		CaseAutomate[][] remplirautomate ; 
@@ -222,6 +222,38 @@ public class Moteur {
 
 	}
 */
+	
+	private static void clean_dead_bodies(ArrayList<Character> lC)
+	{
+	
+		for(int i = 0 ; i<lC.size() ; i ++)
+		{
+			Character c = lC.get(i);
+			if(!(c.is_alive())) lC.remove(c);
+		}
+	}
+	
+	
+	public static Map initiate_map(Player j0, Player j1, Player j2)
+	{
+		ArrayList<Character> lC = new ArrayList<Character>();
+		lC.addAll(j1.getEntities());
+		lC.addAll(j2.getEntities());
+
+	
+		ArrayList<Point> lP = getList_coords_automatas(lC);
+
+		
+		Map carte = create_map(lC);
+		carte.init_map(); 
+		carte.setAutomatas(lC, lP);
+
+		lC.addAll(j0.getEntities());		
+		carte.set_charact_position(lC);
+
+		return carte;
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -232,7 +264,8 @@ public class Moteur {
 		//TODO demander à l'utilisateur d'entrer son fichier
 		
 		XMLReader fichier = new XMLReader() ;
-		
+//		CaseAutomate cA = new CaseAutomate(0, Action.ATTACK, new Defaut(), 1, 'N');
+//		cA.setAction(null);
 		//geurrier
 		//hauteur = 16
 		//nb etat = 2
@@ -243,7 +276,6 @@ public class Moteur {
 //		ArrayList<ArrayList<transfer>> liste=fichier.read("../Zombautomate/ocaml/equipe.xml");
 //		Player Zombi = new Player(0, "Zombies", 10 );
 		
-		System.out.println("\n\n\n debut");
 //		System.out.println(Integer.toString(width(liste.get(0))));
 //		System.out.println(Integer.toString(height(liste.get(0))));
 //		System.out.println(Integer.toString(width(liste.get(1))));
@@ -255,18 +287,18 @@ public class Moteur {
 //		Zombi.setEntities(CreateEntities(Zombi, liste));
 	
 		
-		
-		System.out.println("\n\n\n\n\nTest alexandre \n\n\n\n");
-		
 		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
 		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/ocaml/equipe2.xml");
+		ArrayList<ArrayList<transfer>> listeZ=fichier.read("../Zombautomate/ocaml/zombies.xml");
 		
 
 		Player j1 = new Player(1 ,"Joueur 1", 10);
 		Player j2 = new Player(2 ,"Joueur 2", 10);
+		Player j0 = new Player(0,"Zombie", 10);
 		
 		j1.setEntities(CreateEntities(j1,liste1));
 		j2.setEntities(CreateEntities(j2,liste2));
+		j0.setEntities(CreateEntities(j0,listeZ));
 		
 		
 		ArrayList<Character> lC = new ArrayList<Character>();
@@ -279,10 +311,10 @@ public class Moteur {
 
 		
 		Map carte = create_map(lC);
-		carte.init_map();
+		carte.init_map(); 
 //		carte.setAutomatas(lC, lP);
 
-		
+		lC.addAll(j0.getEntities());		
 		carte.set_charact_position(lC);
 			
 		int compteur = 0;
@@ -297,17 +329,19 @@ public class Moteur {
 		
 		while(!(j1.defeated()||j2.defeated()))
 		{
+			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.melanger();
 			ordo.next_move();
 			compteur++;
 			carte.print_map();
+			clean_dead_bodies(lC);
 		}
 		System.out.println("Partie terminée");
 		if(j1.defeated())
 		{
 			System.out.println("j1 a perdu en "+compteur+" tours");
 		}
-		else System.out.println("j2 a perdu en" + compteur+ " tours" );
+		else System.out.println("j2 a perdu en " + compteur+ " tours" );
 
 		System.out.println("positions finales du joueur 1 :");
 		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());

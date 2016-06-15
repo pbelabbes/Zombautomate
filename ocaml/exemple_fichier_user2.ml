@@ -20,14 +20,14 @@ let (guerrier: automate) =
     presence_AD 1 Batte_baseball Ramasser 1 3
   @
     presence_AD 1 Katana Ramasser 1 4
-  @
+(*  @
     [(0,Defaut,Deplacer,E,1,0)]
   @
     [(1,Defaut,Deplacer,E,1,0)]
   @
     [(0,Defaut,Deplacer,N,1,0)]
   @
-    [(1,Defaut,Deplacer,N,1,0)];;
+    [(1,Defaut,Deplacer,N,1,0)] *);;
 
 (*guerrier : 2 états chacun 16 transitions ... plus à jour*)
 
@@ -78,6 +78,5 @@ let (simplet:automate) =
   [(0,Defaut, Deplacer, N, 0, 1)];;
 
 
-let equipe2 = [(guerrier,"guerrier") (*; (farmer,"farmer") *)];; 
-let equipe2 = [(simplet,"simplet")];;
+let equipe2 = [ (guerrier,"guerrier"); (farmer,"farmer");(guerrier,"guerrier"); (farmer,"farmer")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)

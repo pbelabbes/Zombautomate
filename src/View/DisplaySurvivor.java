@@ -11,14 +11,9 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 
 	
 
-	public DisplaySurvivor() throws SlickException{
-		super(300, 300, 3, 8, "ressources/characters/sprites/male_walkcycle.png" );
+	public DisplaySurvivor(Model.Character c) throws SlickException{
+		super(c, 8, "ressources/characters/sprites/male_walkcycle.png" );
 		}
-	
-	public DisplaySurvivor(float posX, float posY, int direction) throws SlickException{
-		super(posX, posY, direction, 8, "characters/sprites/male_walkcycle.png");
-	}
-	
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
