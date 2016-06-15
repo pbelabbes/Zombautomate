@@ -3,6 +3,7 @@ package View;
 
 
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -36,16 +37,55 @@ public class MainScreenGameState extends BasicGameState {
 		int haut = container.getHeight() ;
 		background.draw(0, 0, container.getWidth(), container.getHeight());
 		//g.drawString("Appuyer sur une touche", 300, 300);
-		Newgame.draw(larg/2 - larg/10 ,haut/2 - haut/30 -haut/18 , larg/5, haut/7);
-		Continue.draw(larg/2 - larg/10 ,haut/2 + haut/7 - haut/18 , larg/5, haut/7);
-		Option.draw(larg/2 - larg/10 ,haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
+		Newgame.draw(larg/2 - larg/10 ,    haut/2 - haut/30 -haut/18 					, larg/5, haut/7);
+		Continue.draw(larg/2 - larg/10 ,   haut/2 + haut/7 - haut/18 					, larg/5, haut/7);
+		Option.draw(larg/2 - larg/10 ,     haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
 		
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		int PosX = Mouse.getX() ;
+		int PosY = Mouse.getY() ;
+		int larg = container.getWidth();
+		int haut = container.getHeight() ;
+		
+		
+		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
+			
+			//bouton Newgame 
+			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
+				System.out.println("\n\nPOSXinf =" + Integer.toString( larg/2 - larg/10) + "POSYinf = "+Integer.toString(haut/2 - haut/30 -haut/18));
+				System.out.println("POSXsup =" + Integer.toString( larg/2 - larg/10 + larg/5) + "POSYsup = "+Integer.toString(haut/2 - haut/30 -haut/18 + haut/7));
+				System.out.println("POSX =" + Integer.toString(PosX) + "POSY = "+Integer.toString(PosY));
+				if(Mouse.isButtonDown(0)){
+					game.enterState(MenuTypeJeu.ID);
+
+				}
+			}
+			
+			//bonton COntinue 
+			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
+				if(Mouse.isButtonDown(0)){
+					//game.enterState(MenuTypeJeu.ID);
+					System.exit(0) ;
+					 
+				}
+			}
+			
+			//Bouton Option
+			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
+				if(Mouse.isButtonDown(0)){
+					//game.enterState(MenuTypeJeu.ID);
+					
+				}
+			}
+		}
+		
+		
+		
+		
 		
 	}
 
@@ -54,9 +94,10 @@ public class MainScreenGameState extends BasicGameState {
 		return ID;
 	}
 	
-	public void keyReleased(int key, char c) {
+	/*public void keyReleased(int key, char c) {
 	    game.enterState(MenuTypeJeu.ID);
-	  }
+	    
+	  }*/
 
 	
 

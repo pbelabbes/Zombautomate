@@ -54,7 +54,7 @@ public class StateGame extends StateBasedGame {
 	}
 	
 	public StateGame() {
-	    super("ZOMBAUTOMATE V1");
+	    super("ZOMBAUTOMATE by PANDAS");
 	  }
 	
 	/**
@@ -69,7 +69,7 @@ public class StateGame extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
     	//ArrayList<Character> lC = jeu (1) ;
     	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
-        AppGameContainer app= new AppGameContainer(new StateGame(), 1300, 720, false);
+        AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
        // wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
         app.start();
     }
