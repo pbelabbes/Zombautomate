@@ -65,10 +65,10 @@ public class WindowGame extends BasicGame {
 		for(int i = 0 ; i< map.getWidth();i++){
 			for (int j = 0 ; j<map.getHeight();j++){
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
-				System.out.println("Cellule mapdisplay["+i+"]["+j+"] :"+this.mapDisplay[i][j]);
+//				System.out.println("Cellule mapdisplay["+i+"]["+j+"] :"+this.mapDisplay[i][j]);
 			}
 		}        
-		System.out.println("taille map : "+map.getWidth()+" : "+map.getHeight());
+//		System.out.println("taille map : "+map.getWidth()+" : "+map.getHeight());
 //		System.exit(0);
 	}
 
@@ -106,40 +106,23 @@ public class WindowGame extends BasicGame {
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
-//		for (int screenOriginX = 0; screenOriginX < screenWidth && (screenOriginX/TILED_SIZE)+mapOriginX < map.getWidth(); screenOriginX += TILED_SIZE) {
-//			for (int screenOriginY = 0; screenOriginY < screenHeight && (screenOriginY/TILED_SIZE)+mapOriginY < map.getHeight() ; screenOriginY += TILED_SIZE) {
-//				System.out.println("Cellule["+screenOriginX+"]["+screenOriginY+"]: "+mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)]);
-//				if(mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)] != null){
-//					g.drawAnimation(mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)].getCurrentAnimation(),screenOriginX , screenOriginY);
-//				}
-////				System.out.println(mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)].GetCharacOn() );
-////				if(mapDisplay[mapOriginX+(screenOriginX/TILED_SIZE)][mapOriginY+(screenOriginY/TILED_SIZE)].GetCharacOn() != null){
-////					g.setColor(Color.black);
-////					g.drawRect(screenOriginX, screenOriginY, TILED_SIZE, TILED_SIZE);
-//////					System.out.println("J'ai quelque chose sur moi !! ");
-////				}
-//			}
-//		}
-		System.out.println("Render");
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-				System.out.println("mapDisplay["+mapOriginX+cursorX+"]["+mapOriginY+cursorY+"]"+map.getWidth()+":"+map.getHeight());
 				g.drawAnimation(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 			}
 		}
 		
 		
 		for (DisplayCharacter c : characters) {
-//			System.out.println("Get :"+ c.getX()+"/"+screenWidth+" "+c.getY()+"/"+screenHeight);
-			float charPosY = c.getY()*32-mapOrigin.y;
-			float charPosX = c.getX()*32-mapOrigin.x;
 			
-			if( charPosY >= 0 && charPosY <= screenWidth && charPosX >= 0 && charPosX <= screenHeight)
+			if( c.getX() >= mapOriginX && c.getX() < mapOriginX+(screenWidth/TILED_SIZE) && c.getX() < map.getWidth() &&
+					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
 			{
-//				System.out.println("CharPos : "+charPosX+"/"+screenWidth+" "+charPosY+"/"+screenHeight);
+				int posCharScreenX = (int) (c.getX()- mapOriginX);
+				int posCharScreenY = (int) (c.getY()- mapOriginY);
 				g.setColor(new Color(255,255,255, .5f));
-				g.fillOval(charPosX-16, charPosY-8, 32, 16);
-				g.drawAnimation(c.getCurrentAnimation(), charPosX-32, charPosY-60);
+				g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
+				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
 			}
 		}
 		g.setColor(Color.white);
