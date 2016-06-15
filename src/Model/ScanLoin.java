@@ -15,35 +15,36 @@ public class ScanLoin extends Condition {
 	 * 
 	 */
 	private String cible;
+	private int id;
 	private Decor decor;
 	private char parameter;
 	private int rayon;
-	
-	
-	
-public ScanLoin(String cible, char parameter) {
-		
+
+
+
+	public ScanLoin(String cible, char parameter) {
+
 		this.cible=cible;
 		this.decor=null;
 		this.parameter=parameter;
 		this.rayon=0;
 	}
 	public ScanLoin(Decor decor,char parameter) {
-			
+
 		this.decor=decor;
 		this.cible=null;
 		this.parameter=parameter;
 		this.rayon=0;
 	}
 
-	
-	
+
+
 	//getters 
-	
+
 	public String getCible(){
 		return this.cible;
 	}
-	
+
 	public void setParameter(char parameter){
 		this.parameter=parameter;
 	}
@@ -51,59 +52,31 @@ public ScanLoin(String cible, char parameter) {
 	public char getParameter(){
 		return this.parameter;
 	}
-	
+
 	public Decor getDecor(){
 		return this.decor;
 	}
-	
+
 	public int getRayon(){
 		return this.rayon;
 	}
 	//setters
-	
+
 	public void setCible(String cible){
-		 this.cible=cible;
+		this.cible=cible;
 	}
-	
+
 	public void setDecor(Decor decor){
 		this.decor=decor;
 	}
-	
-/*	public void setParameter(char parameter){
+
+	/*	public void setParameter(char parameter){
 		this.parameter=parameter;
 	}
-*/	
+	 */	
 	public void setRayon(int rayon){
 		this.rayon=rayon;
 	}
-	
-	//fonction auxiliaire utilisée par celle d'apres 
-	private char direction(int N,int E,int S,int O){
-		int min=1000000000;
-		if(N!=0 && E!=0 && S!=0 && O!=0){
-				min=Math.min(Math.min(Math.min(N, E), S), O);
-				if(min==0)return '0';
-				else if(min==N)return 'N';
-				else if(min==S)return 'S';
-				else if(min==E)return 'E';
-				else return 'O';
-		}
-		if(N!=0)min=N;
-		if(E!=0)min=E;
-		if(O!=0)min=O;
-		if(S!=0)min=S;
-		if(N!=0)min=Math.min(N,min);
-		if(E!=0)min=Math.min(E,min);
-		if(O!=0)min=Math.min(O,min);
-		if(S!=0)min=Math.min(S,min);
-		if(N==min)return 'N';
-		if(E==min)return 'E';
-		if(O==min)return 'O';
-		if(S==min)return 'S';
-		return '0';
-		
-	}
-	
 	/**
 	 * La fonction scanloin permet de savoir dans quelle direction se trouve un character recherché
 	 * @param rayon défini la visibilité d'un joueur: le nombre de case autour du personnage où on va vérifier la présence d'un character.
@@ -112,339 +85,176 @@ public ScanLoin(String cible, char parameter) {
 	 * @param position la position du joueur sur la carte 
 	 * @return N, E, S, O selon la direction du joueur le proche
 	 */
-	
+
 	/* (non-Javadoc)
 	 * @see Model.Condition2#execute(Model.Cell)
 	 */
-	private int distance(Point position1, Point position2){		
-	    return (int) Math.sqrt(Math.pow(((float)(position2.x-position1.x)),2.0)+Math.pow(((float)(position2.y-position1.y)),2.0));
-	}
 	
-	public boolean execute(Cell cellule){
-		int minN=0,minS=0,minE=0,minO=0;
-		Point pN,pS,pE,pO;
-		int diffx,diffy;
-		int mapheight = cellule.getEntity_on().getMap().getHeight();
-		int mapwidth = cellule.getEntity_on().getMap().getWidth();
-		pN=new Point(cellule.getPosition());
-		pS=new Point(cellule.getPosition());
-		pE=new Point(cellule.getPosition());
-		pO=new Point(cellule.getPosition());
-		//System.out.println("avant le for");
-		for(int i=0;i<rayon;i++){
-			//System.out.println("apres le premier for");
-			for(int j=0;j<(rayon-i);j++){
-				//System.out.println("apres le deuxieme for");
-				pN.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
-	    		pN.y=(cellule.getPosition().y-i+mapheight)%mapheight;
-	    		pS.x=(cellule.getPosition().x+j)%mapwidth;
-	    		pS.y=(cellule.getPosition().y+i)%mapheight;
-	    		pE.x=(cellule.getPosition().x+j)%mapwidth;
-	    		pE.y=(cellule.getPosition().y-i+mapheight)%mapheight;
-	    		pO.x=(cellule.getPosition().x-j+mapwidth)%mapwidth;
-	    		pO.y=(cellule.getPosition().y+i)%mapheight;
-				if(decor!=null){	
-		    	//System.out.println("je suis dans decor");
-	
-//on test si la cellule en question !=null et aussi si le decor correspondant est celui rechrché
-					
-						//System.out.println( cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getDecor()==Decor.BASEBALL_BAT);
-						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null&& cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getDecor()==decor){
 
-						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
-					    	diffx=Math.abs(pN.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pN.y-cellule.getPosition().y);
-				    		System.out.println("je suis dans le premier 0 if");
-				    		
-					    	if(diffx>diffy){
-					    		//System.out.println("je suis dans le premier 1if");
-					    		if(minO==0){minO=distance(pN,cellule.getPosition());}
-					    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
-					    	}
-					    	else {
-					    		//System.out.println("je suis dans le premier if");
-					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
-					    	}
-						}	
-				    	//System.out.println(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]==null);
+	@Override
+	public boolean execute(Cell cellule)
+	{
+		Character charact = cellule.getEntity_on();
+		rayon = charact.getSightRange();
+		int id = charact.getPlayer().getId();
 
-					    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]!=null&& cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getDecor()==decor){
-					    	diffx=Math.abs(pS.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pS.y-cellule.getPosition().y);
-					    	System.out.println("je suis dans le deuxieme  if");
-					    	if(diffx>diffy){
-					    		
-					    		if(minE==0){minE=distance(pS,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pS,cellule.getPosition()));
-					    	}
-					    	else {
-					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
-					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
-					    	}
-					    }
-					
-				    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y]!=null &&cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getDecor()==decor){
-					    	diffx=Math.abs(pO.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pO.y-cellule.getPosition().y);
-					    	System.out.println("je suis dans le troisieme if");
-					    	if(diffx>diffy){
-					    		
-					    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
-					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
-					    	}
-					    	else {
-					    		if(minN==0){minN=distance(pO,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
-					    	}
-					    }
-					    if(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y]!=null &&cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getDecor()==decor){
-					    	diffx=Math.abs(pE.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pE.y-cellule.getPosition().y);
-					    	System.out.println("je suis dans le fourth if");
-					    	if(diffx>diffy){
-					    		
-					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
-					    	}
-					    	else {
-					    		if(minS==0){minS=distance(pE,cellule.getPosition());}
-					    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
-					    	}
-					    }
-					}
-				if(cible=="ennemi"){
-			    	//System.out.println("la ou je suis censé etre ");
-					//System.out.println(i);
-					 
-							if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on() instanceof Survivor&& 
-									cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-
-								//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
-							    	diffx=Math.abs(pN.x-cellule.getPosition().x);
-							    	diffy=Math.abs(pN.y-cellule.getPosition().y);
-						    		System.out.println("je suis dans le premier 0 if");
-						    		
-							    	if(diffx>diffy){
-							    		//System.out.println("je suis dans le premier 1if");
-							    		if(minO==0){minO=distance(pN,cellule.getPosition());}
-							    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
-							    	}
-							    	else {
-							    		//System.out.println("je suis dans le premier if");
-							    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-							    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
-							    	}
-								}	
-						    	//System.out.println(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]==null);
-
-							    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]!=null && cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on() instanceof Survivor&& 
-							    		cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-							    	diffx=Math.abs(pS.x-cellule.getPosition().x);
-							    	diffy=Math.abs(pS.y-cellule.getPosition().y);
-							    	//System.out.println("je suis dans le deuxieme  if");
-							    	if(diffx>diffy){
-							    		
-							    		if(minE==0){minE=distance(pS,cellule.getPosition());}
-							    		else minE=Math.min(minE, distance(pS,cellule.getPosition()));
-							    	}
-							    	else {
-							    		//System.out.println("pkkkkkkkkkkkkkkkkkk");
-							    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
-							    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
-							    	}
-							    }
-							
-						    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y]!=null && cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Survivor&& 
-						    		cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-							    	diffx=Math.abs(pO.x-cellule.getPosition().x);
-							    	diffy=Math.abs(pO.y-cellule.getPosition().y);
-							    	//System.out.println("je suis dans le troisieme if");
-							    	if(diffx>diffy){
-							    		
-							    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
-							    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
-							    	}
-							    	else {
-							    		if(minN==0){minN=distance(pO,cellule.getPosition());}
-							    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
-							    	}
-							    }
-							    if(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y]!=null && cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on() instanceof Survivor&& 
-							    		cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-							    	diffx=Math.abs(pE.x-cellule.getPosition().x);
-							    	diffy=Math.abs(pE.y-cellule.getPosition().y);
-							    	System.out.println("je suis dans le fourth if");
-							    	System.out.println(pE.toString());
-							    	System.out.println(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on().player!=cellule.getEntity_on().getPlayer());
-							    	if(diffx>diffy){
-							    		
-							    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-							    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
-							    	}
-							    	else {
-							    		//System.out.println("whyyyyyyyyyyyyyyyy");
-							    		if(minS==0){minS=distance(pE,cellule.getPosition());}
-							    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
-							    	}
-							    }
-							}
-				else if(cible=="zombie"){
-					
-
-						if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on() instanceof Zombie){
-
-							//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
-						    	diffx=Math.abs(pN.x-cellule.getPosition().x);
-						    	diffy=Math.abs(pN.y-cellule.getPosition().y);
-					    		System.out.println("je suis dans le premier 0 if");
-					    		
-						    	if(diffx>diffy){
-						    		//System.out.println("je suis dans le premier 1if");
-						    		if(minO==0){minO=distance(pN,cellule.getPosition());}
-						    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
-						    	}
-						    	else {
-						    		//System.out.println("je suis dans le premier if");
-						    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-						    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
-						    	}
-							}	
-					    	//System.out.println(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]==null);
-
-						    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]!=null && cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on() instanceof Zombie){
-						    	diffx=Math.abs(pS.x-cellule.getPosition().x);
-						    	diffy=Math.abs(pS.y-cellule.getPosition().y);
-						    	//System.out.println("je suis dans le deuxieme  if");
-						    	if(diffx>diffy){
-						    		
-						    		if(minE==0){minE=distance(pS,cellule.getPosition());}
-						    		else minE=Math.min(minE, distance(pS,cellule.getPosition()));
-						    	}
-						    	else {
-						    		//System.out.println("pkkkkkkkkkkkkkkkkkk");
-						    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
-						    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
-						    	}
-						    }
-						
-					    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y]!=null && cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Zombie){
-						    	diffx=Math.abs(pO.x-cellule.getPosition().x);
-						    	diffy=Math.abs(pO.y-cellule.getPosition().y);
-						    	if(diffx>diffy){
-						    		
-						    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
-						    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
-						    	}
-						    	else {
-						    		if(minN==0){minN=distance(pO,cellule.getPosition());}
-						    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
-						    	}
-						    }
-						    if(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y]!=null && cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on() instanceof Zombie){
-						    	diffx=Math.abs(pE.x-cellule.getPosition().x);
-						    	diffy=Math.abs(pE.y-cellule.getPosition().y);
-						    	System.out.println("je suis dans le fourth if");
-						    	System.out.println(pE.toString());
-						    	System.out.println(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on().player!=cellule.getEntity_on().getPlayer());
-						    	if(diffx>diffy){
-						    		
-						    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-						    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
-						    	}
-						    	else {
-						    		if(minS==0){minS=distance(pE,cellule.getPosition());}
-						    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
-						    	}
-						    }
-				    }
-				else if(cible =="allie"){
-					 
-					if( cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y]!=null && cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on() instanceof Survivor&& 
-							cellule.getEntity_on().getMap().getGrid()[pN.x][pN.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
-
-						//on verifie si la position est encore dans la map et aussi si le decor correspond a ce qu'on veut 
-					    	diffx=Math.abs(pN.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pN.y-cellule.getPosition().y);
-				    		System.out.println("je suis dans le premier 0 if");
-				    		
-					    	if(diffx>diffy){
-					    		//System.out.println("je suis dans le premier 1if");
-					    		if(minO==0){minO=distance(pN,cellule.getPosition());}
-					    		else minO=Math.min(minO, distance(pN,cellule.getPosition()));
-					    	}
-					    	else {
-					    		//System.out.println("je suis dans le premier if");
-					    		if(minN==0){minN=distance(pN,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pN,cellule.getPosition()));
-					    	}
-						}	
-				    	//System.out.println(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]==null);
-
-					    if(cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y]!=null && cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on() instanceof Survivor&& 
-					    		cellule.getEntity_on().getMap().getGrid()[pS.x][pS.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
-					    	diffx=Math.abs(pS.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pS.y-cellule.getPosition().y);
-					    	//System.out.println("je suis dans le deuxieme  if");
-					    	if(diffx>diffy){
-					    		
-					    		if(minE==0){minE=distance(pS,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pS,cellule.getPosition()));
-					    	}
-					    	else {
-					    		//System.out.println("pkkkkkkkkkkkkkkkkkk");
-					    		if(minS==0){minS=distance(pS,cellule.getPosition()); }
-					    		else minS=Math.min(minS, distance(pS,cellule.getPosition()));
-					    	}
-					    }
-					
-				    if(cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y]!=null && cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on() instanceof Survivor&& 
-				    		cellule.getEntity_on().getMap().getGrid()[pO.x][pO.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
-					    	diffx=Math.abs(pO.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pO.y-cellule.getPosition().y);
-					    	//System.out.println("je suis dans le troisieme if");
-					    	if(diffx>diffy){
-					    		
-					    		if(minO==0){minO=distance(pO,cellule.getPosition()); }
-					    		else minO=Math.min(minO, distance(pO,cellule.getPosition()));
-					    	}
-					    	else {
-					    		if(minN==0){minN=distance(pO,cellule.getPosition());}
-					    		else minN=Math.min(minN, distance(pO,cellule.getPosition()));
-					    	}
-					    }
-					    if(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y]!=null && cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on() instanceof Survivor&& 
-					    		cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
-					    	diffx=Math.abs(pE.x-cellule.getPosition().x);
-					    	diffy=Math.abs(pE.y-cellule.getPosition().y);
-					    	System.out.println("je suis dans le fourth if");
-					    	System.out.println(pE.toString());
-					    	System.out.println(cellule.getEntity_on().getMap().getGrid()[pE.x][pE.y].getEntity_on().player!=cellule.getEntity_on().getPlayer());
-					    	if(diffx>diffy){
-					    		
-					    		if(minE==0){minE=distance(pE,cellule.getPosition());}
-					    		else minE=Math.min(minE, distance(pE,cellule.getPosition()));
-					    	}
-					    	else {
-					    	
-					    		if(minS==0){minS=distance(pE,cellule.getPosition());}
-					    		else minS=Math.min(minS, distance(pE,cellule.getPosition()));
-					    	}
-					    }
-					}
-									
-				}
+		switch(this.cible)
+		{
+		case "allie": this.id = id;  break; 
+		case "zombie": this.id = 0;  break;  
+		case "ennemi": this.id = id == 1? 2:1;  break; 
+		default : ;
 		}
-	
-		System.out.println(minN);
-		System.out.println(minE);
-		  System.out.println(minS);
-		  System.out.println(minO);
 		
-		  return parameter==direction(minN,minE,minS,minO);
-  
+		return scan(cellule);
 	}
 
+	/**
+	 * effectue le scan sur un décor
+	 * @param cellule case du personnage effectuant le scan
+	 * @return résultat du scan en fonction de la cible recherchée
+	 */
+	private boolean scan(Cell cellule)
+	{
+		//on définit un point temporaire qui permet d'analyser les cases aux alentours
+		Point point = new Point(cellule.getPosition());
+		Point closest = null;
+
+		Map map = cellule.getEntity_on().getMap();
+
+		for(int x=0 ; x<rayon ; x++)
+		{
+			for(int y=0 ; y<rayon-x ; y++)
+			{
+				Point temp = check_sym(point, new Point(x,y) , map);
+				if(closest == null) 
+					closest=temp;
+				else 
+					if(temp != null && temp.distance(point)<closest.distance(point))   closest = temp;
+			}
+		}
+		return calc_retour(point, closest)==parameter;
+	}
+
+	/**
+	 * calcule la valeur retournée par le scan
+	 * @param point point ciblant la cellule du personnage
+	 * @param closest cellule la plus proche vérifiant la condition 
+	 * @return char indiquant la direction de la cible la plus proche ou '0' si pas de cible
+	 */
+	private char calc_retour(Point point, Point closest)
+	{
+		System.out.println("Closest = "+ closest+" et point = "+point);
+		char res = '0';
+
+		if(closest != null)
+		{
+			int diffx = closest.x - point.x;
+			int diffy = closest.y - point.y;
+
+			if(Math.abs(diffx)>Math.abs(diffy))	
+				res = diffx>0? 'E':'O';
+				else res = diffy>0? 'S':'N';
+		}
+		
+		return res;
+	}
+
+	/**
+	 * Permet de vérifier les 4 points equidistants au personnage à partir d'un point initial
+	 * @param p point initial
+	 * @param map carte sur laquelle on fait cette vérification
+	 * @return point vérifiant la condition recherchée
+	 */
+	private Point check_sym(Point p, Point delta, Map map)
+	{
+		int h = map.getHeight();
+		int w = map.getWidth();
+		Point res = null;
+		Cell[][] grid = map.getGrid();
+		
+		// les coordonnées calculées ne sont pas très claires mais en gros c'est le point décalé de delta, et on applique le tor sur le résultat
+		int px = (p.x+delta.x+w)%w;
+		int py = (p.y+delta.y+h)%h;
+		if (check_point(grid[px][py])) res = new Point (px,py);
+
+		px = (p.x+delta.x*-1 +w)%w;
+		py = (p.y+delta.y+h)%h;
+		if(check_point(grid[px][py])) res = new Point(px,py);
+
+		px = (p.x+delta.x*-1 +w)%w;
+		py = (p.y+delta.y*-1 +h)%h;
+		if(check_point(grid[px][py])) res = new Point(px,py);
+
+		px = (p.x+delta.x +w)%w;
+		py = (p.y+delta.y*-1 +h)%h;
+		if(check_point(grid[px][py])) res = new Point(px,py);
+
+		return res;
+	}
+
+	/**
+	 * Permet de vérifier les 4 points equidistants au personnage à partir d'un point initial
+	 * @param id entier entre 0 et 2 représentant l'id du joueur recherché (ennemi, ami ou zombie)
+	 * @param p  point initial
+	 * @param map carte sur laquelle s'effectue la vérifiaction
+	 * @return point désignant l'emplacement d'un personnage recherché
+	 */
+/*	private Point check_sym(Point p, Map map)
+	{
+		Point res = null;
+		Cell[][] grid = map.getGrid();
+		if (check_point(grid[p.x][p.y], id)) res = p;
+		else if(check_point(grid[p.x*-1][p.y], id)) res = p;
+		else if(check_point(grid[p.x*-1][p.y*-1], id)) res = p;
+		else if(check_point(grid[p.x][p.y*-1], id)) res = p;
+
+		return res;
+	}
+	*/
+	/**
+	 * permet de savoir si la cible se trouve sur la cellule donnée
+	 * @param cellule cellule sur laquelle on vérifie la présence de la cible
+	 * @return vrai si le point en question désigne une cellule comportant la cible faux sinon
+	 */
+	private boolean check_point(Cell cellule)
+	{
+		if(decor == null)
+		{
+			Character ent_on = cellule.getEntity_on();
+			return ent_on != null && ent_on.getPlayer().getId() == id;
+		}
+		else
+			return cellule.getDecor() == decor;
 	}
 
 
+
+	
+	/**
+	 * effectue le scan sur la cible demandée (un personnage) à partir de la cellule donnée
+	 * @param cellule cellule du personnage appelant cette condition
+	 * @param id identifiant du joueur recherché
+	 * @return résultat du scan
+	 */
+/*	public boolean scan(Cell cellule)
+	{
+		//on définit un point temporaire qui permet d'analyser les cases aux alentours
+		Point point = new Point(cellule.getPosition());
+		Point closest = null;
+
+		Map map = cellule.getEntity_on().getMap();
+
+		for(int x=0 ; x<rayon ; x++)
+		{
+			for(int y=0 ; y<rayon-x ; y++)
+			{
+				Point temp = check_sym(point, map);
+				if(closest == null) closest=temp;
+				else if(temp.distance(point)<closest.distance(point))
+					closest = temp;
+			}
+		}
+		return calc_retour(point, closest)==parameter;
+	} */
+}

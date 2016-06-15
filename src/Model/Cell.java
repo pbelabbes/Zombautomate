@@ -47,7 +47,7 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch((int) (8*Math.random()))
+			switch(2)//(int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
@@ -88,7 +88,7 @@ public class Cell {
 		 */
 		public void setEntity_on(Character entity_on){
 			this.entity_on=entity_on;
-			entity_on.setCell(this);
+	//		entity_on.setCell(this);
 			return;
 		}
 		public void setOwned_by(Character owned_by){

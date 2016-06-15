@@ -228,7 +228,7 @@ public class Moteur {
 	/**
 	 * @param args
 	 */
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		//TODO demander à l'utilisateur d'entrer son fichier
 		
 		XMLReader fichier = new XMLReader() ;
@@ -280,7 +280,7 @@ public class Moteur {
 		
 		Map carte = create_map(lC);
 		carte.init_map();
-		carte.setAutomatas(lC, lP);
+//		carte.setAutomatas(lC, lP);
 
 		
 		carte.set_charact_position(lC);
@@ -300,6 +300,7 @@ public class Moteur {
 			ordo.melanger();
 			ordo.next_move();
 			compteur++;
+			carte.print_map();
 		}
 		System.out.println("Partie terminée");
 		if(j1.defeated())

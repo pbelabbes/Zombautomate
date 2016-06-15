@@ -205,4 +205,20 @@ public class Map extends Observable{
 		Zombie new_z = new Zombie(p0,a,map);
 		cellule.setEntity_on(new_z);
 	}
+	
+	public void print_map()
+	{
+		int h=getHeight();
+		int w=getWidth();
+		for (int y = 0 ; y< h ; y++)
+		{
+			for(int x = 0 ; x < w ; x++)
+			{
+				if(grid[x][y].getEntity_on()!=null)		System.out.printf("%d",grid[x][y].getEntity_on().getPlayer().getId());
+				else 	System.out.print(".");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 }

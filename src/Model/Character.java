@@ -139,6 +139,7 @@ public abstract class Character extends Observable {
 
 		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
+			this.cell.setEntity_on(null);
 			this.cell = cellule;
 			cellule.setEntity_on(this);
 		}
@@ -173,6 +174,14 @@ public abstract class Character extends Observable {
 //		showaround();
 		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
+			
+/*			Condition cond = cA[state][j].getCondition();
+			if(cond instanceof ScanLoin)	
+			{
+				((ScanLoin) cond).setRayon(this.getSightRange()); 
+				System.out.println(((ScanLoin) cond).getRayon());
+			}
+*/
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
 				List_cases.add(cA [state][j]);
@@ -185,7 +194,7 @@ public abstract class Character extends Observable {
 
 		if(List_cases.size()==0) return;
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
-
+System.out.println("List_cases.size() = "+ List_cases.size());
 		int k = 1;
 		int cle = 0;
 		if(List_cases.size()>1)
@@ -200,7 +209,8 @@ public abstract class Character extends Observable {
 				}
 			}	
 		}
-//		System.out.println(List_cases.get(cle).getCondition());
+		System.out.println(List_cases.get(cle).getCondition());
+if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
 		Action act = List_cases.get(cle).getAction();
 		char dir = List_cases.get(cle).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
@@ -218,7 +228,7 @@ public abstract class Character extends Observable {
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void attaquer(Cell cellule){
-
+System.out.println("J'attaque, nom de Dieu !");
 		
 		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire

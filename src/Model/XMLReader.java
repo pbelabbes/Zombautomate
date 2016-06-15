@@ -107,6 +107,7 @@ public class XMLReader {
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
+				case "Allie": return new ScanLoin("allie",s2[1].charAt(0));
 				case "Zombie": return new ScanLoin("zombie",s2[1].charAt(0));
 				case "Ennemi": return new ScanLoin("ennemi",s2[1].charAt(0));
 				case "Katana": return new ScanLoin(Decor.KATANA,s2[1].charAt(0));

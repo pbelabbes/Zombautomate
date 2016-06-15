@@ -21,7 +21,11 @@ let (guerrier: automate) =
   @
     presence_AD 1 Katana Ramasser 1 4
   @
-    [(0,Defaut,Deplacer,N,0,0)]
+    [(0,Defaut,Deplacer,E,1,0)]
+  @
+    [(1,Defaut,Deplacer,E,1,0)]
+  @
+    [(0,Defaut,Deplacer,N,1,0)]
   @
     [(1,Defaut,Deplacer,N,1,0)];;
 
@@ -66,7 +70,14 @@ let (automate_zombie: automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
+let (simplet:automate) = 
+  presence_AD 0 Ennemi Attaquer 0 3
+  @
+  scan_loin_AD 0 Ennemi Deplacer 0 2
+  @
+  [(0,Defaut, Deplacer, N, 0, 1)];;
+
 
 let equipe2 = [(guerrier,"guerrier") (*; (farmer,"farmer") *)];; 
-
+let equipe2 = [(simplet,"simplet")];;
 (* let equipe = [(automate_zombie, "zombie")];; *)
