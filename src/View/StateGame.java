@@ -33,13 +33,10 @@ public class StateGame extends StateBasedGame {
 		
 		Player j1 = new Player(1 ,"Joueur 1", 10);
 		Player j2 = new Player(2 ,"Joueur 2", 10);
-		
 		j1.setEntities(Moteur.CreateEntities(j1,liste1));
 		j2.setEntities(Moteur.CreateEntities(j2,liste2));
-		
 		lC.addAll(j1.getEntities());
 		lC.addAll(j2.getEntities());
-
 		return lC;
 
 	}
@@ -52,7 +49,8 @@ public class StateGame extends StateBasedGame {
 		Map carte = Moteur.create_map(lC);
 		carte.init_map(); 
 		addState(new MainScreenGameState());
-		addState(new WindowGame(lC,carte) ) ;
+		addState(new MenuTypeJeu()) ;
+		//addState(new WindowGame(lC,carte) ) ;
 	}
 	
 	public StateGame() {
@@ -71,7 +69,7 @@ public class StateGame extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
     	//ArrayList<Character> lC = jeu (1) ;
     	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
-        AppGameContainer app= new AppGameContainer(new StateGame(), 800, 600, false);
+        AppGameContainer app= new AppGameContainer(new StateGame(), 1300, 720, false);
        // wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
         app.start();
     }

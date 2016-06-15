@@ -21,7 +21,7 @@ import Model.*;
 
 public class WindowGame extends BasicGameState {
 	//
-	public static final int ID = 2;
+	public static final int ID = 0;
 	
     private GameContainer container;
     private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
@@ -46,7 +46,7 @@ public class WindowGame extends BasicGameState {
 	
 	@Override
 	public int getID() {
-		return 2;
+		return 0;
 	}
 
 	public void setScreenDimension(int width, int height){
