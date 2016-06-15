@@ -73,12 +73,12 @@ public class AutomataTest {
 			fail("case 1 1");
 		}
 	}
-
+/*
 	@Test
 	public void testProportion() {
 		
 		fail("Not yet implemented");
 	}
-
+*/
 
 }

@@ -187,7 +187,7 @@ public abstract class Character extends Observable {
 */
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
-				List_cases.add(cA [state][j]);
+				List_cases.add(cA[state][j]);
 //				i++;
 			}
 

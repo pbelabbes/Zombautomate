@@ -46,7 +46,8 @@ public class Moteur {
 					k++;
 				}
 				
-				remplirautomate[tr.getEtat_courant()][k] = new CaseAutomate(tr.getEtat_futur(), tr.getAction(), tr.getCondition(), tr.getPriority(), tr.getDirection());
+				remplirautomate[tr.getEtat_courant()][k] = 
+						new CaseAutomate(tr.getEtat_futur(), tr.getAction(), tr.getCondition(), tr.getPriority(), tr.getDirection());
 				
 			}
 			aut.setStates(remplirautomate);
