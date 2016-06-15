@@ -95,44 +95,147 @@ public class Map extends Observable{
 	 */
 	private void setAutomata(Automata a, Point pos, Character perso)
 	{
-		int gridheight = this.getHeight();
-		int gridwidth = this.getWidth();
-		System.out.println(gridheight);
-		System.out.println(gridwidth);
+		a.setPosition(pos);
 		
-		for(int x=0+pos.x ; x < a.getEtats()+pos.x; x++)
+		for(int x= pos.x ; x < a.getEtats()+pos.x; x++)
 		{
-			for(int y = 0+pos.y ; y < a.getInputs()+pos.y ; y++)
+			for(int y = pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
-				int x_r = x%gridheight; //x_reel (c'est un tor)
-				int y_r = y%gridwidth; //y_reel (c'est un tor)
-				
-				System.out.println(x_r);
-				System.out.println(y_r);
-				this.grid[x_r][y_r].setOwned_by(perso);
-				this.grid[x_r][y_r].setDecor(a.getStates()[x-pos.x][y-pos.y].getAction().getDecor());
-				this.grid[x_r][y_r].setPosition(pos);
+				CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
+				if(case_tempo!=null)
+				{	
+					this.grid[x][y].setOwned_by(perso);
+					this.grid[x][y].setDecor(case_tempo.getAction().getDecor());
+					this.grid[x][y].setPosition(pos);
+					
+
+				}
 			}
 		}
 	}
 
-	public void setAutomatas(ArrayList<Character> lC, ArrayList<Point> lP) //TODO générer cette liste de points qui determine les positions des automates sur la map
+	public void setAutomatas(ArrayList<Character> lC, ArrayList<Point> lP)
 	{
 		//on lit la liste dans un ordre aléatoire
 		Random rand_index = new Random();
 		
+		ArrayList<Character> lC_copie = new ArrayList<Character>();
+		lC_copie.addAll(lC);
+		
 		int i = 0;
 		rand_index.setSeed(System.currentTimeMillis());
 		
-		while(lC!=null)
+		while(lC_copie.size()>0)
 		{	
-			Character char_tempo = lC.get(rand_index.nextInt(lC.size()));
+			Character char_tempo = lC_copie.get(rand_index.nextInt(lC_copie.size()));
 			this.setAutomata(char_tempo.getAutomata(),lP.get(i),char_tempo);
+			lC_copie.remove(char_tempo);
 			i++;
 		}
+			
+	}
+	
+	/**
+	 * Place un personnage à la position indiquée
+	 * @param c personnage à placer
+	 * @param p position du personnage
+	 */
+	public void set_charact(Character c, Point p)
+	{
+		c.setMap(this);
+		c.setCell(this.getGrid()[p.x][p.y]);
+		this.getGrid()[p.x][p.y].setEntity_on(c);
+	}
+	
+	/**
+	 * @param lC -> Liste des personnages à placer
+	 * Place aléatoirement les personnages sur la map
+	 */
+	public void set_charact_position(ArrayList<Character> lC)
+	{
+		for(Character c : lC) 
+		{
+			int x,y;
+			do
+			{
+				x =(int) (this.getWidth()*Math.random());
+				y =(int) (this.getHeight()*Math.random());
+			}
+			while(this.getGrid()[x][y].getEntity_on()!=null);
+			this.set_charact(c,new Point(x,y));
+		}
+	}
+	
+	/**
+	 * affiche les positions de la carte qui sont reliées à un automate
+	 */
+	public void print_automatas()
+	{
+		for(int y = 0 ; y<getHeight() ; y++)
+		{
+			for(int x = 0 ; x<getWidth() ; x++)
+			{
+				if(this.grid[x][y].getOwned_by() != null)
+					System.out.printf("[%d][%d]"+this.grid[x][y].getOwned_by().toString() + " ",x,y);
+				else System.out.printf("[%d][%d] : libre (decor = "+this.grid[x][y].getDecor() + ") " ,x,y);
+			}
+			System.out.print("\n");
+		}
+	}
+	
+	/**
+	 * Fait apparaitre un zombie sur la cellule donnée. Il faut cependant être certain qu'aucune entité n'est présent sur l'emplacement indiqué
+	 * @param cellule cellule d'apparition du zombie
+	 * @param p0 Joueur 0 (controle les zombies)
+	 * @param a automate de zombie
+	 * @param map carte sur laquelle se déroule la partie
+	 */
+	public void pop_zombie(Cell cellule, Player p0, Automata a)
+	{
+		Zombie new_z = new Zombie(p0,a,this);
+		cellule.setEntity_on(new_z);
+	}
+	
+	public void random_pop_zombies(ArrayList<Character> lC, Player p0, int nb)
+	{
+		int dimx = getWidth();
+		int dimy = getHeight();
+		Automata auto_zombie = p0.getEntities().get(0).getAutomata();
+
 		
+		
+		for(int i = 0 ; i < nb ; i++)
+		{
+			Cell cellule;
+			do
+			{
+				int rand_x = (int) (dimx*Math.random());
+				int rand_y = (int) (dimy*Math.random());
+			
+			
+				cellule = grid[rand_x][rand_y];
+				
+			}while (cellule.getEntity_on()!=null);
+			
+			pop_zombie(cellule,p0, auto_zombie);
+			
+		}
 		
 	}
 	
-	
+	public void print_map()
+	{
+		int h=getHeight();
+		int w=getWidth();
+		for (int y = 0 ; y< h ; y++)
+		{
+			for(int x = 0 ; x < w ; x++)
+			{
+				if(grid[x][y].getEntity_on()!=null)		System.out.printf("%d",grid[x][y].getEntity_on().getPlayer().getId());
+				else 	System.out.print(".");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 }

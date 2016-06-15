@@ -1,62 +1,77 @@
 package Model;
-import java.awt.Point;
+//import java.awt.Point;
 import java.lang.String;
 
 public class Presence extends Condition {
-	
+
 
 	private char direction;
 	private String cible;
 	private Decor decor;
-	
+
+	/**
+	 * 
+	 * @param direction
+	 * @param cible
+	 */
 	Presence(char direction,String cible){
 
-		 this.direction=direction;
-		 this.cible=cible;
-		 decor = null;
-		}
-	Presence(char direction,Decor decor){
+		this.direction=direction;
+		this.cible=cible;
+		decor = null;
+	}
 
-		 this.direction=direction;
-		 this.decor=decor;
-		 cible = null;
-		}
+	/**
+	 * 
+	 * @param direction
+	 * @param decor
+	 */
 	
-	public boolean execute(Cell cellule){
-//TODO On pourrait réduire un peu le code en utilisant getTargetedCell
-			Point p=new Point(cellule.getPosition());
-			switch (direction){
-			case 'N': p.y=p.y-1;break;
-			case 'S': p.y=p.y+1;break;
-			case 'E': p.x=p.x+1;break;
-			case 'O': p.x=p.x-1;break;
-			
-			}	
-			
-	if(cellule.getEntity_on()!=null){
+	public Presence(char direction,Decor decor){
 
-		if(decor != null)
+		this.direction=direction;
+		this.decor=decor;
+		cible = null;
+	}
+
+ /**
+  * cette fonction permet de verifier si à la direction donnée on trouve le decor ou 
+  * la cible recherchée
+  * Cell cellule : on donne en parametre la cellule du  personnage 
+  */
+	public boolean execute(Cell cellule){
+
+		Cell targeted_cell = getTargetedCell(this.direction,cellule);
+		
+		if(this.decor != null)
 		{
-			return cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()==decor;	
+
+			return (targeted_cell.getDecor()==this.decor);	
 		}
 		else
 		{
-			switch (cible){
+			Character c1 = cellule.getEntity_on();
+			Character c2 = targeted_cell.getEntity_on();
 			
-			case "allié":if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) return true; 
-						 else return false;
-			case "zombie" :if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on() instanceof Zombie)return true; 
-						   else return false; 
-
-			case "ennemi" : if(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) return true; 
-							else return false;
-			default: return false;
-			}
-		}
-	}
-	else return false;
+			if(c2 != null)
+			{
+				switch (cible)
+				{
+				case "allie":if(c1.getPlayer()==c2.getPlayer()) return true; 
+				else return false;
+				case "zombie" :if(c2 instanceof Zombie)return true; 
+				else return false; 
 	
-	}
-			
+				case "ennemi" : 
+					if(c1 instanceof Zombie)
+						return (c1.getPlayer()!=c2.getPlayer());
+					else return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
+				
+				default: return false;
+				}
 		
+			} else return false;
+		}
+}
+	
 }

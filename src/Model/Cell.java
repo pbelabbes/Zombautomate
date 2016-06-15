@@ -4,6 +4,7 @@
 package Model;
 
 import java.awt.Point;
+import java.util.Random;
 
 /**
  * La classe cellule représente une case du plateau de jeu
@@ -35,12 +36,23 @@ public class Cell {
 		public Cell(){}
 		
 		/**
+		 * Cette fonction permet de renvoyer un double au hasard 
+		 * @param seed
+		 * @return
+		 */
+		public static double randomGenerator(long seed) {
+		    Random generator = new Random(seed);
+		    double num = generator.nextDouble() * (0.5);
+		    return num;
+		}
+		
+		/**
 		 * génère un décor aléatoire
 		 * @return Decor aléatoire
 		 */
 		private Decor randomDecor()
 		{
-			switch((int) Math.random()*8)
+			switch(2)//(int) (8*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
@@ -59,25 +71,45 @@ public class Cell {
 		public Decor getDecor(){
 			return this.decor;
 		}
+
+		
+		/**
+		 * @return personnage présent sur la cellule 
+		 */
 		public Character getEntity_on(){
 			return this.entity_on;
 		}
+		/**
+		 * 
+		 * @return personnage dont l'automate est relié à cette case
+		 */
 		public Character getOwned_by(){
 			return this.owned_by;
 		}
+		
+		/**
+		 * @return position de la cellule sur la map
+		 */
 		public Point getPosition(){
 			return this.position;
 		}
+		
 		
 		//setter
 		public void setDecor(Decor decor){
 			this.decor=decor;
 			return;
 		}
+		
+		/**
+		 * indique à la cellule et à l'entité qu'ils sont reliés entre eux
+		 * @param entity_on
+		 */
 		public void setEntity_on(Character entity_on){
 			this.entity_on=entity_on;
-			return;
+			if(entity_on!=null) entity_on.setCell(this);
 		}
+		
 		public void setOwned_by(Character owned_by){
 			this.owned_by=owned_by;
 			return;
@@ -93,13 +125,16 @@ public class Cell {
 		 * La fonction majAutomate permet de mettre à jour l'automate du joueur si la cellule appartient à son automate
 		 * Elle change uniquement l'action effectuée par le personnage dans son automate.
 		 */
+		
 		public void majAutomate(){
-			if (this.owned_by!=null){
-				Point poscell=this.position;
-				Point posaut=this.owned_by.getAutomata().getPosition();
-				int x= poscell.x-posaut.x;
-				int y= poscell.y-posaut.y;
-				this.owned_by.getAutomata().getStates()[x][y].setAction(this.decor.getAction());
+			if (this.owned_by != null)
+			{
+				Point poscell = this.position;
+				Point posaut = this.owned_by.getAutomata().getPosition();
+				int x = poscell.x-posaut.x;
+				int y = poscell.y - posaut.y ;
+				CaseAutomate cA = this.owned_by.getAutomata().getStates()[x][y];
+				if(cA != null) cA.setAction(this.decor.getAction());
 			}
 		}
 }

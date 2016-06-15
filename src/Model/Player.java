@@ -22,14 +22,19 @@ public class Player extends Observable{
 	public Player(){
 		
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param foodStock
+	 */
 	public Player(int id ,String name, int foodStock){
 		this.id = id ;
 		this.name = name;
 		//this.entities = entitie;
 		this.foodStock = foodStock ;
-		this.stone = 0;
-		this.seed= 0 ;
+		this.stone = 10;
+		this.seed= 10 ;
 	}
 
 	public int getId() {
@@ -56,7 +61,10 @@ public class Player extends Observable{
 		setChanged();
 		notifyObservers(this.entities);
 	}
-	
+	/**
+	 * cette fonction permet de rajouter de la nourriture au stock de nourriture du joueur 
+	 * @param plus
+	 */
 	public void addFoodStock (int plus){
 		this.foodStock = this.foodStock +plus;
 		setChanged();
@@ -66,10 +74,10 @@ public class Player extends Observable{
 	public int getFoodStock() {
 		return foodStock;
 	}
-	/*public void setFoodStock(int foodStock) {
-		this.foodStock = foodStock;
-	}*/
-	
+	/**
+	 * cette fonction permet de rajouter des cailloux au stock de cailloux su joueur 
+	 * @param plus
+	 */
 	public void addStone(int plus){
 		this.stone=this.stone+plus;
 		setChanged();
@@ -79,11 +87,10 @@ public class Player extends Observable{
 	public int getStone() {
 		return stone;
 	}
-	/*public void setStone(int stone) {
-		this.stone = stone;
-	}
-	*/
-	
+/**
+ * 	cette fonction permet de rajouter des graines au stock de graine su joueur
+ * @param plus
+ */
 	public void addSeed(int plus){
 		this.seed=this.seed+plus;
 		setChanged();
@@ -93,9 +100,36 @@ public class Player extends Observable{
 	public int getSeed() {
 		return seed;
 	}
-	/*public void setSeed(int seed) {
-		this.seed = seed;
+	
+/**
+ * cette fonction permet d'afficher un player 
+ */
+	public void show() {
+		System.out.println("id = "+Integer.toString( id));
+		System.out.println("name =" + name );
+		
+		for (Character ch : entities){
+			System.out.println("\tcharactère nb :" +entities.indexOf(ch));
+			ch.showstat();
+			System.out.println("\n");
+		}
+		System.out.println("foodstock = "+Integer.toString( foodStock));
+		System.out.println("stone = "+Integer.toString(stone));
+		System.out.println("seed = "+Integer.toString(seed));
 	}
-	*/
+
+	/**
+	 * verifie si le joueur a perdu.
+	 * @return true si aucune entité n'est encore en vie. faux sinon
+	 */
+	public boolean defeated()
+	{
+		for(Character c : this.entities)
+		{
+			if(c.is_alive()) return false;
+		}
+		return true;
+
+	}
 	
 }

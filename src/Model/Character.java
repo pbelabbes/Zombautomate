@@ -24,14 +24,14 @@ public abstract class Character extends Observable {
 	 * int state: l'etat dans lequel se trouve le caractère. 
 	 */
 	//Attributs
-	private int hp ;//points de vie
-	private int sight_range; //portée de vision
-	private Player player;
-	private int strength ; 
-	private Cell cell;
-	private Automata automata;
-	private Map map;
-	private int state;
+	protected int hp ;//points de vie
+	protected int sight_range; //portée de vision
+	protected Player player;
+	protected int strength ; 
+	protected Cell cell;
+	protected Automata automata;
+	protected Map map;
+	protected int state;
 	
 	/**
 	 * Constructeur
@@ -39,36 +39,43 @@ public abstract class Character extends Observable {
 	 * @param automata
 	 * @param map
 	 */
-//	public Character(Player player, Automata automata) {
-//		this.hp=100;
-//		this.strength=1;
-//		this.player=player;
-//		this.automata=automata;
-//		this.sight_range = 2;
-//	}
 	
 	public Character(Player player, Automata automata, Map map) {
-		this.hp=100;
+		this.hp=10;
 		this.strength=1;
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 2;
+		this.sight_range = 20;
 		this.state = 0;
 	}
+	
+	/**
+	 * execute l'action indiquée par le type Action dans la direction donnée
+	 * @param action
+	 * @param direction
+	 */
+	public abstract void act(Action action, char direction);
+
 	
 	public int getHp() {
 		return hp;
 	}
+	
+	/**
+	 * Retire de la vie au personnage
+	 * @param moins : Montant de vie retiré au personnage
+	 */
 	public void supHp(int moins){
 		this.hp=this.hp-moins;
+		if(!is_alive())
+			cell.setEntity_on(null);
+		
 		setChanged();
 		notifyObservers(this.hp);
 	}
-	/*public void setHp(int hp) {
-		this.hp = hp;
-	}
-*/
+
+	
 	public Player getPlayer() {
 		return player;
 	}
@@ -124,67 +131,171 @@ public abstract class Character extends Observable {
 	 * La fonction deplacer permet de déplacer le personnage dans une direction (Nord, Sud, Est, Ouest)
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action.
 	 */
-	public void deplacer (char direction) {
-		int x,y;
-		x=this.cell.getPosition().x;
-		y=this.cell.getPosition().y;
-		switch (direction){
-		//on modifie la position et donc la cellule du personnage
-		case 'O': this.cell=map.getGrid()[x+1][y] ;break;
-		case 'S': this.cell=map.getGrid()[x][y+1] ;break;
-		case 'N': this.cell=map.getGrid()[x][y-1] ;break;
-		case 'E': this.cell=map.getGrid()[x-1][y] ;break; 
-		default : //throw new Require ("visible"); 
-			     break;
-		}	
-	}
-	
-	// Verifie si un personnage est vivant
-	public boolean is_alive () {
-		if (hp > 0){
-			return true;
+	public void deplacer (Cell cellule) {
+
+		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
+		{
+			this.cell.setEntity_on(null);
+			this.cell = cellule;
+			cellule.setEntity_on(this);
 		}
-		else return false;
 	}
 	
-	
-	//Fait faire sa prochaine action a un personnage
 	/**
-	 * 
+	 * la fonction is_alive verifie si un personnage est vivant
+	 * @return true si un personnage est vivant
+	 */
+	public boolean is_alive () 
+	{
+		return hp>0;
+	}
+
+	public abstract void eat();
+	
+	/**
+	 * La fonction play fait faire sa prochaine action à un personnage
+	 * Elle récupère la condition de l'état courant puis vérifie quelles sont les transitions possibles
+	 * Elle choisi la transition en fonction des priorité puis effectue l'action associée à la transition
 	 */
 	public void play (){
 		
-		ArrayList<caseAutomate> List_cases = new ArrayList<caseAutomate>();
-		int i=0;
+		ArrayList<CaseAutomate> List_cases = new ArrayList<CaseAutomate>();
 		int j=0;
-		caseAutomate [][] cA = automata.getStates();
+		CaseAutomate [][] cA = automata.getStates();
 		
-		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
-		automata.getEtatCourant();
-		while (cA[i][j] != null){
-			while (cA[i][j] != null){
-				if (cA[i][j].getCondition().execute(this.getCell())){
-					List_cases.add(cA [i][j]);
-					i++;
-				}
+		while ( j < this.automata.getInputs() && cA[state][j] != null)
+		{
+			if (cA[state][j].getCondition().execute(this.getCell()))
+			{
+				List_cases.add(cA[state][j]);
+//				i++;
+
 			}
-		i = 0;
-		j++;
+			j++;
 		}
-		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+
+		if(List_cases.size()==0) return;
+
 		int k = 1;
 		int cle = 0;
-		while ( k!= List_cases.size()){
-			if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
-				k++;
-			}
-			else { 
-				cle = k;
-				k++;
-			}
-		}	
-		List_cases.get(cle).getAction();
+		if(List_cases.size()>1)
+		{
+			while ( k != List_cases.size()){
+				if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
+					k++;
+				}
+				else { 
+					cle = k;
+					k++;
+				}
+			}	
+		}
+     if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
+		Action act = List_cases.get(cle).getAction();
+		char dir = List_cases.get(cle).getDirection();
+		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
 		state = (List_cases.get(cle)).getEtatfutur();
 	}
 
+
+	
+	
+	/**
+	 * La fonction attaquer porte un coup vers la case indiquée
+	 * Si un ennemi est present sur cette case, il perd des points de vie
+	 * Si il y a un rock sur cette case elle se casse et on découvre soit un katana soit un lapin à sa place
+	 * Sinon rien ne se passe
+	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
+	 */
+	public void attaquer(Cell cellule){
+System.out.println("J'attaque, nom de Dieu !");
+		
+		if (cellule.getEntity_on()!=null){
+			//On enlève des points de vie à l'adversaire
+			cellule.getEntity_on().supHp(this.getStrength());
+		}
+		else 
+		{
+			if (cellule.getDecor()==Decor.ROCK){
+				int r= (int)(Math.random()*10);
+				if (r<2)		cellule.setDecor(Decor.RABBIT);
+				else if (r<4)	cellule.setDecor(Decor.KATANA);
+				else			cellule.setDecor(Decor.GRASS);
+
+			}
+			else if(cellule.getDecor()==Decor.TREE)
+			{
+				int r = (int) (Math.random()*10);
+				if(r<5)			cellule.setDecor(Decor.APPLE);
+				else if(r<8)	cellule.setDecor(Decor.BASEBALL_BAT);
+				else			cellule.setDecor(Decor.GRASS);
+
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * @return nom du joueur auquel appartient le personnage
+	 */
+	public String toString()
+	{
+		return this.getPlayer().getName();
+	}
+	
+	/**
+	 * cette fonction renvoie la cellule qui est a une direction 
+	 * direction de la cellule passé en parametre
+	 * @param direction
+	 * @param cellule
+	 * @return
+	 */
+	protected Cell getTargetedCell(char direction, Cell cellule )
+	{
+		Point p = new Point(cellule.getPosition());
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
+		switch(direction)
+		{
+		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
+		case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
+		case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
+		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		
+		}
+		return this.map.getGrid()[p.x][p.y];
+	}
+
+/**
+ * Cette fonction sert a afficher les caracteristiques d'un personnage
+ */
+	public void showstat(){
+		System.out.println("\thp = "+Integer.toString(hp) );//points de vie
+		System.out.println("\tsight range  = "+ Integer.toString(sight_range)); //portée de vision
+		
+		System.out.println("\tstrength = "+Integer.toString( strength)) ; 
+		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
+		
+	}
+	/**
+	 * cette fonction permet d'afficher le decor des cellules adjacentes 
+	 */
+	public void showaround(){
+		int x,y;
+		x=this.cell.getPosition().x;
+		y=this.cell.getPosition().y;
+		Cell[][] tab = this.map.getGrid() ;
+		int mapheight = this.map.getHeight();
+		int mapwidth = this.map.getWidth();
+		System.out.println("Cell N = " + tab[x][(y-1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell E = " + tab[(x+1+mapwidth)%mapwidth][y].getDecor());
+		System.out.println("Cell S = " + tab[x][(y+1+mapheight)%mapheight].getDecor());
+		System.out.println("Cell O = " + tab[(x-1+mapwidth)%mapwidth][y].getDecor());
+	}
+
+
+
 }
+
+

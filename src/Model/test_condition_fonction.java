@@ -26,92 +26,143 @@ public class test_condition_fonction {
 		
 		
 		
-		Player j1 = new Player();
+		Player j1 = new Player( 1,"toto", 20);
 
 		Survivor perso_test = new Survivor(j1,null,carte);
+		Survivor allie = new Survivor(j1,null,carte);
+
 		l1.add(perso_test);
+		l1.add(allie);
 		perso_test.setStrength(12);
-		j1.setId(1);
 		j1.setEntities(l1);
 
 		
-		Player j2 = new Player();
+		Player j2 = new Player(2,"tata",20);
 		
 		Survivor ennemi_cible = new Survivor(j2,null,carte);
 		Survivor ennemi_cible2 = new Survivor(j2,null,carte);
 		l2.add(ennemi_cible2);
 		l2.add(ennemi_cible);
-	
-		j2.setId(2);
+		
 		j2.setEntities(l2);
 		
-		
+		Point poscell=new Point (1,1);
 		Cell cellule_temporaire = new Cell();
+		cellule_temporaire.setPosition(poscell);
 		cellule_temporaire.setDecor(Decor.KATANA);
 		cellule_temporaire.setEntity_on(ennemi_cible);
 		cellule_temporaire.setOwned_by(perso_test);
 		//System.out.println(cellule_temporaire.getOwned_by()==null);
-		cellule_temporaire.setPosition(new Point(2,3));
+		//cellule_temporaire.setPosition(new Point(2,3));
 		ennemi_cible.setCell(cellule_temporaire);
 		
 		carte.setCell(cellule_temporaire);
 		//System.out.println(carte.getGrid()[2][3]==cellule_temporaire);
+		poscell=new Point();
+		poscell.x=1;
+		poscell.y=2;
+		Cell cellule = new Cell(poscell);
+		cellule.setDecor(Decor.RABBIT);
+		cellule.setEntity_on(perso_test);
+		cellule.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(2,4));
+		perso_test.setCell(cellule_temporaire);
 		
-		cellule_temporaire = new Cell();
-		cellule_temporaire.setDecor(Decor.RABBIT);
-		cellule_temporaire.setEntity_on(perso_test);
+		carte.setCell(cellule_temporaire);
+		poscell=new Point();
+		poscell.x=2;
+		poscell.y=2;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.KATANA);
+		cellule_temporaire.setEntity_on(null);
 		cellule_temporaire.setOwned_by(null);
-		cellule_temporaire.setPosition(new Point(2,4));
+		//cellule_temporaire.setPosition(new Point(1,4));
+		
+		carte.setCell(cellule_temporaire);
+		poscell=new Point();
+		poscell.x=9;
+		poscell.y=9;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.APPLE);
+		cellule_temporaire.setEntity_on(ennemi_cible2);
+		//cellule_temporaire.setPosition(new Point(3,4));
+		
+		carte.setCell(cellule_temporaire);
+		poscell=new Point();
+		poscell.x=3;
+		poscell.y=3;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(2,5));
+		
+		carte.setCell(cellule_temporaire);
+		poscell=new Point();
+       poscell.x=3;
+       poscell.y=0;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+	
+	
+		poscell=new Point();
+        poscell.x=2;
+        poscell.y=4;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.APPLE);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+		
+		poscell=new Point();
+        poscell.x=1;
+        poscell.y=6;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.APPLE);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(0,4));
+		
+		carte.setCell(cellule_temporaire);
+		
+		poscell=new Point();
+		poscell.x=9;
+		poscell.y=2;
+		cellule_temporaire = new Cell(poscell);
+		cellule_temporaire.setDecor(Decor.RABBIT);
+		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setOwned_by(null);
+		//cellule_temporaire.setPosition(new Point(2,4));
 		perso_test.setCell(cellule_temporaire);
 		
 		carte.setCell(cellule_temporaire);
 		
-		
-		cellule_temporaire = new Cell();
-		cellule_temporaire.setDecor(Decor.KATANA);
-		cellule_temporaire.setEntity_on(null);
-		cellule_temporaire.setOwned_by(null);
-		cellule_temporaire.setPosition(new Point(1,4));
-		
-		carte.setCell(cellule_temporaire);
-		
-		
-		cellule_temporaire = new Cell();
-		cellule_temporaire.setDecor(Decor.APPLE);
-		cellule_temporaire.setEntity_on(ennemi_cible2);
-		cellule_temporaire.setPosition(new Point(3,4));
-		
-		carte.setCell(cellule_temporaire);
-		
-		
-		cellule_temporaire = new Cell();
+		poscell=new Point();
+		poscell.x=9;
+		poscell.y=2;
+		cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
-		cellule_temporaire.setEntity_on(null);
+		cellule_temporaire.setEntity_on(allie);
 		cellule_temporaire.setOwned_by(null);
-		cellule_temporaire.setPosition(new Point(2,5));
+		perso_test.setCell(cellule_temporaire);
 		
 		carte.setCell(cellule_temporaire);
+		ScanLoin c = new ScanLoin("allie",'O');
+		//c.execute(cellule);
+       
+		c.setRayon(8);
+		//System.out.println(cellule.getEntity_on().getMap().getGrid()[2][2].getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer());
+		System.out.println(c.execute(cellule));
 		
-
-		cellule_temporaire = new Cell();
-		cellule_temporaire.setDecor(Decor.BASEBALL_BAT);
-		cellule_temporaire.setEntity_on(null);
-		cellule_temporaire.setOwned_by(null);
-		cellule_temporaire.setPosition(new Point(0,4));
-		
-		carte.setCell(cellule_temporaire);
-		
-		
-		
-		
-		Condition_fonction c = new Condition_fonction();
-
-
-		
-		System.out.println(c.presence('N', j1, perso_test.getCell().getPosition(),carte));
-		
-		System.out.println(perso_test.getSightRange());
-		System.out.println(c.Scanloin(perso_test.getSightRange(),Decor.BASEBALL_BAT,carte,new Point(2,4))); //probleme sur scanLoin
+		//System.out.println(perso_test.getSightRange());
+		//System.out.println(c.Scanloin(perso_test.getSightRange(),Decor.BASEBALL_BAT,carte,new Point(2,4))); //probleme sur scanLoin
 	}
 
 }

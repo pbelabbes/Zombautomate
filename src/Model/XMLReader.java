@@ -51,13 +51,15 @@ public class XMLReader {
 	 * @return Condition :la condition
 	 */
 	public Condition toCondition(Node Ncondi){
-		//System.out.println("Noeuud paramètre = " + Ncondi.getNodeName()) ;
+		//System.out.println("Noeuud paramï¿½tre = " + Ncondi.getNodeName()) ;
 		Condition c1,c2;
 		String s;
 		String[] s1,s2;
 		s=Ncondi.getFirstChild().getFirstChild().getNodeValue();
 //		s=Ncondi.getTextContent();
-		System.out.println(s);
+//		System.out.println(s);
+		
+//		System.out.println(s);
 		
 		switch(s){
 		case "Et": 
@@ -80,7 +82,9 @@ public class XMLReader {
 			c2= toCondition(Ncondi.getFirstChild().getNextSibling().getNextSibling());
 			
 			
-			return (new Ou(c1,c2));		
+			return (new Ou(c1,c2));
+		case "Defaut" : 
+			return new Defaut() ;			
 		default:
 			s=s.substring(0, s.length());
 			s1=s.split("\\(", 2);
@@ -103,6 +107,7 @@ public class XMLReader {
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
+				case "Allie": return new ScanLoin("allie",s2[1].charAt(0));
 				case "Zombie": return new ScanLoin("zombie",s2[1].charAt(0));
 				case "Ennemi": return new ScanLoin("ennemi",s2[1].charAt(0));
 				case "Katana": return new ScanLoin(Decor.KATANA,s2[1].charAt(0));
@@ -136,7 +141,7 @@ public class XMLReader {
 			case "Case_ennemie": 
 				return new Linked_cell(s2[0].charAt(0),'E');
 			case "Case_neutre": 
-				return new Linked_cell(s2[0].charAt(0),'N');
+				return new Linked_cell(s2[0].charAt(0),'N'); 
 			default: System.out.println("error invalid argument condition : "+s1[0]);
 			}
 			return null;
@@ -145,7 +150,7 @@ public class XMLReader {
 
 	
 	//constructeur
-	XMLReader(){}
+	public XMLReader(){}
 	
 
 
@@ -154,7 +159,7 @@ public class XMLReader {
 	 * La fonction read lit entiÃ¨rement le fichier XML et renvoie une liste de transfer 
 	 * @return une liste de transfer 
 	 */
-	ArrayList<ArrayList<transfer>> read (String path){ // file name 
+	public ArrayList<ArrayList<transfer>> read (String path){ // file name 
 
 		 
 		System.out.println("bonjour");
@@ -227,18 +232,18 @@ public class XMLReader {
 		ArrayList<transfer> L2 =null; 
 		
 
-		//recup la liste des autaomes.
+		//recup la liste des automates.
 		NodeList Nautomate = racine.getChildNodes();
 		
 		int nbNoeudsAutomate = Nautomate.getLength();
 		 
-		// Se place sur le premier noueds automate.
+		// Se place sur le premier noeuds automate.
 	//    nodeAuto = racine.getFirstChild(); 
 		
 			
 		//System.out.println(Integer.toString(nbNoeuds));
 		
-		// parcour la liste des transition.
+		// parcours la liste des transitions.
 		for (int i = 0; i<nbNoeudsAutomate; i++) {
 
 //		    System.out.println(Nautomate.item(i).getNodeName());

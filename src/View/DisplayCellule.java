@@ -12,30 +12,26 @@ import Model.Decor;
 
 public class DisplayCellule extends Display implements Observer {
 
-	public static final int SIZE = 64;
-	Cell cellule;
+	public static final int SIZE = 32;
+	public static SpriteSheet SPRITE = null;
+	public static Animation[] ANIMATIONS = null;
+	public static boolean UPDATE = false;
+
+	private Cell cellule;
 
 	public DisplayCellule(float posX, float posY, Cell c) throws SlickException{
-		super(posX, posY, setSpriteSheet(c.getDecor()), 1);
+		super(posX, posY, setSpriteSheet(), 8);
 		this.cellule = c;
 
 	}
 
-	private static SpriteSheet setSpriteSheet(Decor d) throws SlickException{
-		String spritePath ="ressources/map/decors/sprite/";
-		switch(d){
-
-		case ROCK : spritePath += "rock.png";break;
-		case GRASS : spritePath += "grass.png";break;
-		case RABBIT : spritePath += "rabbit.png";break;
-		case APPLE : spritePath += "apple.png";break;
-		case BASEBALL_BAT : spritePath += "baseball_bat.png";break;
-		case KATANA : spritePath += "katana.png";break;
-		case TREE : spritePath += "tree.png";break;
-		case SPROUT : spritePath += "sprout.png";break;
+	private static SpriteSheet setSpriteSheet() throws SlickException{
+		if(SPRITE == null){
+			String spritePath = "ressources/map/tuiles/terrain_atlas_2.png";
+			SPRITE = new SpriteSheet(spritePath, SIZE, SIZE);
 		}
 
-		return new SpriteSheet(spritePath, 64, 64);
+		return SPRITE;
 	}
 
 	@Override
@@ -46,14 +42,34 @@ public class DisplayCellule extends Display implements Observer {
 
 	@Override
 	public void initAnimations() {
-		// TODO Auto-generated method stub
-		
+		if( ANIMATIONS == null ){
+			this.animations[0] = loadAnimation(sprite, 0, 1, 25); // Grass
+			this.animations[1] = loadAnimation(sprite, 26, 27, 25); //Rock
+			this.animations[2] = loadAnimation(sprite, 12, 13, 24); //Apple ( Tomato )
+			this.animations[3] = loadAnimation(sprite, 14, 15, 27); //Sprout
+			this.animations[4] = loadAnimation(sprite, 13, 14, 31); //Tree
+			this.animations[5] = loadAnimation(sprite, 10, 11, 5); //Katana
+			this.animations[6] = loadAnimation(sprite, 23, 24, 20); //Baseball_bat
+			this.animations[7] = loadAnimation(sprite, 15, 16, 15);//Rabbit
+			ANIMATIONS = this.animations;
+		}else this.animations = ANIMATIONS;
 	}
 
 	@Override
 	public Animation getCurrentAnimation() {
-		// TODO Auto-generated method stub
-		return null;
+		Animation selected;
+		switch(this.cellule.getDecor())
+		{
+			case ROCK : selected = this.animations[1];break;
+			case APPLE : selected = this.animations[2];break;
+			case SPROUT : selected = this.animations[3];break;
+			case TREE : selected = this.animations[4];break;
+			case KATANA : selected = this.animations[5];break;
+			case BASEBALL_BAT : selected = this.animations[6];break;
+			case RABBIT : selected = this.animations[7];break;
+			default : selected = this.animations[0]; 
+		}
+		return selected;
 	}
 
 }
