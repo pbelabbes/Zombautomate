@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -137,11 +138,13 @@ public class WindowGame extends BasicGameState {
     	    }
     }
     
-    /*public static void main(String[] args) throws SlickException {
-    	ArrayList<Character> =jeu (1) ;
-    	WindowGame wg = new WindowGame(lC , Moteur.create_map(lC ).init_map().setAutomate();
-        AppGameContainer app= new AppGameContainer(wg,1920,1080,false);
+    public static void main(String[] args) throws SlickException {
+    	ArrayList<Character> lC = StateGame.jeu(1) ; 
+		Map carte = Moteur.create_map(lC);
+		carte.init_map(); 
+    	WindowGame wg = new WindowGame(lC , carte);
+        AppGameContainer app= new AppGameContainer((Game) wg,1920,1080,false);
         wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
         app.start();
-    }*/
+    }
 }

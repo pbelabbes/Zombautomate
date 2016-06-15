@@ -25,8 +25,6 @@ public class StateGame extends StateBasedGame {
 	 * 
 	 */
 	public static ArrayList<Character> jeu ( int mode ){
-		
-		
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
 		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
@@ -42,10 +40,8 @@ public class StateGame extends StateBasedGame {
 		lC.addAll(j1.getEntities());
 		lC.addAll(j2.getEntities());
 
-		
 		return lC;
-		
-		
+
 	}
 	
 	
@@ -73,7 +69,7 @@ public class StateGame extends StateBasedGame {
 //	}
 	
 	public static void main(String[] args) throws SlickException {
-    	ArrayList<Character> lC = jeu (1) ;
+    	//ArrayList<Character> lC = jeu (1) ;
     	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
         AppGameContainer app= new AppGameContainer(new StateGame(), 800, 600, false);
        // wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
