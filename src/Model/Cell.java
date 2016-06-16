@@ -51,14 +51,14 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch(7) //(int) (40*Math.random()))
+			switch((int) (40*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
 			case 2 : return Decor.TREE;
 			case 3 : return Decor.KATANA;
 			case 4 : return Decor.RABBIT;
-			case 5 :;// return Decor.ROCK;
+			case 5 : return Decor.ROCK;
 			case 6 : return Decor.SPROUT;
 			case 7 : 
 			default :return Decor.GRASS; 
