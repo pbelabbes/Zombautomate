@@ -98,15 +98,16 @@ public class StateGame extends StateBasedGame {
 				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 				lC.addAll(j2.getEntities());
 		}
-		ArrayList<ArrayList<transfer>> equipe1=fichier.read(fich1);
-		
+		//ArrayList<ArrayList<transfer>> equipe1=fichier.read(fich1);
+		/*
 		Player j1 = new Player(1 ,"Joueur 1", 10);
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
-		lC.addAll(j1.getEntities());
+		lC.addAll(j1.getEntities());*/
 		
 	}
 	
 		return lC;
+
 	}
 
 	
@@ -179,18 +180,19 @@ public static Player getZombies(){
 	return j0;
 }
 
-@Override
+
 /**
  * 
  * @param arg0
  * @throws SlickException
  */
-public void initStatesList(GameContainer arg0) throws SlickException {
-	ArrayList<Character> lC = jeu (1) ; 
-	Map carte = Moteur.initiate_map(lC, getZombies());
-	addState(new MainScreenGameState());
-	addState(new MenuTypeJeu()) ;
-	addState(new ContinueMenutypeJeu());
+	public void initStatesList(GameContainer arg0) throws SlickException {
+		ArrayList<Character> lC = jeu (1) ; 
+		Map carte = Moteur.initiate_map(lC, getZombies());
+		addState(new EcranDeValidation());
+		addState(new MainScreenGameState());
+		addState(new MenuTypeJeu()) ;
+		addState(new ContinueMenutypeJeu());
 	//	addState(new WindowGame(lC,carte) ) ;
 }
 
