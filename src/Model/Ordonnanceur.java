@@ -86,16 +86,17 @@ public class Ordonnanceur {
 	
 	public void next()
 	{
-		if(Ordonnee.size()>=indice)
+		if(Ordonnee.size()>indice)
 		{
 			Character c = Ordonnee.get(indice);
 			if(c.is_alive())
 			{
-				c.eat();
 				case_auto = c.getTransition();
 				c.act(getAction(), getDirection());
-				indice++;
+				c.eat();
+				
 			}
+			indice++;
 		}
 		else
 		{

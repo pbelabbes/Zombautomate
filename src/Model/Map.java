@@ -231,9 +231,9 @@ public class Map extends Observable{
 		{
 			for(int x = 0 ; x < w ; x++)
 			{
-				grid[x][y].print_cell();
-//				if(grid[x][y].getEntity_on()!=null)		System.out.printf("%d",grid[x][y].getEntity_on().getPlayer().getId());
-//				else 	System.out.print(".");
+//				grid[x][y].print_cell();
+				if(grid[x][y].getEntity_on()!=null)		System.out.printf("%d",grid[x][y].getEntity_on().getPlayer().getId());
+				else 	System.out.print(".");
 			}
 			System.out.println();
 		}
