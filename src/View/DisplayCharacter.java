@@ -24,7 +24,7 @@ public abstract class DisplayCharacter extends Display implements Observer {
 		}
 
 	public void initAnimations(){
-		 this.animations[0] = loadAnimation(sprite, 0, 1, 0);
+			this.animations[0] = loadAnimation(sprite, 0, 1, 0);
 		    this.animations[1] = loadAnimation(sprite, 0, 1, 1);
 		    this.animations[2] = loadAnimation(sprite, 0, 1, 2);
 		    this.animations[3] = loadAnimation(sprite, 0, 1, 3);
