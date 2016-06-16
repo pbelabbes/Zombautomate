@@ -14,7 +14,7 @@ public class Presence extends Condition {
 	 * @param direction
 	 * @param cible
 	 */
-	Presence(char direction,String cible){
+	public Presence(char direction,String cible){
 
 		this.direction=direction;
 		this.cible=cible;
