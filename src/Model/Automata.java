@@ -134,7 +134,7 @@ public class Automata {
 	
 	
 	/**
-	 * Cette fonction permet de remplir un automate a partir d'une liste
+	 * Cette fonction permet de remplir un automate a partir d'une liste de transferts
 	 * @param liste
 	 */
 	public void automate(ArrayList<transfer> liste){

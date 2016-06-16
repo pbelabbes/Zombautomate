@@ -121,7 +121,8 @@ public class Survivor extends Character{
 	 * @param cellule
 	 */
 	private void weapon_usury(){ 
-		weapon.get(0).setUsure(weapon.get(0).getUsure()-1);
+		if (this.weapon.size()>0)
+			weapon.get(0).setUsure(weapon.get(0).getUsure()-1);
 		
 		}
 	
