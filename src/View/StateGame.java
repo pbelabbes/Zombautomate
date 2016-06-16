@@ -32,13 +32,13 @@ public class StateGame extends StateBasedGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writter");
 		} catch (IOException e) {
@@ -46,7 +46,7 @@ public class StateGame extends StateBasedGame {
 		}
 		return "";
 	}
-	
+
 	/*
 
 	 * fonction qui lit les xml et revnoi la liste des charactere
@@ -59,10 +59,10 @@ public class StateGame extends StateBasedGame {
 	public static ArrayList<Character> jeu ( int mode ){
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
-		
+
 		//String path = demandeautomate("../Zombautomate/ocaml/user1.ml");
-		
-		
+
+
 		/*try {
 			Runtime.getRuntime().exec(new String[]{"cat" ,"../Zombautomate/ocaml/equipe1.xml", ">>", "../Zombautomate/ocaml/test.xml" });
 		} catch (IOException e) {
@@ -70,7 +70,7 @@ public class StateGame extends StateBasedGame {
 		}*/
 		String fich2;
 		String fich1 ;
-	if(mode ==1 || mode==2){	
+		
 		if(mode ==1|| mode==4){
 			if(mode==4){
 				try {
@@ -89,6 +89,7 @@ public class StateGame extends StateBasedGame {
 						Runtime.getRuntime().exec("rm "+"V2_user2");
 					} catch (IOException e) {
 						e.printStackTrace();
+					}
 			 }
 			    fich1 =demandeautomate("V2_user1");
 				fich2=demandeautomate("V2_user2");
@@ -108,58 +109,63 @@ public class StateGame extends StateBasedGame {
 		return lC;
 	}
 
-	/**
-	 * Cette fonction permet d'initialiser le joueur du zombie
-	 * @return
-	 */
-	public static Player getZombies(){
-		XMLReader fichier = new XMLReader() ;
-		
-		ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
-		Player j0= new Player(0,"Joueur 0",10);
-		j0.setEntities(Moteur.CreateEntities(j0,equipezombie));
-		
-		return j0;
-	}
 	
-	@Override
-	/**
-	 * 
-	 * @param arg0
-	 * @throws SlickException
-	 */
-	public void initStatesList(GameContainer arg0) throws SlickException {
-		ArrayList<Character> lC = jeu (1) ; 
-		Map carte = Moteur.initiate_map(lC, getZombies());
-		addState(new MainScreenGameState());
-		addState(new MenuTypeJeu()) ;
-		addState(new ContinueMenutypeJeu());
+
+
+	
+
+/**
+ * Cette fonction permet d'initialiser le joueur du zombie
+ * @return
+ */
+public static Player getZombies(){
+	XMLReader fichier = new XMLReader() ;
+
+	ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
+	Player j0= new Player(0,"Joueur 0",10);
+	j0.setEntities(Moteur.CreateEntities(j0,equipezombie));
+
+	return j0;
+}
+
+@Override
+/**
+ * 
+ * @param arg0
+ * @throws SlickException
+ */
+public void initStatesList(GameContainer arg0) throws SlickException {
+	ArrayList<Character> lC = jeu (1) ; 
+	Map carte = Moteur.initiate_map(lC, getZombies());
+	addState(new MainScreenGameState());
+	addState(new MenuTypeJeu()) ;
+	addState(new ContinueMenutypeJeu());
 	//	addState(new WindowGame(lC,carte) ) ;
-	}
-	
-	public StateGame() {
-	    super("ZOMBAUTOMATE by PANDAS");
-	  }
-	
-	/**
-	 * @param args
-	 * @throws SlickException 
-	 */
+}
+
+public StateGame() {
+	super("ZOMBAUTOMATE by PANDAS");
+}
+
+/**
+ * @param args
+ * @throws SlickException 
+ */
 //	public static void main(String[] args) throws SlickException {
 //		new AppGameContainer(new StateGame(), 800, 600, false).start();
 //
 //	}
-	/**
-	 * 
-	 * @param args
-	 * @throws SlickException
-	 */
-	public static void main(String[] args) throws SlickException {
-    	//ArrayList<Character> lC = jeu (1) ;
-    	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
-        AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
-       // wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
-        app.start();
-    }
+/**
+ * 
+ * @param args
+ * @throws SlickException
+ */
+public static void main(String[] args) throws SlickException {
+	//ArrayList<Character> lC = jeu (1) ;
+	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
+	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
+	// wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
+	app.start();
+}
 
 }
