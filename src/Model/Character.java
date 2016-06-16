@@ -225,8 +225,11 @@ public abstract class Character extends Observable {
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void attaquer(Cell cellule){
-System.out.println("J'attaque, nom de Dieu ! et je suis un " + this.getPlayer().getId());
-System.out.println("Je possede : " + this.getStrength() + " de force");
+		System.out.println("J'attaque, nom de Dieu ! et je suis un " + this.getPlayer().getId());
+		System.out.println("Je possede : " + this.getStrength() + " de force");
+
+		if (this instanceof Survivor)  ((Survivor) this).weaponSort();
+
 		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire
 			cellule.getEntity_on().supHp(this.getStrength());
