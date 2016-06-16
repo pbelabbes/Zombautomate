@@ -102,7 +102,7 @@ public class WindowGame extends BasicGame {
 
 
 	public int getID() {
-		return 0;
+		return ID;
 	}
 
 	public void afficherDecors(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
@@ -151,7 +151,7 @@ public class WindowGame extends BasicGame {
 		g.setColor(Color.white);
 		g.drawString("mapOrigin : "+mapOrigin.x+";"+mapOrigin.y, 0, 30);
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
-		g.drawString("Taille de l'écran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
+		g.drawString("Taille de l'ï¿½cran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
 	

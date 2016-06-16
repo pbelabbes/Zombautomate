@@ -1,6 +1,7 @@
 OBJ= doc.cmo exemple_fichier_user1.cmo exemple_fichier_user2.cmo fichier_zombies.cmo main.cmo
 BIN = xml_writter
 
+
 all : xml_writter clean
 
 xml_writter : $(OBJ)
