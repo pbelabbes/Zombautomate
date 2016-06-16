@@ -18,6 +18,12 @@ public class MenuTypeJeu extends BasicGameState {
 	
 	
 	@Override
+	/**
+	 * 
+	 * @param arg0
+	 * @param game
+	 * @throws SlickException
+	 */
 	public void init(GameContainer arg0, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
@@ -29,6 +35,13 @@ public class MenuTypeJeu extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 * 
+	 * @param container
+	 * @param game
+	 * @param g
+	 * @throws SlickException
+	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		int larg = container.getWidth();
@@ -41,6 +54,13 @@ public class MenuTypeJeu extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 * 
+	 * @param container
+	 * @param game
+	 * @param delta
+	 * @throws SlickException
+	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
@@ -48,6 +68,10 @@ public class MenuTypeJeu extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 * 
+	 * @return
+	 */
 	public int getID() {
 		return ID;
 	}
