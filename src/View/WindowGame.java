@@ -192,11 +192,17 @@ public class WindowGame extends BasicGame {
 
 		//Affichage infos
 		afficherInfos(container, g);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-
+		System.out.println("delta : " + delta);
 		//this.ordo.melanger();
 		this.ordo.next();
 		//ordo.getDirection();
@@ -204,31 +210,42 @@ public class WindowGame extends BasicGame {
 		//ordo.getCharacter();
 		//ArrayList<DisplayCharacter>lDC= this.characters;
 		int i=0;
-		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
-			i++;
+
+		DisplayCharacter cCharac = null;
+		for (DisplayCharacter c : characters) {
+			if(c.getCharacter() == ordo.getCharacter()){
+				cCharac = c;
+			}
 		}
-		switch (ordo.getDirection()){
-		case 'U': break;
-		case 'N': this.characters.get(i).setDirection(3); break;
-		case 'S': this.characters.get(i).setDirection(0); break;
-		case 'O': this.characters.get(i).setDirection(1); break;
-		case 'E': this.characters.get(i).setDirection(2); break;
+		//		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
+		//			i++;
+		//		}
+
+		if(cCharac != null){
+
+			switch (ordo.getDirection()){
+			case 'U': break;
+			case 'N': cCharac.setDirection(3); break;
+			case 'S': cCharac.setDirection(0); break;
+			case 'O': cCharac.setDirection(1); break;
+			case 'E': cCharac.setDirection(2); break;
+			}
 		}
-		this.characters.get(i).setMoving(ordo.getAction()==Action.MOVE);
+		cCharac.setMoving(ordo.getAction()==Action.MOVE);
 
 
-		DisplayCharacter dc= this.characters.get(i);
+//		DisplayCharacter dc= this.characters.get(i);
 		//System.out.println(delta);
 
-		if(dc.isMoving()) {
-			switch (dc.getDirection()) {
-			case 0: dc.setY(dc.getY() - .1f * delta); break;
-			case 1: dc.setX(dc.getX() - .1f * delta); break;
-			case 2: dc.setY(dc.getY() + .1f * delta); break;
-			case 3: dc.setX(dc.getX() + .1f * delta); break;
+		if(cCharac.isMoving()) {
+			switch (cCharac.getDirection()) {
+			case 0: cCharac.setY(cCharac.getY() - .1f * delta); break;
+			case 1: cCharac.setX(cCharac.getX() - .1f * delta); break;
+			case 2: cCharac.setY(cCharac.getY() + .1f * delta); break;
+			case 3: cCharac.setX(cCharac.getX() + .1f * delta); break;
 			}
-			if (dc.getX()==dc.getCharacter().getCell().getPosition().x && dc.getY()==dc.getCharacter().getCell().getPosition().y) {
-				this.characters.get(i).setMoving(false);
+			if (cCharac.getX()==cCharac.getCharacter().getCell().getPosition().x && cCharac.getY()==cCharac.getCharacter().getCell().getPosition().y) {
+				cCharac.setMoving(false);
 
 			}
 		}
