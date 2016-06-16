@@ -23,7 +23,7 @@ public class Cell {
 		private Character entity_on;
 		private Character owned_by;
 		private Point position;
-		
+		private CaseAutomate case_automate;
 		
 		//Constructeurs
 		public Cell(Point pos){
@@ -33,7 +33,6 @@ public class Cell {
 			position = pos;
 		}
 		
-		public Cell(){}
 		
 		/**
 		 * Cette fonction permet de renvoyer un double au hasard 
@@ -72,6 +71,15 @@ public class Cell {
 			return this.decor;
 		}
 
+		/**
+		 * 
+		 * @return case d'un automate relié à cette cellule
+		 */
+		public CaseAutomate getCaseAutomate()
+		{
+			return case_automate;
+		}
+		
 		
 		/**
 		 * @return personnage présent sur la cellule 
@@ -79,6 +87,7 @@ public class Cell {
 		public Character getEntity_on(){
 			return this.entity_on;
 		}
+		
 		/**
 		 * 
 		 * @return personnage dont l'automate est relié à cette case
@@ -99,6 +108,11 @@ public class Cell {
 		public void setDecor(Decor decor){
 			this.decor=decor;
 			return;
+		}
+		
+		public void setCaseAutomate(CaseAutomate cA)
+		{
+			case_automate = cA;
 		}
 		
 		/**
@@ -127,14 +141,34 @@ public class Cell {
 		 */
 		
 		public void majAutomate(){
-			if (this.owned_by != null)
+			if (this.case_automate != null)
 			{
-				Point poscell = this.position;
-				Point posaut = this.owned_by.getAutomata().getPosition();
-				int x = poscell.x-posaut.x;
-				int y = poscell.y - posaut.y ;
-				CaseAutomate cA = this.owned_by.getAutomata().getStates()[x][y];
-				if(cA != null) cA.setAction(this.decor.getAction());
+				
+				case_automate.setAction(decor.getAction());
+				
+//				Point poscell = this.position;
+//				Point posaut = this.owned_by.getAutomata().getPosition();
+//				int x = poscell.x-posaut.x;
+//				int y = poscell.y - posaut.y ;
+//				CaseAutomate cA = this.owned_by.getAutomata().getStates()[x][y];
+//				if(cA != null) cA.setAction(this.decor.getAction());
 			}
+		}
+		
+		public void print_cell()
+		{
+			if(this.entity_on == null)
+			{
+				if(this.decor == null)  System.out.print("error");
+				switch(this.decor)
+				{
+				case GRASS : System.out.print(" "); break;
+				case ROCK : System.out.print("*"); break;
+				case TREE : System.out.print("8"); break;
+				default  : System.out.print("x");
+				
+				}
+			}
+			else System.out.print(entity_on.getPlayer().getId());
 		}
 }

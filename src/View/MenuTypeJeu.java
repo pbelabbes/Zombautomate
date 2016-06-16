@@ -19,8 +19,14 @@ public class MenuTypeJeu extends BasicGameState {
 	private StateBasedGame game;
 
 
-	@Override
-	public void init(GameContainer container, StateBasedGame game)
+@Override
+/**
+ * 
+ * @param arg0
+ * @param game
+ * @throws SlickException
+ */
+public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
@@ -32,6 +38,13 @@ public class MenuTypeJeu extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 * 
+	 * @param container
+	 * @param game
+	 * @param g
+	 * @throws SlickException
+	 */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		int larg = container.getWidth();
@@ -44,6 +57,13 @@ public class MenuTypeJeu extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 * 
+	 * @param container
+	 * @param game
+	 * @param delta
+	 * @throws SlickException
+	 */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		int PosX = Mouse.getX() ;
@@ -85,6 +105,10 @@ public class MenuTypeJeu extends BasicGameState {
 
 
 	@Override
+	/**
+	 * 
+	 * @return
+	 */
 	public int getID() {
 		return ID;
 	}

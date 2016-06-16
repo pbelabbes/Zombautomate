@@ -256,7 +256,7 @@ public class Moteur {
 	}
 */
 	
-	private static void clean_dead_bodies(ArrayList<Character> lC)
+	public static void clean_dead_bodies(ArrayList<Character> lC)
 	{
 	
 		for(int i = 0 ; i<lC.size() ; i ++)
@@ -342,7 +342,7 @@ public class Moteur {
 		
 		Map carte = create_map(lC);
 		carte.init_map(); 
-//		carte.setAutomatas(lC, lP);
+		carte.setAutomatas(lC, lP);
 
 		lC.addAll(j0.getEntities());		
 		carte.set_charact_position(lC);

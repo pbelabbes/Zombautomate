@@ -116,6 +116,15 @@ public class Survivor extends Character{
 		}				
 	}
 	
+	/**
+	 * 
+	 * @param cellule
+	 */
+	private void weapon_usury(){ 
+		if (this.weapon.size()>0)
+			weapon.get(0).setUsure(weapon.get(0).getUsure()-1);
+		
+		}
 	
 	/**
 	 * La fonction pick permet de récupérer de la nourriture ou des armes posées sur le sol
@@ -265,7 +274,7 @@ public class Survivor extends Character{
 		case STEAL: steal(cellule); break;
 		case PLANT: plant(cellule); break;
 		case PICK: showaround(); pick(cellule); System.out.println(action+ " effectuee par " + this.getPlayer().getId());  break;
-		case ATTACK : attaquer(cellule); System.out.println(action+ " effectuee par " + this.getPlayer().getId());break;
+		case ATTACK : attaquer(cellule);weapon_usury(); System.out.println(action+ " effectuee par " + this.getPlayer().getId());break;
 		case MOVE: deplacer(cellule); break;
 		case DROP: drop(cellule);
 		default : System.out.println("PAS d'action");;
