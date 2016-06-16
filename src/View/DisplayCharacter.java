@@ -20,6 +20,7 @@ public abstract class DisplayCharacter extends Display implements Observer {
 //		super(posX, posY, new SpriteSheet(spriteName, 64, 64), nbAnimations);
 		this.setDirection(direction);
 		setMoving(false);
+		this.character = c;
 		}
 
 	public void initAnimations(){
@@ -57,6 +58,10 @@ public abstract class DisplayCharacter extends Display implements Observer {
 
 	public void setDirection(int direction) {
 		this.direction = direction;
+	}
+	
+	public Model.Character getCharacter(){
+		return this.character;
 	}
 
 }
