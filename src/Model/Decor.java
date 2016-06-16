@@ -26,4 +26,19 @@ public enum Decor {
 		return this.action;
 	}
 	
+	public static Decor getDecor(Action action)
+	{
+		switch(action)
+		{
+		case PICK : return ROCK;
+		case MOVE : return GRASS;
+		case WATER : return RABBIT;
+		case ATTACK : return APPLE;
+		case PLANT : return SPROUT;
+		case DROP : return TREE;
+		case SWAP : return BASEBALL_BAT;
+		default: return KATANA;
+		}
+	}
+	
 }

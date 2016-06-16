@@ -105,10 +105,9 @@ public class Map extends Observable{
 				if(case_tempo!=null)
 				{	
 					this.grid[x][y].setOwned_by(perso);
-					this.grid[x][y].setDecor(case_tempo.getAction().getDecor());
+					this.grid[x][y].setDecor(Decor.getDecor(case_tempo.getAction()));
 					this.grid[x][y].setPosition(pos);
-					
-
+					this.grid[x][y].setCaseAutomate(case_tempo);
 				}
 			}
 		}
