@@ -108,12 +108,13 @@ public class WindowGame extends BasicGame {
 	public void afficherDecors(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-				if(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCell().getDecor()!=null){
-					g.drawAnimation(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
+				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
+				if(cCell.getCell().getDecor()!=null){
+					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 				}
-				if(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCell().getOwned_by() != null){
+				if(cCell.getCell().getOwned_by() != null){
 					g.setColor(Color.red);
-					g.drawRect(cursorX, cursorY, TILED_SIZE, TILED_SIZE);
+					g.drawRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 			}
 		}
@@ -204,7 +205,7 @@ public class WindowGame extends BasicGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		ArrayList<Character> lC = StateGame.jeu(2) ; 
+		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		WindowGame wg = new WindowGame();
 		wg.initialisedGameModel(lC, carte);
