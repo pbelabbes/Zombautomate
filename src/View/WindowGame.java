@@ -176,7 +176,7 @@ public class WindowGame extends BasicGame {
 //		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-//		afficherInfos(container, g);
+		afficherInfos(container, g);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class WindowGame extends BasicGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		ArrayList<Character> lC = StateGame.jeu(2) ; 
+		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		WindowGame wg = new WindowGame();
 		wg.initialisedGameModel(lC, carte);
