@@ -7,7 +7,7 @@ public class Zombie extends Character {
 	public Zombie(Player player,Automata automata,Map map) 
 	{
 		super(player,automata,map);	
-		strength = 3;
+		strength = 5;
 		sight_range = 50;
 	}
 
@@ -15,6 +15,7 @@ public class Zombie extends Character {
 	@Override
 	public void act(Action action, char direction) 
 	{
+		Zombie debug = this;
 		Cell cellule = getTargetedCell(direction,this.cell);
 		switch(action)
 		{

@@ -38,6 +38,33 @@ public class Survivor extends Character{
 		this.weapon = weapon;
 	}
 
+	public void addWeapon(Arme weapon)
+	{
+		this.weapon.add(weapon);
+	}
+	
+	public void weaponSort()
+	{
+		for(int i = 0 ; i<weapon.size() ; i++)
+		{
+			if(weapon.get(i).getUsure() == 0) weapon.remove(i);
+		}
+		
+		//Si la premiere arme est une batte de baseball, on regarde si on n'aurait pas un katana à la place
+		if(weapon.size()>0 && weapon.get(0) instanceof Baseball_Bat)
+		{
+			for(int i = 0 ; i < weapon.size() ; i++)
+			{
+				if(weapon.get(i) instanceof Katana)
+				{
+					Arme k_temp = weapon.get(i);
+					weapon.remove(k_temp);
+					weapon.add(0, k_temp);
+					return;
+				}
+			}
+		}
+	}
 	//Constructeurs
 	/**
 	 * Constructeur d'un survivant:
@@ -48,8 +75,18 @@ public class Survivor extends Character{
 	public Survivor(Player player, Automata automata, Map map) {
 		super(player, automata, map);
 		this.weapon=new ArrayList<Arme>();
+		hp = 20;
 	}
 
+	@Override
+	public int getStrength()
+	{
+		if(weapon.size()>0)
+		{
+			return strength + weapon.get(0).getValue();
+		}
+		else  return strength;
+	}
 	//Méthodes
 
 	
@@ -94,10 +131,10 @@ public class Survivor extends Character{
 		case RABBIT: this.getPlayer().addFoodStock(Nourriture.RABBIT.getvalues());break;
 		case BASEBALL_BAT: 
 			Baseball_Bat b=new Baseball_Bat();
-			this.weapon.add(b);break;
+			this.addWeapon(b);break;
 		case KATANA: 
 			Katana k=new Katana();
-			this.weapon.add(k);break;
+			this.addWeapon(k);break;
 		default: return ;
 		}
 		cellule.setDecor(Decor.GRASS);

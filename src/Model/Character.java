@@ -226,7 +226,7 @@ public abstract class Character extends Observable {
 	 */
 	public void attaquer(Cell cellule){
 System.out.println("J'attaque, nom de Dieu ! et je suis un " + this.getPlayer().getId());
-		
+System.out.println("Je possede : " + this.getStrength() + " de force");
 		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire
 			cellule.getEntity_on().supHp(this.getStrength());
