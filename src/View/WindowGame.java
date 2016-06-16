@@ -38,7 +38,7 @@ public class WindowGame extends BasicGame {
 	private int direction;
 	public Ordonnanceur ordo;
 
-	
+
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
 	}
@@ -196,7 +196,7 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
+
 		//this.ordo.melanger();
 		this.ordo.next();
 		//ordo.getDirection();
@@ -207,24 +207,40 @@ public class WindowGame extends BasicGame {
 		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
 			i++;
 		}
-		this.characters.get(i).setDirection(ordo.getDirection());
+		switch (ordo.getDirection()){
+		case 'U': break;
+		case 'N': this.characters.get(i).setDirection(3); break;
+		case 'S': this.characters.get(i).setDirection(0); break;
+		case 'O': this.characters.get(i).setDirection(1); break;
+		case 'E': this.characters.get(i).setDirection(2); break;
+		}
 		this.characters.get(i).setMoving(ordo.getAction()==Action.MOVE);
-		this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
-		this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
+
+
+		DisplayCharacter dc= this.characters.get(i);
+		//System.out.println(delta);
+
+		while (dc.isMoving()) {
+			switch (dc.getDirection()) {
+			case 0: dc.setY(dc.getY() - .1f * delta); break;
+			case 1: dc.setX(dc.getX() - .1f * delta); break;
+			case 2: dc.setY(dc.getY() + .1f * delta); break;
+			case 3: dc.setX(dc.getX() + .1f * delta); break;
+			}
+			if (dc.getX()==dc.getCharacter().getCell().getPosition().x && dc.getY()==dc.getCharacter().getCell().getPosition().y) {
+				this.characters.get(i).setMoving(false);
+
+			}
+		}
+
+		//this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
+		//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
 
 		//this.map.print_map();
 		Moteur.clean_dead_bodies(this.charactersList);
 
-		DisplayCharacter dc = this.characters.get(0); 
-		//    	System.out.println(delta);
-		//    	if (dc.isMoving()) {
-		//    	        switch (dc.getDirection()) {
-		//    	            case 0: dc.setY(dc.getY() - .1f * delta); break;
-		//    	            case 1: dc.setX(dc.getX() - .1f * delta); break;
-		//    	            case 2: dc.setY(dc.getY() + .1f * delta); break;
-		//    	            case 3: dc.setX(dc.getX() + .1f * delta); break;
-		//    	        }
-		//    	    }
+		//DisplayCharacter dc = this.characters.get(0); 
+
 
 		if(this.isMoving){
 			switch(this.direction){
