@@ -39,13 +39,6 @@ public abstract class Character extends Observable {
 	 * @param automata
 	 * @param map
 	 */
-//	public Character(Player player, Automata automata) {
-//		this.hp=100;
-//		this.strength=1;
-//		this.player=player;
-//		this.automata=automata;
-//		this.sight_range = 2;
-//	}
 	
 	public Character(Player player, Automata automata, Map map) {
 		this.hp=10;
@@ -53,7 +46,7 @@ public abstract class Character extends Observable {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 30;
+		this.sight_range = 60;
 		this.state = 0;
 	}
 	
@@ -143,7 +136,7 @@ public abstract class Character extends Observable {
 		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
 			this.cell.setEntity_on(null);
-			this.cell = cellule;
+//			this.cell = cellule;
 			cellule.setEntity_on(this);
 		}
 	}
@@ -167,38 +160,26 @@ public abstract class Character extends Observable {
 	public void play (){
 		
 		ArrayList<CaseAutomate> List_cases = new ArrayList<CaseAutomate>();
-//		int i=0;
 		int j=0;
 		CaseAutomate [][] cA = automata.getStates();
 		
-		//recupère la condition de transition de l'état courant puis ajoute dans une liste les case de l'automate avec une transition possible
-//		int etat_courant = automata.getEtatCourant();
-//		System.out.println("j = " + j + " inputs = " + automata.getInputs() + " state = " + state);
-//		showaround();
 		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
-			
-/*			Condition cond = cA[state][j].getCondition();
-			if(cond instanceof ScanLoin)	
-			{
-				((ScanLoin) cond).setRayon(this.getSightRange()); 
-				System.out.println(((ScanLoin) cond).getRayon());
-			}
-*/
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
-				List_cases.add(cA [state][j]);
+				List_cases.add(cA[state][j]);
 //				i++;
-			}
 
-//			i = 0;
+			}
 			j++;
 		}
 
 		if(List_cases.size()==0) return;
+
 		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
 //System.out.println("List_cases.size() = "+ List_cases.size());
 		ArrayList<Integer> l_indices_prioritaires = new ArrayList<Integer>();
+
 		int k = 1;
 		int cle = 0;
 		l_indices_prioritaires.add(cle);
@@ -222,6 +203,7 @@ public abstract class Character extends Observable {
 				}
 			}	
 		}
+
 		
 //		System.out.println(List_cases.get(cle).getCondition());
 //if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
@@ -243,7 +225,7 @@ public abstract class Character extends Observable {
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void attaquer(Cell cellule){
-System.out.println("J'attaque, nom de Dieu !");
+System.out.println("J'attaque, nom de Dieu ! et je suis un " + this.getPlayer().getId());
 		
 		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire
@@ -279,7 +261,13 @@ System.out.println("J'attaque, nom de Dieu !");
 		return this.getPlayer().getName();
 	}
 	
-	
+	/**
+	 * cette fonction renvoie la cellule qui est a une direction 
+	 * direction de la cellule passé en parametre
+	 * @param direction
+	 * @param cellule
+	 * @return
+	 */
 	protected Cell getTargetedCell(char direction, Cell cellule )
 	{
 		Point p = new Point(cellule.getPosition());
@@ -296,7 +284,9 @@ System.out.println("J'attaque, nom de Dieu !");
 		return this.map.getGrid()[p.x][p.y];
 	}
 
-
+/**
+ * Cette fonction sert a afficher les caracteristiques d'un personnage
+ */
 	public void showstat(){
 		System.out.println("\thp = "+Integer.toString(hp) );//points de vie
 		System.out.println("\tsight range  = "+ Integer.toString(sight_range)); //portée de vision
@@ -305,7 +295,9 @@ System.out.println("J'attaque, nom de Dieu !");
 		System.out.println("\tposition x= "+Integer.toString( (int) cell.getPosition().getX() ) + " y = "+Integer.toString( (int) cell.getPosition().getY() )) ;  ;
 		
 	}
-	
+	/**
+	 * cette fonction permet d'afficher le decor des cellules adjacentes 
+	 */
 	public void showaround(){
 		int x,y;
 		x=this.cell.getPosition().x;

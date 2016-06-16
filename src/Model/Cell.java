@@ -35,6 +35,11 @@ public class Cell {
 		
 		public Cell(){}
 		
+		/**
+		 * Cette fonction permet de renvoyer un double au hasard 
+		 * @param seed
+		 * @return
+		 */
 		public static double randomGenerator(long seed) {
 		    Random generator = new Random(seed);
 		    double num = generator.nextDouble() * (0.5);
@@ -47,17 +52,17 @@ public class Cell {
 		 */
 		private Decor randomDecor()
 		{
-			switch(2)//(int) (8*Math.random()))
+			switch(7) //(int) (20*Math.random()))
 			{
 			case 0 : return Decor.BASEBALL_BAT;
 			case 1 : return Decor.APPLE;
-			case 2 : return Decor.GRASS;
+			case 2 : return Decor.TREE;
 			case 3 : return Decor.KATANA;
 			case 4 : return Decor.RABBIT;
 			case 5 : return Decor.ROCK;
 			case 6 : return Decor.SPROUT;
 			case 7 : 
-			default :return Decor.TREE; 
+			default :return Decor.GRASS; 
 			}
 		}
 		

@@ -14,21 +14,31 @@ public class MainScreenGameState extends BasicGameState {
 
 	public static final int ID = 1;
 	private Image background;
+	private Image Continue;
+	private Image Newgame;
+	private Image Option;
 	private StateBasedGame game;
 
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
-		//this.background = new Image("background/forest.png");
-		
+		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
+		this.Newgame = new Image ("../Zombautomate/ressources/Menu/Newgame.png");
+		this.Continue = new Image ("../Zombautomate/ressources/Menu/Continue.png");
+		this.Option = new Image ("../Zombautomate/ressources/Menu/Option.png");
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		// background.draw(0, 0, container.getWidth(), container.getHeight());
-		 g.drawString("Appuyer sur une touche", 300, 300);
+		int larg = container.getWidth();
+		int haut = container.getHeight() ;
+		background.draw(0, 0, container.getWidth(), container.getHeight());
+		//g.drawString("Appuyer sur une touche", 300, 300);
+		Newgame.draw(larg/2 - larg/10 ,haut/2 - haut/30 -haut/18 , larg/5, haut/7);
+		Continue.draw(larg/2 - larg/10 ,haut/2 + haut/7 - haut/18 , larg/5, haut/7);
+		Option.draw(larg/2 - larg/10 ,haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
 		
 	}
 
@@ -41,19 +51,13 @@ public class MainScreenGameState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return 1;
+		return ID;
 	}
 	
 	public void keyReleased(int key, char c) {
-	    game.enterState(WindowGame.ID);
+	    game.enterState(MenuTypeJeu.ID);
 	  }
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

@@ -65,5 +65,37 @@
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>0</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>0</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
 	</automate>
 </persos>

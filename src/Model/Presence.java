@@ -1,5 +1,5 @@
 package Model;
-import java.awt.Point;
+//import java.awt.Point;
 import java.lang.String;
 
 public class Presence extends Condition {
@@ -9,39 +9,43 @@ public class Presence extends Condition {
 	private String cible;
 	private Decor decor;
 
+	/**
+	 * 
+	 * @param direction
+	 * @param cible
+	 */
 	Presence(char direction,String cible){
 
 		this.direction=direction;
 		this.cible=cible;
 		decor = null;
 	}
-	Presence(char direction,Decor decor){
+
+	/**
+	 * 
+	 * @param direction
+	 * @param decor
+	 */
+	
+	public Presence(char direction,Decor decor){
 
 		this.direction=direction;
 		this.decor=decor;
 		cible = null;
 	}
 
+ /**
+  * cette fonction permet de verifier si à la direction donnée on trouve le decor ou 
+  * la cible recherchée
+  * Cell cellule : on donne en parametre la cellule du  personnage 
+  */
 	public boolean execute(Cell cellule){
-		//TODO On pourrait réduire un peu le code en utilisant getTargetedCell
-
-		/*			int mapheight = cellule.getEntity_on().getMap().getHeight();
-			int mapwidth = cellule.getEntity_on().getMap().getWidth();
-			switch(direction)
-			{
-			case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
-			case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
-			case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
-			default : p.x=(p.x-1+mapwidth)%mapwidth; break;
-			}
-		 */			
 
 		Cell targeted_cell = getTargetedCell(this.direction,cellule);
 		
 		if(this.decor != null)
 		{
 
-//			System.out.println(cellule.getEntity_on().getMap().getGrid()[p.x][p.y].getDecor()!=null);
 			return (targeted_cell.getDecor()==this.decor);	
 		}
 		else
@@ -60,7 +64,9 @@ public class Presence extends Condition {
 	
 				case "ennemi" : 
 					if(c1 instanceof Zombie)
-						return (c1.getPlayer()!=c2.getPlayer());
+						if((c1.getPlayer()!=c2.getPlayer()))
+							return (c1.getPlayer()!=c2.getPlayer());
+						else return false;
 					else return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
 				
 				default: return false;
@@ -68,10 +74,6 @@ public class Presence extends Condition {
 		
 			} else return false;
 		}
-
-		
-
-	}
-
-
+}
+	
 }

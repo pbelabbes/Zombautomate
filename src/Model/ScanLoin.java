@@ -114,7 +114,10 @@ public class ScanLoin extends Condition {
 			case "ennemi": this.id = 3;
 			default : ;
 			}
-		
+		boolean b = scan(cellule);
+		if(b){
+			int debug = 3; debug = debug+=3;
+		}
 		return scan(cellule);
 	}
 
@@ -217,12 +220,22 @@ public class ScanLoin extends Condition {
 		if(decor == null)
 		{
 			Character ent_on = cellule.getEntity_on();
-				if(this.id<3)
+			if (ent_on !=null) {
+				int debug = 003;
+				debug = debug*2;
+				
+			}
+			if(this.id<3)
 				{				
 					return ent_on != null && ent_on.getPlayer().getId() == id;
 				}
 				else
 				{
+					if (ent_on !=null) {
+						int debug = 003;
+						debug = debug*2;
+						
+					}
 					return ent_on != null && ent_on instanceof Survivor;
 				}
 		}
