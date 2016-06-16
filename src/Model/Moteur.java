@@ -363,6 +363,7 @@ public class Moteur {
 		{
 //			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.next();
+			ordo.getCharacter();
 //			ordo.melanger();
 //			ordo.next_move();
 			compteur++;
