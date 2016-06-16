@@ -70,13 +70,27 @@ public class StateGame extends StateBasedGame {
 		}*/
 		String fich2;
 		String fich1 ;
-	if(mode ==1 || mode ==4){	
-		if(mode ==1||mode==5){
+	if(mode ==1 || mode==2){	
+		if(mode ==1|| mode==4){
+			if(mode==4){
+				try {
+					Runtime.getRuntime().exec("rm "+"V1_user1");
+				} catch (IOException e) {
+					e.printStackTrace();
+			}
 			 fich1 =demandeautomate("V1_user1");
 			
 		}
-		if(mode==2||mode==4)
-		{		 fich1 =demandeautomate("V2_user1");
+		if(mode==2 || mode==5)
+		{		
+			
+			 if(mode==5){
+				 try {
+						Runtime.getRuntime().exec("rm "+"V2_user2");
+					} catch (IOException e) {
+						e.printStackTrace();
+			 }
+			    fich1 =demandeautomate("V2_user1");
 				fich2=demandeautomate("V2_user2");
 				ArrayList<ArrayList<transfer>> equipe2=fichier.read(fich2);	
 				Player j2 = new Player(2 ,"Joueur 2", 10);
@@ -88,8 +102,9 @@ public class StateGame extends StateBasedGame {
 		Player j1 = new Player(1 ,"Joueur 1", 10);
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
-		lC.addAll(getZombies().getEntities());
+		
 	}
+	
 		return lC;
 	}
 
