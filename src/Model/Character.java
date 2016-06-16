@@ -46,7 +46,7 @@ public abstract class Character extends Observable {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 20;
+		this.sight_range = 60;
 		this.state = 0;
 	}
 	
@@ -136,7 +136,7 @@ public abstract class Character extends Observable {
 		if(cellule.getEntity_on() == null && cellule.getDecor() != Decor.ROCK)
 		{
 			this.cell.setEntity_on(null);
-			this.cell = cellule;
+//			this.cell = cellule;
 			cellule.setEntity_on(this);
 		}
 	}
@@ -167,32 +167,51 @@ public abstract class Character extends Observable {
 		{
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
-				List_cases.add(cA [state][j]);
+				List_cases.add(cA[state][j]);
+//				i++;
+
 			}
 			j++;
 		}
 
 		if(List_cases.size()==0) return;
 
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+//System.out.println("List_cases.size() = "+ List_cases.size());
+		ArrayList<Integer> l_indices_prioritaires = new ArrayList<Integer>();
+
 		int k = 1;
 		int cle = 0;
+		l_indices_prioritaires.add(cle);
+		
 		if(List_cases.size()>1)
 		{
 			while ( k != List_cases.size()){
-				if(List_cases.get(cle).getPriorite()> List_cases.get(k).getPriorite()){
+				if(List_cases.get(cle).getPriorite()>= List_cases.get(k).getPriorite())
+				{
+					if(List_cases.get(cle).getPriorite() == List_cases.get(k).getPriorite())
+					{
+						l_indices_prioritaires.add(k);
+					}
 					k++;
 				}
 				else { 
+					l_indices_prioritaires.removeAll(l_indices_prioritaires);
+					l_indices_prioritaires.add(k);
 					cle = k;
 					k++;
 				}
 			}	
 		}
-     if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
-		Action act = List_cases.get(cle).getAction();
-		char dir = List_cases.get(cle).getDirection();
+
+		
+//		System.out.println(List_cases.get(cle).getCondition());
+//if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
+		int indice_choisi = l_indices_prioritaires.get((int) (l_indices_prioritaires.size()*Math.random()));
+		Action act = List_cases.get(indice_choisi).getAction();
+		char dir = List_cases.get(indice_choisi).getDirection();
 		this.act(act,dir);  //faire une fonction qui fait l'action indiquée par le contenu de la case
-		state = (List_cases.get(cle)).getEtatfutur();
+		state = (List_cases.get(indice_choisi)).getEtatfutur();
 	}
 
 
@@ -206,7 +225,7 @@ public abstract class Character extends Observable {
 	 * @param direction: indique la case adjacente dans laquelle effectuer l'action
 	 */
 	public void attaquer(Cell cellule){
-System.out.println("J'attaque, nom de Dieu !");
+System.out.println("J'attaque, nom de Dieu ! et je suis un " + this.getPlayer().getId());
 		
 		if (cellule.getEntity_on()!=null){
 			//On enlève des points de vie à l'adversaire

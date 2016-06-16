@@ -72,4 +72,11 @@ public class DisplayCellule extends Display implements Observer {
 		return selected;
 	}
 
+	public Model.Character GetCharacOn(){
+		return cellule.getEntity_on();
+	}
+	
+	public Cell getCell(){
+		return cellule;
+	}
 }

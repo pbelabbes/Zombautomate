@@ -42,8 +42,8 @@ public class Presence extends Condition {
 	public boolean execute(Cell cellule){
 
 		Cell targeted_cell = getTargetedCell(this.direction,cellule);
-		Character c2=null;
-		if(targeted_cell!=null && this.decor != null)
+		
+		if(this.decor != null)
 		{
 
 			return (targeted_cell.getDecor()==this.decor);	
@@ -51,7 +51,7 @@ public class Presence extends Condition {
 		else
 		{
 			Character c1 = cellule.getEntity_on();
-			if(targeted_cell!=null) {c2 = targeted_cell.getEntity_on();}
+			Character c2 = targeted_cell.getEntity_on();
 			
 			if(c2 != null)
 			{
@@ -61,12 +61,14 @@ public class Presence extends Condition {
 				else return false;
 				case "zombie" :if(c2 instanceof Zombie)return true; 
 				else return false; 
-	
-				case "ennemi" : 
-					if(c1 instanceof Zombie)
-						return (c1.getPlayer()!=c2.getPlayer());
+				//meme les ennemis des zombies sont des survivors 
+				case "ennemi" : return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
+				/*	if(c1 instanceof Zombie)
+						if((c1.getPlayer()!=c2.getPlayer()))
+							return (c1.getPlayer()!=c2.getPlayer());
+						else return false;
 					else return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
-				
+				*/
 				default: return false;
 				}
 		

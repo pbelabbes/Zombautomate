@@ -8,7 +8,7 @@ public class Zombie extends Character {
 	{
 		super(player,automata,map);	
 		strength = 3;
-		sight_range = 20;
+		sight_range = 5;
 	}
 
 	

@@ -135,11 +135,11 @@ public class Automata {
 		}
 		
 	}
-	
+/*	
 	/**
 	 * la fonction qui retourne les proportions de l'automate 
 	 * @return
-	 */
+	 *
 	public Point proportion(){
 	    int i,j;
 	    i=getPosition().x+getInputs();
@@ -148,7 +148,7 @@ public class Automata {
 
 	    return p;
 	}
-		
+	*/	
 	/**
 	 * La fonction qui permet d'afficher le tableau d'entiers sous forme d'actions
 	 */
