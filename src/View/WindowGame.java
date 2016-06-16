@@ -177,7 +177,7 @@ public class WindowGame extends BasicGame {
 //		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-//		afficherInfos(container, g);
+		afficherInfos(container, g);
 	}
 
 	@Override

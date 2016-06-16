@@ -27,7 +27,7 @@ public class DisplayCellule extends Display implements Observer {
 
 	private static SpriteSheet setSpriteSheet() throws SlickException{
 		if(SPRITE == null){
-			String spritePath = "ressources/map/tuiles/sprite.png";
+			String spritePath = "ressources/map/tuiles/sprite2.png";
 			SPRITE = new SpriteSheet(spritePath, SIZE, SIZE);
 		}
 
