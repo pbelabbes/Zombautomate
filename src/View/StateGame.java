@@ -64,16 +64,17 @@ public class StateGame extends StateBasedGame {
 		}*/
 		
 		String fich2;
-		String fich1 =demandeautomate("user1");
-		ArrayList<ArrayList<transfer>> equipe1=fichier.read(fich1);
+//		String fich1 =demandeautomate("user1");
+		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");//fich1);
 		
 		Player j1 = new Player(1 ,"Joueur 1", 10);
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
 		
 		if(mode==2)
-		{		 fich2=demandeautomate("V2_user2");
-				ArrayList<ArrayList<transfer>> equipe2=fichier.read(fich2);	
+		{		 
+//			fich2=demandeautomate("V2_user2");
+				ArrayList<ArrayList<transfer>> equipe2=fichier.read("../Zombautomate/ocaml/equipe2.xml");//fich2);	
 				Player j2 = new Player(2 ,"Joueur 2", 10);
 				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 				lC.addAll(j2.getEntities());
