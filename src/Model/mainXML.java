@@ -29,8 +29,24 @@ public class mainXML {
 	/*public static void main (String [] args){
 		XMLReader test = new XMLReader() ;
 		//String path=new File("").getAbsolutePath(); 
+
+		test.read("D:\\travail\\java\\Zombautomate\\ocaml\\equipe1.xml");//"/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
+		
+		/*
+		 * 
+		 * Ou
+noueud name = texte
+Case_ennemie(N)
+
+noueud name sibling  = condition
+Present(Pomme,N)
+
+noueud name sibling 2  = condition
+Present(Pomme,N)
+		
+
 		test.read("D:\\travail\\java\\Zombautomate\\ocaml\\equipe.xml");//"/media/ombresocial/Documents commun/travail/java/Zombautomate/ocaml/equipe.xml");
-	
+
 		
 		//System.out.println("prout");
 //		String[] s1;
