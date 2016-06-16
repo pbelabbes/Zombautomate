@@ -92,25 +92,24 @@ public class ScanProche extends Condition {
 
 
 			if(cible== "ennemi"){
-
-				if(c1!=null && c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
+				if( c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
 						c1.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 							   
-				if(c2!=null &&c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
+				if(c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
 						c2.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) nb++; 	
-				if(c3!=null && c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
+				if( c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
 						c3.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
-				if(c4!=null && c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
+				if( c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
 						c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
 			}  
 			else if(cible== "allie"){
 
-				if(c1!=null && c1.getEntity_on()!=null  &&
+				if( c1.getEntity_on()!=null  &&
 						c1.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 							   
-				if(c2!=null &&c2.getEntity_on()!=null &&
+				if(c2.getEntity_on()!=null &&
 						c2.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) nb++; 	
-				if(c3!=null && c3.getEntity_on()!=null &&
+				if( c3.getEntity_on()!=null &&
 						c3.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
-				if(c4!=null && c4.getEntity_on()!=null &&
+				if( c4.getEntity_on()!=null &&
 						c4.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
 			}  
 			else if(cible== "zombie"){
@@ -146,88 +145,101 @@ public class ScanProche extends Condition {
 		Cell cS=getTargetedCell('S',cellule);
 		Cell cE=getTargetedCell('E',cellule);
 		Cell cO=getTargetedCell('O',cellule);
-		nb=nb_cible(cN,cS,cE,cO,cellule);
 
+		nb=nb_cible(cN,cS,cE,cO,cellule);
 		if(nb == 1 ) {	
 			if(cible!=null){			
 				if(cible=="ennemi"){
-					if(cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+
+					if(cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
 						return ('N'==parameter);
-					}	
-					else 
-						if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-							return ('S'==parameter);
-						}	
-						else
-							if( cE!=null &&cE.getEntity_on()!=null&& cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
-								return ('E'==parameter);
-							}
-							else 
-								if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
-									return ('O'==parameter);
-								}
-				}
-				else 
-					if(cible=="zombie"){
-						if( cN.getEntity_on() instanceof Zombie ){
-							return ('N'==parameter);
-						}
-						else 
-							if(cS.getEntity_on() instanceof Zombie){
-								return ('S'==parameter);
-							}
-							else
-								if( cE.getEntity_on() instanceof Zombie ){
-									return ('E'==parameter);
-								}
-								else 
-									if(cO.getEntity_on() instanceof Zombie ){
-										return ('O'==parameter);
-									}
+					}
+					else if(cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+						return ('S'==parameter);
+					}
+					else if(cE.getEntity_on()!=null&& cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+						return ('E'==parameter);
+					}
+					else if(cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+						return ('O'==parameter);
 					}
 					else 
-						if(cible=="allie"){		
-							if( cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+						if(cible=="zombie"){
+							if( cN.getEntity_on() instanceof Zombie ){
 								return ('N'==parameter);
 							}
 							else 
-								if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+								if(cS.getEntity_on() instanceof Zombie){
 									return ('S'==parameter);
 								}
-								else 
-									if(cE!=null &&cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+								else
+									if( cE.getEntity_on() instanceof Zombie ){
 										return ('E'==parameter);
 									}
-									else
-										if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+									else 
+										if(cO.getEntity_on() instanceof Zombie ){
 											return ('O'==parameter);
 										}
-						}	
-			}
-
-			if(decor!=null){
-				System.out.println("dans decor");
-
-				if(cN!=null && cN.getDecor()==decor ){
-					System.out.println(parameter);
-
-					return ('N'==parameter);
-				}
-				else 
-					if(cS!=null &&cS.getDecor()==decor){
-						return ('S'==parameter);
-					}
-					else 
-						if(cE!=null && cE.getDecor()==decor ){
-							return ('E'==parameter);
 						}
 						else 
-							if(cO!=null &&cO.getDecor()==decor){
-								return ('O'==parameter);
+							if(cible=="allie"){		
+								if( cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+									return ('N'==parameter);
+								}
+								else 
+									if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+										return ('S'==parameter);
+									}
+									else 
+										if(cE!=null &&cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+											return ('E'==parameter);
+										}
+										else
+											if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+												return ('O'==parameter);
+											}
+							}	
+				}
+
+				if(decor!=null){
+					System.out.println("dans decor");
+
+					if(cN!=null && cN.getDecor()==decor ){
+						System.out.println(parameter);
+
+						return ('N'==parameter);
+					}
+					else 
+						if(cS!=null &&cS.getDecor()==decor){
+							return ('S'==parameter);
+						}
+						else 
+							if(cE!=null && cE.getDecor()==decor ){
+								return ('E'==parameter);
 							}
+							else 
+								if(cO!=null &&cO.getDecor()==decor){
+									return ('O'==parameter);
+								}
 
-			}
+				}
 
+				/*
+				else if(cible=="allie"){
+
+					if( cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+						return ('N'==parameter);
+					}
+					else if(cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+						return ('S'==parameter);
+					}
+					else if(cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+						return ('E'==parameter);
+					}
+					else if(cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+						return ('O'==parameter);
+					}*/
+			}	
 		}
 		return  (((char) nb +'0')==parameter);
 	}

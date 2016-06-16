@@ -131,7 +131,7 @@ public class WindowGame extends BasicGame {
 	public void afficherAutomates(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		System.out.println("afficherAutomates");
 		for (DisplayCharacter c : characters) {
-			System.out.println(c.getCharacter());
+			System.out.println(c.getCharacter().getAutomata().getPosition());
 			Automata automate= c.getCharacter().getAutomata();
 			Point posAutom = automate.getPosition();
 			int heightAutom = automate.getHeight();
@@ -198,10 +198,8 @@ public class WindowGame extends BasicGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		ArrayList<Character> lC = StateGame.jeu(1) ; 
-		Map carte = Moteur.create_map(lC);
-		carte.init_map(); 
-		carte.set_charact_position(lC);
+		ArrayList<Character> lC = StateGame.jeu(2) ; 
+		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		WindowGame wg = new WindowGame();
 		wg.initialisedGameModel(lC, carte);
 		AppGameContainer tmp = new AppGameContainer(null);
