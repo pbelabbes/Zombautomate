@@ -196,10 +196,23 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
+		
+		//this.ordo.melanger();
+		this.ordo.next();
+		//ordo.getDirection();
+		//ordo.getAction();
+		//ordo.getCharacter();
+		//ArrayList<DisplayCharacter>lDC= this.characters;
+		int i=0;
+		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
+			i++;
+		}
+		this.characters.get(i).setDirection(ordo.getDirection());
+		this.characters.get(i).setMoving(ordo.getAction()==Action.MOVE);
+		this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
+		this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
 
-		this.ordo.melanger();
-		this.ordo.next_move();
-		this.map.print_map();
+		//this.map.print_map();
 		Moteur.clean_dead_bodies(this.charactersList);
 
 		DisplayCharacter dc = this.characters.get(0); 
@@ -237,8 +250,8 @@ public class WindowGame extends BasicGame {
 		app.start();
 	}
 	public static void main(String[] args) throws SlickException {
-		//startgame();
-		
+		startgame();
+		/*
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		Ordonnanceur ordo = new Ordonnanceur(lC);
@@ -248,6 +261,6 @@ public class WindowGame extends BasicGame {
 		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
-		app.start();
+		app.start();*/
 	}
 }
