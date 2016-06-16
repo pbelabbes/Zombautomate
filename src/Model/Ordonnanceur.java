@@ -35,7 +35,12 @@ public class Ordonnanceur {
 	 */
 	public Character getCharacter()
 	{
-		return Ordonnee.get(indice);
+		if(Ordonnee.size()>0)
+			return Ordonnee.get(indice);
+		else {
+			System.out.println("Attention, l'ordonnanceur a mal été utilisé");
+			return null;
+		}
 	}
 	
 	/**
