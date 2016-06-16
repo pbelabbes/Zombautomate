@@ -37,8 +37,12 @@ public class MainScreenGameState extends BasicGameState  {
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
 		
 		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
+//		Newgame.setImageColor(0,120,10,20);
+		Newgame.setColor(1,1,1,1,0);
 		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
+		Continue.setColor(1,1,1,1,0);
 		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
+		Option.setColor(1,1,1,1,0);
 		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		container.setMouseCursor(this.souris, 0, 0);
