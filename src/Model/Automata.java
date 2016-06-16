@@ -24,6 +24,8 @@ public class Automata {
 	private Point position; 
 	private int etat_courant;
 	private CaseAutomate caseAutomate;
+	private int width,height;
+	
 	
 	//getter & setter
 	public int getEtats() {
@@ -66,6 +68,14 @@ public class Automata {
 		this.etat_courant=etatCourant;
 	}
 	
+	public int getWidth(){
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
+	}
+	
 	//constructeurs:
 	/**
 	 * @param etat_courant
@@ -82,6 +92,8 @@ public class Automata {
 			this.inputs=height;
 			this.etat_courant=etat_courant;
 			this.states=new CaseAutomate[width][height];
+			this.width = width;
+			this.height = height;
 		}
 	}
 

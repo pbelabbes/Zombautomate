@@ -37,12 +37,14 @@ public class WindowGame extends BasicGame {
 	private boolean isMoving =false;
 	private int direction;
 
-	public WindowGame(ArrayList<Model.Character> charactersList,Map map) throws SlickException{
+	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
+		}
+
+	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map){
 		this.map = map;
 		this.charactersList = charactersList;
 	}
-
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
 			this.screenWidth = width;
@@ -56,7 +58,7 @@ public class WindowGame extends BasicGame {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
-//				characters.add(new DisplayZombie(character)); 
+				//				characters.add(new DisplayZombie(character)); 
 			}
 		}
 
@@ -65,11 +67,11 @@ public class WindowGame extends BasicGame {
 		for(int i = 0 ; i< map.getWidth();i++){
 			for (int j = 0 ; j<map.getHeight();j++){
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
-//				System.out.println("Cellule mapdisplay["+i+"]["+j+"] :"+this.mapDisplay[i][j]);
+				//				System.out.println("Cellule mapdisplay["+i+"]["+j+"] :"+this.mapDisplay[i][j]);
 			}
 		}        
-//		System.out.println("taille map : "+map.getWidth()+" : "+map.getHeight());
-//		System.exit(0);
+		//		System.out.println("taille map : "+map.getWidth()+" : "+map.getHeight());
+		//		System.exit(0);
 	}
 
 
@@ -97,24 +99,23 @@ public class WindowGame extends BasicGame {
 		dc.setMoving(false);
 		this.isMoving = false;
 	}
-	
-	
+
+
 	public int getID() {
 		return 0;
 	}
 
-	@Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
-		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
+	public void afficherDecors(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
 				g.drawAnimation(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 			}
 		}
-		
-		
+	}
+	
+	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for (DisplayCharacter c : characters) {
-			
+
 			if( c.getX() >= mapOriginX && c.getX() < mapOriginX+(screenWidth/TILED_SIZE) && c.getX() < map.getWidth() &&
 					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
 			{
@@ -125,48 +126,86 @@ public class WindowGame extends BasicGame {
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
 			}
 		}
+	}
+
+	public void afficherAutomates(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
+		System.out.println("afficherAutomates");
+		for (DisplayCharacter c : characters) {
+			System.out.println(c.getCharacter().getAutomata().getPosition());
+			Automata automate= c.getCharacter().getAutomata();
+			Point posAutom = automate.getPosition();
+			int heightAutom = automate.getHeight();
+			int widthAutom = automate.getWidth();
+			
+			
+			if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
+					posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
+			{
+				g.setColor(Color.black);
+				g.drawRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
+			}
+		}
+	}
+
+	public void afficherInfos(GameContainer container, Graphics g){
 		g.setColor(Color.white);
 		g.drawString("mapOrigin : "+mapOrigin.x+";"+mapOrigin.y, 0, 30);
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
 		g.drawString("Taille de l'écran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
-		//		System.exit(0);
+	}
+	
+	@Override
+	public void render(GameContainer container, Graphics g) throws SlickException {
+		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
+
+		//Affichage de décors
+		afficherDecors(container, g, mapOriginX,mapOriginY);
+
+		//Affichage des personnages
+		afficherPersos(container, g, mapOriginX,mapOriginY);
+
+
+		//Affichage Automates
+		afficherAutomates(container, g, mapOriginX, mapOriginY);
+
+		//Affichage infos
+		afficherInfos(container, g);
 	}
 
-		@Override
-		public void update(GameContainer container, int delta) throws SlickException {
-			DisplayCharacter dc = characters.get(0); 
-			//    	System.out.println(delta);
-			//    	if (dc.isMoving()) {
-			//    	        switch (dc.getDirection()) {
-			//    	            case 0: dc.setY(dc.getY() - .1f * delta); break;
-			//    	            case 1: dc.setX(dc.getX() - .1f * delta); break;
-			//    	            case 2: dc.setY(dc.getY() + .1f * delta); break;
-			//    	            case 3: dc.setX(dc.getX() + .1f * delta); break;
-			//    	        }
-			//    	    }
-			
-			if(this.isMoving){
-				switch(this.direction){
-				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+	@Override
+	public void update(GameContainer container, int delta) throws SlickException {
+		DisplayCharacter dc = characters.get(0); 
+		//    	System.out.println(delta);
+		//    	if (dc.isMoving()) {
+		//    	        switch (dc.getDirection()) {
+		//    	            case 0: dc.setY(dc.getY() - .1f * delta); break;
+		//    	            case 1: dc.setX(dc.getX() - .1f * delta); break;
+		//    	            case 2: dc.setY(dc.getY() + .1f * delta); break;
+		//    	            case 3: dc.setX(dc.getX() + .1f * delta); break;
+		//    	        }
+		//    	    }
 
-				}
+		if(this.isMoving){
+			switch(this.direction){
+			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+
 			}
 		}
-
-		public static void main(String[] args) throws SlickException {
-			ArrayList<Character> lC = StateGame.jeu(1) ; 
-			Map carte = Moteur.create_map(lC);
-			carte.init_map(); 
-			carte.set_charact_position(lC);
-			WindowGame wg = new WindowGame(lC , carte);
-			AppGameContainer tmp = new AppGameContainer(null);
-			AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
-			wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
-			System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
-			app.start();
-		}
 	}
+
+	public static void main(String[] args) throws SlickException {
+		ArrayList<Character> lC = StateGame.jeu(2) ; 
+		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+		WindowGame wg = new WindowGame();
+		wg.initialisedGameModel(lC, carte);
+		AppGameContainer tmp = new AppGameContainer(null);
+		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
+		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
+		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
+		app.start();
+	}
+}

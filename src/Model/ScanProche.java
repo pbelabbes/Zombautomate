@@ -93,24 +93,24 @@ public class ScanProche extends Condition {
 		 
 			if(cible== "ennemi"){
 						 
-						  if(c1!=null && c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
+						  if( c1.getEntity_on()!=null &&c1.getEntity_on() instanceof Survivor &&
 							  c1.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 							   
-						   if(c2!=null &&c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
+						   if(c2.getEntity_on()!=null &&c2.getEntity_on() instanceof Survivor &&
 						       c2.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()) nb++; 	
-						   if(c3!=null && c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
+						   if( c3.getEntity_on()!=null &&c3.getEntity_on() instanceof Survivor &&
 						       c3.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
-						   if(c4!=null && c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
+						   if( c4.getEntity_on()!=null && c4.getEntity_on() instanceof Survivor &&
 							   c4.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ) nb++; 
 			}  
 			else if(cible== "allie"){
 				 
-				  if(c1!=null && c1.getEntity_on()!=null  &&
+				  if( c1.getEntity_on()!=null  &&
 					  c1.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 							   
-				   if(c2!=null &&c2.getEntity_on()!=null &&
+				   if(c2.getEntity_on()!=null &&
 				       c2.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()) nb++; 	
-				   if(c3!=null && c3.getEntity_on()!=null &&
+				   if( c3.getEntity_on()!=null &&
 				       c3.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
-				   if(c4!=null && c4.getEntity_on()!=null &&
+				   if( c4.getEntity_on()!=null &&
 					   c4.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ) nb++; 
 	}  
 			else if(cible== "zombie"){
@@ -152,16 +152,16 @@ public boolean execute(Cell cellule){
 		if(cible!=null){			
 			if(cible=="ennemi"){
 	
-				if(cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+				if(cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
 					return ('N'==parameter);
 				}
-				else if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+				else if(cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
 					return ('S'==parameter);
 				}
-				else if( cE!=null &&cE.getEntity_on()!=null&& cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
+				else if(cE.getEntity_on()!=null&& cE.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer() ){
 					return ('E'==parameter);
 				}
-				else if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
+				else if(cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()!=cellule.getEntity_on().getPlayer()){
 					return ('O'==parameter);
 				}
 			}
@@ -182,16 +182,16 @@ public boolean execute(Cell cellule){
 			}
 			else if(cible=="allie"){
 	
-				if( cN!=null &&cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+				if( cN.getEntity_on()!=null&& cN.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
 					return ('N'==parameter);
 				}
-				else if(cS!=null &&cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+				else if(cS.getEntity_on()!=null&& cS.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
 					return ('S'==parameter);
 				}
-				else if(cE!=null &&cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
+				else if(cE.getEntity_on()!=null&&  cE.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer() ){
 					return ('E'==parameter);
 				}
-				else if(cO!=null &&cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
+				else if(cO.getEntity_on()!=null&& cO.getEntity_on().getPlayer()==cellule.getEntity_on().getPlayer()){
 					return ('O'==parameter);
 				}
 			}	

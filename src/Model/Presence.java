@@ -61,14 +61,20 @@ public class Presence extends Condition {
 				else return false;
 				case "zombie" :if(c2 instanceof Zombie)return true; 
 				else return false; 
+
+				//meme les ennemis des zombies sont des survivors 
+				case "ennemi" : return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
+				/*	if(c1 instanceof Zombie)
+=======
 	//attention, il faut nettoyer
 				case "ennemi" : 
 					if(c1 instanceof Zombie)
+>>>>>>> 03d7cfac132b2ac4512b5565cf91aec239a740c9
 						if((c1.getPlayer()!=c2.getPlayer()))
 							return (c1.getPlayer()!=c2.getPlayer());
 						else return false;
 					else return (c1.getPlayer()!=c2.getPlayer() && c2 instanceof Survivor);
-				
+				*/
 				default: return false;
 				}
 		
