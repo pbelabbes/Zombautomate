@@ -88,10 +88,13 @@ public class Ordonnanceur {
 	{
 		if(Ordonnee.size()>=indice)
 		{
-			if(Ordonnee.get(indice).is_alive())
+			Character c = Ordonnee.get(indice);
+			if(c.is_alive())
 			{
-				Ordonnee.get(indice).eat();
-				case_auto = Ordonnee.get(indice).getTransition();
+				c.eat();
+				case_auto = c.getTransition();
+				c.act(getAction(), getDirection());
+				indice++;
 			}
 		}
 		else
