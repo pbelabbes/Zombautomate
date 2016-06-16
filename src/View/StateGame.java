@@ -1,6 +1,7 @@
 package View;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,27 +20,51 @@ import Model.transfer;
 
 public class StateGame extends StateBasedGame {
 
+	public static String demandeautomate(String name){
+		try {
+			Runtime.getRuntime().exec("gedit "+name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writer");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	
 	/*
 
-	 * fonciton qui lit les xml et revnoi la liste des charactere
+	 * fonction qui lit les xml et revnoi la liste des charactere
 	 * Mode 1 : 1 human vs Zombie
 	 * Mode 2 : 2 humain vs Zombie
 	 * Mode 3 : variante ...
-	 * 
+	 * Mode 4 : coninue 1 human vs Zombie
+	 * Mode 5 : continue  2 humain vs Zombie
 	 */
 	public static ArrayList<Character> jeu ( int mode ){
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
 		
+		//String path = demandeautomate("../Zombautomate/ocaml/user1.ml");
+		
+		
 		/*try {
-			Runtime.getRuntime().exec("gedit ../Zombautomate/ocaml/equipe1.xml");
+			Runtime.getRuntime().exec(new String[]{"cat" ,"../Zombautomate/ocaml/equipe1.xml", ">>", "../Zombautomate/ocaml/test.xml" });
 		} catch (IOException e) {
 			e.printStackTrace();
 		}*/
 		
-		//Runtime.getRuntime().exec("");
 		
+
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
 		ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
 		Player j1 = new Player(1 ,"Joueur 1", 10);
@@ -73,7 +98,8 @@ public class StateGame extends StateBasedGame {
 		carte.init_map(); 
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
-		//addState(new WindowGame(lC,carte) ) ;
+		addState(new ContinueMenutypeJeu());
+	//	addState(new WindowGame(lC,carte) ) ;
 	}
 	
 	public StateGame() {
