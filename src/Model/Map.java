@@ -190,10 +190,11 @@ public class Map extends Observable{
 	 * @param a automate de zombie
 	 * @param map carte sur laquelle se déroule la partie
 	 */
-	public void pop_zombie(Cell cellule, Player p0, Automata a)
+	public void pop_zombie(Cell cellule, Player p0, Automata a, ArrayList<Character> lC)
 	{
 		Zombie new_z = new Zombie(p0,a,this);
 		cellule.setEntity_on(new_z);
+		lC.add(new_z);		
 	}
 	
 	public void random_pop_zombies(ArrayList<Character> lC, Player p0, int nb)
@@ -217,7 +218,7 @@ public class Map extends Observable{
 				
 			}while (cellule.getEntity_on()!=null);
 			
-			pop_zombie(cellule,p0, auto_zombie);
+			pop_zombie(cellule,p0, auto_zombie, lC);
 			
 		}
 		
