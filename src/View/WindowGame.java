@@ -220,7 +220,7 @@ public class WindowGame extends BasicGame {
 		DisplayCharacter dc= this.characters.get(i);
 		//System.out.println(delta);
 
-		while (dc.isMoving()) {
+		if(dc.isMoving()) {
 			switch (dc.getDirection()) {
 			case 0: dc.setY(dc.getY() - .1f * delta); break;
 			case 1: dc.setX(dc.getX() - .1f * delta); break;
