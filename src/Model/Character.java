@@ -214,8 +214,6 @@ public abstract class Character extends Observable {
 		state = (List_cases.get(indice_choisi)).getEtatfutur();
 	}
 
-
-	
 	
 	/**
 	 * La fonction attaquer porte un coup vers la case indiquée
