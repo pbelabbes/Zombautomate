@@ -154,4 +154,21 @@ public class Cell {
 //				if(cA != null) cA.setAction(this.decor.getAction());
 			}
 		}
+		
+		public void print_cell()
+		{
+			if(this.entity_on == null)
+			{
+				if(this.decor == null)  System.out.print("error");
+				switch(this.decor)
+				{
+				case GRASS : System.out.print(" "); break;
+				case ROCK : System.out.print("*"); break;
+				case TREE : System.out.print("8"); break;
+				default  : System.out.print("x");
+				
+				}
+			}
+			else System.out.print(entity_on.getPlayer().getId());
+		}
 }

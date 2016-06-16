@@ -36,14 +36,17 @@ public class WindowGame extends BasicGame {
 	public Map map;
 	private boolean isMoving =false;
 	private int direction;
+	public Ordonnanceur ordo;
 
+	
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
 	}
 
-	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map){
+	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map, Ordonnanceur ordo){
 		this.map = map;
 		this.charactersList = charactersList;
+		this.ordo=ordo;
 	}
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
@@ -193,7 +196,13 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		DisplayCharacter dc = characters.get(0); 
+
+		this.ordo.melanger();
+		this.ordo.next_move();
+		this.map.print_map();
+		Moteur.clean_dead_bodies(this.charactersList);
+
+		DisplayCharacter dc = this.characters.get(0); 
 		//    	System.out.println(delta);
 		//    	if (dc.isMoving()) {
 		//    	        switch (dc.getDirection()) {
@@ -215,11 +224,26 @@ public class WindowGame extends BasicGame {
 		}
 	}
 
-	public static void main(String[] args) throws SlickException {
+	public static void startgame() throws SlickException {
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+		Ordonnanceur ordo = new Ordonnanceur(lC);
 		WindowGame wg = new WindowGame();
-		wg.initialisedGameModel(lC, carte);
+		wg.initialisedGameModel(lC, carte, ordo);
+		AppGameContainer tmp = new AppGameContainer(null);
+		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
+		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
+		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
+		app.start();
+	}
+	public static void main(String[] args) throws SlickException {
+		//startgame();
+		
+		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
+		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+		Ordonnanceur ordo = new Ordonnanceur(lC);
+		WindowGame wg = new WindowGame();
+		wg.initialisedGameModel(lC, carte,ordo);
 		AppGameContainer tmp = new AppGameContainer(null);
 		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
