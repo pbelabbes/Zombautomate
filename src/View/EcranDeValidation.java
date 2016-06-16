@@ -51,10 +51,17 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			this.released = true;
 		}
 		
-		if (PosX> larg/8 && PosX<larg/8 + larg/3 && (haut - 
+		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
+			System.out.println("prout");
+		}
 				
-			
+		
+		if (PosX > larg/8 + larg/5 + larg/20 && PosX < larg/8 + larg/5 + larg/3 - larg/20 && PosY < haut - haut/2 - haut/20 && PosY> haut -(haut/2 +haut/3)+ haut/20){
+			System.out.println("tourp");
+		}
 	}
+
+
 
 	@Override
 	public int getID() {
