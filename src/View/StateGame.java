@@ -69,7 +69,7 @@ public class StateGame extends StateBasedGame {
 			e.printStackTrace();
 		}*/
 		String fich2;
-		String fich1 ;
+		String fich1 = "";
 		
 		if(mode ==1|| mode==4){
 			if(mode==4){

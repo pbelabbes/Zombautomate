@@ -252,7 +252,62 @@ public abstract class Character extends Observable {
 		}
 	}
 	
+
 	
+	public CaseAutomate getTransition()
+	{
+		
+		ArrayList<CaseAutomate> List_cases = new ArrayList<CaseAutomate>();
+		int j=0;
+		CaseAutomate [][] cA = automata.getStates();
+		
+		while ( j < this.automata.getInputs() && cA[state][j] != null)
+		{
+			if (cA[state][j].getCondition().execute(this.getCell()))
+			{
+				List_cases.add(cA[state][j]);
+//				i++;
+
+			}
+			j++;
+		}
+
+		if(List_cases.size()==0) return null;
+
+		//recupère dans la liste, la case avec la plus grande priorité et effectue l'action associé
+//System.out.println("List_cases.size() = "+ List_cases.size());
+		ArrayList<Integer> l_indices_prioritaires = new ArrayList<Integer>();
+
+		int k = 1;
+		int cle = 0;
+		l_indices_prioritaires.add(cle);
+		
+		if(List_cases.size()>1)
+		{
+			while ( k != List_cases.size()){
+				if(List_cases.get(cle).getPriorite()>= List_cases.get(k).getPriorite())
+				{
+					if(List_cases.get(cle).getPriorite() == List_cases.get(k).getPriorite())
+					{
+						l_indices_prioritaires.add(k);
+					}
+					k++;
+				}
+				else { 
+					l_indices_prioritaires.removeAll(l_indices_prioritaires);
+					l_indices_prioritaires.add(k);
+					cle = k;
+					k++;
+				}
+			}	
+		}
+
+		
+//		System.out.println(List_cases.get(cle).getCondition());
+//if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
+		int indice_choisi = l_indices_prioritaires.get((int) (l_indices_prioritaires.size()*Math.random()));
+		return List_cases.get(indice_choisi);
+	}
 	
 	/**
 	 * @return nom du joueur auquel appartient le personnage
