@@ -38,7 +38,7 @@ public class WindowGame extends BasicGame {
 	private int direction;
 	public Ordonnanceur ordo;
 
-	
+
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
 	}
@@ -116,8 +116,13 @@ public class WindowGame extends BasicGame {
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 				}
 				if(cCell.getCell().getOwned_by() != null){
-					g.setColor(Color.red);
-					g.drawRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+					for (DisplayCharacter c : characters) {
+						if(c.getCharacter() == cCell.getCell().getOwned_by() && c instanceof DisplaySurvivor){
+							g.setColor(((DisplaySurvivor) c).getColor());
+							g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+						}
+
+					}
 				}
 			}
 		}
@@ -131,8 +136,10 @@ public class WindowGame extends BasicGame {
 			{
 				int posCharScreenX = (int) (c.getX()- mapOriginX);
 				int posCharScreenY = (int) (c.getY()- mapOriginY);
-				g.setColor(new Color(255,255,255, .5f));
-				g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
+				if(c instanceof DisplaySurvivor){
+					g.setColor(((DisplaySurvivor) c).getColor());
+					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
+				}
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
 			}
 		}
@@ -141,18 +148,22 @@ public class WindowGame extends BasicGame {
 	public void afficherAutomates(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		System.out.println("afficherAutomates");
 		for (DisplayCharacter c : characters) {
-			System.out.println(c.getCharacter().getAutomata().getPosition());
-			Automata automate= c.getCharacter().getAutomata();
-			Point posAutom = automate.getPosition();
-			int heightAutom = automate.getHeight();
-			int widthAutom = automate.getWidth();
+			if(c instanceof DisplaySurvivor){
+
+				System.out.println(c.getCharacter().getAutomata().getPosition());
+				Automata automate= c.getCharacter().getAutomata();
+				Point posAutom = automate.getPosition();
+				int heightAutom = automate.getHeight();
+				int widthAutom = automate.getWidth();
 
 
-			if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
-					posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
-			{
-				g.setColor(Color.black);
-				g.drawRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
+				if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
+						posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
+				{
+					System.out.println("af");
+					g.setColor(((DisplaySurvivor) c).getColor());
+					g.fillRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
+				}
 			}
 		}
 	}
@@ -186,21 +197,50 @@ public class WindowGame extends BasicGame {
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 
-		this.ordo.melanger();
-		this.ordo.next_move();
-		this.map.print_map();
+		//this.ordo.melanger();
+		this.ordo.next();
+		//ordo.getDirection();
+		//ordo.getAction();
+		//ordo.getCharacter();
+		//ArrayList<DisplayCharacter>lDC= this.characters;
+		int i=0;
+		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
+			i++;
+		}
+		switch (ordo.getDirection()){
+		case 'U': break;
+		case 'N': this.characters.get(i).setDirection(3); break;
+		case 'S': this.characters.get(i).setDirection(0); break;
+		case 'O': this.characters.get(i).setDirection(1); break;
+		case 'E': this.characters.get(i).setDirection(2); break;
+		}
+		this.characters.get(i).setMoving(ordo.getAction()==Action.MOVE);
+
+
+		DisplayCharacter dc= this.characters.get(i);
+		//System.out.println(delta);
+
+		while (dc.isMoving()) {
+			switch (dc.getDirection()) {
+			case 0: dc.setY(dc.getY() - .1f * delta); break;
+			case 1: dc.setX(dc.getX() - .1f * delta); break;
+			case 2: dc.setY(dc.getY() + .1f * delta); break;
+			case 3: dc.setX(dc.getX() + .1f * delta); break;
+			}
+			if (dc.getX()==dc.getCharacter().getCell().getPosition().x && dc.getY()==dc.getCharacter().getCell().getPosition().y) {
+				this.characters.get(i).setMoving(false);
+
+			}
+		}
+
+		//this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
+		//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
+
+		//this.map.print_map();
 		Moteur.clean_dead_bodies(this.charactersList);
 
-		DisplayCharacter dc = this.characters.get(0); 
-		//    	System.out.println(delta);
-		//    	if (dc.isMoving()) {
-		//    	        switch (dc.getDirection()) {
-		//    	            case 0: dc.setY(dc.getY() - .1f * delta); break;
-		//    	            case 1: dc.setX(dc.getX() - .1f * delta); break;
-		//    	            case 2: dc.setY(dc.getY() + .1f * delta); break;
-		//    	            case 3: dc.setX(dc.getX() + .1f * delta); break;
-		//    	        }
-		//    	    }
+		//DisplayCharacter dc = this.characters.get(0); 
+
 
 		if(this.isMoving){
 			switch(this.direction){
@@ -226,8 +266,8 @@ public class WindowGame extends BasicGame {
 		app.start();
 	}
 	public static void main(String[] args) throws SlickException {
-		//startgame();
-		
+		startgame();
+		/*
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		Ordonnanceur ordo = new Ordonnanceur(lC);
@@ -237,6 +277,6 @@ public class WindowGame extends BasicGame {
 		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
-		app.start();
+		app.start();*/
 	}
 }

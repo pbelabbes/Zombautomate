@@ -15,7 +15,7 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 
 	public DisplaySurvivor(Model.Character c) throws SlickException{
 		super(c, 8, "ressources/characters/sprites/male_walkcycle.png" );
-//		this.color = 
+		this.color = randomColor();
 		}
 	
 	@Override
@@ -24,5 +24,13 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 		
 	}
 	
-
+	public Color getColor(){
+		return this.color;
+	}
+	
+	public static Color randomColor(){
+		int red = (int) (Math.random()*255),blue = (int) (Math.random()*255),green = (int) (Math.random()*255);
+		System.out.println("red : "+red+", blue : "+blue+", green : "+green);
+		return new Color(1,red,blue,green);
+	}
 }

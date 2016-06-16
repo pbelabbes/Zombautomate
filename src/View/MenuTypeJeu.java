@@ -56,14 +56,14 @@ public void init(GameContainer container, StateBasedGame game)
 
 	}
 
-	@Override
-	/**
-	 * 
-	 * @param container
-	 * @param game
-	 * @param delta
-	 * @throws SlickException
-	 */
+@Override
+/**
+ * 
+ * @param container
+ * @param game
+ * @param delta
+ * @throws SlickException
+ */
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		int PosX = Mouse.getX() ;
@@ -79,25 +79,27 @@ public void init(GameContainer container, StateBasedGame game)
 		
 		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
 			
-			//bouton Newgame 
+			//bouton 1 v 1 zombie
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){			
 				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0) ;
+					EcranDeValidation.mode = 1;
+					game.enterState(EcranDeValidation.ID);
 
 				}
 			}
 			
-			//bonton COntinue 
+			//bonton 2 v 1 Zombie
 			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
 				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0);
+					EcranDeValidation.mode = 6;
+					game.enterState(EcranDeValidation.ID);
 				}
 			}
 			
-			//Bouton Option
+			//Bouton var
 			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
 				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0) ;
+					game.enterState(EcranDeValidation.ID);
 				}
 			}
 		}	

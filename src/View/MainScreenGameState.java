@@ -25,33 +25,19 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Continue;
 	private Image Newgame;
 	private Image Option;
-//	private MouseOverArea Cont;
-//	private MouseOverArea Ng;
-//	private MouseOverArea Exit;
-//	private MenuCont controller; 
-//	private StateBasedGame game;
+
 	
 	
-//	public MainScreenGameState(MenuCont controller) {
-//		  this.controller = controller;
-//		}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-//		this.game = game;
-//		int larg = container.getWidth();
-//		int haut = container.getHeight() ;
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
 		
 		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
 		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
 		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
 		
-//		attackButton = new MouseOverArea(container, buttonImage, SPACE, container.getHeight() - (buttonImage.getHeight() + SPACE) * 3, this);
-		//this.Cont = new MouseOverArea(container, this.Continue,larg/2 - larg/10 , haut/2 - haut/30 -haut/18,larg/10, haut/17 ,this );
-		
-	
 	}
 
 	@Override
@@ -74,17 +60,13 @@ public class MainScreenGameState extends BasicGameState  {
 		int PosY = Mouse.getY() ;
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
-		
-		
-		
-		
+
 		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
 			
 			//bouton Newgame 
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
 				if(Mouse.isButtonDown(0)){
 					game.enterState(MenuTypeJeu.ID);
-
 				}
 			}
 			
@@ -99,7 +81,6 @@ public class MainScreenGameState extends BasicGameState  {
 			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
 				if(Mouse.isButtonDown(0)){
 					System.exit(0) ;
-					
 				}
 			}
 		}
