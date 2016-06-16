@@ -114,7 +114,12 @@ public class ScanLoin extends Condition {
 			case "ennemi": this.id = 3;
 			default : ;
 			}
-		
+
+		System.out.println(this.id);		
+		boolean b = scan(cellule);
+		if(b){
+			int debug = 3; debug = debug+=3;
+		}
 		return scan(cellule);
 	}
 
@@ -187,21 +192,38 @@ public class ScanLoin extends Condition {
 		Cell[][] grid = map.getGrid();
 		
 		// les coordonnées calculées ne sont pas très claires mais en gros c'est le point décalé de delta, et on applique le tor sur le résultat
-		int px = (p.x+delta.x+w)%w;
-		int py = (p.y+delta.y+h)%h;
-		if (check_point(grid[px][py])) res = new Point (px,py);
+     	int px = (p.x+delta.x+100*w)%w;
+		int py = (p.y+delta.y+100*h)%h;
+		if (check_point(grid[px][py]))
+		{
+//			res = new Point (px,py);
+			res = new Point(p.x+delta.x,p.y+delta.y);
+		}
 
-		px = (p.x+delta.x*-1 +w)%w;
-		py = (p.y+delta.y+h)%h;
-		if(check_point(grid[px][py])) res = new Point(px,py);
+		px = (p.x+delta.x*-1 +100*w)%w;
+		py = (p.y+delta.y+100*h)%h;
+		if(check_point(grid[px][py]))
+		{
+//			res = new Point(px,py);
+			res = new Point(p.x+delta.x*-1,p.y+delta.y);
+		}
 
-		px = (p.x+delta.x*-1 +w)%w;
-		py = (p.y+delta.y*-1 +h)%h;
-		if(check_point(grid[px][py])) res = new Point(px,py);
+		//System.out.print(px);
+		px = (p.x+delta.x*-1 +100*w)%w;
+		py = (p.y+delta.y*-1 +100*h)%h;
+		if(check_point(grid[px][py]))
+		{
+//			res = new Point(px,py);
+			res = new Point(p.x+delta.x*-1,p.y+delta.y*-1);
+		}
 
-		px = (p.x+delta.x +w)%w;
-		py = (p.y+delta.y*-1 +h)%h;
-		if(check_point(grid[px][py])) res = new Point(px,py);
+		px = (p.x+delta.x +100*w)%w;
+		py = (p.y+delta.y*-1 +100*h)%h;
+		if(check_point(grid[px][py]))
+		{
+//			res = new Point(px,py);
+			res = new Point(p.x+delta.x, p.y+delta.y*-1);
+		}
 
 		return res;
 	}
@@ -214,20 +236,36 @@ public class ScanLoin extends Condition {
 	 */
 	private boolean check_point(Cell cellule)
 	{
+		if(cellule.getPosition().x == 0 && cellule.getPosition().y == 9)
+		{
+			int debug = 1;
+			debug+=2;
+		}
 		if(decor == null)
 		{
 			Character ent_on = cellule.getEntity_on();
-				if(this.id<3)
+			if (ent_on !=null) {
+				int debug = 003;
+				debug = debug*2;
+				
+			}
+			if(this.id<3)
 				{				
 					return ent_on != null && ent_on.getPlayer().getId() == id;
 				}
 				else
 				{
+					if (ent_on !=null) {
+						int debug = 003;
+						debug = debug*2;
+						
+					}
 					return ent_on != null && ent_on instanceof Survivor;
 				}
 		}
 		else
-			return cellule.getDecor() == decor;
+			
+				return cellule.getDecor() == decor;
 	}
 
 

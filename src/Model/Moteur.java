@@ -13,10 +13,13 @@ import java.util.ArrayList;
  */
 public class Moteur {
 
+	
 	/**
 	 * 
+	 * @param J
+	 * @param L
+	 * @return
 	 */
-
 	public static ArrayList<Character> CreateEntities(Player J , ArrayList<ArrayList<transfer>> L){
 		ArrayList<Character> res  = new ArrayList<Character>() ;
 		Automata aut ; 
@@ -63,7 +66,12 @@ public class Moteur {
 		return res;
 	}
 	
-	//calcule la taille pour un automate
+
+	/**
+	 * calcule la taille pour un automate
+	 * @param automata
+	 * @return
+	 */
 	private static int height(ArrayList<transfer> automata){
 //		ArrayList<transfer> dejavu= new ArrayList<Integer>();
 //		transfer El;
@@ -84,7 +92,12 @@ public class Moteur {
 		return max ;
 	}
 	
-	//calcule la largeur d'un automate.
+
+	/**
+	 * calcule la largeur d'un automate.
+	 * @param automata
+	 * @return
+	 */
 	private static int width(ArrayList<transfer> automata){
 		//ArrayList<int> dejavu= new ArrayList<int>();
 		//transfer El;
@@ -155,6 +168,7 @@ public class Moteur {
 		
 //		System.out.println("Hmax = "+h_max+" et Wmax = " + w_max);
 		
+		/*
 		//On place à peu près autant d'automates sur la hauteur que sur la largeur de la carte (sqrt permet d'équilibrer ces 2 dimensions)
 		for(int x = 0 ; (int) x < Math.sqrt(nb_charact) +1 ; x++)
 		{
@@ -169,6 +183,20 @@ public class Moteur {
 				if(compteur>0) lP.add(new Point(x_reel,y_reel));
 				compteur--; //On créé autant de points qu'il y a d'automates à placer. d'où le compteur
 			}
+		}*/ 
+		
+		//on veut placer les automates de façon à ce que la largeur de la carte soit environ la meme que sa hauteur.
+		for(int x = 0 ; (int) x < nb_charact ; x++)
+		{
+			
+				//On calcule les coordonnées des automates sur la carte
+				int x_reel = (int) (x*w_max+  5*Math.random() +5*x); //on prend en compte le décalage aléatoire en ajoutant en plus : 5*x
+				int y_reel = (int) (5*Math.random());
+				
+//				System.out.println("x_reel = "+x_reel+" y_reel = " +y_reel);
+				
+				if(compteur>0) lP.add(new Point(x_reel,y_reel));
+				compteur--; //On créé autant de points qu'il y a d'automates à placer. d'où le compteur
 		}
 		System.out.println("nb_charact==lP.size()  ->  " + (nb_charact==lP.size())  +  nb_charact);
 		return lP;
@@ -186,8 +214,12 @@ public class Moteur {
 		int nb_character = lC.size();
 		
 		//dimensions de la map : (voir la fonction get_list_coords_automatas(..) pour comprendre les coordonnées de la map 
-		int x_map = (int) ((5+getWmax(lC))*(Math.sqrt(nb_character)+2));
-		int y_map = (int) ((5+getHmax(lC))*(Math.sqrt(nb_character)+2));
+//		int x_map = (int) ((5+getWmax(lC))*(Math.sqrt(nb_character)+2));
+//		int y_map = (int) ((5+getHmax(lC))*(Math.sqrt(nb_character)+2));
+
+		int x_map = ((5+getWmax(lC))*nb_character);
+		int y_map = ((5+getHmax(lC)));
+
 		return new Map(x_map,y_map);
 	}
 /*			 
@@ -235,13 +267,10 @@ public class Moteur {
 	}
 	
 	
-	public static Map initiate_map(Player j0, Player j1, Player j2)
+	public static Map initiate_map(ArrayList<Character> lC, Player j0)
 	{
-		ArrayList<Character> lC = new ArrayList<Character>();
-		lC.addAll(j1.getEntities());
-		lC.addAll(j2.getEntities());
-
-	
+	// attention, la map a changé
+		
 		ArrayList<Point> lP = getList_coords_automatas(lC);
 
 		
@@ -327,10 +356,10 @@ public class Moteur {
 		System.out.println("positions initiales du joueur 2 :");
 		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
 
-		
+		carte.random_pop_zombies(lC,j0, 10);		
 		while(!(j1.defeated()||j2.defeated()))
 		{
-			carte.random_pop_zombies(lC,j0, compteur/100);
+//			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.melanger();
 			ordo.next_move();
 			compteur++;
@@ -342,14 +371,17 @@ public class Moteur {
 		{
 			System.out.println("j1 a perdu en "+compteur+" tours");
 		}
-		else System.out.println("j2 a perdu en " + compteur+ " tours" );
-
-		System.out.println("positions finales du joueur 1 :");
+		else if(j2.defeated())
+			System.out.println("j2 a perdu en " + compteur+ " tours" );
+		else 
+			System.out.println("WTF");
+		
+/*		System.out.println("positions finales du joueur 1 :");
 		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
 
 		System.out.println("positions finales du joueur 2 :");
 		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
-
+*/
 	}
 
 }

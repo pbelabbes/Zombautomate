@@ -66,13 +66,10 @@ public class StateGame extends StateBasedGame {
 		
 
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
-		ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
+		
 		Player j1 = new Player(1 ,"Joueur 1", 10);
-		Player j0= new Player(0,"Joueur 0",10);
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
-		j0.setEntities(Moteur.CreateEntities(j0,equipezombie));
 		lC.addAll(j1.getEntities());
-		lC.addAll(j0.getEntities());
 		
 		if(mode==2)
 		{
@@ -84,7 +81,15 @@ public class StateGame extends StateBasedGame {
 		return lC;
 	}
 	
-	
+	public static Player getZombies(){
+		XMLReader fichier = new XMLReader() ;
+		
+		ArrayList<ArrayList<transfer>> equipezombie=fichier.read("../Zombautomate/ocaml/zombies.xml");
+		Player j0= new Player(0,"Joueur 0",10);
+		j0.setEntities(Moteur.CreateEntities(j0,equipezombie));
+		
+		return j0;
+	}
 	
 	@Override
 	/**
@@ -94,8 +99,7 @@ public class StateGame extends StateBasedGame {
 	 */
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		ArrayList<Character> lC = jeu (1) ; 
-		Map carte = Moteur.create_map(lC);
-		carte.init_map(); 
+		Map carte = Moteur.initiate_map(lC, getZombies());
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
@@ -114,7 +118,11 @@ public class StateGame extends StateBasedGame {
 //		new AppGameContainer(new StateGame(), 800, 600, false).start();
 //
 //	}
-	
+	/**
+	 * 
+	 * @param args
+	 * @throws SlickException
+	 */
 	public static void main(String[] args) throws SlickException {
     	//ArrayList<Character> lC = jeu (1) ;
     	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();

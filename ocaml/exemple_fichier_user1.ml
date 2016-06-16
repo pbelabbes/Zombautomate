@@ -9,7 +9,9 @@ let (guerrier: automate) =
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 1
   @
-    presence_AD 1 Ennemi Attaquer 1 6
+    presence_AD 1 Ennemi Attaquer 1 7
+  @
+    presence_AD 1 Zombie Attaquer 1 6
   @
     scan_loin_AD 1 Ennemi Deplacer 1 5
   @
@@ -19,19 +21,21 @@ let (guerrier: automate) =
   @
     presence_AD 1 Batte_baseball Ramasser 1 3
   @
-    presence_AD 1 Katana Ramasser 1 4
+    presence_AD 1 Katana Ramasser 1 4  
   @
-    [(0,Defaut,Deplacer,E,1,0)]
+    presence_AD 0 Rocher Attaquer 0 7
   @
-    [(1,Defaut,Deplacer,E,1,0)] 
+    presence_AD 1 Rocher Attaquer 1 7  
   @
-    [(0,Defaut,Deplacer,N,1,0)]
+    [(0,Defaut,Deplacer,O,1,0)]
   @
-    [(1,Defaut,Deplacer,N,1,0)];;
-
+    [(1,Defaut,Deplacer,O,1,0)] 
+  @
+    [(0,Defaut,Deplacer,S,1,0)]
+  @
+    [(1,Defaut,Deplacer,S,1,0)] ;;
 
 (*guerrier : 2 états chacun 16 transitions ... plus à jour*)
-
 
 
 
@@ -52,9 +56,9 @@ let (farmer: automate) =
   @
     presence_AD 2 Arbre Attaquer 0 1
   @
-    [(0,Ou(Present(Ennemi,N),Present(Ennemi,E)), Deplacer, S, 0, 5)]
+    [(0,Ou(Present(Ennemi,N),Present(Ennemi,E)), Deplacer, S, 0, 3)]
   @
-    [(0,Ou(Present(Ennemi,S),Present(Ennemi,O)), Deplacer, N, 0, 5)]
+    [(0,Ou(Present(Ennemi,S),Present(Ennemi,O)), Deplacer, N, 0, 3)]
   @
     presence_AD 0 Ennemi Voler 0 1 ;;
 
@@ -74,5 +78,5 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
-let equipe1 = [ (guerrier,"guerrier"); (farmer,"farmer");(guerrier,"guerrier"); (farmer,"farmer")];; 
+let equipe1 = [ (farmer,"guerrier"); (farmer,"guerrier")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
