@@ -1,9 +1,6 @@
 package View;
 
-
-
-
-import java.awt.event.MouseEvent;
+import java.util.concurrent.TimeUnit;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
@@ -13,23 +10,25 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class MainScreenGameState extends BasicGameState {
+public class ContinueMenutypeJeu extends BasicGameState {
 
-	public static final int ID = 1;
+	public static final int ID = 3;
 	private Image background;
-	private Image Continue;
-	private Image Newgame;
-	private Image Option;
-//	private StateBasedGame game;
-
+	private Image hu1;
+	private Image hu2;
+	private Image var;
+	private StateBasedGame game;
+	
+	
 	@Override
-	public void init(GameContainer container, StateBasedGame game)
+	public void init(GameContainer arg0, StateBasedGame game)
 			throws SlickException {
-//		this.game = game;
+		this.game = game;
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
-		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
-		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
-		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png");
+		this.hu1 = new Image ("../Zombautomate/ressources/Menu/1vZombie.png");
+		this.hu2= new Image ("../Zombautomate/ressources/Menu/2vZombies.png");
+		this.var = new Image ("../Zombautomate/ressources/Menu/variante.png");
+
 	}
 
 	@Override
@@ -38,11 +37,10 @@ public class MainScreenGameState extends BasicGameState {
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
 		background.draw(0, 0, container.getWidth(), container.getHeight());
-		//g.drawString("Appuyer sur une touche", 300, 300);
-		Newgame.draw(larg/2 - larg/10 ,    haut/2 - haut/30 -haut/18 					, larg/5, haut/7);
-		Continue.draw(larg/2 - larg/10 ,   haut/2 + haut/7 - haut/18 					, larg/5, haut/7);
-		Option.draw(larg/2 - larg/10 ,     haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
-		
+		hu1.draw(larg/2 - larg/10 ,    haut/2 - haut/30 -haut/18 					, larg/5, haut/7);
+		hu2.draw(larg/2 - larg/10 ,   haut/2 + haut/7 - haut/18 					, larg/5, haut/7);
+		var.draw(larg/2 - larg/10 ,     haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
+
 	}
 
 	@Override
@@ -53,54 +51,47 @@ public class MainScreenGameState extends BasicGameState {
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
 		
+
+		
 		
 		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
 			
 			//bouton Newgame 
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
 				
-				if(Mouse.isButtonDown(0)){
-					game.enterState(MenuTypeJeu.ID);
+				if(Mouse.isButtonDown && Mouse.isGrabbed())){
+					
+					System.exit(0) ;
+//					game.enterState(.ID);
 
 				}
 			}
 			
 			//bonton COntinue 
 			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
-				if(MouseEvent.MOUSE_CLICKED==1){
-					
-					
-					game.enterState(ContinueMenutypeJeu.ID);
-					
-					 
+				if(Mouse.isButtonDown(0)){
+//					game.enterState(ContinueMenutypeJeu.ID);
+//					System.exit(0) ;	
+					System.out.println("sup");
 				}
 			}
 			
 			//Bouton Option
 			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
 				if(Mouse.isButtonDown(0)){
+					//System.exit(0) ;
 					System.exit(0) ;
-					
 				}
 			}
 		}
 		
 		
-		
-		
-		
 	}
+
 
 	@Override
 	public int getID() {
 		return ID;
 	}
-	
-	/*public void keyReleased(int key, char c) {
-	    game.enterState(MenuTypeJeu.ID);
-	    
-	  }*/
-
-	
 
 }

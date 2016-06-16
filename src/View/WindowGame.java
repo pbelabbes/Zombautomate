@@ -39,7 +39,7 @@ public class WindowGame extends BasicGame {
 
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
-		}
+	}
 
 	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map){
 		this.map = map;
@@ -58,7 +58,7 @@ public class WindowGame extends BasicGame {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
-				//				characters.add(new DisplayZombie(character)); 
+								characters.add(new DisplayZombie(character)); 
 			}
 		}
 
@@ -102,17 +102,23 @@ public class WindowGame extends BasicGame {
 
 
 	public int getID() {
-		return 0;
+		return ID;
 	}
 
 	public void afficherDecors(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-				g.drawAnimation(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
+				if(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCell().getDecor()!=null){
+					g.drawAnimation(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
+				}
+				if(mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY].getCell().getOwned_by() != null){
+					g.setColor(Color.red);
+					g.drawRect(cursorX, cursorY, TILED_SIZE, TILED_SIZE);
+				}
 			}
 		}
 	}
-	
+
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for (DisplayCharacter c : characters) {
 
@@ -136,8 +142,8 @@ public class WindowGame extends BasicGame {
 			Point posAutom = automate.getPosition();
 			int heightAutom = automate.getHeight();
 			int widthAutom = automate.getWidth();
-			
-			
+
+
 			if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
 					posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
 			{
@@ -151,15 +157,15 @@ public class WindowGame extends BasicGame {
 		g.setColor(Color.white);
 		g.drawString("mapOrigin : "+mapOrigin.x+";"+mapOrigin.y, 0, 30);
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
-		g.drawString("Taille de l'écran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
+		g.drawString("Taille de l'ï¿½cran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
-	
+
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
-		//Affichage de décors
+		//Affichage de dï¿½cors
 		afficherDecors(container, g, mapOriginX,mapOriginY);
 
 		//Affichage des personnages
@@ -167,7 +173,7 @@ public class WindowGame extends BasicGame {
 
 
 		//Affichage Automates
-		afficherAutomates(container, g, mapOriginX, mapOriginY);
+//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
 		afficherInfos(container, g);
@@ -198,7 +204,7 @@ public class WindowGame extends BasicGame {
 	}
 
 	public static void main(String[] args) throws SlickException {
-		ArrayList<Character> lC = StateGame.jeu(2) ; 
+		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		WindowGame wg = new WindowGame();
 		wg.initialisedGameModel(lC, carte);
