@@ -36,7 +36,9 @@ public class WindowGame extends BasicGame {
 	public Map map;
 	private boolean isMoving =false;
 	private int direction;
+	public Ordonnanceur ordo;
 
+	
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
 	}
@@ -58,7 +60,7 @@ public class WindowGame extends BasicGame {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
-								characters.add(new DisplayZombie(character)); 
+				characters.add(new DisplayZombie(character)); 
 			}
 		}
 
@@ -173,7 +175,7 @@ public class WindowGame extends BasicGame {
 
 
 		//Affichage Automates
-//		afficherAutomates(container, g, mapOriginX, mapOriginY);
+		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
 		afficherInfos(container, g);
@@ -181,7 +183,13 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		DisplayCharacter dc = characters.get(0); 
+
+		this.ordo.melanger();
+		this.ordo.next_move();
+		this.map.print_map();
+		Moteur.clean_dead_bodies(this.charactersList);
+
+		DisplayCharacter dc = this.characters.get(0); 
 		//    	System.out.println(delta);
 		//    	if (dc.isMoving()) {
 		//    	        switch (dc.getDirection()) {

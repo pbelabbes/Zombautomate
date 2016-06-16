@@ -256,7 +256,7 @@ public class Moteur {
 	}
 */
 	
-	private static void clean_dead_bodies(ArrayList<Character> lC)
+	public static void clean_dead_bodies(ArrayList<Character> lC)
 	{
 	
 		for(int i = 0 ; i<lC.size() ; i ++)
