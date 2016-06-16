@@ -107,6 +107,7 @@ public class StateGame extends StateBasedGame {
 	}
 	
 		return lC;
+
 	}
 
 	
@@ -179,18 +180,19 @@ public static Player getZombies(){
 	return j0;
 }
 
-@Override
+
 /**
  * 
  * @param arg0
  * @throws SlickException
  */
-public void initStatesList(GameContainer arg0) throws SlickException {
-	ArrayList<Character> lC = jeu (1) ; 
-	Map carte = Moteur.initiate_map(lC, getZombies());
-	addState(new MainScreenGameState());
-	addState(new MenuTypeJeu()) ;
-	addState(new ContinueMenutypeJeu());
+	public void initStatesList(GameContainer arg0) throws SlickException {
+		ArrayList<Character> lC = jeu (1) ; 
+		Map carte = Moteur.initiate_map(lC, getZombies());
+		addState(new EcranDeValidation());
+		addState(new MainScreenGameState());
+		addState(new MenuTypeJeu()) ;
+		addState(new ContinueMenutypeJeu());
 	//	addState(new WindowGame(lC,carte) ) ;
 }
 
