@@ -186,8 +186,12 @@ public class Moteur {
 		int nb_character = lC.size();
 		
 		//dimensions de la map : (voir la fonction get_list_coords_automatas(..) pour comprendre les coordonnées de la map 
-		int x_map = (int) ((5+getWmax(lC))*(Math.sqrt(nb_character)+2));
-		int y_map = (int) ((5+getHmax(lC))*(Math.sqrt(nb_character)+2));
+//		int x_map = (int) ((5+getWmax(lC))*(Math.sqrt(nb_character)+2));
+//		int y_map = (int) ((5+getHmax(lC))*(Math.sqrt(nb_character)+2));
+
+		int x_map = ((5+getWmax(lC))*nb_character);
+		int y_map = ((5+getHmax(lC)));
+
 		return new Map(x_map,y_map);
 	}
 /*			 
@@ -237,7 +241,8 @@ public class Moteur {
 	
 	public static Map initiate_map(ArrayList<Character> lC, Player j0)
 	{
-	
+	// attention, la map a changé
+		
 		ArrayList<Point> lP = getList_coords_automatas(lC);
 
 		
