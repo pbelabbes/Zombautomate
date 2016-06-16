@@ -75,7 +75,11 @@ public class StateGame extends StateBasedGame {
 //		new AppGameContainer(new StateGame(), 800, 600, false).start();
 //
 //	}
-	
+	/**
+	 * 
+	 * @param args
+	 * @throws SlickException
+	 */
 	public static void main(String[] args) throws SlickException {
     	//ArrayList<Character> lC = jeu (1) ;
     	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();

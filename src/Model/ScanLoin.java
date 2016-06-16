@@ -114,7 +114,7 @@ public class ScanLoin extends Condition {
 			case "ennemi": this.id = 3;
 			default : ;
 			}
-		
+		System.out.println(id);		
 		return scan(cellule);
 	}
 
@@ -187,20 +187,21 @@ public class ScanLoin extends Condition {
 		Cell[][] grid = map.getGrid();
 		
 		// les coordonnées calculées ne sont pas très claires mais en gros c'est le point décalé de delta, et on applique le tor sur le résultat
-		int px = (p.x+delta.x+w)%w;
-		int py = (p.y+delta.y+h)%h;
+		int px = (p.x+delta.x+100*w)%w;
+		int py = (p.y+delta.y+100*h)%h;
 		if (check_point(grid[px][py])) res = new Point (px,py);
 
-		px = (p.x+delta.x*-1 +w)%w;
-		py = (p.y+delta.y+h)%h;
+		px = (p.x+delta.x*-1 +100*w)%w;
+		py = (p.y+delta.y+100*h)%h;
 		if(check_point(grid[px][py])) res = new Point(px,py);
 
-		px = (p.x+delta.x*-1 +w)%w;
-		py = (p.y+delta.y*-1 +h)%h;
+		//System.out.print(px);
+		px = (p.x+delta.x*-1 +100*w)%w;
+		py = (p.y+delta.y*-1 +100*h)%h;
 		if(check_point(grid[px][py])) res = new Point(px,py);
 
-		px = (p.x+delta.x +w)%w;
-		py = (p.y+delta.y*-1 +h)%h;
+		px = (p.x+delta.x +100*w)%w;
+		py = (p.y+delta.y*-1 +100*h)%h;
 		if(check_point(grid[px][py])) res = new Point(px,py);
 
 		return res;
@@ -218,16 +219,17 @@ public class ScanLoin extends Condition {
 		{
 			Character ent_on = cellule.getEntity_on();
 				if(this.id<3)
-				{				
+				{	//System.out.print("in if  ");
 					return ent_on != null && ent_on.getPlayer().getId() == id;
 				}
 				else
-				{
-					return ent_on != null && ent_on instanceof Survivor;
+				{  //System.out.print("in else ");
+					return ent_on != null && (ent_on.getPlayer().getId()==1 || ent_on.getPlayer().getId()==2);
 				}
 		}
 		else
-			return cellule.getDecor() == decor;
+			
+				return cellule.getDecor() == decor;
 	}
 
 

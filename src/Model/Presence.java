@@ -42,8 +42,8 @@ public class Presence extends Condition {
 	public boolean execute(Cell cellule){
 
 		Cell targeted_cell = getTargetedCell(this.direction,cellule);
-		
-		if(this.decor != null)
+		Character c2=null;
+		if(targeted_cell!=null && this.decor != null)
 		{
 
 			return (targeted_cell.getDecor()==this.decor);	
@@ -51,7 +51,7 @@ public class Presence extends Condition {
 		else
 		{
 			Character c1 = cellule.getEntity_on();
-			Character c2 = targeted_cell.getEntity_on();
+			if(targeted_cell!=null) {c2 = targeted_cell.getEntity_on();}
 			
 			if(c2 != null)
 			{
