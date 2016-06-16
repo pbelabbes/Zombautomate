@@ -100,6 +100,7 @@ public class StateGame extends StateBasedGame {
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		ArrayList<Character> lC = jeu (1) ; 
 		Map carte = Moteur.initiate_map(lC, getZombies());
+		addState(new EcranDeValidation());
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
