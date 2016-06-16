@@ -37,14 +37,14 @@ public void init(GameContainer container, StateBasedGame game)
 
 	}
 
-	@Override
-	/**
-	 * 
-	 * @param container
-	 * @param game
-	 * @param g
-	 * @throws SlickException
-	 */
+@Override
+/**
+ * 
+ * @param container
+ * @param game
+ * @param g
+ * @throws SlickException
+ */
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		int larg = container.getWidth();
@@ -106,11 +106,11 @@ public void init(GameContainer container, StateBasedGame game)
 	}
 
 
-	@Override
-	/**
-	 * 
-	 * @return
-	 */
+@Override
+/**
+ * 
+ * @return
+ */
 	public int getID() {
 		return ID;
 	}

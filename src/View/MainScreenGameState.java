@@ -25,6 +25,8 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Continue;
 	private Image Newgame;
 	private Image Option;
+	private Image souris; 
+	private Image souris2;
 
 	
 	
@@ -37,8 +39,12 @@ public class MainScreenGameState extends BasicGameState  {
 		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
 		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
 		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
-		
+		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
+		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
+		container.setMouseCursor(this.souris, 0, 0);
 	}
+	
+	
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -65,24 +71,31 @@ public class MainScreenGameState extends BasicGameState  {
 			
 			//bouton Newgame 
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
+				container.setMouseCursor(this.souris2, 0, 0);
+				
 				if(Mouse.isButtonDown(0)){
 					game.enterState(MenuTypeJeu.ID);
 				}
 			}
+//			container.setMouseCursor(this.souris, 0, 0);
 			
 			//bonton COntinue 
 			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
+				container.setMouseCursor(this.souris2, 0, 0);
 				if(Mouse.isButtonDown(0)){
 					game.enterState(ContinueMenutypeJeu.ID);
 				}
 			}
+//			container.setMouseCursor(this.souris, 0, 0);
 			
 			//Bouton Option
 			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
+				container.setMouseCursor(this.souris2, 0, 0);
 				if(Mouse.isButtonDown(0)){
 					System.exit(0) ;
 				}
 			}
+//			container.setMouseCursor(this.souris, 0, 0);
 		}
 		
 	}
