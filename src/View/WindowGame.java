@@ -58,7 +58,7 @@ public class WindowGame extends BasicGame {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
-				//				characters.add(new DisplayZombie(character)); 
+								characters.add(new DisplayZombie(character)); 
 			}
 		}
 
@@ -165,7 +165,7 @@ public class WindowGame extends BasicGame {
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
-		//Affichage de décors
+		//Affichage de dï¿½cors
 		afficherDecors(container, g, mapOriginX,mapOriginY);
 
 		//Affichage des personnages
