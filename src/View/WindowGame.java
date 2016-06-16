@@ -202,72 +202,87 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		System.out.println("delta : " + delta);
-		//this.ordo.melanger();
-		this.ordo.next();
-		//ordo.getDirection();
-		//ordo.getAction();
-		//ordo.getCharacter();
-		//ArrayList<DisplayCharacter>lDC= this.characters;
-		int i=0;
+		if(isEndGame()){
+			endOfGame();
+		}else{
 
-		DisplayCharacter cCharac = null;
-		for (DisplayCharacter c : characters) {
-			if(c.getCharacter() == ordo.getCharacter()){
-				cCharac = c;
+			System.out.println("delta : " + delta);
+			//this.ordo.melanger();
+			this.ordo.next();
+			//ordo.getDirection();
+			//ordo.getAction();
+			//ordo.getCharacter();
+			//ArrayList<DisplayCharacter>lDC= this.characters;
+			int i=0;
+
+			DisplayCharacter cCharac = null;
+			for (DisplayCharacter c : characters) {
+				if(c.getCharacter() == ordo.getCharacter()){
+					cCharac = c;
+				}
+			}
+			//		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
+			//			i++;
+			//		}
+
+			if(cCharac != null){
+
+				switch (ordo.getDirection()){
+				case 'U': break;
+				case 'N': cCharac.setDirection(3); break;
+				case 'S': cCharac.setDirection(0); break;
+				case 'O': cCharac.setDirection(1); break;
+				case 'E': cCharac.setDirection(2); break;
+				}
+			}
+			cCharac.setMoving(ordo.getAction()==Action.MOVE);
+
+
+			//		DisplayCharacter dc= this.characters.get(i);
+			//System.out.println(delta);
+
+			if(cCharac.isMoving()) {
+				switch (cCharac.getDirection()) {
+				case 0: cCharac.setY(cCharac.getY() - .1f * delta); break;
+				case 1: cCharac.setX(cCharac.getX() - .1f * delta); break;
+				case 2: cCharac.setY(cCharac.getY() + .1f * delta); break;
+				case 3: cCharac.setX(cCharac.getX() + .1f * delta); break;
+				}
+				if (cCharac.getX()==cCharac.getCharacter().getCell().getPosition().x && cCharac.getY()==cCharac.getCharacter().getCell().getPosition().y) {
+					cCharac.setMoving(false);
+
+				}
+			}
+
+			//this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
+			//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
+
+			//this.map.print_map();
+			Moteur.clean_dead_bodies(this.charactersList);
+
+			//DisplayCharacter dc = this.characters.get(0); 
+
+
+			if(this.isMoving){
+				switch(this.direction){
+				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+
+				}
 			}
 		}
-		//		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
-		//			i++;
-		//		}
+	}
 
-		if(cCharac != null){
+	private void endOfGame() {
+		// TODO Auto-generated method stub
+		
+	}
 
-			switch (ordo.getDirection()){
-			case 'U': break;
-			case 'N': cCharac.setDirection(3); break;
-			case 'S': cCharac.setDirection(0); break;
-			case 'O': cCharac.setDirection(1); break;
-			case 'E': cCharac.setDirection(2); break;
-			}
-		}
-		cCharac.setMoving(ordo.getAction()==Action.MOVE);
-
-
-//		DisplayCharacter dc= this.characters.get(i);
-		//System.out.println(delta);
-
-		if(cCharac.isMoving()) {
-			switch (cCharac.getDirection()) {
-			case 0: cCharac.setY(cCharac.getY() - .1f * delta); break;
-			case 1: cCharac.setX(cCharac.getX() - .1f * delta); break;
-			case 2: cCharac.setY(cCharac.getY() + .1f * delta); break;
-			case 3: cCharac.setX(cCharac.getX() + .1f * delta); break;
-			}
-			if (cCharac.getX()==cCharac.getCharacter().getCell().getPosition().x && cCharac.getY()==cCharac.getCharacter().getCell().getPosition().y) {
-				cCharac.setMoving(false);
-
-			}
-		}
-
-		//this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
-		//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
-
-		//this.map.print_map();
-		Moteur.clean_dead_bodies(this.charactersList);
-
-		//DisplayCharacter dc = this.characters.get(0); 
-
-
-		if(this.isMoving){
-			switch(this.direction){
-			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
-
-			}
-		}
+	private boolean isEndGame() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public static void startgame() throws SlickException {

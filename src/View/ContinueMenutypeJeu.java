@@ -64,15 +64,14 @@ public class ContinueMenutypeJeu extends BasicGameState {
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
 				
 				if(released  && Mouse.isButtonDown(0)){
-					
-					System.exit(0) ;
+					game.enterState(EcranDeValidation.ID);
 				}
 			}
 			
 			//bonton COntinue 
 			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
 				if(released  && Mouse.isButtonDown(0)){
-					System.out.println("sup");
+					game.enterState(EcranDeValidation.ID);
 				}
 			}
 			
@@ -80,7 +79,7 @@ public class ContinueMenutypeJeu extends BasicGameState {
 			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
 				if(released  && Mouse.isButtonDown(0)){
 					//System.exit(0) ;
-					System.exit(0) ;
+					game.enterState(EcranDeValidation.ID);
 				}
 			}
 		}

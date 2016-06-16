@@ -64,6 +64,7 @@ public class MainScreenGameState extends BasicGameState  {
 		Continue.draw(larg/2 - larg/10 ,   haut/2 + haut/7 - haut/18 					, larg/5, haut/7);
 		Option.draw(larg/2 - larg/10 ,     haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
 		//Cont.render(container, g);
+		
 	}
 	/**
 	 * vérifie si la position de la souris correspond aux boutons du menu principal sur l'axe des x
