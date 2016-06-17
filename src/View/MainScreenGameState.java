@@ -10,6 +10,7 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.MouseButtonControl;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -28,7 +29,7 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image souris; 
 	private Image souris2;
 
-	
+	private StateBasedGame game ; 
 	
 
 	@Override
@@ -49,6 +50,7 @@ public class MainScreenGameState extends BasicGameState  {
 		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		container.setMouseCursor(this.souris, 0, 0);
+		this.game = game; 
 	}
 	
 	
@@ -159,6 +161,17 @@ public class MainScreenGameState extends BasicGameState  {
 
 	}
 	
+	
+	@Override
+	public void keyPressed(int key, char c) {
+		
+		switch (key) {
+		//Mouvement personnage
+		case Input.KEY_1:  EcranDeValidation.mode= -1 ; game.enterState(EcranDeValidation.ID);   break;
+		case Input.KEY_2:  EcranDeValidation.mode= -1 ; game.enterState(EcranDeValidation.ID); break ;
+		case Input.KEY_3:  EcranDeValidation.mode= -1 ; game.enterState(EcranDeValidation.ID);break;
+		}
+	}
 	
 	
 
