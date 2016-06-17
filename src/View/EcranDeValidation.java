@@ -31,7 +31,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	private boolean released ;
 	private StateBasedGame game;
 	private boolean launch;
-	
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -39,7 +39,9 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		this.mode = 2 ; 
 		this.background = new Image("../Zombautomate/ressources/Menu/valider.png");
 		this.oui = new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
+		oui.setImageColor(0.30f, 0.20f, 0.30f);
 		this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
+		non.setImageColor(0.30f, 0.20f, 0.30f);
 		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		this.released = false ;
@@ -94,7 +96,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		int PosX = Mouse.getX() ;
 		int PosY = Mouse.getY() ;
 		int larg = container.getWidth();
-		int haut = container.getHeight() ;
+		int haut = container.getHeight();
 		
 		if(!Mouse.isButtonDown(0)){
 			this.released = true;
@@ -102,22 +104,33 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
+
 			if(released  && Mouse.isButtonDown(0)){
+
+			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
+
 				this.launch = true ; 
+			
 //				System.exit(0);
+
 //			game.enterState(MainScreenGameState.ID);
 			game.enterState(WindowGame.ID);
 			}
+
 		}
+		else  oui.setImageColor(0.30f, 0.20f, 0.30f);
+
 				
 		
 		if (PosX > larg/8 + larg/5 + larg/20 && PosX < larg/8 + larg/5 + larg/3 - larg/20 && PosY < haut - haut/2 - haut/20 && PosY> haut -(haut/2 +haut/3)+ haut/20){
 			container.setMouseCursor(this.souris2, 0, 0);
+			this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
+
 			if(released  && Mouse.isButtonDown(0)){
 				this.launch = false ; 
 				System.exit(0);
 			}
-		}
+		}  else  non.setImageColor(0.30f, 0.20f, 0.30f);
 	}
 
 

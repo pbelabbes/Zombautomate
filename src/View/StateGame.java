@@ -228,7 +228,11 @@ public StateGame() {
  * @throws SlickException
  */
 public static void main(String[] args) throws SlickException {
+
+//	ArrayList<Character> lC = jeu (1) ;
+
 //	ArrayList<Character> lC = jeu (2) ;
+
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
 
 //	initiateboth();

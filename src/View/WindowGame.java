@@ -40,7 +40,7 @@ public class WindowGame extends BasicGameState {
 	private int direction;
 	public  static Map map;
 	public static Ordonnanceur ordo;
-//	public static ArrayList<Character> perso ;
+	private DisplayCharacter currentChar;
 	 
 
 	private boolean gameOver;
@@ -48,10 +48,10 @@ public class WindowGame extends BasicGameState {
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
-		
+	}
 		
 //		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
-	}
+
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
@@ -131,18 +131,15 @@ public class WindowGame extends BasicGameState {
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 				}
-				if(cCell.getCell().getOwned_by() != null){
-					for (DisplayCharacter c : characters) {
-						if(c.getCharacter() == cCell.getCell().getOwned_by() && c instanceof DisplaySurvivor){
-							g.setColor(((DisplaySurvivor) c).getColor());
-							g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-						}
-
-					}
+				if(currentChar!= null && cCell.getCell().getOwned_by() == currentChar.getCharacter()){
+					g.setColor(((DisplaySurvivor) currentChar).getColor());
+					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
+
 			}
 		}
 	}
+
 
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for (DisplayCharacter c : characters) {
@@ -176,7 +173,6 @@ public class WindowGame extends BasicGameState {
 				if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
 						posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
 				{
-					System.out.println("af");
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
 				}
@@ -231,7 +227,6 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 		if(!this.gameOver){
-
 			System.out.println("delta : " + delta);
 
 			this.ordo.next();
@@ -242,46 +237,63 @@ public class WindowGame extends BasicGameState {
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
 					cCharac = c;
+					break;
 				}
 			}
-
+			this.currentChar = cCharac;
 			if(cCharac != null){
+				if (cCharac.isMoving()){
+					switch (ordo.getDirection()){
+					case 'U': break;
+					case 'N': cCharac.setDirection(3); break;
+					case 'S': cCharac.setDirection(0); break;
+					case 'O': cCharac.setDirection(1); break;
+					case 'E': cCharac.setDirection(2); break;
+					}
+					switch (cCharac.getDirection()) {
+					case 0: 
+						cCharac.setY(cCharac.getY() + .005f * delta); 
+						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+							cCharac.setMoving(false);
+							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						}
+						break;
+					case 1: 
+						cCharac.setX(cCharac.getX() - .005f * delta); 
+						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+							cCharac.setMoving(false);
+							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						}
+						break;
+					case 2: 
+						cCharac.setX(cCharac.getX() + .005f * delta); 
+						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+							cCharac.setMoving(false);
+							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						}
+						break;
+					case 3:
+						cCharac.setY(cCharac.getY() - .005f * delta); 
+						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+							cCharac.setMoving(false);
+							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						}
+						break;
+					}
 
-				switch (ordo.getDirection()){
-				case 'U': break;
-				case 'N': cCharac.setDirection(3); break;
-				case 'S': cCharac.setDirection(0); break;
-				case 'O': cCharac.setDirection(1); break;
-				case 'E': cCharac.setDirection(2); break;
+				}
+				else{
+					this.ordo.next();
+					cCharac = null;
+					for (DisplayCharacter c : characters) {
+						if(c.getCharacter() == ordo.getCharacter()){
+							cCharac = c;
+						}
+					}
+					cCharac.setMoving(ordo.getAction()==Action.MOVE);
 				}
 			}
-			cCharac.setMoving(ordo.getAction()==Action.MOVE);
-
-
-			//		DisplayCharacter dc= this.characters.get(i);
-			//System.out.println(delta);
-
-			if(cCharac.isMoving()) {
-				switch (cCharac.getDirection()) {
-				case 0: cCharac.setY(cCharac.getY() - .5f * delta); break;
-				case 1: cCharac.setX(cCharac.getX() - .5f * delta); break;
-				case 2: cCharac.setY(cCharac.getY() + .5f * delta); break;
-				case 3: cCharac.setX(cCharac.getX() + .5f * delta); break;
-				}
-				if (cCharac.getX()==cCharac.getCharacter().getCell().getPosition().x && cCharac.getY()==cCharac.getCharacter().getCell().getPosition().y) {
-					cCharac.setMoving(false);
-
-				}
-			}
-
-			//this.characters.get(i).setX(this.characters.get(i).getCharacter().getCell().getPosition().x);
-			//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
-
-			//this.map.print_map();
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-
-			//DisplayCharacter dc = this.characters.get(0); 
-
 
 		}
 		if(this.isMoving){
