@@ -10,9 +10,9 @@ import Model.Character;
 
 public abstract class DisplayCharacter extends Display implements Observer {
 	
-	private int direction;
-	private boolean moving;
-	private Character character;
+	protected int direction;
+	protected boolean moving;
+	protected Character character;
 	
 //	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String spriteName) throws SlickException {
 	public DisplayCharacter(Character c, int nbAnimations, String spriteName) throws SlickException {

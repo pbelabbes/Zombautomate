@@ -40,10 +40,13 @@ public class WindowGame extends BasicGame {
 	private boolean isMoving =false;
 	private int direction;
 	public Ordonnanceur ordo;
+	private boolean gameOver;
+	private DisplayCharacter currentChar;
+
+	//Nicotte
 	public static ArrayList<Character> perso ;
 	public static ArrayList<Character> zombie ; 
 
-	private boolean gameOver;
 
 
 	public WindowGame() throws SlickException{
@@ -122,18 +125,15 @@ public class WindowGame extends BasicGame {
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
 				}
-				if(cCell.getCell().getOwned_by() != null){
-					for (DisplayCharacter c : characters) {
-						if(c.getCharacter() == cCell.getCell().getOwned_by() && c instanceof DisplaySurvivor){
-							g.setColor(((DisplaySurvivor) c).getColor());
-							g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-						}
-
-					}
+				if(currentChar!= null && cCell.getCell().getOwned_by() == currentChar.getCharacter()){
+					g.setColor(((DisplaySurvivor) currentChar).getColor());
+					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
+
 			}
 		}
 	}
+
 
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 		for (DisplayCharacter c : characters) {
@@ -167,7 +167,6 @@ public class WindowGame extends BasicGame {
 				if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
 						posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
 				{
-					System.out.println("af");
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
 				}
@@ -203,7 +202,7 @@ public class WindowGame extends BasicGame {
 
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
-		//Affichage de dï¿½cors
+		//Affichage de décors
 		afficherDecors(container, g, mapOriginX,mapOriginY);
 
 		//Affichage des personnages
@@ -227,9 +226,10 @@ public class WindowGame extends BasicGame {
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
 					cCharac = c;
+					break;
 				}
 			}
-
+			this.currentChar = cCharac;
 			if(cCharac != null){
 				if (cCharac.isMoving()){
 					switch (ordo.getDirection()){
