@@ -153,7 +153,7 @@ public class WindowGame extends BasicGameState {
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
 				}
-				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
+				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-TILED_SIZE/2, posCharScreenY*TILED_SIZE-TILED_SIZE);
 			}
 		}
 	}
@@ -205,6 +205,13 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
 		//int pause=1000;
+		/*
+		 public void render(GameContainer container, Graphics g) throws SlickException {
+    g.setColor(new Color(0, 0, 0, .5f));
+    g.fillOval(x - 16, y - 8, 32, 16);
+    g.drawAnimation(animations[direction + (moving ? 4 : 0)], x-32, y-60);
+}
+		 */
 
 		System.out.println("");
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
@@ -252,7 +259,7 @@ public class WindowGame extends BasicGameState {
 					if (ordo.getAction()==Action.MOVE){
 						switch (cCharac.getDirection()) {
 						case 0: 
-							cCharac.setY(cCharac.getY() + .0005f * delta); 
+							cCharac.setY(cCharac.getY() + .0005f * delta);
 							if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 								cCharac.setMoving(false);
 								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
