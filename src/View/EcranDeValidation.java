@@ -66,8 +66,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			throws SlickException {
 		container.setMouseCursor(this.souris, 0, 0);
 		StateGame.jeu(mode);
-		
-		
 		super.enter(container, game);
 	}
 
@@ -76,17 +74,12 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			throws SlickException {
 		
 			StateGame.compileAndRun();
-			
-		
+
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
 			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 			WindowGame.ordo = new Ordonnanceur(lC);
 			WindowGame.charactersList = lC;
 			WindowGame.map = carte ; 
-			
-			
-	
-		
 		super.leave(container, game);
 	}
 
@@ -104,11 +97,11 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
+			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
 
 			if(released  && Mouse.isButtonDown(0)){
 
-			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
-
+			
 				this.launch = true ; 
 			
 //				System.exit(0);
@@ -127,7 +120,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
 
 			if(released  && Mouse.isButtonDown(0)){
-				this.launch = false ; 
 				System.exit(0);
 			}
 		}  else  non.setImageColor(0.30f, 0.20f, 0.30f);

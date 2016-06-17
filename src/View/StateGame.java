@@ -211,11 +211,11 @@ public static Player getZombies(){
  */
 	public void initStatesList(GameContainer arg0) throws SlickException {
 
-		addState(new EcranDeValidation());
-		addState(new WindowGame() ) ;
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
+		addState(new EcranDeValidation());
+		addState(new WindowGame() ) ;
 }
 
 public StateGame() {
