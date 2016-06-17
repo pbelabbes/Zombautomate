@@ -144,7 +144,7 @@ public class Map extends Observable{
 	public void set_charact(Character c, Point p)
 	{
 		c.setMap(this);
-		c.setCell(this.getGrid()[p.x][p.y]);
+//		c.setCell(this.getGrid()[p.x][p.y]);
 		this.getGrid()[p.x][p.y].setEntity_on(c);
 	}
 	
