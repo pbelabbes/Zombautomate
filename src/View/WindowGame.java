@@ -245,7 +245,7 @@ public class WindowGame extends BasicGameState {
 			if(cCharac != null){
 				if (cCharac.isMoving()){		
 					//delta = 40000;
-					float vitesse = .005f;
+					//float vitesse = .005f;
 					switch (cCharac.getDirection()) {
 					case 0: 
 						//cCharac.setY(cCharac.getY() + vitesse * delta); 

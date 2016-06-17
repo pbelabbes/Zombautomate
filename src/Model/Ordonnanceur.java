@@ -106,7 +106,7 @@ public class Ordonnanceur {
 		{
 			case_auto = c.getTransition();
 			c.act(getAction(), getDirection());
-			c.eat();
+		//	c.eat();
 			
 		}
 		indice++;
