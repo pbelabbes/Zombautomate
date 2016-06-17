@@ -370,7 +370,7 @@ public class Moteur {
 			}
 
 		carte.random_pop_zombies(lC,j0, 10);		
-		while(!(j1.defeated()||j2.defeated()))
+		while(clean_dead_bodies(lC) == 0)
 		{
 //			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.next();
@@ -379,7 +379,7 @@ public class Moteur {
 //			ordo.next_move();
 			compteur++;
 //			carte.print_map();
-			clean_dead_bodies(lC);
+			
 		}
 		System.out.println("Partie terminée");
 		if(j1.defeated())
