@@ -96,7 +96,7 @@ public class MenuTypeJeu extends BasicGameState {
 		//bonton 2 v 1 Zombie
 		if(MainScreenGameState.pos_valide_x(PosX,larg) && MainScreenGameState.pos_valide_y_2(PosY,haut))
 		{
-			hu2 = new Image ("../Zombautomate/ressources/Menu/2vZombie.png");
+			hu2 = new Image ("../Zombautomate/ressources/Menu/2vZombies.png");
 			if(released  && Mouse.isButtonDown(0)){
 				EcranDeValidation.mode = 2;
 				game.enterState(EcranDeValidation.ID);
