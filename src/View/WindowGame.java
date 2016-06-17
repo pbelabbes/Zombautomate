@@ -23,7 +23,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import Model.Character;
 import Model.*;
 
-public class WindowGame extends BasicGame {
+public class WindowGame extends BasicGameState {
 	//
 
 	public static final int ID = 0;
@@ -36,34 +36,28 @@ public class WindowGame extends BasicGame {
 	public static int TILED_SIZE = 32;
 	public int screenWidth , screenHeight;
 	public Point mapOrigin = new Point(0,0);
-	public Map map;
 	private boolean isMoving =false;
 	private int direction;
-	public Ordonnanceur ordo;
+	public  static Map map;
+	public static Ordonnanceur ordo;
 	public static ArrayList<Character> perso ;
-	public static ArrayList<Character> zombie ; 
+	 
 
 	private boolean gameOver;
-
-
-	public WindowGame() throws SlickException{
-		super("Zombautomate by PANDAS");
-	}
-
-	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map, Ordonnanceur ordo){
-		this.map = map;
-		this.charactersList = charactersList;
-		this.ordo=ordo;
-	}
-	public void setScreenDimension(int width, int height){
-		if(width > 0 && height > 0){
-			this.screenWidth = width;
-			this.screenHeight = height;
-		}
-	}
-
-	public void init(GameContainer container) throws SlickException{
+	
+	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
+		System.out.println("je suis dans le init");
+		   
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		System.out.println("je susi ans le enter");
+		
+		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
@@ -77,12 +71,23 @@ public class WindowGame extends BasicGame {
 		for(int i = 0 ; i< map.getWidth();i++){
 			for (int j = 0 ; j<map.getHeight();j++){
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
-				//				System.out.println("Cellule mapdisplay["+i+"]["+j+"] :"+this.mapDisplay[i][j]);
 			}
-		}        
-		//		System.out.println("taille map : "+map.getWidth()+" : "+map.getHeight());
-		//		System.exit(0);
+		}     
+		
+		
+		
 	}
+
+
+	
+	public void setScreenDimension(int width, int height){
+		if(width > 0 && height > 0){
+			this.screenWidth = width;
+			this.screenHeight = height;
+		}
+	}
+
+	
 
 
 	@Override
@@ -192,14 +197,13 @@ public class WindowGame extends BasicGame {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	@Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
 
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
@@ -216,25 +220,17 @@ public class WindowGame extends BasicGame {
 
 		//Affichage infos
 		afficherInfos(container, g);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 	}
 
 	@Override
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 		if(!this.gameOver){
 
 			System.out.println("delta : " + delta);
-			//this.ordo.melanger();
+
 			this.ordo.next();
-			//ordo.getDirection();
-			//ordo.getAction();
-			//ordo.getCharacter();
-			//ArrayList<DisplayCharacter>lDC= this.characters;
+
 			int i=0;
 
 			DisplayCharacter cCharac = null;
@@ -294,7 +290,7 @@ public class WindowGame extends BasicGame {
 		}
 	}
 
-	public static void startgame() throws SlickException {
+	/*public static void startgame() throws SlickException {
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		Ordonnanceur ordo = new Ordonnanceur(lC);
@@ -306,6 +302,8 @@ public class WindowGame extends BasicGame {
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
 		app.start();
 	}
+	
+	
 	public static void main(String[] args) throws SlickException {
 		startgame();
 		/*
@@ -319,5 +317,5 @@ public class WindowGame extends BasicGame {
 		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
 		app.start();*/
-	}
+//	}
 }

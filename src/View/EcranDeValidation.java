@@ -36,6 +36,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
+		this.mode = 2 ; 
 		this.background = new Image("../Zombautomate/ressources/Menu/valider.png");
 		this.oui = new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
 		this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
@@ -72,38 +73,16 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void leave(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-		
-//			ArrayList<Character>  lC = new ArrayList<Character>() ; 
-//			XMLReader fichier = new XMLReader() ;
-			
 			StateGame.compileAndRun();
 			
-			
-//			if(mode == 2 || mode == 4){
-//				ArrayList<ArrayList<transfer>> equipe2=fichier.read("../Zombautomate/ocaml/equipe2.xml");	
-//				Player j2 = new Player(2 ,"Joueur 2", 10);
-//				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
-//				lC.addAll(j2.getEntities());
-//			}
-//			
-//			ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
-//			
-//			Player j1 = new Player(1 ,"Joueur 1", 10);
-//			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
-//			lC.addAll(j1.getEntities());
-//		
-//		}
+		
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
 			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
-			Ordonnanceur ordo = new Ordonnanceur(lC);
+			WindowGame.ordo = new Ordonnanceur(lC);
+			WindowGame.perso = lC;
+			WindowGame.map = carte ; 
 			
-			WindowGame wg = new WindowGame();
-			wg.initialisedGameModel(lC, carte, ordo);
-			AppGameContainer tmp1 = new AppGameContainer(null);
-			AppGameContainer app1 = new AppGameContainer(wg,tmp1.getScreenWidth(),tmp1.getScreenHeight(),false);
-			wg.setScreenDimension(tmp1.getScreenWidth(),tmp1.getScreenHeight());
-			System.out.println(wg.screenWidth+"/"+tmp1.getScreenWidth()+" "+wg.screenHeight+"/"+app1.getScreenHeight());
-			app1.start();
+			
 	
 		
 		super.leave(container, game);
@@ -123,11 +102,12 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
-			if(released  && Mouse.isButtonDown(0)){}
+			if(released  && Mouse.isButtonDown(0)){
 				this.launch = true ; 
 //				System.exit(0);
-			game.enterState(MainScreenGameState.ID);
-//			game.enterState(WindowGame.ID);
+//			game.enterState(MainScreenGameState.ID);
+			game.enterState(WindowGame.ID);
+			}
 		}
 				
 		
