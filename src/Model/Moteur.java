@@ -386,8 +386,7 @@ public class Moteur {
 		}
 		else if(j2.defeated())
 			System.out.println("j2 a perdu en " + ordo.getTurn() + " tours" );
-		else 
-			System.out.println("WTF");
+
 		
 /*		System.out.println("positions finales du joueur 1 :");
 		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
