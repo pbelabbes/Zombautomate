@@ -62,7 +62,7 @@ public class WindowGame extends BasicGame {
 
 	public void init(GameContainer container) throws SlickException{
 		this.container = container;
-			for (Model.Character character : charactersList) {
+		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
@@ -180,7 +180,7 @@ public class WindowGame extends BasicGame {
 		g.drawString("Taille de l'�cran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
-	
+
 	public void afficherGameOver(GameContainer container, Graphics g){
 		Image image;
 		g.setColor(Color.black);
@@ -192,12 +192,12 @@ public class WindowGame extends BasicGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		
+
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -207,7 +207,7 @@ public class WindowGame extends BasicGame {
 		afficherPersos(container, g, mapOriginX,mapOriginY);
 
 		if(this.gameOver) afficherGameOver(container,g);
-		
+
 		//Affichage Automates
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
@@ -282,18 +282,18 @@ public class WindowGame extends BasicGame {
 			//DisplayCharacter dc = this.characters.get(0); 
 
 
-			if(this.isMoving){
-				switch(this.direction){
-				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+		}
+		if(this.isMoving){
+			switch(this.direction){
+			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
 
-				}
 			}
 		}
 	}
-	
+
 	public static void startgame() throws SlickException {
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
