@@ -10,6 +10,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -180,10 +181,18 @@ public class WindowGame extends BasicGame {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
 	
-	public void afficherGameOver(){
-		Font awtFont = new Font("Times New Roman", Font.BOLD, 100);
-	    TrueTypeFont font = new TrueTypeFont(awtFont, false);
-	    font.drawString(screenWidth/2, screenHeight/2, "GAME OVER !!");
+	public void afficherGameOver(GameContainer container, Graphics g){
+		Image image;
+		g.setColor(Color.black);
+		g.fillRect(0, 0, screenWidth, height);
+		try {
+			image = new Image("ressources/end/game_over.png");
+			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
@@ -197,7 +206,7 @@ public class WindowGame extends BasicGame {
 		//Affichage des personnages
 		afficherPersos(container, g, mapOriginX,mapOriginY);
 
-		if(this.gameOver) afficherGameOver();
+		if(this.gameOver) afficherGameOver(container,g);
 		
 		//Affichage Automates
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
@@ -214,7 +223,7 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		if(isEndGame()) this.gameOver = true; else{
+		if(!this.gameOver){
 
 			System.out.println("delta : " + delta);
 			//this.ordo.melanger();
@@ -268,7 +277,7 @@ public class WindowGame extends BasicGame {
 			//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
 
 			//this.map.print_map();
-			Moteur.clean_dead_bodies(this.charactersList);
+			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 
 			//DisplayCharacter dc = this.characters.get(0); 
 
@@ -284,11 +293,7 @@ public class WindowGame extends BasicGame {
 			}
 		}
 	}
-
-	private boolean isEndGame() {
-		return Player.clean_dead_bodies()>0;
-	}
-
+	
 	public static void startgame() throws SlickException {
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
