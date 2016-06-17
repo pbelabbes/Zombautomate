@@ -48,7 +48,7 @@ public class WindowGame extends BasicGameState {
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
-		this.vitesse = 0.005f;
+		this.vitesse = 0.0005f;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -94,7 +94,19 @@ public class WindowGame extends BasicGameState {
 	}
 
 
-
+	public void cleanCharacters(){
+		DisplayCharacter toDelete = null;
+		for (DisplayCharacter displayCharacter : characters) {
+			boolean estPresent = false;
+			for (Character c : charactersList) {
+				estPresent |= (c == displayCharacter.getCharacter());
+			}
+			if(!estPresent) toDelete = displayCharacter; 
+		}
+		if(toDelete != null ){
+			characters.remove(toDelete);
+		}
+	}
 
 	@Override
 	public void keyPressed(int key, char c) {
@@ -233,7 +245,6 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
-
 		if(!this.gameOver){
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
@@ -275,32 +286,31 @@ public class WindowGame extends BasicGameState {
 					}
 				}
 				else{
-
-					this.ordo.next();
 					cCharac = null;
+					ordo.next();
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
 							cCharac = c;
 						}
 					}
-					this.currentChar = cCharac;
-					cCharac.setMoving(ordo.getAction()==Action.MOVE);
-					switch (ordo.getDirection()){
-					case 'U': break;
-					case 'N': cCharac.setDirection(3); break;
-					case 'S': cCharac.setDirection(0); break;
-					case 'O': cCharac.setDirection(1); break;
-					case 'E': cCharac.setDirection(2); break;
+					if(cCharac != null){
+
+						this.currentChar = cCharac;
+						cCharac.setMoving(ordo.getAction()==Action.MOVE);
+						switch (ordo.getDirection()){
+						case 'U': break;
+						case 'N': cCharac.setDirection(3); break;
+						case 'S': cCharac.setDirection(0); break;
+						case 'O': cCharac.setDirection(1); break;
+						case 'E': cCharac.setDirection(2); break;
+						}
 					}
 				}
-			}
-			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-			if(cCharac.getCharacter() == null){
-				System.out.println("remove displaycharacter");
-				this.characters.remove(cCharac);
-			}
+			}else ordo.next();
+			this.gameOver = Moteur.clean_dead_bodies(charactersList) > 0 ;
 		}
-		
+
+				cleanCharacters();
 		if(this.isMoving){
 			switch(this.direction){
 			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
