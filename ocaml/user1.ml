@@ -9,9 +9,9 @@ let (guerrier: automate) =
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 1
   @
-    presence_AD 1 Ennemi Attaquer 1 7
+    presence_AD 1 Ennemi Attaquer 1 9
   @
-    presence_AD 1 Zombie Attaquer 1 6
+    presence_AD 1 Zombie Attaquer 1 8
   @
     scan_loin_AD 1 Ennemi Deplacer 1 5
   @
@@ -78,5 +78,5 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
-let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"farmer1") ; (farmer,"farmer2");(farmer,"farmer3")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
