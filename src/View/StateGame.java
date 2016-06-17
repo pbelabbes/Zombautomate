@@ -217,11 +217,11 @@ public static Player getZombies(){
 		if	((System.getProperties().get("os.name")).equals("Linux") ) {
 
 			
-			addState(new Credit());
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
 		addState(new EcranDeValidation());
+		addState(new Credit());
 		addState(new WindowGame() ) ;
 		}
 		

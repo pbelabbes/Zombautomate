@@ -34,7 +34,7 @@ public class Credit extends BasicGameState {
 		font = new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 90), false);
 		
-		StateGame.loadCharacters(2); 
+//		StateGame.loadCharacters(2); 
 		J2 = null;
 		this.creditj2 = creditbase;
 //		// load font from a .ttf file
