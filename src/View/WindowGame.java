@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -9,9 +10,11 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 //import org.newdawn.slick.SpriteSheet;
@@ -37,6 +40,10 @@ public class WindowGame extends BasicGame {
 	private boolean isMoving =false;
 	private int direction;
 	public Ordonnanceur ordo;
+	public static ArrayList<Character> perso ;
+	public static ArrayList<Character> zombie ; 
+
+	private boolean gameOver;
 
 
 	public WindowGame() throws SlickException{
@@ -176,8 +183,23 @@ public class WindowGame extends BasicGame {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
 
+	public void afficherGameOver(GameContainer container, Graphics g){
+		Image image;
+		g.setColor(Color.black);
+		g.fillRect(0, 0, screenWidth, height);
+		try {
+			image = new Image("ressources/end/game_over.png");
+			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -186,6 +208,7 @@ public class WindowGame extends BasicGame {
 		//Affichage des personnages
 		afficherPersos(container, g, mapOriginX,mapOriginY);
 
+		if(this.gameOver) afficherGameOver(container,g);
 
 		//Affichage Automates
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
@@ -202,9 +225,7 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		if(isEndGame()){
-			endOfGame();
-		}else{
+		if(!this.gameOver){
 
 			System.out.println("delta : " + delta);
 			//this.ordo.melanger();
@@ -258,31 +279,21 @@ public class WindowGame extends BasicGame {
 			//this.characters.get(i).setY(this.characters.get(i).getCharacter().getCell().getPosition().y);
 
 			//this.map.print_map();
-			Moteur.clean_dead_bodies(this.charactersList);
+			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 
 			//DisplayCharacter dc = this.characters.get(0); 
 
 
-			if(this.isMoving){
-				switch(this.direction){
-				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+		}
+		if(this.isMoving){
+			switch(this.direction){
+			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
 
-				}
 			}
 		}
-	}
-
-	private void endOfGame() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private boolean isEndGame() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public static void startgame() throws SlickException {

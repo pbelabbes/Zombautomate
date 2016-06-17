@@ -64,6 +64,7 @@ public class ContinueMenutypeJeu extends BasicGameState {
 			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
 				
 				if(released  && Mouse.isButtonDown(0)){
+					EcranDeValidation.mode = 4;
 					game.enterState(EcranDeValidation.ID);
 				}
 			}
@@ -71,6 +72,7 @@ public class ContinueMenutypeJeu extends BasicGameState {
 			//bonton COntinue 
 			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
 				if(released  && Mouse.isButtonDown(0)){
+					EcranDeValidation.mode = 5;
 					game.enterState(EcranDeValidation.ID);
 				}
 			}
