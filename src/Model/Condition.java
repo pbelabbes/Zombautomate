@@ -30,7 +30,7 @@ public abstract class Condition {
 	protected Cell getTargetedCell(char direction, Cell cellule )
 
 	{  	
-	System.out.println("cell : "+cellule.getEntity_on().getMap().getWidth());
+	//System.out.println("cell : "+cellule.getEntity_on().getMap().getWidth());
 		Point p = new Point(cellule.getPosition());
 		int mapheight = cellule.getEntity_on().getMap().getHeight();
 		int mapwidth = cellule.getEntity_on().getMap().getWidth();
