@@ -306,6 +306,7 @@ public abstract class Character extends Observable {
 //		System.out.println(List_cases.get(cle).getCondition());
 //if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
 		int indice_choisi = l_indices_prioritaires.get((int) (l_indices_prioritaires.size()*Math.random()));
+		this.state = List_cases.get(indice_choisi).getEtatfutur();
 		return List_cases.get(indice_choisi);
 	}
 	

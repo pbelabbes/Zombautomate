@@ -15,6 +15,8 @@ let (guerrier: automate) =
   @
     scan_loin_AD 1 Ennemi Deplacer 1 5
   @
+    scan_loin_AD 1 Zombie Deplacer 1 5
+  @
     scan_loin_AD 1 Batte_baseball Deplacer 1 1
   @
     scan_loin_AD 1 Katana Deplacer 1 2

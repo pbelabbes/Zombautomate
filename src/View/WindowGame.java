@@ -178,6 +178,7 @@ public class WindowGame extends BasicGameState {
 				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
 
+
 			}
 		}
 	}
@@ -338,6 +339,7 @@ public class WindowGame extends BasicGameState {
 						cCharac.setMoving(false);
 
 						break;
+
 					}
 				}
 				/*else{
@@ -361,8 +363,12 @@ public class WindowGame extends BasicGameState {
 				}*/
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-
+			if(cCharac.getCharacter() == null){
+				System.out.println("remove displaycharacter");
+				this.characters.remove(cCharac);
+			}
 		}
+		
 		if(this.isMoving){
 			switch(this.direction){
 			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
