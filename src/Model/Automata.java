@@ -76,6 +76,32 @@ public class Automata {
 		return this.height;
 	}
 	
+	/**
+	 * calcule le coût d'un automate. c'est à dire le nombre de transitions qui y sont présentes
+	 * @return cout de l'automate
+	 */
+	public int getCost()
+	{
+		int cout = 0;
+		for(int x = 0 ; x<width ; x++)
+		{
+			for(int y = 0 ; y<height ; y++)
+			{
+				if(states[x][y] != null) cout++;
+			}
+		}
+		return cout;
+	}
+	
+	/**
+	 * Calcule le cout d'un automate, c'est à dire le nombre de cases (vides ou pas) qu'il comporte
+	 * @return cout de l'automate
+	 */
+	public int getCost_v2()
+	{
+		return width*height;
+	}
+	
 	//constructeurs:
 	/**
 	 * @param etat_courant
@@ -87,7 +113,8 @@ public class Automata {
 		if (etat_courant<0 || width<0 || height<0){
 			System.out.println("initialisation fausse entier negatif");
 		}
-		else{
+		else
+		{
 			setEtats(width);
 			this.inputs=height;
 			this.etat_courant=etat_courant;

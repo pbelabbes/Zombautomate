@@ -142,4 +142,16 @@ public class Player extends Observable{
 
 	}
 	
+	/**
+	 * Calcule le cout total des automates des personnages
+	 * @return cout de l'équipe
+	 */
+	public int getCost()
+	{
+		int cout = 0;
+		for(Character c : entities)
+			cout += c.getAutomata().getCost();
+		return cout;
+	}
+	
 }

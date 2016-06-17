@@ -357,10 +357,17 @@ public class Moteur {
 		Ordonnanceur ordo = new Ordonnanceur(lC);
 
 		System.out.println("positions initiales du joueur 1 :");
-		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
+		for(Character c :j1.getEntities()) {
+			System.out.println(c.getAutomata().getCost());
+			System.out.println(c.getCell().getPosition());
+		}
 
 		System.out.println("positions initiales du joueur 2 :");
-		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
+		for(Character c :j2.getEntities()) 
+			{
+			System.out.println(c.getAutomata().getCost());
+			System.out.println(c.getCell().getPosition());
+			}
 
 		carte.random_pop_zombies(lC,j0, 10);		
 		while(!(j1.defeated()||j2.defeated()))
