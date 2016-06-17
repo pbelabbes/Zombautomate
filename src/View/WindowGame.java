@@ -42,12 +42,13 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-
+	private float vitesse;
 
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
+		this.vitesse = 0.005f;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -111,7 +112,13 @@ public class WindowGame extends BasicGameState {
 		case Input.KEY_Q: this.direction = 2;this.isMoving=true;break;
 		case Input.KEY_D: this.direction = 3;this.isMoving=true;break;
 
+		//Changement vitesse
+		case Input.KEY_SPACE : this.changeSpeed();break;
 		}
+	}
+
+	private void changeSpeed() {
+		if(this.vitesse == .005f) this.vitesse = 0.05f; else if ( this.vitesse == 0.05f) this.vitesse = 0.0005f; else this.vitesse = 0.005f;		
 	}
 
 	public void keyReleased(int key, char c) {
@@ -181,6 +188,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		g.drawString("Vitesse : "+this.vitesse, 0, 130);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -245,7 +253,7 @@ public class WindowGame extends BasicGameState {
 					}
 
 					//					delta = 40000;
-					float vitesse = .005f;
+
 					switch (cCharac.getDirection()) {
 					case 0: 
 						cCharac.setY(cCharac.getY() + vitesse * delta); 
