@@ -14,7 +14,7 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 	
 
 	public DisplaySurvivor(Model.Character c) throws SlickException{
-		super(c, 8, "ressources/characters/sprites/male_walkcycle.png" );
+		super(c, 24, "ressources/characters/sprites/male_sprite.png" );
 //		this.color = randomColor();
 		this.setColor();
 		}

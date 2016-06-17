@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -153,6 +154,7 @@ public class WindowGame extends BasicGameState {
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
 				}
+				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
 			}
 		}
