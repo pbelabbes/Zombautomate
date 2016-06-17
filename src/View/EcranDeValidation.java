@@ -65,7 +65,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		container.setMouseCursor(this.souris, 0, 0);
-		StateGame.jeu(mode);
+		StateGame.jeu(mode);// ouvrir le gedit
 		super.enter(container, game);
 	}
 
@@ -76,7 +76,16 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			StateGame.compileAndRun();
 
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
-			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			Map carte;
+			if(mode<0)
+			{
+				carte = Moteur.initiate_demo_map(lC, StateGame.getZombies());
+			}
+			else
+			{
+				carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			}
+			
 			WindowGame.ordo = new Ordonnanceur(lC);
 			WindowGame.charactersList = lC;
 			WindowGame.map = carte ; 

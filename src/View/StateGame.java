@@ -168,12 +168,26 @@ public static void initiateboth(){
 	
 
 
-	
+	//modes positifs, => pour l'utilisateur
+	//modes négatifs => démos
 
 	public static ArrayList<Character> loadCharacters ( int mode ){
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
 
+		
+		if(mode < 0)
+		{
+			ArrayList<ArrayList<transfer>> equipe1=fichier.read("demo"+(mode*-1)+".xml");//fich1);
+			
+			Player j1 = new Player(1,"Joueur 1",10);
+
+			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
+			lC.addAll(j1.getEntities());
+			return lC;
+
+		}
+		
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("equipe1.xml");//fich1);
 
 		Player j1 = new Player(1 ,"Joueur 1", 10);
