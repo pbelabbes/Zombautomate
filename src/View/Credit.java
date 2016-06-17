@@ -108,15 +108,12 @@ public class Credit extends BasicGameState {
 	 public void keyReleased(int key, char c) {
 		    //game.enterState(MapGameState.ID);
 		 if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
-			 
-			 
-			 
 			 game.enterState(WindowGame.ID);
 		 }
 		 else {
 			 if(EcranDeValidation.mode == 1 || EcranDeValidation.mode == 2 ){
 				 EcranDeValidation.mode += 3;
-						 System.out.println("\n\n\n\n"+EcranDeValidation.mode+"\n\n\n\n"); 
+				 System.out.println("\n\n\n\n"+EcranDeValidation.mode+"\n\n\n\n"); 
 			 }
 			 game.enterState(EcranDeValidation.ID);
 		 }
