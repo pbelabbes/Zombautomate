@@ -177,15 +177,17 @@ public static void initiateboth(){
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("equipe1.xml");//fich1);
 
 		Player j1 = new Player(1 ,"Joueur 1", 10);
+		
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
-
+		Credit.J1 = j1 ;
 		if(mode==2)
 		{		 
 			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
 			Player j2 = new Player(2 ,"Joueur 2", 10);
 			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 			lC.addAll(j2.getEntities());
+			Credit.J2 =j2; 
 		}
 			return lC;
 }
@@ -219,8 +221,8 @@ public static Player getZombies(){
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
 		addState(new EcranDeValidation());
-		addState(new WindowGame() ) ;
 		addState(new Credit());
+		addState(new WindowGame() ) ;
 		}
 		
 		else{

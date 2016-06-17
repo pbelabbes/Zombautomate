@@ -18,8 +18,11 @@ public class Credit extends BasicGameState {
 	private Image background ; 
 	private StateBasedGame game ; 
 	TrueTypeFont font;
+	TrueTypeFont font2 ;
 	public static Player J1 ;
 	public static Player J2 ;
+	private int creditbase = 200 ; 
+	private int creditj2 ;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -27,9 +30,13 @@ public class Credit extends BasicGameState {
 		this.game = game ; 
 		this .background = new Image("../Zombautomate/ressources/Menu/backround_credit.png");
 		
-		Font awtFont = new Font("Verdane", Font.BOLD, 24);
+		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font = new TrueTypeFont(awtFont, false);
-	 
+		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 90), false);
+		
+//		StateGame.loadCharacters(2); 
+		J2 = null;
+		this.creditj2 = creditbase;
 //		// load font from a .ttf file
 //		try {
 //			InputStream inputStream	= ResourceLoader.getResourceAsStream("myfont.ttf");
@@ -49,29 +56,64 @@ public class Credit extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
-		g.setColor(Color.black);
+//		int creditj2 = creditbase ;
+//		g.setColor(Color.black);
 //		g.setFont(font);
 		
 		background.draw(0, 0, container.getWidth(), container.getHeight()-55);
 		
-		g.drawString("Joueur1", larg/4 , haut/4  );
-		font.drawString(100, 50, "JOUEUR1 : Credit restant" , Color.yellow);
+		font.drawString(larg/10 + larg/30 - larg/20, haut/16 - haut/60 , "Joueur1 : Credit restant" , Color.orange);
 		
+		font.drawString(larg/2, haut/2 +haut/30, "Joueur2 : Credit restant" , Color.orange);
 		
+		if (J2 != null){
+			creditj2 = creditbase- J2.getCost() ;
+		}
+		font2.drawString(larg/2 + larg/10 - haut/15 +3, haut/2 +haut/30 + haut/5 - haut/15 -3 , Integer.toString(creditj2) , Color.black);
+		font2.drawString(larg/2 + larg/10 - haut/15, haut/2 +haut/30 + haut/5 - haut/15, Integer.toString( creditj2) , Color.orange);
 
+		font2.drawString(larg/4 - larg/10 +3, haut/4 - haut/13 -3 , Integer.toString(creditbase -J1.getCost()) , Color.black);
+		font2.drawString(larg/4 - larg/10   , haut/4 -haut/13 , Integer.toString( creditbase -J1.getCost()) , Color.orange);
+	
+		if (creditbase -J1.getCost()> 0 ){
+			font.drawString(larg/10 + larg/30 , haut/4 + haut/10, "Vous pouvez jouez" , Color.green);
+		}
+		else{
+			font.drawString(larg/10 + larg/30 , haut/4 + haut/10 , "L'automate est trop grand" , Color.red);
+		}
+		
+		if (creditj2>0 ){
+			font.drawString(larg/2 + larg/20 , haut/2 +haut/15 + haut/4 , "Vous pouvez jouez" , Color.green);
+		}
+		else{
+			font.drawString(larg/2 + larg/40 , haut/2 +haut/15 + haut/4 ,"L'automate est trop grand" , Color.red);
+		}
+		
+		if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
+			g.drawString("appuyez sur une touche pour joeur" , larg/8, 3*haut/4);
+		}
+		else{
+			g.drawString("appuyez sur une touche editer vos automates" , larg/8, 3*haut/4);
+		}
+	
 	}
 
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
-
+		
 
 	}
 	
 	 public void keyReleased(int key, char c) {
 		    //game.enterState(MapGameState.ID);
-		 System.out.println("touche pressé ");
-		  }
+		 if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
+			 game.enterState(WindowGame.ID);
+		 }
+		 else {
+			 game.enterState(EcranDeValidation.ID);
+		 }
+	 }
 
 	@Override
 	public int getID() {

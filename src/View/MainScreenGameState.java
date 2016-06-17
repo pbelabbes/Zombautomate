@@ -139,6 +139,7 @@ public class MainScreenGameState extends BasicGameState  {
 			container.setMouseCursor(this.souris2, 0, 0);
 			if(Mouse.isButtonDown(0)){
 				game.enterState(ContinueMenutypeJeu.ID);
+//				game.enterState(WindowGame.ID);
 			}
 		}
 		else Continue.setColor(0, 1, 1, 1, 0);
