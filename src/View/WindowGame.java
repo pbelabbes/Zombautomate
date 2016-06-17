@@ -42,23 +42,23 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-	 
+
 
 	private boolean gameOver;
-	
+
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
-		
-//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+
+	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
 
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		System.out.println("\n\nje susi ans le enter\n\n");
-	
+
 
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
@@ -68,7 +68,7 @@ public class WindowGame extends BasicGameState {
 				characters.add(new DisplayZombie(character)); 
 			}
 		}
-		
+
 		System.out.println("\n\n je suis entre \n\n");
 
 		//Creation mapDisplay
@@ -78,13 +78,13 @@ public class WindowGame extends BasicGameState {
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
 			}
 		}     
-		
+
 		System.out.println("\n\n je suis dans\n\n ");
-		
+
 	}
 
 
-	
+
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
 			this.screenWidth = width;
@@ -92,7 +92,7 @@ public class WindowGame extends BasicGameState {
 		}
 	}
 
-	
+
 
 
 	@Override
@@ -206,6 +206,7 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
+		//int pause=1000;
 
 		System.out.println("");
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
@@ -223,26 +224,24 @@ public class WindowGame extends BasicGameState {
 
 		//Affichage infos
 		afficherInfos(container, g);
-
+		/*try {
+			Thread.sleep(pause);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
 	}
 
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
+
 		if(!this.gameOver){
-			System.out.println("delta : " + delta);
-
-			this.ordo.next();
-
-			int i=0;
-
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
 					cCharac = c;
-					break;
 				}
 			}
-			this.currentChar = cCharac;
+			//this.currentChar = cCharac;
 			if(cCharac != null){
 				if (cCharac.isMoving()){
 					switch (ordo.getDirection()){
@@ -254,37 +253,37 @@ public class WindowGame extends BasicGameState {
 					}
 					switch (cCharac.getDirection()) {
 					case 0: 
-						cCharac.setY(cCharac.getY() + .005f * delta); 
+						cCharac.setY(cCharac.getY() + .0005f * delta); 
 						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 						}
 						break;
 					case 1: 
-						cCharac.setX(cCharac.getX() - .005f * delta); 
+						cCharac.setX(cCharac.getX() - .0005f * delta); 
 						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						}
 						break;
 					case 2: 
-						cCharac.setX(cCharac.getX() + .005f * delta); 
+						cCharac.setX(cCharac.getX() + .0005f * delta); 
 						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						}
 						break;
 					case 3:
-						cCharac.setY(cCharac.getY() - .005f * delta); 
+						cCharac.setY(cCharac.getY() - .0005f * delta); 
 						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 						}
 						break;
 					}
-
 				}
 				else{
+
 					this.ordo.next();
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
@@ -292,21 +291,24 @@ public class WindowGame extends BasicGameState {
 							cCharac = c;
 						}
 					}
+					this.currentChar = cCharac;
 					cCharac.setMoving(ordo.getAction()==Action.MOVE);
+
 				}
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 
-		}
-		if(this.isMoving){
-			switch(this.direction){
-			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+			if(this.isMoving){
+				switch(this.direction){
+				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
 
+				}
 			}
 		}
+
 	}
 
 	/*public static void startgame() throws SlickException {
@@ -321,8 +323,8 @@ public class WindowGame extends BasicGameState {
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
 		app.start();
 	}
-	
-	
+
+
 	public static void main(String[] args) throws SlickException {
 		startgame();
 		/*
@@ -336,5 +338,5 @@ public class WindowGame extends BasicGameState {
 		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
 		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
 		app.start();*/
-//	}
+	//	}
 }

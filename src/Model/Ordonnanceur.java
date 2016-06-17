@@ -14,7 +14,8 @@ public class Ordonnanceur {
 	ArrayList<Character> List;		//liste des entités
 	ArrayList<Character> Ordonnee;	//liste mélangée
 	int indice; //permet de savoir qui joue
-	CaseAutomate case_auto;
+	CaseAutomate case_auto;	//enregistre les infos sur l'action en cours
+	int compteur_tour; //compte le nombre de tours effectués depuis le début de la partie
 	
 	/**
 	 * Remplit la liste "Ordonnee" de manière aléatoire à partir des personnage de la liste "Liste"
@@ -27,10 +28,10 @@ public class Ordonnanceur {
 		indice = 0;
 		case_auto = null;
 		melanger();
+		compteur_tour = 1;
 	}
 	
 	/**
-	 * 
 	 * @return personnage qui joue
 	 */
 	public Character getCharacter()
@@ -41,6 +42,14 @@ public class Ordonnanceur {
 			System.out.println("Attention, l'ordonnanceur a mal été utilisé");
 			return null;
 		}
+	}
+	
+	/**
+	 * @return le tour de jeu
+	 */
+	public int getTurn()
+	{
+		return compteur_tour;
 	}
 	
 	/**
@@ -102,10 +111,11 @@ public class Ordonnanceur {
 		}
 		indice++;
 
-		if(Ordonnee.size()>indice)
+		if(Ordonnee.size()<=indice)
 		{
 			melanger();
 			indice = 0;
+			compteur_tour++;
 		}
 	}
 	
