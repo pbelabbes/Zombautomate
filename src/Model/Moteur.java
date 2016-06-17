@@ -282,7 +282,7 @@ public class Moteur {
 		
 		Map carte = create_map(lC);
 		carte.init_map(); 
-//		carte.setAutomatas(lC, lP);
+		carte.setAutomatas(lC, lP);
 
 		lC.addAll(j0.getEntities());		
 		carte.set_charact_position(lC);
@@ -299,7 +299,7 @@ public class Moteur {
 		
 		lC.addAll(j0.getEntities());
 		carte.set_charact(lC.get(0), new Point(1,1));
-		carte.set_charact(lC.get(1), new Point(1,5));
+		carte.set_charact(lC.get(1), new Point(5,1));
 		
 		return carte;
 	}
