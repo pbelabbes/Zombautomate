@@ -137,6 +137,18 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
+				if(cCell.getCell().getEntity_on() != null){
+					if(cCell.getCell().getEntity_on() instanceof Zombie){
+						g.setColor(Color.green);						
+					}else{
+						for (DisplayCharacter displayCharacter : characters) {
+							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+						}
+						
+					}
+					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+
+				}
 			}
 		}
 	}
@@ -150,34 +162,13 @@ public class WindowGame extends BasicGameState {
 			{
 				int posCharScreenX = (int) (c.getX()- mapOriginX);
 				int posCharScreenY = (int) (c.getY()- mapOriginY);
+
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
 				}
 				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
-			}
-		}
-	}
-
-	public void afficherAutomates(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
-		System.out.println("afficherAutomates");
-		for (DisplayCharacter c : characters) {
-			if(c instanceof DisplaySurvivor){
-
-				System.out.println(c.getCharacter().getAutomata().getPosition());
-				Automata automate= c.getCharacter().getAutomata();
-				Point posAutom = automate.getPosition();
-				int heightAutom = automate.getHeight();
-				int widthAutom = automate.getWidth();
-
-
-				if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
-						posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
-				{
-					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
-				}
 			}
 		}
 	}
@@ -251,30 +242,32 @@ public class WindowGame extends BasicGameState {
 					case 'O': cCharac.setDirection(1); break;
 					case 'E': cCharac.setDirection(2); break;
 					}
+					//					delta = 40000;
+					float vitesse = .05f;
 					switch (cCharac.getDirection()) {
 					case 0: 
-						cCharac.setY(cCharac.getY() + .0005f * delta); 
+						cCharac.setY(cCharac.getY() + vitesse * delta); 
 						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 						}
 						break;
 					case 1: 
-						cCharac.setX(cCharac.getX() - .0005f * delta); 
+						cCharac.setX(cCharac.getX() - vitesse * delta); 
 						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						}
 						break;
 					case 2: 
-						cCharac.setX(cCharac.getX() + .0005f * delta); 
+						cCharac.setX(cCharac.getX() + vitesse * delta); 
 						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						}
 						break;
 					case 3:
-						cCharac.setY(cCharac.getY() - .0005f * delta); 
+						cCharac.setY(cCharac.getY() - vitesse * delta); 
 						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
@@ -298,14 +291,14 @@ public class WindowGame extends BasicGameState {
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 
-			if(this.isMoving){
-				switch(this.direction){
-				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+		}
+		if(this.isMoving){
+			switch(this.direction){
+			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
 
-				}
 			}
 		}
 
