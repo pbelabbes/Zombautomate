@@ -19,20 +19,23 @@ public class MenuTypeJeu extends BasicGameState {
 	private StateBasedGame game;
 
 
-@Override
-/**
- * 
- * @param arg0
- * @param game
- * @throws SlickException
- */
-public void init(GameContainer container, StateBasedGame game)
+	@Override
+	/**
+	 * 
+	 * @param arg0
+	 * @param game
+	 * @throws SlickException
+	 */
+	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
 		this.hu1 = new Image ("../Zombautomate/ressources/Menu/1vZombie.png");
+		hu1.setColor(0, 1, 1, 1, 0);
 		this.hu2= new Image ("../Zombautomate/ressources/Menu/2vZombies.png");
+		hu2.setColor(0, 1, 1, 1, 0);
 		this.var = new Image ("../Zombautomate/ressources/Menu/variante.png");
+		var.setColor(0, 1, 1, 1, 0);
 		this.released = false ;
 
 	}
@@ -70,38 +73,49 @@ public void init(GameContainer container, StateBasedGame game)
 		int PosY = Mouse.getY() ;
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
-		
-		
+
+
 		if(!Mouse.isButtonDown(0)){
 			this.released = true;
 		}
-		
-		
-		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
-			
-			//bouton Newgame 
-			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){			
-				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0) ;
 
-				}
+
+
+		//bouton 1 v 1 zombie
+		if(MainScreenGameState.pos_valide_x(PosX,larg) && MainScreenGameState.pos_valide_y_1(PosY,haut))
+		{			
+			hu1 = new Image ("../Zombautomate/ressources/Menu/1vZombie.png");
+			if(released  && Mouse.isButtonDown(0)){
+				EcranDeValidation.mode = 1;
+				game.enterState(EcranDeValidation.ID);
+
 			}
-			
-			//bonton COntinue 
-			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
-				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0);
-				}
+		}
+		else hu1.setColor(0, 1, 1, 1, 0);
+
+		//bonton 2 v 1 Zombie
+		if(MainScreenGameState.pos_valide_x(PosX,larg) && MainScreenGameState.pos_valide_y_2(PosY,haut))
+		{
+			hu2 = new Image ("../Zombautomate/ressources/Menu/2vZombies.png");
+			if(released  && Mouse.isButtonDown(0)){
+				EcranDeValidation.mode = 2;
+				game.enterState(EcranDeValidation.ID);
 			}
-			
-			//Bouton Option
-			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
-				if(released  && Mouse.isButtonDown(0)){
-					System.exit(0) ;
-				}
+		}
+		else hu2.setColor(0, 1, 1, 1, 0);
+
+		//Bouton var
+		if(MainScreenGameState.pos_valide_x(PosX,larg) && MainScreenGameState.pos_valide_y_3(PosY,haut))
+		{
+			this.var = new Image ("../Zombautomate/ressources/Menu/variante.png");
+			if(released  && Mouse.isButtonDown(0)){
+				//game.enterState(EcranDeValidation.ID);
+
 			}
-		}	
-	}
+		}
+		else var.setColor(0, 1, 1, 1, 0);
+	}	
+
 
 
 	@Override
@@ -112,6 +126,6 @@ public void init(GameContainer container, StateBasedGame game)
 	public int getID() {
 		return ID;
 	}
-	
+
 
 }

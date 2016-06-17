@@ -13,7 +13,8 @@ public class Ordonnanceur {
 	
 	ArrayList<Character> List;		//liste des entités
 	ArrayList<Character> Ordonnee;	//liste mélangée
-	
+	int indice; //permet de savoir qui joue
+	CaseAutomate case_auto;
 	
 	/**
 	 * Remplit la liste "Ordonnee" de manière aléatoire à partir des personnage de la liste "Liste"
@@ -23,7 +24,49 @@ public class Ordonnanceur {
 	{
 		List=liste;
 		Ordonnee = null;
+		indice = 0;
+		case_auto = null;
+		melanger();
 	}
+	
+	/**
+	 * 
+	 * @return personnage qui joue
+	 */
+	public Character getCharacter()
+	{
+		if(Ordonnee.size()>0)
+			return Ordonnee.get(indice);
+		else {
+			System.out.println("Attention, l'ordonnanceur a mal été utilisé");
+			return null;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return Action effectuee par le personnage
+	 */
+	public Action getAction()
+	{
+		if(case_auto != null)
+		{
+			return case_auto.getAction();
+		}
+		else return null;
+	}
+	
+	/**
+	 * 
+	 * @return direction dans laquelle se fait l'action
+	 */
+	public char getDirection()
+	{
+		if(case_auto != null)
+			return case_auto.getDirection();
+		else return 'U'; //Undefined
+	}
+	
 	
   /**
    * La fonction mélanger récupère une liste de personnage (list) et melange aléatoirement ces personnages dans une nouvelle liste (liste_temp) 
@@ -45,6 +88,26 @@ public class Ordonnanceur {
 		}
 	}
 	
+	
+	public void next()
+	{
+
+		Character c = Ordonnee.get(indice);
+		if(c.is_alive())
+		{
+			case_auto = c.getTransition();
+			c.act(getAction(), getDirection());
+			c.eat();
+			
+		}
+		indice++;
+
+		if(Ordonnee.size()>indice)
+		{
+			melanger();
+			indice = 0;
+		}
+	}
 	
 	/**
 	 * Pour chaque personnage de la liste "Ordonnee", si le personnage est vivant, next_move lui fait effectuer sa prochaine action

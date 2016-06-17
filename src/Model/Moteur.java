@@ -256,14 +256,20 @@ public class Moteur {
 	}
 */
 	
-	public static void clean_dead_bodies(ArrayList<Character> lC)
+	public static int clean_dead_bodies(ArrayList<Character> lC)
 	{
-	
+		int res = 0;
 		for(int i = 0 ; i<lC.size() ; i ++)
 		{
 			Character c = lC.get(i);
-			if(!(c.is_alive())) lC.remove(c);
+			if(!(c.is_alive()))
+			{
+				if(c.getPlayer().defeated())
+					res = c.getPlayer().getId();
+				lC.remove(c);
+			}
 		}
+		return res;
 	}
 	
 	
@@ -360,10 +366,12 @@ public class Moteur {
 		while(!(j1.defeated()||j2.defeated()))
 		{
 //			carte.random_pop_zombies(lC,j0, compteur/100);
-			ordo.melanger();
-			ordo.next_move();
+			ordo.next();
+			ordo.getCharacter();
+//			ordo.melanger();
+//			ordo.next_move();
 			compteur++;
-			carte.print_map();
+//			carte.print_map();
 			clean_dead_bodies(lC);
 		}
 		System.out.println("Partie terminée");

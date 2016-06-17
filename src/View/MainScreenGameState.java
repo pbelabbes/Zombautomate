@@ -25,34 +25,33 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Continue;
 	private Image Newgame;
 	private Image Option;
-//	private MouseOverArea Cont;
-//	private MouseOverArea Ng;
-//	private MouseOverArea Exit;
-//	private MenuCont controller; 
-//	private StateBasedGame game;
+	private Image souris; 
+	private Image souris2;
+
 	
 	
-//	public MainScreenGameState(MenuCont controller) {
-//		  this.controller = controller;
-//		}
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-//		this.game = game;
-//		int larg = container.getWidth();
-//		int haut = container.getHeight() ;
 		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
 		
 		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
+//		Newgame.setImageColor(0,120,10,20);
+		Newgame.setColor(0,1,1,1,0);
+		
 		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
+		Continue.setColor(0,1,1,1,0);
+
 		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
-		
-//		attackButton = new MouseOverArea(container, buttonImage, SPACE, container.getHeight() - (buttonImage.getHeight() + SPACE) * 3, this);
-		//this.Cont = new MouseOverArea(container, this.Continue,larg/2 - larg/10 , haut/2 - haut/30 -haut/18,larg/10, haut/17 ,this );
-		
-	
+		Option.setColor(0,1,1,1,0);
+
+		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
+		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
+		container.setMouseCursor(this.souris, 0, 0);
 	}
+	
+	
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -65,8 +64,53 @@ public class MainScreenGameState extends BasicGameState  {
 		Continue.draw(larg/2 - larg/10 ,   haut/2 + haut/7 - haut/18 					, larg/5, haut/7);
 		Option.draw(larg/2 - larg/10 ,     haut/2 + haut/7 + haut/7 + haut/30 - haut/18 , larg/5, haut/7);
 		//Cont.render(container, g);
+		
+	}
+	/**
+	 * vérifie si la position de la souris correspond aux boutons du menu principal sur l'axe des x
+	 * @param PosX coordonnee horizontale de la souris
+	 * @param larg largeur de la fenetre
+	 * @return true si la souris est bien positionnée
+	 */
+	public static boolean pos_valide_x(int PosX, int larg)
+	{
+		return (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 );
+	}
+	
+	/**
+	 * vérifie si la souris est à la hauteur du bouton (1) : New GAME
+	 * @param PosY coordonee verticale de la souris
+	 * @param haut hauteur de la fenetre
+	 * @return true si la souris est bien placée
+	 */
+	public static boolean pos_valide_y_1(int PosY, int haut)
+	{
+		return PosY<haut - (haut/2 - haut/30 -haut/18)  && PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7) ;
 	}
 
+	/**
+	 * vérifie si la souris est à la hauteur du bouton (2) Continue
+	 * @param PosY coordonee verticale de la souris
+	 * @param haut hauteur de la fenetre
+	 * @return true si la souris est bien placée
+	 */
+	public static boolean pos_valide_y_2(int PosY, int haut)
+	{
+		return PosY< haut - ( haut/2 + haut/7 - haut/18) && PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 );
+	}
+	
+	/**
+	 * vérifie si la souris est à la hauteur du bouton (3) EXIT
+	 * @param PosY coordonee verticale de la souris
+	 * @param haut hauteur de la fenetre
+	 * @return true si la souris est bien placée
+	 */
+	public static boolean pos_valide_y_3(int PosY, int haut)
+	{
+		return PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18)  && PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18);
+	}
+	
+	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
@@ -74,37 +118,48 @@ public class MainScreenGameState extends BasicGameState  {
 		int PosY = Mouse.getY() ;
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
-		
-		
-		
-		
-		if ( (PosX> larg/2 - larg/10 )&& (PosX < larg/2 - larg/10 + larg/5 )  ){
-			
-			//bouton Newgame 
-			if((PosY<haut - (haut/2 - haut/30 -haut/18 ) ) && (PosY>haut -( haut/2 - haut/30 -haut/18 + haut/7)  )){
-				if(Mouse.isButtonDown(0)){
-					game.enterState(MenuTypeJeu.ID);
 
-				}
-			}
-			
-			//bonton COntinue 
-			if((PosY< haut - ( haut/2 + haut/7 - haut/18) ) && (PosY> haut - (haut/2 + haut/7 - haut/18 + haut/7 ) )){
-				if(Mouse.isButtonDown(0)){
-					game.enterState(ContinueMenutypeJeu.ID);
-				}
-			}
-			
-			//Bouton Option
-			if((PosY< haut -( haut/2 + haut/7 + haut/7 + haut/30 - haut/18) ) && (PosY> haut -( haut/2 + 3*haut/7  + haut/30 - haut/18 )  )){
-				if(Mouse.isButtonDown(0)){
-					System.exit(0) ;
-					
-				}
+		//bouton Newgame 
+		if(pos_valide_y_1(PosY,haut) && pos_valide_x(PosX,larg))
+		{	
+			Newgame =  new Image ("../Zombautomate/ressources/Menu/newgame.png");
+			container.setMouseCursor(this.souris2, 0, 0);
+			if(Mouse.isButtonDown(0)){
+				game.enterState(MenuTypeJeu.ID);
 			}
 		}
-		
+		else Newgame.setColor(0, 1, 1, 1, 0);
+
+		//			container.setMouseCursor(this.souris, 0, 0);
+
+		//bonton COntinue 
+		if(pos_valide_y_2(PosY, haut) && pos_valide_x(PosX,larg))
+		{
+			this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
+			container.setMouseCursor(this.souris2, 0, 0);
+			if(Mouse.isButtonDown(0)){
+				game.enterState(ContinueMenutypeJeu.ID);
+			}
+		}
+		else Continue.setColor(0, 1, 1, 1, 0);
+		//			container.setMouseCursor(this.souris, 0, 0);
+
+		//Bouton Exit (Option)
+		if(pos_valide_y_3(PosY, haut) && pos_valide_x(PosX,larg))
+		{			
+			this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
+			container.setMouseCursor(this.souris2, 0, 0);
+			if(Mouse.isButtonDown(0)){
+				System.exit(0) ;
+			}
+		}
+		else Option.setColor(0, 1, 1, 1, 0);
+		//			container.setMouseCursor(this.souris, 0, 0);
+
 	}
+	
+	
+	
 
 	@Override
 	public int getID() {
