@@ -1,16 +1,5 @@
 open Doc ;;
 
-<<<<<<< HEAD
-
-(*DÃ©finissez ici vos automates ! (le langage Ã  utiliser est l'OCaml.) Veuillez vous rÃ©fÃ©rer au manuel de l'utilisateur pour crÃ©er correctement les automates. *)
-let exemple1 = [(0,Defaut,Deplacer,E,1,1)] @ [(1,Defaut,Attaquer,E,0,1)]
-
-
-
-(* utilisez la variable equipe1 pour valider votre Ã©quipe. Le type Ã  respecter est (automate*String) list *)
-
-let equipe1 = [(exemple1,"exemple_nom")]
-=======
 let (guerrier: automate) =
   presence_AD 0 Katana Ramasser 1 1
   @
@@ -89,6 +78,5 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
-let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"farmer1") ; (farmer,"farmer2");(farmer,"farmer3")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
->>>>>>> f9dcb24f4c176dba4702ae931e8ce8d08149c0d5
