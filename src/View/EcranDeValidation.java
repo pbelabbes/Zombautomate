@@ -31,7 +31,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	private boolean released ;
 	private StateBasedGame game;
 	private boolean launch;
-	
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -123,8 +123,10 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
-			if(released  && Mouse.isButtonDown(0)){}
+			if(released  && Mouse.isButtonDown(0))
+			{
 				this.launch = true ; 
+			}
 //				System.exit(0);
 			game.enterState(MainScreenGameState.ID);
 //			game.enterState(WindowGame.ID);

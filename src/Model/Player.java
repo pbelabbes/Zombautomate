@@ -124,11 +124,21 @@ public class Player extends Observable{
 	 */
 	public boolean defeated()
 	{
+		return characters_remaining() == 0;
+	}
+	
+	/**
+	 * calclule le nombre de personnages encore en vie dans l'equipe du Player 
+	 * @return nb de personnages vivants
+	 */
+	public int characters_remaining()
+	{
+		int compteur=0;
 		for(Character c : this.entities)
 		{
-			if(c.is_alive()) return false;
+			if(c.is_alive()) compteur++;
 		}
-		return true;
+		return compteur;
 
 	}
 	
