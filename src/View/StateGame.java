@@ -27,31 +27,6 @@ import Model.transfer;
 public class StateGame extends StateBasedGame {
 
 //cettte focntion permet de réinitialiser un fichier automate
-public static void initiate(int idj){
-	String tmp = Integer.toString(idj);
-	
-	try {
-		Runtime.getRuntime().exec(new String[]{ "sh", "-c", "rm ../Zombautomate/ocaml/user"+tmp+".ml"});
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	
-	try{
-		Process proc=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/base"+tmp+".ml"} );
-		InputStream in = proc.getInputStream();
-		BufferedWriter out= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user"+tmp+".ml"));
-		int c;
-		while ((c = in.read()) != -1) {
-			out.write((char)c);
-		}
-		in.close();
-		out.flush();
-		out.close();
-
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-}
 public static void initiateboth(){
 //	String tmp = Integer.toString(idj);
 	
@@ -109,19 +84,17 @@ public static void initiateboth(){
 	
 	//lance make puis execture 
 	public static void compileAndRun(){
+		System.out.println("\n\n\n je suis dans compile and run \n\n\n");
 		try {
 			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
 		try {
 			Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writter");
 		} catch (IOException e) {
@@ -130,6 +103,7 @@ public static void initiateboth(){
 		
 	}
 
+	
 	/*
 	 * fonction qui lit les xml et revnoi la liste des charactere
 	 * Mode 1 : 1 human vs Zombie
@@ -152,16 +126,13 @@ public static void initiateboth(){
 				initiateboth();
 			}
 			demandeautomate(1);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}			
 			demandeautomate(2);
-			
-			
 		}
-
-		
-		
-	
-	
-	//	return lC;
 
 }
 
@@ -255,12 +226,11 @@ public static void main(String[] args) throws SlickException {
 
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
 
-//	initiateboth();
-//	compileAndRun();	
+	initiateboth();
+	compileAndRun();	
 //	loadCharacters(1);
 //	System.out.println("pru");
 	
-//	System.out.println((System.getProperties().get("os.name")).equals("Linux"));
 	
 	
 	AppGameContainer tmp = new AppGameContainer(null);
