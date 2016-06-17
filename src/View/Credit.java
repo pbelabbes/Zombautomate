@@ -21,7 +21,7 @@ public class Credit extends BasicGameState {
 	TrueTypeFont font2 ;
 	public static Player J1 ;
 	public static Player J2 ;
-	private int creditbase = 200 ; 
+	private int creditbase = 400 ; 
 	private int creditj2 ;
 	
 	@Override
