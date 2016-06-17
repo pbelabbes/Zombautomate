@@ -1,5 +1,7 @@
 package View;
 
+import java.util.ArrayList;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -8,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import Model.Character;
 
 public class EcranDeValidation extends BasicGameState implements GameState {
 	public static final int ID = 4;
@@ -50,6 +54,9 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		container.setMouseCursor(this.souris, 0, 0);
+		ArrayList<Character> Lc  = StateGame.jeu(mode);
+		
+		WindowGame.perso = Lc ; 
 		super.enter(container, game);
 	}
 
@@ -67,15 +74,17 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
-			if(released  && Mouse.isButtonDown(0))
-			System.out.println("prout");
+			if(released  && Mouse.isButtonDown(0)){}
+
+//			game.enterState(WindowGame.ID);
 		}
 				
 		
 		if (PosX > larg/8 + larg/5 + larg/20 && PosX < larg/8 + larg/5 + larg/3 - larg/20 && PosY < haut - haut/2 - haut/20 && PosY> haut -(haut/2 +haut/3)+ haut/20){
 			container.setMouseCursor(this.souris2, 0, 0);
-			if(released  && Mouse.isButtonDown(0))
+			if(released  && Mouse.isButtonDown(0)){
 			System.exit(0);
+			}
 		}
 	}
 

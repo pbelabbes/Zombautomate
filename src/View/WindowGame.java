@@ -39,6 +39,8 @@ public class WindowGame extends BasicGame {
 	private boolean isMoving =false;
 	private int direction;
 	public Ordonnanceur ordo;
+	public static ArrayList<Character> perso ;
+	public static ArrayList<Character> zombie ; 
 
 	private boolean gameOver;
 
