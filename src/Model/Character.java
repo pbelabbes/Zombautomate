@@ -46,7 +46,7 @@ public abstract class Character extends Observable {
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 60;
+		this.sight_range = 30;
 		this.state = 0;
 	}
 	

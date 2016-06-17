@@ -39,11 +39,25 @@ public static void initiateboth(){
 	
 	try{
 		Process proc1=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/exemple_fichier_user1.ml"} );
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		Process proc2=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/exemple_fichier_user2.ml"} );
-
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		InputStream in1 = proc1.getInputStream();
 		InputStream in2 = proc2.getInputStream();
 		BufferedWriter out1= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user1.ml"));
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		BufferedWriter out2= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user2.ml"));
 		int c;
 		while ((c = in1.read()) != -1) {
@@ -74,17 +88,28 @@ public static void initiateboth(){
 	 * @return
 	 */
 	public static void demandeautomate(int idj){
+
 		String tmp = Integer.toString(idj);
 		try {
 			Runtime.getRuntime().exec("gedit ../Zombautomate/ocaml/user"+tmp+".ml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 	}
 	
 	//lance make puis execture 
 	public static void compileAndRun(){
 		System.out.println("\n\n\n je suis dans compile and run \n\n\n");
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		try {
 			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
 		} catch (IOException e) {
@@ -113,24 +138,29 @@ public static void initiateboth(){
 	 * Mode 5 : continue  2 humain vs Zombie
 	 */
 	public static void jeu ( int mode ){
-				
+		
 		if(mode ==1|| mode==4){
 			if(mode==1){
 				initiateboth() ;
-			}
-			demandeautomate(1);
-		}
-		if(mode==2 || mode==5)
-		{		
-			if(mode==2){
-				initiateboth();
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}	
 			}
 			demandeautomate(1);
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
-			}			
+			}	
+		}
+		if(mode==2 || mode==5)
+		{		
+			if(mode==2){
+				initiateboth();
+			}
+			demandeautomate(1);	
 			demandeautomate(2);
 		}
 
@@ -152,7 +182,7 @@ public static void initiateboth(){
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
 		Credit.J1 = j1 ;
-		if(mode==2)
+		if(mode==2 || mode == 5)
 		{		 
 			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
 			Player j2 = new Player(2 ,"Joueur 2", 10);
@@ -226,8 +256,8 @@ public static void main(String[] args) throws SlickException {
 
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
 
-	initiateboth();
-	compileAndRun();	
+//	initiateboth();
+//	compileAndRun();	
 //	loadCharacters(1);
 //	System.out.println("pru");
 	
