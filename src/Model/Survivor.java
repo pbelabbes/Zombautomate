@@ -267,6 +267,8 @@ public class Survivor extends Character{
 	{
 //		System.out.println(action);
 		Cell cellule = this.getTargetedCell(direction, this.getCell());
+		if(action == null) return;
+		
 		switch(action)
 		{
 		case WATER: water(cellule); break;
