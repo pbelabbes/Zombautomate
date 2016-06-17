@@ -353,34 +353,39 @@ public class Moteur {
 		lC.addAll(j0.getEntities());		
 		carte.set_charact_position(lC);
 			
-		int compteur = 0;
 		Ordonnanceur ordo = new Ordonnanceur(lC);
 
 		System.out.println("positions initiales du joueur 1 :");
-		for(Character c :j1.getEntities()) System.out.println(c.getCell().getPosition());
+		for(Character c :j1.getEntities()) {
+			System.out.println(c.getAutomata().getCost());
+			System.out.println(c.getCell().getPosition());
+		}
 
 		System.out.println("positions initiales du joueur 2 :");
-		for(Character c :j2.getEntities()) System.out.println(c.getCell().getPosition());
+		for(Character c :j2.getEntities()) 
+			{
+			System.out.println(c.getAutomata().getCost());
+			System.out.println(c.getCell().getPosition());
+			}
 
 		carte.random_pop_zombies(lC,j0, 10);		
-		while(!(j1.defeated()||j2.defeated()))
+		while(clean_dead_bodies(lC) == 0)
 		{
 //			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.next();
 			ordo.getCharacter();
 //			ordo.melanger();
 //			ordo.next_move();
-			compteur++;
 //			carte.print_map();
-			clean_dead_bodies(lC);
+			
 		}
 		System.out.println("Partie terminée");
 		if(j1.defeated())
 		{
-			System.out.println("j1 a perdu en "+compteur+" tours");
+			System.out.println("j1 a perdu en "+ordo.getTurn()+" tours");
 		}
 		else if(j2.defeated())
-			System.out.println("j2 a perdu en " + compteur+ " tours" );
+			System.out.println("j2 a perdu en " + ordo.getTurn() + " tours" );
 		else 
 			System.out.println("WTF");
 		

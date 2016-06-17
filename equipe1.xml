@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persos>
+
 	<automate id ="exemple_nom">
 		<transition>
 			<etat_courant>0</etat_courant>
@@ -7,6 +8,7 @@
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
+
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -17,5 +19,6 @@
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
+
 	</automate>
 </persos>

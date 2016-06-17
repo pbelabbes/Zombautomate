@@ -31,14 +31,17 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	private boolean released ;
 	private StateBasedGame game;
 	private boolean launch;
-	
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
+		this.mode = 2 ; 
 		this.background = new Image("../Zombautomate/ressources/Menu/valider.png");
 		this.oui = new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
+		oui.setImageColor(0.30f, 0.20f, 0.30f);
 		this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
+		non.setImageColor(0.30f, 0.20f, 0.30f);
 		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		this.released = false ;
@@ -63,8 +66,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			throws SlickException {
 		container.setMouseCursor(this.souris, 0, 0);
 		StateGame.jeu(mode);
-		
-		
 		super.enter(container, game);
 	}
 
@@ -72,40 +73,13 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void leave(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-		
-//			ArrayList<Character>  lC = new ArrayList<Character>() ; 
-//			XMLReader fichier = new XMLReader() ;
-			
 			StateGame.compileAndRun();
-			
-			
-//			if(mode == 2 || mode == 4){
-//				ArrayList<ArrayList<transfer>> equipe2=fichier.read("../Zombautomate/ocaml/equipe2.xml");	
-//				Player j2 = new Player(2 ,"Joueur 2", 10);
-//				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
-//				lC.addAll(j2.getEntities());
-//			}
-//			
-//			ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
-//			
-//			Player j1 = new Player(1 ,"Joueur 1", 10);
-//			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
-//			lC.addAll(j1.getEntities());
-//		
-//		}
+
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
 			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
-			Ordonnanceur ordo = new Ordonnanceur(lC);
-			
-			WindowGame wg = new WindowGame();
-			wg.initialisedGameModel(lC, carte, ordo);
-			AppGameContainer tmp1 = new AppGameContainer(null);
-			AppGameContainer app1 = new AppGameContainer(wg,tmp1.getScreenWidth(),tmp1.getScreenHeight(),false);
-			wg.setScreenDimension(tmp1.getScreenWidth(),tmp1.getScreenHeight());
-			System.out.println(wg.screenWidth+"/"+tmp1.getScreenWidth()+" "+wg.screenHeight+"/"+app1.getScreenHeight());
-			app1.start();
-	
-		
+			WindowGame.ordo = new Ordonnanceur(lC);
+			WindowGame.charactersList = lC;
+			WindowGame.map = carte ; 
 		super.leave(container, game);
 	}
 
@@ -115,7 +89,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		int PosX = Mouse.getX() ;
 		int PosY = Mouse.getY() ;
 		int larg = container.getWidth();
-		int haut = container.getHeight() ;
+		int haut = container.getHeight();
 		
 		if(!Mouse.isButtonDown(0)){
 			this.released = true;
@@ -123,21 +97,32 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		if (  PosX> larg/8 + larg/20 && PosX<larg/8 + larg/3 -larg/20 && (PosY <haut -  haut/4 - haut/20 ) && (PosY > haut - (haut/4 +haut/3) +haut/20)){
 			container.setMouseCursor(this.souris2, 0, 0);
-			if(released  && Mouse.isButtonDown(0)){}
+			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
+
+			if(released  && Mouse.isButtonDown(0)){
+
+			
 				this.launch = true ; 
+			
 //				System.exit(0);
-			game.enterState(MainScreenGameState.ID);
-//			game.enterState(WindowGame.ID);
+
+//			game.enterState(MainScreenGameState.ID);
+			game.enterState(WindowGame.ID);
+			}
+
 		}
+		else  oui.setImageColor(0.30f, 0.20f, 0.30f);
+
 				
 		
 		if (PosX > larg/8 + larg/5 + larg/20 && PosX < larg/8 + larg/5 + larg/3 - larg/20 && PosY < haut - haut/2 - haut/20 && PosY> haut -(haut/2 +haut/3)+ haut/20){
 			container.setMouseCursor(this.souris2, 0, 0);
+			this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
+
 			if(released  && Mouse.isButtonDown(0)){
-				this.launch = false ; 
 				System.exit(0);
 			}
-		}
+		}  else  non.setImageColor(0.30f, 0.20f, 0.30f);
 	}
 
 
