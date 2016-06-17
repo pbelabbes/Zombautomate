@@ -214,7 +214,7 @@ public StateGame() {
  * @throws SlickException
  */
 public static void main(String[] args) throws SlickException {
-	//ArrayList<Character> lC = jeu (1) ;
+	ArrayList<Character> lC = jeu (1) ;
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
 	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
 	// wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
