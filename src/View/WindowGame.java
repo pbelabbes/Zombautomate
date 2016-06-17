@@ -244,39 +244,34 @@ public class WindowGame extends BasicGameState {
 			//this.currentChar = cCharac;
 			if(cCharac != null){
 				if (cCharac.isMoving()){		
-					//delta = 40000;
-					//float vitesse = .005f;
 					switch (cCharac.getDirection()) {
 					case 0: 
-						//cCharac.setY(cCharac.getY() + vitesse * delta); 
-						//if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+						cCharac.setY(cCharac.getY() + vitesse * delta); 
+						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						//}
+						}
 						break;
 					case 1: 
-						//cCharac.setX(cCharac.getX() - vitesse * delta); 
-						//if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+						cCharac.setX(cCharac.getX() - vitesse * delta); 
+						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						//}
+						}
 						break;
 					case 2: 
-						//cCharac.setX(cCharac.getX() + vitesse * delta); 
-						//if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+						cCharac.setX(cCharac.getX() + vitesse * delta); 
+						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						//}
+						}
 						break;
 					case 3:
-						//cCharac.setY(cCharac.getY() - vitesse * delta); 
-						//if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+						cCharac.setY(cCharac.getY() - vitesse * delta); 
+						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						//}
-						break;
-					default : 
-
+						}
 					}
 				}
 				else{
@@ -300,8 +295,8 @@ public class WindowGame extends BasicGameState {
 				}
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-			System.out.println("Ccharac :"+cCharac.getCharacter());
-			if(!this.charactersList.contains(cCharac.getCharacter())){
+			if(cCharac.getCharacter() == null){
+				System.out.println("remove displaycharacter");
 				this.characters.remove(cCharac);
 			}
 		}
