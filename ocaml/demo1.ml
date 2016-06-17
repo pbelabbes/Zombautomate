@@ -5,9 +5,9 @@ let (automate_demo1:automate) =
   @
   [(1,Defaut,Deplacer,E,1,1)]
   @
-  [(1,Presence(Rocher,E),Attaquer,E,2,2)]
+  [(1,Present(Rocher,E),Attaquer,E,2,2)]
   @
-  [(2,Presence(Zombie,E),Attaquer,E,2,2)]
+  [(2,Present(Zombie,E),Attaquer,E,2,2)]
   @
   [(2,Defaut,Deplacer,E,2,1)];;
 
