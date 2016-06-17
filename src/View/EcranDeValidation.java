@@ -79,7 +79,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
 			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 			WindowGame.ordo = new Ordonnanceur(lC);
-			WindowGame.perso = lC;
+			WindowGame.charactersList = lC;
 			WindowGame.map = carte ; 
 			
 			

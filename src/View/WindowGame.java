@@ -30,33 +30,35 @@ public class WindowGame extends BasicGameState {
 
 	private GameContainer container;
 	private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
-	private ArrayList<Model.Character> charactersList;
+	public static ArrayList<Model.Character> charactersList;
 	private DisplayCellule[][] mapDisplay;
 	public  int width,height;
 	public static int TILED_SIZE = 32;
-	public int screenWidth , screenHeight;
+	public static int screenWidth , screenHeight;
 	public Point mapOrigin = new Point(0,0);
 	private boolean isMoving =false;
 	private int direction;
 	public  static Map map;
 	public static Ordonnanceur ordo;
-	public static ArrayList<Character> perso ;
+//	public static ArrayList<Character> perso ;
 	 
 
 	private boolean gameOver;
 	
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
-		System.out.println("je suis dans le init");
-		   
+		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
+		
+		
+//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
 	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		System.out.println("je susi ans le enter");
-		
-		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+		System.out.println("\n\nje susi ans le enter\n\n");
+	
+
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -65,6 +67,8 @@ public class WindowGame extends BasicGameState {
 				characters.add(new DisplayZombie(character)); 
 			}
 		}
+		
+		System.out.println("\n\n je suis entre \n\n");
 
 		//Creation mapDisplay
 		mapDisplay = new DisplayCellule[map.getWidth()][map.getHeight()];
@@ -74,7 +78,7 @@ public class WindowGame extends BasicGameState {
 			}
 		}     
 		
-		
+		System.out.println("\n\n je suis dans\n\n ");
 		
 	}
 
@@ -205,6 +209,7 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
 
+		System.out.println("");
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
