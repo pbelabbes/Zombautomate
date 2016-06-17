@@ -290,6 +290,19 @@ public class Moteur {
 		return carte;
 	}
 	
+	
+	
+	public static Map initiate_demo_map(ArrayList<Character> lC, Player j0)
+	{
+		Map carte = new Map(10,10);
+		carte.init_demo();
+		
+		lC.addAll(j0.getEntities());
+		carte.set_charact(lC.get(0), new Point(1,1));
+		carte.set_charact(lC.get(1), new Point(1,5));
+		
+		return carte;
+	}
 	/**
 	 * @param args
 	 */

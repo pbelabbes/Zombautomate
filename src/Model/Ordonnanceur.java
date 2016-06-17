@@ -95,6 +95,7 @@ public class Ordonnanceur {
 			Ordonnee.add(liste_tempo.get(i));
 			liste_tempo.remove(liste_tempo.get(i));	
 		}
+		
 	}
 	
 	

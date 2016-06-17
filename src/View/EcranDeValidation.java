@@ -1,5 +1,7 @@
 package View;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
@@ -30,7 +32,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public static int mode ;
 	private boolean released ;
 	private StateBasedGame game;
-	private boolean launch;
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
@@ -64,8 +65,12 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		System.out.println("\n\n\nenter\n\n\n");
+		
 		container.setMouseCursor(this.souris, 0, 0);
-		StateGame.jeu(mode);
+
+		StateGame.jeu(mode);// ouvrir le gedit
+
 		super.enter(container, game);
 	}
 
@@ -73,10 +78,39 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void leave(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		
-			StateGame.compileAndRun();
-
+			System.out.println("\n\n\nleave\n\n\n");
+	
+			try {
+				Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(700);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writter");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}	
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
-			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			Map carte;
+			if(mode<0)
+			{
+				carte = Moteur.initiate_demo_map(lC, StateGame.getZombies());
+			}
+			else
+			{
+				carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			}
+			
 			WindowGame.ordo = new Ordonnanceur(lC);
 			WindowGame.charactersList = lC;
 			WindowGame.map = carte ; 
@@ -100,15 +134,8 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
 
 			if(released  && Mouse.isButtonDown(0)){
-
-			
-				this.launch = true ; 
-			
-//				System.exit(0);
-			System.out.println("\n\navanat le calll !!\n\n");
-//			game.enterState(MainScreenGameState.ID);
-//			game.enterState(WindowGame.ID);
-			game.enterState(Credit.ID);
+				game.enterState(Credit.ID);
+//				game.enterState(WindowGame.ID);
 			}
 
 		}

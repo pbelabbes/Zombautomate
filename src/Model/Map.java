@@ -39,6 +39,7 @@ public class Map extends Observable{
 	
 	//Getter et Setter
 	public int getWidth() {
+		int debut = grid.length;
 		return grid.length;
 	}
 
@@ -48,6 +49,7 @@ public class Map extends Observable{
 	}
 */
 	public int getHeight() {
+		int debut = grid[0].length;
 		return grid[0].length;
 	}
 	
@@ -238,5 +240,26 @@ public class Map extends Observable{
 			System.out.println();
 		}
 		System.out.println();
+	}
+	
+	
+	public void init_demo() 
+	{
+		int h = getHeight();
+		int w = getWidth();
+		for(int x = 0; x<w ; x++)
+		{
+			for(int y = 0 ; y<h ; y++)
+			{
+				grid[x][y] = new Cell(new Point(x,y));
+				grid[x][y].setDecor(Decor.GRASS);
+			}
+		}
+		grid[1][0].setDecor(Decor.KATANA);
+		grid[0][1].setDecor(Decor.RABBIT);
+		grid[5][0].setDecor(Decor.ROCK);
+		grid[5][2].setDecor(Decor.ROCK);
+		grid[4][1].setDecor(Decor.ROCK);
+		grid[6][1].setDecor(Decor.ROCK);
 	}
 }
