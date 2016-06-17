@@ -175,7 +175,8 @@ public class WindowGame extends BasicGameState {
 					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
 				}
 				System.out.println(c.getCurrentAnimation());
-				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
+				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-TILED_SIZE/4, posCharScreenY*TILED_SIZE-TILED_SIZE/2);
+
 			}
 		}
 	}
@@ -207,7 +208,7 @@ public class WindowGame extends BasicGameState {
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
 		//int pause=1000;
 
-		System.out.println("");
+		//System.out.println("");
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -250,7 +251,9 @@ public class WindowGame extends BasicGameState {
 					case 'O': cCharac.setDirection(1); break;
 					case 'E': cCharac.setDirection(2); break;
 					}
+
 					//					delta = 40000;
+
 					switch (cCharac.getDirection()) {
 					case 0: 
 						cCharac.setY(cCharac.getY() + vitesse * delta); 
@@ -280,6 +283,7 @@ public class WindowGame extends BasicGameState {
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 						}
 						break;
+
 					}
 				}
 				else{
@@ -292,7 +296,7 @@ public class WindowGame extends BasicGameState {
 						}
 					}
 					this.currentChar = cCharac;
-					cCharac.setMoving(ordo.getAction()==Action.MOVE);
+					cCharac.setMoving(true);
 
 				}
 			}
