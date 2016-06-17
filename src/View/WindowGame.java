@@ -249,35 +249,40 @@ public class WindowGame extends BasicGameState {
 					case 'O': cCharac.setDirection(1); break;
 					case 'E': cCharac.setDirection(2); break;
 					}
-					switch (cCharac.getDirection()) {
-					case 0: 
-						cCharac.setY(cCharac.getY() + .0005f * delta); 
-						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+					if (ordo.getAction()==Action.MOVE){
+						switch (cCharac.getDirection()) {
+						case 0: 
+							cCharac.setY(cCharac.getY() + .0005f * delta); 
+							if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+								cCharac.setMoving(false);
+								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+							}
+							break;
+						case 1: 
+							cCharac.setX(cCharac.getX() - .0005f * delta); 
+							if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+								cCharac.setMoving(false);
+								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+							}
+							break;
+						case 2: 
+							cCharac.setX(cCharac.getX() + .0005f * delta); 
+							if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+								cCharac.setMoving(false);
+								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+							}
+							break;
+						case 3:
+							cCharac.setY(cCharac.getY() - .0005f * delta); 
+							if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+								cCharac.setMoving(false);
+								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+							}
+							break;
 						}
-						break;
-					case 1: 
-						cCharac.setX(cCharac.getX() - .0005f * delta); 
-						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 2: 
-						cCharac.setX(cCharac.getX() + .0005f * delta); 
-						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 3:
-						cCharac.setY(cCharac.getY() - .0005f * delta); 
-						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
-						break;
+					}
+					else {
+						cCharac.setMoving(false);
 					}
 				}
 				else{
@@ -290,7 +295,7 @@ public class WindowGame extends BasicGameState {
 						}
 					}
 					this.currentChar = cCharac;
-					cCharac.setMoving(ordo.getAction()==Action.MOVE);
+					cCharac.setMoving(true);
 
 				}
 			}
