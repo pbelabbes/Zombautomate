@@ -6,7 +6,7 @@
 			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -14,7 +14,7 @@
 			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -22,7 +22,7 @@
 			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -30,7 +30,7 @@
 			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -38,7 +38,7 @@
 			<condition><texte>Present(Batte_baseball,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -46,7 +46,7 @@
 			<condition><texte>Present(Batte_baseball,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -54,7 +54,7 @@
 			<condition><texte>Present(Batte_baseball,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -62,7 +62,7 @@
 			<condition><texte>Present(Batte_baseball,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -70,7 +70,7 @@
 			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -78,7 +78,7 @@
 			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -86,7 +86,7 @@
 			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -94,7 +94,7 @@
 			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -456,7 +456,7 @@
 			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -464,7 +464,7 @@
 			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -472,7 +472,7 @@
 			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -480,7 +480,7 @@
 			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -488,7 +488,7 @@
 			<condition><texte>Present(Batte_baseball,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -496,7 +496,7 @@
 			<condition><texte>Present(Batte_baseball,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -504,7 +504,7 @@
 			<condition><texte>Present(Batte_baseball,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -512,7 +512,7 @@
 			<condition><texte>Present(Batte_baseball,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -520,7 +520,7 @@
 			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -528,7 +528,7 @@
 			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -536,7 +536,7 @@
 			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -544,7 +544,7 @@
 			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -906,7 +906,7 @@
 			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -914,7 +914,7 @@
 			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -922,7 +922,7 @@
 			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -930,7 +930,7 @@
 			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -938,7 +938,7 @@
 			<condition><texte>Present(Batte_baseball,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -946,7 +946,7 @@
 			<condition><texte>Present(Batte_baseball,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -954,7 +954,7 @@
 			<condition><texte>Present(Batte_baseball,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -962,7 +962,7 @@
 			<condition><texte>Present(Batte_baseball,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -970,7 +970,7 @@
 			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -978,7 +978,7 @@
 			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -986,7 +986,7 @@
 			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -994,7 +994,7 @@
 			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -1356,7 +1356,7 @@
 			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1364,7 +1364,7 @@
 			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1372,7 +1372,7 @@
 			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1380,7 +1380,7 @@
 			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1388,7 +1388,7 @@
 			<condition><texte>Present(Batte_baseball,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1396,7 +1396,7 @@
 			<condition><texte>Present(Batte_baseball,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1404,7 +1404,7 @@
 			<condition><texte>Present(Batte_baseball,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1412,7 +1412,7 @@
 			<condition><texte>Present(Batte_baseball,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>3</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
@@ -1420,7 +1420,7 @@
 			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -1428,7 +1428,7 @@
 			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -1436,7 +1436,7 @@
 			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
@@ -1444,7 +1444,7 @@
 			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
+			<priorite>2</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
