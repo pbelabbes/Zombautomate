@@ -177,8 +177,9 @@ public class WindowGame extends BasicGame {
 		g.setColor(Color.white);
 		g.drawString("mapOrigin : "+mapOrigin.x+";"+mapOrigin.y, 0, 30);
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
-		g.drawString("Taille de l'�cran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
+		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
+		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -213,12 +214,12 @@ public class WindowGame extends BasicGame {
 
 		//Affichage infos
 		afficherInfos(container, g);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(100);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
@@ -240,9 +241,6 @@ public class WindowGame extends BasicGame {
 					cCharac = c;
 				}
 			}
-			//		while (this.characters.get(i).getCharacter()!=ordo.getCharacter()){
-			//			i++;
-			//		}
 
 			if(cCharac != null){
 
@@ -262,10 +260,10 @@ public class WindowGame extends BasicGame {
 
 			if(cCharac.isMoving()) {
 				switch (cCharac.getDirection()) {
-				case 0: cCharac.setY(cCharac.getY() - .1f * delta); break;
-				case 1: cCharac.setX(cCharac.getX() - .1f * delta); break;
-				case 2: cCharac.setY(cCharac.getY() + .1f * delta); break;
-				case 3: cCharac.setX(cCharac.getX() + .1f * delta); break;
+				case 0: cCharac.setY(cCharac.getY() - .5f * delta); break;
+				case 1: cCharac.setX(cCharac.getX() - .5f * delta); break;
+				case 2: cCharac.setY(cCharac.getY() + .5f * delta); break;
+				case 3: cCharac.setX(cCharac.getX() + .5f * delta); break;
 				}
 				if (cCharac.getX()==cCharac.getCharacter().getCell().getPosition().x && cCharac.getY()==cCharac.getCharacter().getCell().getPosition().y) {
 					cCharac.setMoving(false);
