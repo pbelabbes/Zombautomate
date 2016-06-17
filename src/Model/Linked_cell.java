@@ -38,8 +38,8 @@ public class Linked_cell extends Condition {
 	 */
 	public boolean execute(Cell cellule) {
 
-        Cell ce=new Cell();
-        ce=getTargetedCell(direction, cellule);
+        
+        Cell ce=getTargetedCell(direction, cellule);
         
 		if(ce!=null && ce.getEntity_on()!=null) {
 				if(id_searched == 'N') return ce.getEntity_on().getPlayer() == null;

@@ -283,6 +283,7 @@ public class WindowGame extends BasicGame {
 				}
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
+
 		}
 		if(this.isMoving){
 			switch(this.direction){
