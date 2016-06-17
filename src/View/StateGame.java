@@ -19,6 +19,7 @@ import sun.awt.windows.ThemeReader;
 import Model.Character;
 import Model.Map;
 import Model.Moteur;
+import Model.Ordonnanceur;
 import Model.Player;
 import Model.XMLReader;
 import Model.transfer;
@@ -210,12 +211,27 @@ public static Player getZombies(){
  * @throws SlickException
  */
 	public void initStatesList(GameContainer arg0) throws SlickException {
+		
+		if	((System.getProperties().get("os.name")).equals("Linux") ) {
 
-		addState(new EcranDeValidation());
-		addState(new WindowGame() ) ;
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
+		addState(new EcranDeValidation());
+		addState(new WindowGame() ) ;
+		}
+		
+		else{
+			ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
+			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			Ordonnanceur ordo = new Ordonnanceur(lC);
+			WindowGame wg = new WindowGame();
+			wg.map =carte ; 
+			wg.ordo = ordo ;
+			wg.charactersList = lC ; 
+			addState(wg);
+		}
+		
 }
 
 public StateGame() {
@@ -239,11 +255,14 @@ public static void main(String[] args) throws SlickException {
 //	compileAndRun();	
 //	loadCharacters(1);
 //	System.out.println("pru");
+	
+//	System.out.println((System.getProperties().get("os.name")).equals("Linux"));
+	
+	
 	AppGameContainer tmp = new AppGameContainer(null);
 	AppGameContainer app= new AppGameContainer(new StateGame(),tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 	WindowGame.screenHeight= tmp.getScreenHeight();
 	WindowGame.screenWidth= tmp.getScreenWidth();
-//	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
 	app.start();
 	}
 
