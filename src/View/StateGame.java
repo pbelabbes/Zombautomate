@@ -1,8 +1,11 @@
 package View;
 
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
@@ -20,13 +23,42 @@ import Model.transfer;
 
 public class StateGame extends StateBasedGame {
 
+public static void initiate(){	
+	try {
+		Runtime.getRuntime().exec(new String[]{ "sh", "-c", "rm ../Zombautomate/ocaml/user1.ml"});
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	
+	try{
+		
+		Process proc=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/base1.ml"} );
+		InputStream in = proc.getInputStream();
+		BufferedWriter out=new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user1.ml"));
+		
+		
+		
+		int c;
+		while ((c = in.read()) != -1) {
+			out.write((char)c);
+		}
+
+		in.close();
+		out.flush();
+		out.close();
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+	
 	/**
 	 * Cette fonction permet de lire le fichié du joueur ecrit en ocaml et genere le fichier
 	 * XML correspondant et renvoie le nom du fihcier XML correspondant
 	 * @param name
 	 * @return
 	 */
-	public static String demandeautomate(String name){
+	public static void demandeautomate(String name){
 		try {
 			Runtime.getRuntime().exec("gedit "+name);
 		} catch (IOException e) {
@@ -44,7 +76,12 @@ public class StateGame extends StateBasedGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "";
+		try {
+			Runtime.getRuntime().exec(new String[]{ "sh", "-c", "rm ../Zombautomate/ocaml/user1.ml"});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	/*
@@ -68,8 +105,8 @@ public class StateGame extends StateBasedGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}*/
-		String fich2;
-		String fich1 = "";
+//		String fich2;
+//		String fich1 = "";
 		
 		if(mode ==1|| mode==4){
 			if(mode==4){
@@ -78,7 +115,7 @@ public class StateGame extends StateBasedGame {
 				} catch (IOException e) {
 					e.printStackTrace();
 			}
-			 fich1 =demandeautomate("V1_user1");
+//			 fich1 =demandeautomate("V1_user1");
 			
 		}
 		if(mode==2 || mode==5)
@@ -91,11 +128,11 @@ public class StateGame extends StateBasedGame {
 						e.printStackTrace();
 					}
 			 }
-			    fich1 =demandeautomate("V2_user1");
-				fich2=demandeautomate("V2_user2");
-				ArrayList<ArrayList<transfer>> equipe2=fichier.read(fich2);	
+//			    fich1 = demandeautomate("V2_user1");
+//				fich2 = demandeautomate("V2_user2");
+//				ArrayList<ArrayList<transfer>> equipe2=fichier.read(fich2);	
 				Player j2 = new Player(2 ,"Joueur 2", 10);
-				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
+//				j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 				lC.addAll(j2.getEntities());
 		}
 		//ArrayList<ArrayList<transfer>> equipe1=fichier.read(fich1);
@@ -186,9 +223,12 @@ public StateGame() {
 public static void main(String[] args) throws SlickException {
 	//ArrayList<Character> lC = jeu (1) ;
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
-	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
-	// wg.setScreenDimension(app.getScreenWidth(), app.getScreenHeight());
-	app.start();
+	
+	initiate();
+	
+//	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
+	
+//	app.start();
 }
 
 }
