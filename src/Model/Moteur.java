@@ -256,16 +256,20 @@ public class Moteur {
 	}
 */
 	
-	public static void clean_dead_bodies(ArrayList<Character> lC)
+	public static int clean_dead_bodies(ArrayList<Character> lC)
 	{
-	
+		int res = 0;
 		for(int i = 0 ; i<lC.size() ; i ++)
 		{
 			Character c = lC.get(i);
-			if(!(c.is_alive())) 
+			if(!(c.is_alive()))
+			{
+				if(c.getPlayer().defeated())
+					res = c.getPlayer().getId();
 				lC.remove(c);
-			
+			}
 		}
+		return res;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 //import org.newdawn.slick.SpriteSheet;
@@ -38,6 +40,8 @@ public class WindowGame extends BasicGame {
 	private int direction;
 	public Ordonnanceur ordo;
 
+	private boolean gameOver;
+
 
 	public WindowGame() throws SlickException{
 		super("Zombautomate by PANDAS");
@@ -57,7 +61,7 @@ public class WindowGame extends BasicGame {
 
 	public void init(GameContainer container) throws SlickException{
 		this.container = container;
-		for (Model.Character character : charactersList) {
+			for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{
@@ -175,9 +179,16 @@ public class WindowGame extends BasicGame {
 		g.drawString("Taille de l'�cran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 	}
+	
+	public void afficherGameOver(){
+		Font awtFont = new Font("Times New Roman", Font.BOLD, 100);
+	    TrueTypeFont font = new TrueTypeFont(awtFont, false);
+	    font.drawString(screenWidth/2, screenHeight/2, "GAME OVER !!");
+	}
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+		
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -186,7 +197,8 @@ public class WindowGame extends BasicGame {
 		//Affichage des personnages
 		afficherPersos(container, g, mapOriginX,mapOriginY);
 
-
+		if(this.gameOver) afficherGameOver();
+		
 		//Affichage Automates
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
@@ -202,9 +214,7 @@ public class WindowGame extends BasicGame {
 
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		if(isEndGame()){
-			endOfGame();
-		}else{
+		if(isEndGame()) this.gameOver = true; else{
 
 			System.out.println("delta : " + delta);
 			//this.ordo.melanger();
@@ -275,14 +285,8 @@ public class WindowGame extends BasicGame {
 		}
 	}
 
-	private void endOfGame() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	private boolean isEndGame() {
-		// TODO Auto-generated method stub
-		return false;
+		return Player.clean_dead_bodies()>0;
 	}
 
 	public static void startgame() throws SlickException {
