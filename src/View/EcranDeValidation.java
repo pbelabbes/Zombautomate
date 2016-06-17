@@ -57,7 +57,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		background.draw(0, 0, container.getWidth(), container.getHeight());
 		oui.draw(larg/8		,haut/4	,larg/3		,haut/3);
 		non.draw(larg/8 + larg/ 5 , haut/2 , larg/3 , haut/3);
-	
 	}
 	
 	
@@ -66,11 +65,8 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		System.out.println("\n\n\nenter\n\n\n");
-		
 		container.setMouseCursor(this.souris, 0, 0);
-
 		StateGame.jeu(mode);// ouvrir le gedit
-
 		super.enter(container, game);
 	}
 
@@ -100,8 +96,10 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}	
+			
 			ArrayList<Character> lC = StateGame.loadCharacters(mode) ; 
 			Map carte;
+			
 			if(mode<0)
 			{
 				carte = Moteur.initiate_demo_map(lC, StateGame.getZombies());
@@ -114,6 +112,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			WindowGame.ordo = new Ordonnanceur(lC);
 			WindowGame.charactersList = lC;
 			WindowGame.map = carte ; 
+			
 		super.leave(container, game);
 	}
 
@@ -134,8 +133,13 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			this.oui= new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
 
 			if(released  && Mouse.isButtonDown(0)){
+				
+				if (mode < 0 ){
+					System.out.println("je quite vers windowsgame");
+					game.enterState(WindowGame.ID);
+				}
+				else
 				game.enterState(Credit.ID);
-//				game.enterState(WindowGame.ID);
 			}
 
 		}

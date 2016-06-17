@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persos>
+	<automate id ="demo1">
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>2</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>2</etat_courant>
+			<condition><texte>Present(Zombie,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>2</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>2</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>1</priorite>
+			<etat_futur>2</etat_futur>
+		</transition>
+	</automate>
+</persos>

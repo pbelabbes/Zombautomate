@@ -105,11 +105,7 @@ public static void initiateboth(){
 	//lance make puis execture 
 	public static void compileAndRun(){
 		System.out.println("\n\n\n je suis dans compile and run \n\n\n");
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}	
+
 		try {
 			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
 		} catch (IOException e) {
