@@ -192,6 +192,7 @@ public static void initiateboth(){
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
 		Credit.J1 = j1 ;
+		
 		if(mode==2 || mode == 5)
 		{		 
 			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
