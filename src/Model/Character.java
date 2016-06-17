@@ -334,7 +334,8 @@ public abstract class Character extends Observable {
 		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
 		case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
 		case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
-		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		case 'O' : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		default :  break;
 		
 		}
 		return this.map.getGrid()[p.x][p.y];

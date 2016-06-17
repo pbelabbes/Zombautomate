@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -41,12 +42,13 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-
+	private float vitesse;
 
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
+		this.vitesse = 0.005f;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -110,7 +112,13 @@ public class WindowGame extends BasicGameState {
 		case Input.KEY_Q: this.direction = 2;this.isMoving=true;break;
 		case Input.KEY_D: this.direction = 3;this.isMoving=true;break;
 
+		//Changement vitesse
+		case Input.KEY_SPACE : this.changeSpeed();break;
 		}
+	}
+
+	private void changeSpeed() {
+		if(this.vitesse == .005f) this.vitesse = 0.05f; else if ( this.vitesse == 0.05f) this.vitesse = 0.0005f; else this.vitesse = 0.005f;		
 	}
 
 	public void keyReleased(int key, char c) {
@@ -136,6 +144,18 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
+				if(cCell.getCell().getEntity_on() != null){
+					if(cCell.getCell().getEntity_on() instanceof Zombie){
+						g.setColor(Color.green);						
+					}else{
+						for (DisplayCharacter displayCharacter : characters) {
+							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+						}
+
+					}
+					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+
+				}
 			}
 		}
 	}
@@ -149,33 +169,14 @@ public class WindowGame extends BasicGameState {
 			{
 				int posCharScreenX = (int) (c.getX()- mapOriginX);
 				int posCharScreenY = (int) (c.getY()- mapOriginY);
+
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
 					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
 				}
-				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-32, posCharScreenY*TILED_SIZE-60);
-			}
-		}
-	}
+				System.out.println(c.getCurrentAnimation());
+				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-TILED_SIZE/4, posCharScreenY*TILED_SIZE-TILED_SIZE/2);
 
-	public void afficherAutomates(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
-		System.out.println("afficherAutomates");
-		for (DisplayCharacter c : characters) {
-			if(c instanceof DisplaySurvivor){
-
-				System.out.println(c.getCharacter().getAutomata().getPosition());
-				Automata automate= c.getCharacter().getAutomata();
-				Point posAutom = automate.getPosition();
-				int heightAutom = automate.getHeight();
-				int widthAutom = automate.getWidth();
-
-
-				if( posAutom.x >= mapOriginX && posAutom.x < mapOriginX+(screenWidth/TILED_SIZE) && posAutom.x < map.getWidth() &&
-						posAutom.y >= mapOriginY && posAutom.y < mapOriginY+(screenHeight/TILED_SIZE) && posAutom.y < map.getHeight())
-				{
-					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillRect(posAutom.x, posAutom.y, widthAutom, heightAutom);
-				}
 			}
 		}
 	}
@@ -187,6 +188,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		g.drawString("Vitesse : "+this.vitesse, 0, 130);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -204,8 +206,9 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
+		//int pause=1000;
 
-		System.out.println("");
+		//System.out.println("");
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -221,70 +224,63 @@ public class WindowGame extends BasicGameState {
 
 		//Affichage infos
 		afficherInfos(container, g);
-
+		/*try {
+			Thread.sleep(pause);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
 	}
 
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 
-		/*
 		if(!this.gameOver){
-			System.out.println("delta : " + delta);
-
-			this.ordo.next();
-
-			int i=0;
-
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
 					cCharac = c;
-					break;
 				}
 			}
-			this.currentChar = cCharac;
+			//this.currentChar = cCharac;
 			if(cCharac != null){
-				if (cCharac.isMoving()){
-					switch (ordo.getDirection()){
-					case 'U': break;
-					case 'N': cCharac.setDirection(3); break;
-					case 'S': cCharac.setDirection(0); break;
-					case 'O': cCharac.setDirection(1); break;
-					case 'E': cCharac.setDirection(2); break;
-					}
+				if (cCharac.isMoving()){		
+					//delta = 40000;
+					//float vitesse = .005f;
 					switch (cCharac.getDirection()) {
 					case 0: 
-						cCharac.setY(cCharac.getY() + .005f * delta); 
-						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+						//cCharac.setY(cCharac.getY() + vitesse * delta); 
+						//if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
+						//}
 						break;
 					case 1: 
-						cCharac.setX(cCharac.getX() - .005f * delta); 
-						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+						//cCharac.setX(cCharac.getX() - vitesse * delta); 
+						//if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
+						//}
 						break;
 					case 2: 
-						cCharac.setX(cCharac.getX() + .005f * delta); 
-						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+						//cCharac.setX(cCharac.getX() + vitesse * delta); 
+						//if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setMoving(false);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
+						//}
 						break;
 					case 3:
-						cCharac.setY(cCharac.getY() - .005f * delta); 
-						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+						//cCharac.setY(cCharac.getY() - vitesse * delta); 
+						//if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
+						//}
 						break;
-					}
+					default : 
 
+					}
 				}
 				else{
+
 					this.ordo.next();
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
@@ -292,7 +288,15 @@ public class WindowGame extends BasicGameState {
 							cCharac = c;
 						}
 					}
+					this.currentChar = cCharac;
 					cCharac.setMoving(ordo.getAction()==Action.MOVE);
+					switch (ordo.getDirection()){
+					case 'U': break;
+					case 'N': cCharac.setDirection(3); break;
+					case 'S': cCharac.setDirection(0); break;
+					case 'O': cCharac.setDirection(1); break;
+					case 'E': cCharac.setDirection(2); break;
+					}
 				}
 			}
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
@@ -305,84 +309,6 @@ public class WindowGame extends BasicGameState {
 			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
 			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
 
-			}
-		}*/
-		int pause=100;
-		if(!this.gameOver){
-			DisplayCharacter cCharac = null;
-			for (DisplayCharacter c : characters) {
-				if(c.getCharacter() == ordo.getCharacter()){
-					cCharac = c;
-				}
-			}
-			this.currentChar = cCharac;
-			if(cCharac != null){
-				if (cCharac.isMoving()){
-					switch (ordo.getDirection()){
-					case 'U': break;
-					case 'N': cCharac.setDirection(3); break;
-					case 'S': cCharac.setDirection(0); break;
-					case 'O': cCharac.setDirection(1); break;
-					case 'E': cCharac.setDirection(2); break;
-					}
-					switch (cCharac.getDirection()) {
-					case 0: 
-						cCharac.setY(cCharac.getY() + .05f * delta); 
-						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
-						break;
-					case 1: 
-						cCharac.setX(cCharac.getX() - .05f * delta); 
-						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 2: 
-						cCharac.setX(cCharac.getX() + .05f * delta); 
-						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 3:
-						cCharac.setY(cCharac.getY() - .05f * delta); 
-						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
-						break;
-					}
-				}
-				else{
-					try {
-						Thread.sleep(pause);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					this.ordo.next();
-					cCharac = null;
-					for (DisplayCharacter c : characters) {
-						if(c.getCharacter() == ordo.getCharacter()){
-							cCharac = c;
-						}
-					}
-					this.currentChar = cCharac;
-					cCharac.setMoving(ordo.getAction()==Action.MOVE);
-				}
-			}
-			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-
-			if(this.isMoving){
-				switch(this.direction){
-				case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
-				case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
-				case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
-				case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
-
-				}
 			}
 		}
 
