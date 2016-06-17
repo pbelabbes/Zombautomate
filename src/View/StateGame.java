@@ -22,6 +22,7 @@ import Model.XMLReader;
 import Model.transfer;
 
 public class StateGame extends StateBasedGame {
+	public int screenWidth , screenHeight;
 
 //cettte focntion permet de réinitialiser un fichier automate
 public static void initiate(int idj){
@@ -222,6 +223,12 @@ public StateGame() {
 	super("ZOMBAUTOMATE by PANDAS");
 }
 
+public void setScreenDimension(int width, int height){
+	if(width > 0 && height > 0){
+		this.screenWidth = width;
+		this.screenHeight = height;
+	}
+}
 
 /**
  * 
@@ -232,8 +239,14 @@ public static void main(String[] args) throws SlickException {
 //	ArrayList<Character> lC = jeu (2) ;
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
 	
+
+	AppGameContainer tmp = new AppGameContainer(null);
+	StateGame STG = new StateGame();
+	AppGameContainer app= new AppGameContainer(STG,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
+//	wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
+//	STG.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
 	
-	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
+//	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
 	app.start();
 	}
 
