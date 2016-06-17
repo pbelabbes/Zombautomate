@@ -115,7 +115,7 @@ public class ScanLoin extends Condition {
 			default : ;
 			}
 
-		System.out.println(this.id);		
+/*		System.out.println(this.id);	*/	
 		boolean b = scan(cellule);
 		if(b){
 			int debug = 3; debug = debug+=3;
