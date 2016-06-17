@@ -121,7 +121,6 @@ public static void initiateboth(){
 	}
 
 	/*
-
 	 * fonction qui lit les xml et revnoi la liste des charactere
 	 * Mode 1 : 1 human vs Zombie
 	 * Mode 2 : 2 humain vs Zombie
@@ -129,11 +128,8 @@ public static void initiateboth(){
 	 * Mode 4 : coninue 1 human vs Zombie
 	 * Mode 5 : continue  2 humain vs Zombie
 	 */
-	public static ArrayList<Character> jeu ( int mode ){
-		ArrayList<Character>  lC = new ArrayList<Character>() ; 
-		XMLReader fichier = new XMLReader() ;
-
-		
+	public static void jeu ( int mode ){
+				
 		if(mode ==1|| mode==4){
 			if(mode==1){
 				initiateboth() ;
@@ -147,22 +143,15 @@ public static void initiateboth(){
 			}
 			demandeautomate(1);
 			demandeautomate(2);
-			compileAndRun();
-			ArrayList<ArrayList<transfer>> equipe2=fichier.read("../Zombautomate/ocaml/equipe2.xml");	
-			Player j2 = new Player(2 ,"Joueur 2", 10);
-			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
-			lC.addAll(j2.getEntities());
+			
+			
 		}
-		compileAndRun();
-		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
+
 		
-		Player j1 = new Player(1 ,"Joueur 1", 10);
-		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
-		lC.addAll(j1.getEntities());
 		
 	
 	
-		return lC;
+	//	return lC;
 
 }
 
