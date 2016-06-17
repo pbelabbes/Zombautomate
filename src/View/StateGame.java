@@ -258,13 +258,12 @@ public static void main(String[] args) throws SlickException {
 	
 //	System.out.println((System.getProperties().get("os.name")).equals("Linux"));
 	
-	/*
+	
 	AppGameContainer tmp = new AppGameContainer(null);
 	AppGameContainer app= new AppGameContainer(new StateGame(),tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 	WindowGame.screenHeight= tmp.getScreenHeight();
 	WindowGame.screenWidth= tmp.getScreenWidth();
-//	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
-	app.start();*/
+	app.start();
 	}
 
 }
