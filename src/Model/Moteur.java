@@ -353,7 +353,6 @@ public class Moteur {
 		lC.addAll(j0.getEntities());		
 		carte.set_charact_position(lC);
 			
-		int compteur = 0;
 		Ordonnanceur ordo = new Ordonnanceur(lC);
 
 		System.out.println("positions initiales du joueur 1 :");
@@ -377,17 +376,16 @@ public class Moteur {
 			ordo.getCharacter();
 //			ordo.melanger();
 //			ordo.next_move();
-			compteur++;
 //			carte.print_map();
 			
 		}
 		System.out.println("Partie terminée");
 		if(j1.defeated())
 		{
-			System.out.println("j1 a perdu en "+compteur+" tours");
+			System.out.println("j1 a perdu en "+ordo.getTurn()+" tours");
 		}
 		else if(j2.defeated())
-			System.out.println("j2 a perdu en " + compteur+ " tours" );
+			System.out.println("j2 a perdu en " + ordo.getTurn() + " tours" );
 		else 
 			System.out.println("WTF");
 		

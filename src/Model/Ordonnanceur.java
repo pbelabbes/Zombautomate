@@ -111,7 +111,7 @@ public class Ordonnanceur {
 		}
 		indice++;
 
-		if(Ordonnee.size()>indice)
+		if(Ordonnee.size()<=indice)
 		{
 			melanger();
 			indice = 0;
