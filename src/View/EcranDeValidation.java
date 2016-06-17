@@ -107,8 +107,8 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 //				System.exit(0);
 			System.out.println("\n\navanat le calll !!\n\n");
 //			game.enterState(MainScreenGameState.ID);
-			game.enterState(WindowGame.ID);
-//			game.enterState(Credit.ID);
+//			game.enterState(WindowGame.ID);
+			game.enterState(Credit.ID);
 			}
 
 		}
