@@ -1,39 +1,39 @@
 open Doc ;;
 
 let (guerrier: automate) =
-  presence_AD 0 Katana Ramasser 1 1
+  presence_AD 0 Katana Ramasser 1 5
   @
-    presence_AD 0 Batte_baseball Ramasser 1 1
+    presence_AD 0 Batte_baseball Ramasser 1 4
   @
-    scan_loin_AD 0 Katana Deplacer 0 1
+    scan_loin_AD 0 Katana Deplacer 0 3
   @
-    scan_loin_AD 0 Batte_baseball Deplacer 0 1
+    scan_loin_AD 0 Batte_baseball Deplacer 0 2
   @
-    presence_AD 1 Ennemi Attaquer 1 9
+    presence_AD 1 Ennemi Attaquer 1 8
   @
-    presence_AD 1 Zombie Attaquer 1 8
+    presence_AD 1 Zombie Attaquer 1 7
   @
-    scan_loin_AD 1 Ennemi Deplacer 1 5
+    scan_loin_AD 1 Ennemi Deplacer 1 6
   @
-    scan_loin_AD 1 Batte_baseball Deplacer 1 1
+    scan_loin_AD 1 Batte_baseball Deplacer 1 2
   @
-    scan_loin_AD 1 Katana Deplacer 1 2
+    scan_loin_AD 1 Katana Deplacer 1 3
   @
-    presence_AD 1 Batte_baseball Ramasser 1 3
+    presence_AD 1 Batte_baseball Ramasser 1 4
   @
-    presence_AD 1 Katana Ramasser 1 4  
+    presence_AD 1 Katana Ramasser 1 5  
   @
-    presence_AD 0 Rocher Attaquer 0 7
+    presence_AD 0 Rocher Attaquer 0 8
   @
-    presence_AD 1 Rocher Attaquer 1 7  
+    presence_AD 1 Rocher Attaquer 1 8  
   @
-    [(0,Defaut,Deplacer,O,1,0)]
+    [(0,Defaut,Deplacer,O,1,1)]
   @
-    [(1,Defaut,Deplacer,O,1,0)] 
+    [(1,Defaut,Deplacer,O,1,1)] 
   @
-    [(0,Defaut,Deplacer,S,1,0)]
+    [(0,Defaut,Deplacer,S,1,1)]
   @
-    [(1,Defaut,Deplacer,S,1,0)] ;;
+    [(1,Defaut,Deplacer,S,1,1)] ;;
 
 (*guerrier : 2 Ã©tats chacun 16 transitions ... plus Ã  jour*)
 
@@ -78,5 +78,5 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
-let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"farmer1") ; (farmer,"farmer2");(farmer,"farmer3")];; 
+let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
