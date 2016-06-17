@@ -21,7 +21,7 @@ public class Credit extends BasicGameState {
 	TrueTypeFont font2 ;
 	public static Player J1 ;
 	public static Player J2 ;
-	private int creditbase = 200 ; 
+	private int creditbase = 400 ; 
 	private int creditj2 ;
 	
 	@Override
@@ -108,6 +108,12 @@ public class Credit extends BasicGameState {
 	 public void keyReleased(int key, char c) {
 		    //game.enterState(MapGameState.ID);
 		 if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
+			 
+			 if(EcranDeValidation.mode == 1 || EcranDeValidation.mode == 2 ){
+				 EcranDeValidation.mode += 3;
+						 System.out.println("\n\n\n\n"+EcranDeValidation.mode+"\n\n\n\n"); 
+			 }
+			 
 			 game.enterState(WindowGame.ID);
 		 }
 		 else {
