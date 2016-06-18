@@ -43,8 +43,7 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-	private float vitesse;
-
+	private float vitesse; 
 	private boolean gameOver;
 
 	private StateBasedGame game;
@@ -118,16 +117,21 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void keyPressed(int key, char c) {
-		DisplayCharacter dc = characters.get(0);
 		
+		if (!gameOver){
+			DisplayCharacter dc = characters.get(0);
+		
+		
+			switch (key) {
+			//Mouvement personnage
+			case Input.KEY_UP:    dc.setDirection(0); dc.setMoving(true); break;
+			case Input.KEY_LEFT:  dc.setDirection(1); dc.setMoving(true); break;
+			case Input.KEY_DOWN:  dc.setDirection(2); dc.setMoving(true); break;
+			case Input.KEY_RIGHT: dc.setDirection(3); dc.setMoving(true); break;
+			}
+		}
 		
 		switch (key) {
-		//Mouvement personnage
-		case Input.KEY_UP:    dc.setDirection(0); dc.setMoving(true); break;
-		case Input.KEY_LEFT:  dc.setDirection(1); dc.setMoving(true); break;
-		case Input.KEY_DOWN:  dc.setDirection(2); dc.setMoving(true); break;
-		case Input.KEY_RIGHT: dc.setDirection(3); dc.setMoving(true); break;
-
 		//Mouvement Camera
 		case Input.KEY_Z: this.direction = 0;this.isMoving=true;break;
 		case Input.KEY_S: this.direction = 1;this.isMoving=true;break;
@@ -138,9 +142,6 @@ public class WindowGame extends BasicGameState {
 		case Input.KEY_SPACE : this.changeSpeed();break;
 		}
 		
-		if (gameOver){
-			
-		}
 	}
 
 	private void changeSpeed() {
@@ -150,11 +151,13 @@ public class WindowGame extends BasicGameState {
 	}
 
 	public void keyReleased(int key, char c) {
-		DisplayCharacter dc = characters.get(0);
-		dc.setMoving(false);
-		this.isMoving = false;
 		
-		if (gameOver ){
+		if(!gameOver){
+			DisplayCharacter dc = characters.get(0);
+			dc.setMoving(false);
+			this.isMoving = false;
+		}
+		else{
 			if (key == Input.KEY_ENTER){
 				game.enterState(EndGameView.ID);
 			}
@@ -234,7 +237,7 @@ public class WindowGame extends BasicGameState {
 		try {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
-			g.setColor(Color.pink);
+			g.setColor(Color.red);
 			g.drawString("appuyer sur enter pour acceder à l'écran des scores", screenWidth/3, 2*screenHeight/3);
 			
 		} catch (SlickException e) {
