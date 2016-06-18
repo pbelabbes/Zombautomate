@@ -286,8 +286,6 @@ public class WindowGame extends BasicGameState {
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 
 		if(!this.gameOver){
-
-
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
@@ -296,10 +294,10 @@ public class WindowGame extends BasicGameState {
 			}
 			//this.currentChar = cCharac;
 			if(cCharac != null){
-
-				if (!isMoving){
+				if (!cCharac.moving){
+					//Si le personnage a fini son action on change
 					ordo.next();
-					this.addZombie();
+					//this.addZombie();
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
@@ -308,64 +306,75 @@ public class WindowGame extends BasicGameState {
 					}
 					this.currentChar = cCharac;
 					if(cCharac != null){
-
 						cCharac.setMoving(true);
 						switch (ordo.getDirection()){
 						case 'U': break;
-						case 'N': cCharac.setDirection(3); break;
 						case 'S': cCharac.setDirection(0); break;
 						case 'O': cCharac.setDirection(1); break;
 						case 'E': cCharac.setDirection(2); break;
+						case 'N': cCharac.setDirection(3); break;
 						default:;
 						}
 					}
 				}
 				else{
+					//On continue d'afficher l'action du perso precedent
 					switch (ordo.getAction()){
 					case MOVE://animation1
-						cCharac.setAction(1);
-						switch (cCharac.getDirection()) {
-						case 0:
-							cCharac.setY(cCharac.getY() + vitesse * delta); 
-							if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
-								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-								cCharac.setMoving(false);
-								cCharac.setAction(0);
-							}
-							break;
-						case 1:
-							cCharac.setX(cCharac.getX() - vitesse * delta); 
-							if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
-								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-								cCharac.setMoving(false);
-								cCharac.setAction(0);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						}
+						else {
+							this.dureeAnim++;
+							cCharac.setAction(1);
+							switch (cCharac.getDirection()) {
+							case 0:
+								cCharac.setY(cCharac.getY() + vitesse * delta); 
+								if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+									cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+									//cCharac.setMoving(false);
+									//cCharac.setAction(0);
+								}
+								break;
+							case 1:
+								cCharac.setX(cCharac.getX() - vitesse * delta); 
+								if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+									cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+									//cCharac.setMoving(false);
+									//cCharac.setAction(0);
 
-							}
-							break;
-						case 2:
-							cCharac.setX(cCharac.getX() + vitesse * delta); 
-							if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
-								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-								cCharac.setMoving(false);
-								cCharac.setAction(0);
+								}
+								break;
+							case 2:
+								cCharac.setX(cCharac.getX() + vitesse * delta); 
+								if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+									cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+									//cCharac.setMoving(false);
+									//cCharac.setAction(0);
 
-							}
-							break;
-						case 3:
-							cCharac.setY(cCharac.getY() - vitesse * delta); 
-							if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
-								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-								cCharac.setMoving(false);
-								cCharac.setAction(0);
+								}
+								break;
+							case 3:
+								cCharac.setY(cCharac.getY() - vitesse * delta); 
+								if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+									cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+									//cCharac.setMoving(false);
+									//cCharac.setAction(0);
 
+								}
+								break;
+							default :
 							}
-							break;
-						default :
 						}
 						break;
 
 					case ATTACK://animations 2 et 3 couteau  4 et 5 lance 6 poing
-
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							if (cCharac.getCharacter() instanceof Survivor){
 								if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
@@ -388,12 +397,13 @@ public class WindowGame extends BasicGameState {
 									else cCharac.setAction(5);
 								}
 								else cCharac.setAction(6);
-
 							}
 						}
 						break;
 
 					case DROP:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -404,7 +414,10 @@ public class WindowGame extends BasicGameState {
 
 
 						break;
+
 					case PICK:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -414,7 +427,10 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
+
 					case PLANT:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -423,7 +439,10 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
+
 					case STEAL:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -432,7 +451,10 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
+
 					case SWAP:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -441,7 +463,10 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
+
 					case WATER:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -450,7 +475,10 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
+
 					default:
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
@@ -459,15 +487,12 @@ public class WindowGame extends BasicGameState {
 						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
-
 					}
 				}
-				/*else{
-
 			}
 			else {
 				ordo.next();
-				this.addZombie();
+				//this.addZombie();
 				cCharac = null;
 				for (DisplayCharacter c : characters) {
 					if(c.getCharacter() == ordo.getCharacter()){
@@ -479,23 +504,22 @@ public class WindowGame extends BasicGameState {
 					cCharac.setMoving(true);
 					switch (ordo.getDirection()){
 					case 'U': break;
-					case 'N': cCharac.setDirection(3); break;
 					case 'S': cCharac.setDirection(0); break;
 					case 'O': cCharac.setDirection(1); break;
 					case 'E': cCharac.setDirection(2); break;
+					case 'N': cCharac.setDirection(3); break;
 					default:;
 					}
 				}
 			}
 
 
-				}*/
-			}else ordo.next();
+			//}else ordo.next();
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-//			if(cCharac.getCharacter() == null){
-//				System.out.println("remove displaycharacter");
-//				this.characters.remove(cCharac);
-//			}
+			//			if(cCharac.getCharacter() == null){
+			//				System.out.println("remove displaycharacter");
+			//				this.characters.remove(cCharac);
+			//			}
 		}
 
 		cleanCharacters();
