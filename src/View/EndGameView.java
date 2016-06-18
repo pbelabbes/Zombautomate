@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class EndGameView extends BasicGameState {
 	public static final int ID = 6;
 	
-	private Image background ;
+	private Image background42 ;
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
 
@@ -24,6 +24,7 @@ public class EndGameView extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		this.background42 = new Image("../Zombautomate/ressources/fondvictoire.png");
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font =  new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 40), false);	
@@ -53,7 +54,8 @@ public class EndGameView extends BasicGameState {
 		}
 		
 		if(WindowGame.ordo.getTurn()==42){
-			
+			background42.draw(0, 0, container.getWidth(), container.getHeight());
+
 		}
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
