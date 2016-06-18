@@ -40,22 +40,22 @@ public class Linked_cell extends Condition {
 
         
         Cell ce=getTargetedCell(direction, cellule);
-        
-		if(ce!=null && ce.getEntity_on()!=null) {
-				if(id_searched == 'N') return ce.getEntity_on().getPlayer() == null;
-		
-				else 
-				{ 
-					Player p1 = cellule.getEntity_on().getPlayer();
-					Player p2 = ce.getEntity_on().getPlayer();
-		
-					if (id_searched == 'A')
-						return p1 == p2;
-		
-					else return p1 != p2;
-				}
-		}
-		else return false;
-	}
 
+        Character c = ce.getOwned_by();
+		if(c==null) 
+		{
+				return id_searched == 'N';
+		}
+		else 
+		{ 
+			Player p1 = cellule.getEntity_on().getPlayer();
+			Player p2 = c.getPlayer();
+
+			if (id_searched == 'A')
+				return p1 == p2;
+
+			else return p1 != p2;
+		}
+	}
 }
+
