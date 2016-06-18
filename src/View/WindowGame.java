@@ -234,8 +234,8 @@ public class WindowGame extends BasicGameState {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 		g.drawString("Vitesse : "+this.vitesse, 0, 130);
-		g.drawString("Tour n� : "+ordo.getTurn(), 0, 150);
-		g.drawString("Nombre de Zombies : "+zombies.characters_remaining(), 0, 170);
+		g.drawString("Tour n : "+ordo.getTurn(), 0, 150);
+		g.drawString("Nombre de Zombies : "+((ordo.getPlayer(0)!=null)?ordo.getPlayer(0).characters_remaining():0), 0, 170);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
