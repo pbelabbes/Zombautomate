@@ -39,6 +39,7 @@ public class WindowGame extends BasicGameState {
 	public Point mapOrigin = new Point(0,0);
 	private boolean isMoving =false;
 	//private int action=0;
+	private int dureeAnim=0;
 	private int direction;
 	public  static Map map;
 	public static Ordonnanceur ordo;
@@ -211,8 +212,8 @@ public class WindowGame extends BasicGameState {
 			if( c.getX() >= mapOriginX && c.getX() < mapOriginX+(screenWidth/TILED_SIZE) && c.getX() < map.getWidth() &&
 					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
 			{
-				int posCharScreenX = (int) (c.getX()- mapOriginX) *TILED_SIZE-TILED_SIZE/4;
-				int posCharScreenY = (int) (c.getY()- mapOriginY) *TILED_SIZE-TILED_SIZE/2;
+				float posCharScreenX = (c.getX()- mapOriginX) *TILED_SIZE-TILED_SIZE/2;
+				float posCharScreenY = (c.getY()- mapOriginY) *TILED_SIZE-TILED_SIZE;
 
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
@@ -283,6 +284,7 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
+
 		if(!this.gameOver){
 
 
@@ -328,6 +330,7 @@ public class WindowGame extends BasicGameState {
 							if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 								cCharac.setMoving(false);
+								cCharac.setAction(0);
 							}
 							break;
 						case 1:
@@ -335,6 +338,8 @@ public class WindowGame extends BasicGameState {
 							if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 								cCharac.setMoving(false);
+								cCharac.setAction(0);
+
 							}
 							break;
 						case 2:
@@ -342,6 +347,8 @@ public class WindowGame extends BasicGameState {
 							if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
 								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
 								cCharac.setMoving(false);
+								cCharac.setAction(0);
+
 							}
 							break;
 						case 3:
@@ -349,47 +356,107 @@ public class WindowGame extends BasicGameState {
 							if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
 								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 								cCharac.setMoving(false);
+								cCharac.setAction(0);
+
 							}
 							break;
 						default :
 						}
 						break;
-					case ATTACK:
-						if (cCharac.getCharacter() instanceof Survivor){
-							if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
-								Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
-								if (arme instanceof Baseball_Bat) cCharac.setAction(3);
-								else cCharac.setAction(5);
+
+					case ATTACK://animations 2 et 3 couteau  4 et 5 lance 6 poing
+
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							if (cCharac.getCharacter() instanceof Survivor){
+								if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
+									Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
+									if (arme instanceof Baseball_Bat) cCharac.setAction(2);
+									else cCharac.setAction(4);
+								}
+								else cCharac.setAction(0);
 							}
-							else cCharac.setAction(3);
+							this.dureeAnim=0;
+							cCharac.setMoving(false);
+
 						}
-						cCharac.setMoving(false);
+						else {
+							this.dureeAnim++;
+							if (cCharac.getCharacter() instanceof Survivor){
+								if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
+									Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
+									if (arme instanceof Baseball_Bat) cCharac.setAction(3);
+									else cCharac.setAction(5);
+								}
+								else cCharac.setAction(6);
+
+							}
+						}
+						break;
+
 					case DROP:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
+
 
 						break;
 					case PICK:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 					case PLANT:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 					case STEAL:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 					case SWAP:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 					case WATER:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 					default:
-						cCharac.setMoving(false);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(7);}
 
 						break;
 
@@ -406,18 +473,21 @@ public class WindowGame extends BasicGameState {
 					if(c.getCharacter() == ordo.getCharacter()){
 						cCharac = c;
 					}
-					if(cCharac != null){
-
-						this.currentChar = cCharac;
-						cCharac.setMoving(ordo.getAction()==Action.MOVE);
-						switch (ordo.getDirection()){
-						case 'U': break;
-						case 'N': cCharac.setDirection(3); break;
-						case 'S': cCharac.setDirection(0); break;
-						case 'O': cCharac.setDirection(1); break;
-						case 'E': cCharac.setDirection(2); break;
-						}
+				}
+				if(cCharac != null){
+					this.currentChar = cCharac;
+					cCharac.setMoving(true);
+					switch (ordo.getDirection()){
+					case 'U': break;
+					case 'N': cCharac.setDirection(3); break;
+					case 'S': cCharac.setDirection(0); break;
+					case 'O': cCharac.setDirection(1); break;
+					case 'E': cCharac.setDirection(2); break;
+					default:;
 					}
+				}
+			}
+
 
 				}*/
 			}else ordo.next();
