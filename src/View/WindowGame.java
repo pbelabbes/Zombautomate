@@ -338,6 +338,7 @@ public class WindowGame extends BasicGameState {
 				}
 				else{
 					//On continue d'afficher l'action du perso precedent
+
 					if (ordo.getAction()!=null){
 						switch (ordo.getAction()){
 						case MOVE://animation1

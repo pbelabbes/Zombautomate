@@ -95,7 +95,7 @@ public class Map extends Observable{
 	 * @param a : un automate à placer sur la carte
 	 * @param pos : la position à laquelle l'automate est placé (coin supérieur gauche)
 	 */
-	private void setAutomata(Automata a, Point pos, Character perso)
+	public void setAutomata(Automata a, Point pos, Character perso)
 	{
 		a.setPosition(pos);
 		
@@ -103,14 +103,18 @@ public class Map extends Observable{
 		{
 			for(int y = pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
-				CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
-				if(case_tempo!=null)
-				{	
-					this.grid[x][y].setOwned_by(perso);
-					this.grid[x][y].setDecor(Decor.getDecor(case_tempo.getAction()));
-					this.grid[x][y].setPosition(pos);
-					this.grid[x][y].setCaseAutomate(case_tempo);
+				if(x<getWidth() && y< getHeight())
+				{
+					CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
+					if(case_tempo!=null)
+					{	
+						this.grid[x][y].setOwned_by(perso);
+						this.grid[x][y].setDecor(Decor.getDecor(case_tempo.getAction()));
+//						this.grid[x][y].setPosition(new Point(x,y));
+						this.grid[x][y].setCaseAutomate(case_tempo);
+					}
 				}
+				else 	System.out.println("dimensions de map suspectes");
 			}
 		}
 	}
@@ -278,7 +282,7 @@ public class Map extends Observable{
 	}
 	
 	
-	public void init_demo() 
+	public void init_demo(int m) 
 	{
 		int h = getHeight();
 		int w = getWidth();
@@ -290,11 +294,14 @@ public class Map extends Observable{
 				grid[x][y].setDecor(Decor.GRASS);
 			}
 		}
-		grid[6][5].setDecor(Decor.KATANA);
-		grid[5][6].setDecor(Decor.RABBIT);
-		grid[10][5].setDecor(Decor.ROCK);
-		grid[10][7].setDecor(Decor.ROCK);
-		grid[9][6].setDecor(Decor.ROCK);
-		grid[11][6].setDecor(Decor.ROCK);
+		if(m==1)
+		{
+			grid[6][5].setDecor(Decor.KATANA);
+			grid[5][6].setDecor(Decor.RABBIT);
+			grid[10][5].setDecor(Decor.ROCK);
+			grid[10][7].setDecor(Decor.ROCK);
+			grid[9][6].setDecor(Decor.ROCK);
+			grid[11][6].setDecor(Decor.ROCK);
+		}
 	}
 }

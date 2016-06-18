@@ -178,9 +178,9 @@ public static void initiateboth(){
 			System.out.println("dans load caractère le mode est : "+mode);
 			ArrayList<ArrayList<transfer>> equipe1 = fichier.read("demo"+(mode*-1)+".xml");//fich1);
 			
+			int foodstock = mode==(-4) ? 50 : 15;
 			
-			
-			Player j1 = new Player(1,"Joueur 1",10);
+			Player j1 = new Player(1,"Joueur 1",foodstock);
 
 			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 			lC.addAll(j1.getEntities());
