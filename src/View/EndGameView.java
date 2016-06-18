@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
@@ -19,6 +20,7 @@ public class EndGameView extends BasicGameState {
 	private Image back;
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
+	public static Music music;
 
 	private StateBasedGame game;
 	
@@ -34,6 +36,7 @@ public class EndGameView extends BasicGameState {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
 		this.game = game ; 
+		this.music = new Music("../Zombautomate/ressources/song/endofgame.ogg");
 		
 	
 	}
