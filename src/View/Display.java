@@ -10,14 +10,14 @@ import org.newdawn.slick.SpriteSheet;
 public abstract class Display implements Observer {
 
 	protected float x,y;
-	protected int tempsAnim;
+	public static int tempsAnim = 500;
 	protected Animation[] animations;
 	protected SpriteSheet sprite;
 
 	public Display(float posX, float posY, SpriteSheet sprite, int nbAnimation) throws SlickException{
 		setX(posX);
 		setY(posY);
-		setTempsAnim(800);
+		setTempsAnim(tempsAnim);
 		animations = new Animation[nbAnimation];
 		this.sprite = sprite;
 		initAnimations();
@@ -25,9 +25,13 @@ public abstract class Display implements Observer {
 	
 	public abstract void initAnimations();
 	
-
+	public static void changeSpeed() {
+		if(tempsAnim == 100) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 500; else tempsAnim= 100;
+		
+	}
+	
 	protected static Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
-	    Animation animation = new Animation();
+		Animation animation = new Animation();
 	    for (int x = startX; x < endX; x++) {
 	        animation.addFrame(spriteSheet.getSprite(x, y), 100);
 	    }
