@@ -167,7 +167,6 @@ public class WindowGame extends BasicGameState {
 
 	private void changeInfo() {
 		this.showInfo = !this.showInfo;
-
 	}
 
 
@@ -237,6 +236,7 @@ public class WindowGame extends BasicGameState {
 					g.fillOval(posCharScreenX+16, posCharScreenY+56, 32, 16);
 				}
 				//System.out.println(c.getCurrentAnimation());
+				System.out.println("windowGame afficher perso : x"+c.getX()+" y"+c.getY()+"\n");
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
 
 
@@ -340,10 +340,11 @@ public class WindowGame extends BasicGameState {
 						switch (ordo.getAction()){
 						case MOVE://animation1
 							if (cCharac.getTempsAnim()<=this.dureeAnim){
-								this.dureeAnim=0;
-								cCharac.setAction(0);
+								System.out.println("WindGame: ccharac.char.cell  x="+ cCharac.getCharacter().getCell().getPosition().x +" y=" +cCharac.getCharacter().getCell().getPosition().y+"\n");
 								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+								cCharac.setAction(0);
+								this.dureeAnim=0;
 								cCharac.setMoving(false);
 							}
 							else {
