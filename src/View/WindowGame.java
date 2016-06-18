@@ -45,6 +45,8 @@ public class WindowGame extends BasicGameState {
 	private DisplayCharacter currentChar;
 	private float vitesse;
 	private Player zombies;
+	private boolean showInfo;
+
 	private boolean gameOver;
 
 	private StateBasedGame game;
@@ -55,7 +57,7 @@ public class WindowGame extends BasicGameState {
 		this.game = game ; 
 
 		this.vitesse = 0.0005f;
-
+		this.showInfo = false;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -119,16 +121,21 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void keyPressed(int key, char c) {
-		DisplayCharacter dc = characters.get(0);
 		
+		if (!gameOver){
+			DisplayCharacter dc = characters.get(0);
+		
+		
+			switch (key) {
+			//Mouvement personnage
+			case Input.KEY_UP:    dc.setDirection(0); dc.setMoving(true); break;
+			case Input.KEY_LEFT:  dc.setDirection(1); dc.setMoving(true); break;
+			case Input.KEY_DOWN:  dc.setDirection(2); dc.setMoving(true); break;
+			case Input.KEY_RIGHT: dc.setDirection(3); dc.setMoving(true); break;
+			}
+		}
 		
 		switch (key) {
-		//Mouvement personnage
-		case Input.KEY_UP:    dc.setDirection(0); dc.setMoving(true); break;
-		case Input.KEY_LEFT:  dc.setDirection(1); dc.setMoving(true); break;
-		case Input.KEY_DOWN:  dc.setDirection(2); dc.setMoving(true); break;
-		case Input.KEY_RIGHT: dc.setDirection(3); dc.setMoving(true); break;
-
 		//Mouvement Camera
 		case Input.KEY_Z: this.direction = 0;this.isMoving=true;break;
 		case Input.KEY_S: this.direction = 1;this.isMoving=true;break;
@@ -137,11 +144,16 @@ public class WindowGame extends BasicGameState {
 		
 		//Changement vitesse
 		case Input.KEY_SPACE : this.changeSpeed();break;
+		
+		//affichage info
+		case Input.KEY_I : this.changeInfo();break;
 		}
 		
-		if (gameOver){
-			
-		}
+	}
+
+	private void changeInfo() {
+		this.showInfo = !this.showInfo;
+		
 	}
 
 	private void changeSpeed() {
@@ -151,11 +163,13 @@ public class WindowGame extends BasicGameState {
 	}
 
 	public void keyReleased(int key, char c) {
-		DisplayCharacter dc = characters.get(0);
-		dc.setMoving(false);
-		this.isMoving = false;
 		
-		if (gameOver ){
+		if(!gameOver){
+			DisplayCharacter dc = characters.get(0);
+			dc.setMoving(false);
+			this.isMoving = false;
+		}
+		else{
 			if (key == Input.KEY_ENTER){
 				game.enterState(EndGameView.ID);
 			}
@@ -226,6 +240,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 		g.drawString("Vitesse : "+this.vitesse, 0, 130);
+		g.drawString("Tour n� : "+ordo.getTurn(), 0, 150);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -235,7 +250,7 @@ public class WindowGame extends BasicGameState {
 		try {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
-			g.setColor(Color.pink);
+			g.setColor(Color.red);
 			g.drawString("appuyer sur enter pour acceder à l'écran des scores", screenWidth/3, 2*screenHeight/3);
 			
 		} catch (SlickException e) {
@@ -263,7 +278,7 @@ public class WindowGame extends BasicGameState {
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-		if((EcranDeValidation.mode >= 0))afficherInfos(container, g);
+		if((EcranDeValidation.mode >= 0) && this.showInfo)afficherInfos(container, g);
 		/*try {
 			Thread.sleep(pause);
 		} catch (InterruptedException e) {
