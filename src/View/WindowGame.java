@@ -80,8 +80,10 @@ public class WindowGame extends BasicGameState {
 		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
 		
-		MainScreenGameState.music.stop() ;
-		 EndGameView.music.stop();
+		if((System.getProperties().get("os.name")).equals("Linux")){
+			MainScreenGameState.music.stop() ;
+			EndGameView.music.stop();
+			}
 		this.music.loop();
 
 		super.enter(container, game);
