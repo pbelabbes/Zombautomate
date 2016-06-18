@@ -65,7 +65,7 @@ public class WindowGame extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		System.out.println("\n\nje suis dans le enter\n\n");
-
+		this.gameOver = false ;
 
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {

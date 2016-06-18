@@ -62,6 +62,11 @@ public class EndGameView extends BasicGameState {
 		font.drawString(larg/6, haut/3+haut/10 , "nombres de zombies sur la cartes : " , Color.orange);
 		font.drawString(larg/6, haut/3 + haut/5, "nombres personnages restant : " , Color.orange);
 		font.drawString(larg/6, haut/3 + 3*haut/10, " " , Color.orange);
+		
+		font.drawString(larg/24, haut - haut/5, " Tapez R pour rejouez" , Color.white);
+		font.drawString(larg/24, haut - haut/5+haut/30, " Tapez echape pour quitter" , Color.white);
+		font.drawString(larg/24, haut - haut/5 +haut/15, " Tapez enter pour acceder au menu" , Color.white);
+
 	}
 	
 	
@@ -81,6 +86,7 @@ public void keyReleased(int key, char c){
 			}
 			game.enterState(EcranDeValidation.ID); 
 			break ;
+		case Input.KEY_ENTER: game.enterState(MainScreenGameState.ID);
 //		case Input.KEY_3:  EcranDeValidation.mode= -3 ; game.enterState(EcranDeValidation.ID);break;
 		}
 	}
