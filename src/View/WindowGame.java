@@ -215,7 +215,7 @@ public class WindowGame extends BasicGameState {
 
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillOval(posCharScreenX-16, posCharScreenY-8, 32, 16);
+					g.fillOval(posCharScreenX+16, posCharScreenY+56, 32, 16);
 				}
 				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
@@ -322,9 +322,9 @@ public class WindowGame extends BasicGameState {
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
-							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+							cCharac.setMoving(false);
 						}
 						else {
 							this.dureeAnim++;
