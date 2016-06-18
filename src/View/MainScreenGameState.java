@@ -10,6 +10,8 @@ import org.lwjgl.input.Mouse;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.MouseButtonControl;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -27,8 +29,8 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Option;
 	private Image souris; 
 	private Image souris2;
-
-	
+	public static Music music ;
+	private StateBasedGame game ; 
 	
 
 	@Override
@@ -49,6 +51,10 @@ public class MainScreenGameState extends BasicGameState  {
 		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		container.setMouseCursor(this.souris, 0, 0);
+		this.game = game; 
+		this.music = new Music("../Zombautomate/ressources/song/Menu2.ogg");
+//		this.music.setVolume(200);
+		music.loop();
 	}
 	
 	
@@ -139,6 +145,7 @@ public class MainScreenGameState extends BasicGameState  {
 			container.setMouseCursor(this.souris2, 0, 0);
 			if(Mouse.isButtonDown(0)){
 				game.enterState(ContinueMenutypeJeu.ID);
+//				game.enterState(WindowGame.ID);
 			}
 		}
 		else Continue.setColor(0, 1, 1, 1, 0);
@@ -158,6 +165,18 @@ public class MainScreenGameState extends BasicGameState  {
 
 	}
 	
+	
+	@Override
+	public void keyPressed(int key, char c) {
+		
+		switch (key) {
+		//Mouvement personnage
+		case Input.KEY_1:  EcranDeValidation.mode= -1 ; game.enterState(EcranDeValidation.ID); break;
+		case Input.KEY_2:  EcranDeValidation.mode= -2 ; game.enterState(EcranDeValidation.ID); break;
+		case Input.KEY_3:  EcranDeValidation.mode= -3 ; game.enterState(EcranDeValidation.ID); break;
+		case Input.KEY_4:  EcranDeValidation.mode= -4 ; game.enterState(EcranDeValidation.ID);
+		}
+	}
 	
 	
 

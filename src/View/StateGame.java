@@ -3,6 +3,7 @@ package View;
 
 import java.io.BufferedWriter;
 
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,39 +15,23 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import sun.awt.windows.ThemeReader;
+
 //import Model.* ;
+
 import model.jeu.*;
 import model.jeu.Character;
+import model.jeu.Map;
+import model.jeu.Moteur;
+import model.jeu.Ordonnanceur;
+import model.jeu.Player;
+import model.jeu.XMLReader;
+import model.jeu.transfer;
+
 
 public class StateGame extends StateBasedGame {
-	public int screenWidth , screenHeight;
 
 //cettte focntion permet de réinitialiser un fichier automate
-public static void initiate(int idj){
-	String tmp = Integer.toString(idj);
-	
-	try {
-		Runtime.getRuntime().exec(new String[]{ "sh", "-c", "rm ../Zombautomate/ocaml/user"+tmp+".ml"});
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	
-	try{
-		Process proc=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/base"+tmp+".ml"} );
-		InputStream in = proc.getInputStream();
-		BufferedWriter out= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user"+tmp+".ml"));
-		int c;
-		while ((c = in.read()) != -1) {
-			out.write((char)c);
-		}
-		in.close();
-		out.flush();
-		out.close();
-
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-}
 public static void initiateboth(){
 //	String tmp = Integer.toString(idj);
 	
@@ -58,12 +43,26 @@ public static void initiateboth(){
 	}
 	
 	try{
-		Process proc1=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/base1.ml"} );
-		Process proc2=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/base2.ml"} );
-
+		Process proc1=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/exemple_fichier_user1.ml"} );
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
+		Process proc2=Runtime.getRuntime().exec(new String[]{ "sh", "-c", "cat ../Zombautomate/ocaml/exemple_fichier_user2.ml"} );
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		InputStream in1 = proc1.getInputStream();
 		InputStream in2 = proc2.getInputStream();
 		BufferedWriter out1= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user1.ml"));
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 		BufferedWriter out2= new BufferedWriter(new FileWriter("../Zombautomate/ocaml/user2.ml"));
 		int c;
 		while ((c = in1.read()) != -1) {
@@ -94,22 +93,34 @@ public static void initiateboth(){
 	 * @return
 	 */
 	public static void demandeautomate(int idj){
+
 		String tmp = Integer.toString(idj);
 		try {
 			Runtime.getRuntime().exec("gedit ../Zombautomate/ocaml/user"+tmp+".ml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}	
 	}
 	
 	//lance make puis execture 
 	public static void compileAndRun(){
+		System.out.println("\n\n\n je suis dans compile and run \n\n\n");
+
 		try {
 			Runtime.getRuntime().exec("make", null, new File("../Zombautomate/ocaml/")) ;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writter");
 		} catch (IOException e) {
@@ -118,6 +129,7 @@ public static void initiateboth(){
 		
 	}
 
+	
 	/*
 	 * fonction qui lit les xml et revnoi la liste des charactere
 	 * Mode 1 : 1 human vs Zombie
@@ -127,63 +139,77 @@ public static void initiateboth(){
 	 * Mode 5 : continue  2 humain vs Zombie
 	 */
 	public static void jeu ( int mode ){
-				
+		
 		if(mode ==1|| mode==4){
 			if(mode==1){
 				initiateboth() ;
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}	
 			}
 			demandeautomate(1);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}	
 		}
 		if(mode==2 || mode==5)
 		{		
 			if(mode==2){
 				initiateboth();
 			}
-			demandeautomate(1);
+			demandeautomate(1);	
 			demandeautomate(2);
-			
-			
 		}
-
-		
-		
-	
-	
-	//	return lC;
 
 }
 
 	
 
 
-	
+	//modes positifs, => pour l'utilisateur
+	//modes négatifs => démos
 
 	public static ArrayList<Character> loadCharacters ( int mode ){
 		ArrayList<Character>  lC = new ArrayList<Character>() ; 
 		XMLReader fichier = new XMLReader() ;
 
-		//String path = demandeautomate("../Zombautomate/ocaml/user1.ml");
+		
+		if(mode < 0)
+		{	
+			System.out.println("dans load caractère le mode est : "+mode);
+			ArrayList<ArrayList<transfer>> equipe1 = fichier.read("demo"+(mode*-1)+".xml");//fich1);
+			
+			int foodstock = mode==(-4) ? 50 : 15;
+			
+			Player j1 = new Player(1,"Joueur 1",foodstock);
 
+			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
+			lC.addAll(j1.getEntities());
+			return lC;
 
-		/*try {
-			Runtime.getRuntime().exec(new String[]{"cat" ,"../Zombautomate/ocaml/equipe1.xml", ">>", "../Zombautomate/ocaml/test.xml" });
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-		ArrayList<ArrayList<transfer>> equipe1=fichier.read("../Zombautomate/ocaml/equipe1.xml");//fich1);
+		}
+		
+		ArrayList<ArrayList<transfer>> equipe1=fichier.read("equipe1.xml");//fich1);
 
-		Player j1 = new Player(1 ,"Joueur 1", 10);
+		Player j1 = new Player(1 ,"Joueur 1", 100);
+		
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
-
-		if(mode==2)
+		Credit.J1 = j1 ;
+		
+		if(mode==2 || mode == 5)
 		{		 
-			ArrayList<ArrayList<transfer>> equipe2=fichier.read("../Zombautomate/ocaml/equipe2.xml");//fich2);	
-			Player j2 = new Player(2 ,"Joueur 2", 10);
+			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
+			Player j2 = new Player(2 ,"Joueur 2", 100);
 			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 			lC.addAll(j2.getEntities());
+			Credit.J2 =j2; 
 		}
-			return lC;
+		return lC;
 }
 	
 /**
@@ -207,24 +233,34 @@ public static Player getZombies(){
  * @throws SlickException
  */
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		//ArrayList<Character> lC = jeu (1) ; 
-		//Map carte = Moteur.initiate_map(lC, getZombies());
+		
+		if	((System.getProperties().get("os.name")).equals("Linux") ) {
+
+			
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());
 		addState(new EcranDeValidation());
-	//	addState(new WindowGame(lC,carte) ) ;
+		addState(new Credit());
+		addState(new WindowGame() ) ;
+		addState(new EndGameView());
+		}
+		
+		else{
+			ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
+			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
+			Ordonnanceur ordo = new Ordonnanceur(lC);
+			WindowGame wg = new WindowGame();
+			wg.map =carte ; 
+			wg.ordo = ordo ;
+			wg.charactersList = lC ; 
+			addState(wg);
+		}
+		
 }
 
 public StateGame() {
 	super("ZOMBAUTOMATE by PANDAS");
-}
-
-public void setScreenDimension(int width, int height){
-	if(width > 0 && height > 0){
-		this.screenWidth = width;
-		this.screenHeight = height;
-	}
 }
 
 /**
@@ -237,15 +273,18 @@ public static void main(String[] args) throws SlickException {
 //	ArrayList<Character> lC = jeu (2) ;
 
 	//WindowGame wg = new WindowGame(lC , Moteur.create_map(lC) ).init_map().setAutomate();
-	
 
-	AppGameContainer tmp = new AppGameContainer(null);
-	StateGame STG = new StateGame();
-	AppGameContainer app= new AppGameContainer(STG,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
-//	wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
-//	STG.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
+//	initiateboth();
+//	compileAndRun();	
+//	loadCharacters(1);
+//	System.out.println("pru");
 	
-//	AppGameContainer app= new AppGameContainer(new StateGame(), 1200, 730, false);
+	
+	
+	AppGameContainer tmp = new AppGameContainer(null);
+	AppGameContainer app= new AppGameContainer(new StateGame(),tmp.getScreenWidth(),tmp.getScreenHeight(),false);
+	WindowGame.screenHeight= tmp.getScreenHeight();
+	WindowGame.screenWidth= tmp.getScreenWidth();
 	app.start();
 	}
 

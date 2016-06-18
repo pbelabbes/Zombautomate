@@ -14,18 +14,21 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 	
 
 	public DisplaySurvivor(model.jeu.Character c) throws SlickException{
-		super(c, 8, "ressources/characters/sprites/male_walkcycle.png" );
-		this.color = randomColor();
-		}
+		super(c, 32, "ressources/characters/sprites/male_sprite.png" );
+		this.setColor();		}
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
 		
 	}
 	
 	public Color getColor(){
 		return this.color;
+	}
+	
+	public void setColor(){
+		Color c = (this.character.getPlayer().getName() == "Joueur 1")?Color.red:Color.blue;
+		this.color = new Color(c.getRed(),c.getGreen(),c.getBlue(),0.3f);
 	}
 	
 	public static Color randomColor(){

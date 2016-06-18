@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persos>
+	<automate id ="d1">
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>1</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+	</automate>
+	<automate id ="d2">
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Case_alliee(E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>10</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>1</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+	</automate>
+</persos>

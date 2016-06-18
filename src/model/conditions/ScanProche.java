@@ -207,7 +207,7 @@ public class ScanProche extends Condition {
 					System.out.println("dans decor");
 
 					if(cN!=null && cN.getDecor()==decor ){
-						System.out.println(parameter);
+//						System.out.println(parameter);
 
 						return ('N'==parameter);
 					}

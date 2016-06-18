@@ -78,7 +78,7 @@ public class Survivor extends Character{
 	public Survivor(Player player, Automata automata, Map map) {
 		super(player, automata, map);
 		this.weapon=new ArrayList<Arme>();
-		hp = 20;
+		hp = 100;
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class Survivor extends Character{
 			this.getPlayer().addFoodStock(-1);
 		}
 		else {
-			this.supHp(1);
+			this.supHp(5);
 		}
 	}
 	/**
@@ -270,6 +270,8 @@ public class Survivor extends Character{
 	{
 //		System.out.println(action);
 		Cell cellule = this.getTargetedCell(direction, this.getCell());
+		if(action == null) return;
+		
 		switch(action)
 		{
 		case WATER: water(cellule); break;

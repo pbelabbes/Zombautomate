@@ -47,12 +47,12 @@ public abstract class Character extends Observable {
 	 */
 	
 	public Character(Player player, Automata automata, Map map) {
-		this.hp=10;
-		this.strength=1;
+		this.hp=100;
+		this.strength=5;
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
-		this.sight_range = 60;
+		this.sight_range = 30;
 		this.state = 0;
 	}
 	
@@ -77,8 +77,8 @@ public abstract class Character extends Observable {
 		if(!is_alive())
 			cell.setEntity_on(null);
 		
-		setChanged();
-		notifyObservers(this.hp);
+		//setChanged();
+		//notifyObservers(this.hp);
 	}
 
 	
@@ -87,8 +87,8 @@ public abstract class Character extends Observable {
 	}
 	public void setPlayer(Player player) {
 		this.player = player;
-		setChanged();
-		notifyObservers(this.player);
+		//setChanged();
+		//notifyObservers(this.player);
 	}
 
 	public int getSightRange()
@@ -101,8 +101,8 @@ public abstract class Character extends Observable {
 	}
 	public void setStrength(int strength) {
 		this.strength = strength;
-		setChanged();
-		notifyObservers(this.strength);
+		//setChanged();
+		//notifyObservers(this.strength);
 	}
 
 	public Cell getCell() {
@@ -110,8 +110,8 @@ public abstract class Character extends Observable {
 	}
 	public void setCell(Cell cell) {
 		this.cell = cell;
-		setChanged();
-		notifyObservers(this.cell);
+		//setChanged();
+		//notifyObservers(this.cell);
 	}
 
 	public Automata getAutomata() {
@@ -119,8 +119,8 @@ public abstract class Character extends Observable {
 	}
 	public void setAutomata(Automata automata) {
 		this.automata = automata;
-		setChanged();
-		notifyObservers(this.automata);
+		//setChanged();
+		//notifyObservers(this.automata);
 	}
 
 	public Map getMap() {
@@ -128,8 +128,8 @@ public abstract class Character extends Observable {
 	}
 	public void setMap(Map map) {
 		this.map = map;
-		setChanged();
-		notifyObservers(this.map);
+		//setChanged();
+		//notifyObservers(this.map);
 	}
 
 	//Methodes
@@ -312,6 +312,7 @@ public abstract class Character extends Observable {
 //		System.out.println(List_cases.get(cle).getCondition());
 //if(List_cases.get(cle).getCondition() instanceof ScanLoin)	System.out.println(((ScanLoin) (List_cases.get(cle).getCondition())).getParameter());
 		int indice_choisi = l_indices_prioritaires.get((int) (l_indices_prioritaires.size()*Math.random()));
+		this.state = List_cases.get(indice_choisi).getEtatfutur();
 		return List_cases.get(indice_choisi);
 	}
 	
@@ -340,7 +341,8 @@ public abstract class Character extends Observable {
 		case 'N' : p.y=(p.y-1+mapheight)%mapheight; break;
 		case 'E' : p.x=(p.x+1+mapwidth)%mapwidth; break;
 		case 'S' : p.y=(p.y+1+mapheight)%mapheight; break;
-		default : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		case 'O' : p.x=(p.x-1+mapwidth)%mapwidth; break;
+		default :  break;
 		
 		}
 		return this.map.getGrid()[p.x][p.y];

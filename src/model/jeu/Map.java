@@ -43,6 +43,7 @@ public class Map extends Observable{
 	
 	//Getter et Setter
 	public int getWidth() {
+		int debut = grid.length;
 		return grid.length;
 	}
 
@@ -52,6 +53,7 @@ public class Map extends Observable{
 	}
 */
 	public int getHeight() {
+		int debut = grid[0].length;
 		return grid[0].length;
 	}
 	
@@ -97,7 +99,7 @@ public class Map extends Observable{
 	 * @param a : un automate à placer sur la carte
 	 * @param pos : la position à laquelle l'automate est placé (coin supérieur gauche)
 	 */
-	private void setAutomata(Automata a, Point pos, Character perso)
+	public void setAutomata(Automata a, Point pos, Character perso)
 	{
 		a.setPosition(pos);
 		
@@ -105,14 +107,18 @@ public class Map extends Observable{
 		{
 			for(int y = pos.y ; y < a.getInputs()+pos.y ; y++)
 			{
-				CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
-				if(case_tempo!=null)
-				{	
-					this.grid[x][y].setOwned_by(perso);
-					this.grid[x][y].setDecor(Decor.getDecor(case_tempo.getAction()));
-					this.grid[x][y].setPosition(pos);
-					this.grid[x][y].setCaseAutomate(case_tempo);
+				if(x<getWidth() && y< getHeight())
+				{
+					CaseAutomate case_tempo = a.getStates()[x-pos.x][y-pos.y];
+					if(case_tempo!=null)
+					{	
+						this.grid[x][y].setOwned_by(perso);
+						this.grid[x][y].setDecor(Decor.getDecor(case_tempo.getAction()));
+//						this.grid[x][y].setPosition(new Point(x,y));
+						this.grid[x][y].setCaseAutomate(case_tempo);
+					}
 				}
+				else 	System.out.println("dimensions de map suspectes");
 			}
 		}
 	}
@@ -146,7 +152,7 @@ public class Map extends Observable{
 	public void set_charact(Character c, Point p)
 	{
 		c.setMap(this);
-		c.setCell(this.getGrid()[p.x][p.y]);
+//		c.setCell(this.getGrid()[p.x][p.y]);
 		this.getGrid()[p.x][p.y].setEntity_on(c);
 	}
 	
@@ -164,7 +170,7 @@ public class Map extends Observable{
 				x =(int) (this.getWidth()*Math.random());
 				y =(int) (this.getHeight()*Math.random());
 			}
-			while(this.getGrid()[x][y].getEntity_on()!=null);
+			while(grid[x][y].getEntity_on()!=null && grid[x][y].getDecor() != Decor.ROCK);
 			this.set_charact(c,new Point(x,y));
 		}
 	}
@@ -186,6 +192,34 @@ public class Map extends Observable{
 		}
 	}
 	
+
+	/**
+	 * fait apparaitre un zombie à un endroit aléatoire de la carte et le retourne
+	 * @param lC liste des personnages en jeu (le zombie y sera ajouté
+	 * @param p0 joueur qui controle les zombies
+	 * @return  le nouveau zombie
+	 */
+	public Zombie random_pop_zombie(ArrayList<Character> lC, Player p0)
+	{
+		Zombie new_z = new Zombie((Zombie) p0.getEntities().get(0));
+		Cell cellule;
+		do
+		{
+			int rand_x = (int) (getWidth()*Math.random());
+			int rand_y = (int) (getHeight()*Math.random());
+		
+		
+			cellule = grid[rand_x][rand_y];
+			
+		}while (cellule.getEntity_on()!=null);
+		
+		cellule.setEntity_on(new_z);
+		lC.add(new_z);
+		
+		return new_z;		
+	}
+
+	
 	/**
 	 * Fait apparaitre un zombie sur la cellule donnée. Il faut cependant être certain qu'aucune entité n'est présent sur l'emplacement indiqué
 	 * @param cellule cellule d'apparition du zombie
@@ -200,6 +234,13 @@ public class Map extends Observable{
 		lC.add(new_z);		
 	}
 	
+	
+	/**
+	 * fait apparaitre des zombies aléatoirement sur la map
+	 * @param lC liste des personnages
+	 * @param p0 Joueur qui controle les zombies
+	 * @param nb nombre de nouveau zombis
+	 */
 	public void random_pop_zombies(ArrayList<Character> lC, Player p0, int nb)
 	{
 		int dimx = getWidth();
@@ -242,5 +283,29 @@ public class Map extends Observable{
 			System.out.println();
 		}
 		System.out.println();
+	}
+	
+	
+	public void init_demo(int m) 
+	{
+		int h = getHeight();
+		int w = getWidth();
+		for(int x = 0; x<w ; x++)
+		{
+			for(int y = 0 ; y<h ; y++)
+			{
+				grid[x][y] = new Cell(new Point(x,y));
+				grid[x][y].setDecor(Decor.GRASS);
+			}
+		}
+		if(m==1)
+		{
+			grid[6][5].setDecor(Decor.KATANA);
+			grid[5][6].setDecor(Decor.RABBIT);
+			grid[10][5].setDecor(Decor.ROCK);
+			grid[10][7].setDecor(Decor.ROCK);
+			grid[9][6].setDecor(Decor.ROCK);
+			grid[11][6].setDecor(Decor.ROCK);
+		}
 	}
 }
