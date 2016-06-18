@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
@@ -19,6 +20,7 @@ public class EndGameView extends BasicGameState {
 	private Image back;
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
+	public static Music music;
 
 	private StateBasedGame game;
 	
@@ -34,6 +36,8 @@ public class EndGameView extends BasicGameState {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
 		this.game = game ; 
+		this.music = new Music("../Zombautomate/ressources/song/endofgame2.ogg");
+		
 	
 	}
 
@@ -65,11 +69,11 @@ public class EndGameView extends BasicGameState {
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
 				if (Credit.J1.defeated()){
-					font2.drawString(larg/4    , haut/5  , "Le vainquer est jouer1 " , Color.orange);
+					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur1 " , Color.orange);
 
 				}
 				else{
-					font2.drawString(larg/4    , haut/5  , "Le vainquer est joueur2" , Color.orange);
+					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur2" , Color.orange);
 				}
 				font.drawString(larg/6, haut/3 + 3*haut/10 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
 			}

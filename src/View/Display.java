@@ -27,14 +27,14 @@ public abstract class Display implements Observer {
 	public abstract void initAnimations();
 
 	public static void changeSpeed() {
-		if(tempsAnim == 100) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 500; else tempsAnim= 100;
+		if(tempsAnim == 150) tempsAnim= 2000; else if ( tempsAnim== 50) tempsAnim= 2000; else tempsAnim= 150;
 
 	}
 
 	protected static Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
 		Animation animation = new Animation();
-		for (int x = startX; x < endX; x++) {
-			animation.addFrame(spriteSheet.getSprite(x, y), 100);
+		for (int a = startX; a < endX; a++) {
+			animation.addFrame(spriteSheet.getSprite(a, y), 100);
 		}
 		return animation;
 	}
