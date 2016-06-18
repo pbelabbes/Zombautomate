@@ -322,9 +322,9 @@ public class WindowGame extends BasicGameState {
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
-							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+							cCharac.setMoving(false);
 						}
 						else {
 							this.dureeAnim++;
