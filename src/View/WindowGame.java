@@ -127,8 +127,8 @@ public class WindowGame extends BasicGameState {
 
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
-			this.screenWidth = width;
-			this.screenHeight = height-TILED_SIZE;
+			screenWidth = width;
+			screenHeight = height-TILED_SIZE;
 		}
 	}
 
@@ -232,7 +232,7 @@ public class WindowGame extends BasicGameState {
 
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 
-			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
+			for(int cursorY = 1; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
 
 				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
 				if(cCell.getCell().getDecor()!=null){
@@ -365,10 +365,11 @@ public class WindowGame extends BasicGameState {
 
 		//Affichage infos
 		if(this.showInfo)afficherInfos(container, g);
-		
+
 		if(this.showplayers)affichePLayer(container, g);
 		
 		if(this.showChara)afficheChar(container, g);
+
 	}
 
 	@Override
