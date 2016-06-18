@@ -205,18 +205,18 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
-				if(cCell.getCell().getEntity_on() != null){
-					if(cCell.getCell().getEntity_on() instanceof Zombie){
-						g.setColor(Color.green);						
-					}else{
-						for (DisplayCharacter displayCharacter : characters) {
-							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
-						}
-
-					}
-					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-
-				}
+//				if(cCell.getCell().getEntity_on() != null){
+//					if(cCell.getCell().getEntity_on() instanceof Zombie){
+//						g.setColor(Color.green);						
+//					}else{
+//						for (DisplayCharacter displayCharacter : characters) {
+//							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+//						}
+//
+//					}
+//					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+//
+//				}
 			}
 		}
 	}
