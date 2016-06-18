@@ -217,7 +217,7 @@ public class WindowGame extends BasicGameState {
 
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillOval(posCharScreenX-16, posCharScreenY-8, 32, 16);
+					g.fillOval(posCharScreenX+16, posCharScreenY+56, 32, 16);
 				}
 				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
@@ -247,7 +247,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder à  l'écran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder ï¿½ l'ï¿½cran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
