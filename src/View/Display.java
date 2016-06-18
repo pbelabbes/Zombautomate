@@ -10,12 +10,14 @@ import org.newdawn.slick.SpriteSheet;
 public abstract class Display implements Observer {
 
 	protected float x,y;
+	protected int tempsAnim;
 	protected Animation[] animations;
 	protected SpriteSheet sprite;
 
 	public Display(float posX, float posY, SpriteSheet sprite, int nbAnimation) throws SlickException{
 		setX(posX);
 		setY(posY);
+		setTempsAnim(800);
 		animations = new Animation[nbAnimation];
 		this.sprite = sprite;
 		initAnimations();
@@ -37,7 +39,6 @@ public abstract class Display implements Observer {
 	public float getY() {
 		return y;
 	}
-
 	public void setY(float y) {
 		this.y = y;
 	}
@@ -45,15 +46,19 @@ public abstract class Display implements Observer {
 	public float getX() {
 		return x;
 	}
-
 	public void setX(float x) {
 		this.x = x;
 	}
 	
+	public int getTempsAnim(){
+		return this.tempsAnim;
+	}
+	public void setTempsAnim(int tempsAnim){
+		this.tempsAnim=tempsAnim;
+	}
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
