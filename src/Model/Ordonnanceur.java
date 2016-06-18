@@ -101,7 +101,14 @@ public class Ordonnanceur {
 	
 	public void next()
 	{
-
+		indice++;
+		if(Ordonnee.size()<=indice)
+		{
+			melanger();
+			indice = 0;
+			compteur_tour++;
+		}
+		
 		Character c = Ordonnee.get(indice);
 		if(c.is_alive())
 		{
@@ -110,14 +117,8 @@ public class Ordonnanceur {
 			c.eat();
 			
 		}
-		indice++;
 
-		if(Ordonnee.size()<=indice)
-		{
-			melanger();
-			indice = 0;
-			compteur_tour++;
-		}
+
 	}
 	
 	/**
