@@ -29,7 +29,7 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Option;
 	private Image souris; 
 	private Image souris2;
-	private Music music ;
+	public static Music music ;
 	private StateBasedGame game ; 
 	
 
@@ -52,7 +52,8 @@ public class MainScreenGameState extends BasicGameState  {
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		container.setMouseCursor(this.souris, 0, 0);
 		this.game = game; 
-		this.music = new Music("../Zombautomate/ressources/song/MenuCod.wav");
+		this.music = new Music("../Zombautomate/ressources/song/Menu2.ogg");
+//		this.music.setVolume(200);
 		music.loop();
 	}
 	

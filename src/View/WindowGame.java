@@ -13,6 +13,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.TrueTypeFont;
@@ -48,7 +49,7 @@ public class WindowGame extends BasicGameState {
 	private float vitesse;
 	private Player zombies;
 	private boolean showInfo;
-
+	public static Music music;
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
@@ -56,11 +57,22 @@ public class WindowGame extends BasicGameState {
 		this.vitesse = 0.0005f;
 		this.showInfo = false;
 		this.game = game;
+		this.music = new Music("../Zombautomate/ressources/song/Arceus.ogg");
+//		this.music.setVolume(0.2f);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
 	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
 
+
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.music.stop();
+		MainScreenGameState.music.stop();
+		EndGameView.music.loop();
+		super.leave(container, game);
+	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
