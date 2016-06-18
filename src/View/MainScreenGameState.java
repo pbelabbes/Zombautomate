@@ -11,6 +11,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.command.MouseButtonControl;
 import org.newdawn.slick.gui.AbstractComponent;
@@ -28,7 +29,7 @@ public class MainScreenGameState extends BasicGameState  {
 	private Image Option;
 	private Image souris; 
 	private Image souris2;
-
+	private Music music ;
 	private StateBasedGame game ; 
 	
 
@@ -51,6 +52,8 @@ public class MainScreenGameState extends BasicGameState  {
 		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		container.setMouseCursor(this.souris, 0, 0);
 		this.game = game; 
+		this.music = new Music("../Zombautomate/ressources/song/MenuCod.wav");
+		music.loop();
 	}
 	
 	
