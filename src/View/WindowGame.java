@@ -57,7 +57,7 @@ public class WindowGame extends BasicGameState {
 		this.vitesse = 0.0005f;
 		this.showInfo = false;
 		this.game = game;
-		this.music = new Music("../Zombautomate/ressources/song/Arceus.ogg");
+		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
 //		this.music.setVolume(0.2f);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
@@ -79,6 +79,12 @@ public class WindowGame extends BasicGameState {
 			throws SlickException {
 		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
+		
+		if((System.getProperties().get("os.name")).equals("Linux")){
+			MainScreenGameState.music.stop() ;
+			EndGameView.music.stop();
+			}
+		this.music.loop();
 
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
@@ -163,7 +169,6 @@ public class WindowGame extends BasicGameState {
 
 	private void changeInfo() {
 		this.showInfo = !this.showInfo;
-
 	}
 
 
@@ -233,6 +238,7 @@ public class WindowGame extends BasicGameState {
 					g.fillOval(posCharScreenX+16, posCharScreenY+56, 32, 16);
 				}
 				//System.out.println(c.getCurrentAnimation());
+				System.out.println("windowGame afficher perso : x"+c.getX()+" y"+c.getY()+"\n");
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
 
 
@@ -336,10 +342,11 @@ public class WindowGame extends BasicGameState {
 						switch (ordo.getAction()){
 						case MOVE://animation1
 							if (cCharac.getTempsAnim()<=this.dureeAnim){
-								this.dureeAnim=0;
-								cCharac.setAction(0);
+								System.out.println("WindGame: ccharac.char.cell  x="+ cCharac.getCharacter().getCell().getPosition().x +" y=" +cCharac.getCharacter().getCell().getPosition().y+"\n");
 								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+								cCharac.setAction(0);
+								this.dureeAnim=0;
 								cCharac.setMoving(false);
 							}
 							else {

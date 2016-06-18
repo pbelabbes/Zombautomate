@@ -10,7 +10,8 @@ import org.newdawn.slick.SpriteSheet;
 public abstract class Display implements Observer {
 
 	protected float x,y;
-	public static int tempsAnim = 200;
+
+	public static int tempsAnim = 150;
 	protected Animation[] animations;
 	protected SpriteSheet sprite;
 
@@ -27,7 +28,8 @@ public abstract class Display implements Observer {
 	public abstract void initAnimations();
 
 	public static void changeSpeed() {
-		if(tempsAnim == 200) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 20; else tempsAnim= 200;
+
+		if(tempsAnim == 150) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 10; else tempsAnim= 150;
 
 	}
 
