@@ -15,7 +15,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class EndGameView extends BasicGameState {
 	public static final int ID = 6;
 	
-	private Image background ;
+	private Image background42 ;
+	private Image back;
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
 
@@ -24,6 +25,9 @@ public class EndGameView extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		this.background42 = new Image("../Zombautomate/ressources/fondvictoire.png");
+		this.back = new Image("../Zombautomate/ressources/Menu/fin.png");
+		
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font =  new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 40), false);	
@@ -39,11 +43,14 @@ public class EndGameView extends BasicGameState {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
 		int nbZombie =0 , nbPerso1 =0 , nbPerso2=0 ; 
+		back.draw(0, 0, container.getWidth(), container.getHeight());
 		
 		
-		if(WindowGame.ordo.getPlayer(0)!=null){
-			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
-		}
+//		if(WindowGame.ordo.getPlayer(0)!=null){
+//			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
+//		}
+		
+		
 		if(WindowGame.ordo.getPlayer(1)!=null){
 //			if(WindowGame.ordo.getPlayer(1).getEntities() != null)
 			nbPerso1 = WindowGame.ordo.getPlayer(1).characters_remaining() ;
@@ -53,7 +60,7 @@ public class EndGameView extends BasicGameState {
 		}
 		
 		if(WindowGame.ordo.getTurn()==42){
-			
+			background42.draw(0, 0, container.getWidth(), container.getHeight());
 		}
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
@@ -64,7 +71,7 @@ public class EndGameView extends BasicGameState {
 				else{
 					font2.drawString(larg/4    , haut/5  , "Le vainquer est joueur2" , Color.orange);
 				}
-				font.drawString(larg/6, haut/3 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
+				font.drawString(larg/6, haut/3 + 3*haut/10 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
 			}
 			else{
 				font2.drawString(larg/4    , haut/5  , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours" , Color.orange);
