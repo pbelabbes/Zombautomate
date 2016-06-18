@@ -97,7 +97,7 @@ public class WindowGame extends BasicGameState {
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
 			this.screenWidth = width;
-			this.screenHeight = height;
+			this.screenHeight = height-TILED_SIZE;
 		}
 	}
 
@@ -247,7 +247,7 @@ public class WindowGame extends BasicGameState {
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
 		//int pause=1000;
 
-		//System.out.println("");
+		System.out.println("Map Origin :" + this.mapOrigin.x+":"+this.mapOrigin.y);
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
 		//Affichage de d�cors
@@ -262,7 +262,7 @@ public class WindowGame extends BasicGameState {
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-		afficherInfos(container, g);
+		if((EcranDeValidation.mode >= 0))afficherInfos(container, g);
 		/*try {
 			Thread.sleep(pause);
 		} catch (InterruptedException e) {
