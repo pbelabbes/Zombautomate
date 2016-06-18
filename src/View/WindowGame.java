@@ -283,7 +283,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder � l'�cran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder a l'ecran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
