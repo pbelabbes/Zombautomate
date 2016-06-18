@@ -32,7 +32,7 @@ public class Player extends Observable{
 		this.id = id ;
 		this.name = name;
 		//this.entities = entitie;
-		this.foodStock = 100 ;
+		this.foodStock = foodStock ;
 		this.stone = 50;
 		this.seed= 50 ;
 	}
