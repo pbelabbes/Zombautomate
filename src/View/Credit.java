@@ -109,6 +109,9 @@ public class Credit extends BasicGameState {
 		    //game.enterState(MapGameState.ID);
 		 if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
 			 game.enterState(WindowGame.ID);
+			 MainScreenGameState.music.stop() ;
+			 WindowGame.music.loop();
+			 
 		 }
 		 else {
 			 if(EcranDeValidation.mode == 1 || EcranDeValidation.mode == 2 ){
@@ -119,12 +122,15 @@ public class Credit extends BasicGameState {
 		 }
 	 }
 
-	@Override
-	public void leave(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		
-		super.leave(container, game);
-	}
+//	@Override
+//	public void leave(GameContainer container, StateBasedGame game)
+//			throws SlickException {
+//		if (game. == WindowGame.ID){
+//			MainScreenGameState.music.stop() ;
+//			WindowGame.music.loop();
+//		}
+//		super.leave(container, game);
+//	}
 
 	@Override
 	public int getID() {
