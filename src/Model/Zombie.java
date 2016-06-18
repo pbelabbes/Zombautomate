@@ -13,11 +13,17 @@ public class Zombie extends Character {
 
 	}
 
+	public Zombie(Zombie zombie)
+	{
+		super(zombie.getPlayer(),zombie.getAutomata(),zombie.getMap());
+		strength = zombie.getStrength();
+		sight_range = zombie.getSightRange();
+		
+	}
 	
 	@Override
 	public void act(Action action, char direction) 
 	{
-		Zombie debug = this;
 		Cell cellule = getTargetedCell(direction,this.cell);
 		switch(action)
 		{

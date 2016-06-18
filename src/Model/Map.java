@@ -184,6 +184,34 @@ public class Map extends Observable{
 		}
 	}
 	
+
+	/**
+	 * fait apparaitre un zombie à un endroit aléatoire de la carte et le retourne
+	 * @param lC liste des personnages en jeu (le zombie y sera ajouté
+	 * @param p0 joueur qui controle les zombies
+	 * @return  le nouveau zombie
+	 */
+	public Zombie random_pop_zombie(ArrayList<Character> lC, Player p0)
+	{
+		Zombie new_z = new Zombie((Zombie) p0.getEntities().get(0));
+		Cell cellule;
+		do
+		{
+			int rand_x = (int) (getWidth()*Math.random());
+			int rand_y = (int) (getHeight()*Math.random());
+		
+		
+			cellule = grid[rand_x][rand_y];
+			
+		}while (cellule.getEntity_on()!=null);
+		
+		cellule.setEntity_on(new_z);
+		lC.add(new_z);
+		
+		return new_z;		
+	}
+
+	
 	/**
 	 * Fait apparaitre un zombie sur la cellule donnée. Il faut cependant être certain qu'aucune entité n'est présent sur l'emplacement indiqué
 	 * @param cellule cellule d'apparition du zombie
@@ -198,6 +226,13 @@ public class Map extends Observable{
 		lC.add(new_z);		
 	}
 	
+	
+	/**
+	 * fait apparaitre des zombies aléatoirement sur la map
+	 * @param lC liste des personnages
+	 * @param p0 Joueur qui controle les zombies
+	 * @param nb nombre de nouveau zombis
+	 */
 	public void random_pop_zombies(ArrayList<Character> lC, Player p0, int nb)
 	{
 		int dimx = getWidth();
