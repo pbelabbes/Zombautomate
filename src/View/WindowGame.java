@@ -537,7 +537,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*70 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}
