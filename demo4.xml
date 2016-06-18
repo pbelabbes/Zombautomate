@@ -14,7 +14,7 @@
 		<transition>
 			<etat_courant>0</etat_courant>
 			<condition><texte>Case_alliee(E)</texte></condition>
-			<action>Deplacer</action>
+			<action>Deposer</action>
 			<direction>E</direction>
 			<priorite>10</priorite>
 			<etat_futur>0</etat_futur>
