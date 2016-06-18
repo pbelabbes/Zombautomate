@@ -50,15 +50,14 @@ public class EndGameView extends BasicGameState {
 		back.draw(0, 0, container.getWidth(), container.getHeight());
 		
 		
-//		if(WindowGame.ordo.getPlayer(0)!=null){
-//			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
-//		}
+		if(WindowGame.ordo.getPlayer(0)!=null){
+			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
+		}
 		
 		
-//		if(WindowGame.ordo.getPlayer(1)!=null){
-////			if(WindowGame.ordo.getPlayer(1).getEntities() != null)
+		if(WindowGame.ordo.getPlayer(1)!=null){
 			nbPerso1 = WindowGame.ordo.get_remaining_zombies() ;
-//		}
+		}
 		if(WindowGame.ordo.getPlayer(2)!=null){
 			nbPerso2 = WindowGame.ordo.getPlayer(2).characters_remaining();
 		}
