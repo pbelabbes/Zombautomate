@@ -55,7 +55,7 @@ public class test_condition_fonction {
 		j2.setEntities(l2);
 		
 		Point poscell=new Point (9,9);
-		Cell cellule_temporaire = new Cell();
+		Cell cellule_temporaire = new Cell(poscell);
 		cellule_temporaire.setPosition(poscell);
 		cellule_temporaire.setDecor(Decor.KATANA);
 		cellule_temporaire.setEntity_on(ennemi_cible);
