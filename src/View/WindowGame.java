@@ -129,6 +129,9 @@ public class WindowGame extends BasicGameState {
 			case Input.KEY_LEFT:  dc.setDirection(1); dc.setMoving(true); break;
 			case Input.KEY_DOWN:  dc.setDirection(2); dc.setMoving(true); break;
 			case Input.KEY_RIGHT: dc.setDirection(3); dc.setMoving(true); break;
+
+			//Changement vitesse
+			case Input.KEY_SPACE : Display.changeSpeed();break;
 			}
 		}
 
@@ -139,8 +142,6 @@ public class WindowGame extends BasicGameState {
 		case Input.KEY_Q: this.direction = 2;this.isMoving=true;break;
 		case Input.KEY_D: this.direction = 3;this.isMoving=true;break;
 
-		//Changement vitesse
-		case Input.KEY_SPACE : this.changeSpeed();break;
 
 		//affichage info
 		case Input.KEY_I : this.changeInfo();break;
@@ -153,9 +154,6 @@ public class WindowGame extends BasicGameState {
 
 	}
 
-	private void changeSpeed() {
-		if(this.vitesse == .005f) this.vitesse = 0.05f; else if ( this.vitesse == 0.05f) this.vitesse = 0.0005f; else this.vitesse = 0.005f;		
-	}
 
 	public void keyReleased(int key, char c) {
 
@@ -234,7 +232,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
-		g.drawString("Vitesse : "+this.vitesse, 0, 130);
+		g.drawString("Vitesse : "+ Display.tempsAnim, 0, 130);
 		g.drawString("Tour n : "+ordo.getTurn(), 0, 150);
 		g.drawString("Nombre de Zombies : "+(ordo.get_remaining_zombies()), 0, 170);
 	}
