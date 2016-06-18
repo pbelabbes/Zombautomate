@@ -13,7 +13,7 @@ public class DisplaySurvivor extends DisplayCharacter implements Observer {
 	private Color color;
 	
 
-	public DisplaySurvivor(Model.Character c) throws SlickException{
+	public DisplaySurvivor(model.jeu.Character c) throws SlickException{
 		super(c, 8, "ressources/characters/sprites/male_walkcycle.png" );
 		this.color = randomColor();
 		}

@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Font;
+
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -20,8 +21,9 @@ import org.newdawn.slick.state.StateBasedGame;
 //import org.newdawn.slick.SpriteSheet;
 //import org.newdawn.slick.tiled.TiledMap;
 
-import Model.Character;
-import Model.*;
+import model.jeu.Character;
+import model.jeu.*;
+import model.automate.*;
 
 public class WindowGame extends BasicGame {
 	//
@@ -30,7 +32,7 @@ public class WindowGame extends BasicGame {
 
 	private GameContainer container;
 	private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
-	private ArrayList<Model.Character> charactersList;
+	private ArrayList<model.jeu.Character> charactersList;
 	private DisplayCellule[][] mapDisplay;
 	public  int width,height;
 	public static int TILED_SIZE = 32;
@@ -50,7 +52,7 @@ public class WindowGame extends BasicGame {
 		super("Zombautomate by PANDAS");
 	}
 
-	public void initialisedGameModel(ArrayList<Model.Character> charactersList,Map map, Ordonnanceur ordo){
+	public void initialisedGameModel(ArrayList<Character> charactersList,Map map, Ordonnanceur ordo){
 		this.map = map;
 		this.charactersList = charactersList;
 		this.ordo=ordo;
@@ -64,7 +66,7 @@ public class WindowGame extends BasicGame {
 
 	public void init(GameContainer container) throws SlickException{
 		this.container = container;
-		for (Model.Character character : charactersList) {
+		for (Character character : charactersList) {
 			if(character instanceof Survivor){
 				characters.add(new DisplaySurvivor(character));
 			}else{

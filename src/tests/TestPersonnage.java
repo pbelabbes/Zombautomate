@@ -2,13 +2,14 @@ package tests;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Test;
 
-import Model.Automata;
-import Model.Character;
-import Model.Map;
-import Model.Player;
-import Model.Survivor;
+import model.automate.*;
+import model.jeu.Character;
+import model.jeu.Map;
+import model.jeu.Player;
+import model.jeu.Survivor;
 
 public class TestPersonnage {
 

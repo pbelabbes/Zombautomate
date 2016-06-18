@@ -1,4 +1,6 @@
 package View;
+import model.decors.*;
+import model.jeu.*;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -7,9 +9,9 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import Model.Cell;
+/*import Model.Cell;
 import Model.Decor;
-
+*/
 public class DisplayCellule extends Display implements Observer {
 
 	public static final int SIZE = 32;
@@ -74,7 +76,7 @@ public class DisplayCellule extends Display implements Observer {
 		return selected;
 	}
 
-	public Model.Character GetCharacOn(){
+	public model.jeu.Character GetCharacOn(){
 		return cellule.getEntity_on();
 	}
 	

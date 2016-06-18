@@ -1,14 +1,15 @@
 package View;
 
 import java.util.Observable;
+
 import java.util.Observer;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
-import Model.Cell;
-import Model.Character;
+import model.jeu.*;
+import model.jeu.Character;
 
 public class DisplayZombie extends DisplayCharacter implements Observer{
 
@@ -19,7 +20,7 @@ public class DisplayZombie extends DisplayCharacter implements Observer{
 	
 	private Cell cellule;
 
-	public DisplayZombie(Model.Character c) throws SlickException{
+	public DisplayZombie(Character c) throws SlickException{
 		super(c, 8, "ressources/characters/sprites/zombie_walkcycle.png" );
 	}
 

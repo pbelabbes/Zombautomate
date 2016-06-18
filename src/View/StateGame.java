@@ -2,6 +2,7 @@ package View;
 
 
 import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,12 +15,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 //import Model.* ;
-import Model.Character;
-import Model.Map;
-import Model.Moteur;
-import Model.Player;
-import Model.XMLReader;
-import Model.transfer;
+import model.jeu.*;
+import model.jeu.Character;
 
 public class StateGame extends StateBasedGame {
 	public int screenWidth , screenHeight;
@@ -236,8 +233,6 @@ public void setScreenDimension(int width, int height){
  * @throws SlickException
  */
 public static void main(String[] args) throws SlickException {
-
-//	ArrayList<Character> lC = jeu (1) ;
 
 //	ArrayList<Character> lC = jeu (2) ;
 

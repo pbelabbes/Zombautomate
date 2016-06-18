@@ -1,10 +1,10 @@
 package Test;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import Model.Map;
+import model.jeu.*;
 
 public class ScanProcheTest {
 
