@@ -274,21 +274,24 @@ public class WindowGame extends BasicGameState {
 	public void affichePLayer(GameContainer container, Graphics g){
 		if (!gameOver){
 			g.setColor(Color.darkGray);
-			g.fillRect(0, screenHeight - 80-screenHeight/12 - 5, 150, 100);
+			g.fillRect(0, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 			g.setColor(Color.magenta);
-			g.drawString("PLAYER 1   : " , 0, screenHeight - 80-screenHeight/12);
-			g.drawString("FOODSTOCK  : "+ ordo.getPlayer(1).getFoodStock(), 0, screenHeight - 60-screenHeight/12);
-			g.drawString("STONESOTCK : "+ ordo.getPlayer(1).getStone(), 0, screenHeight - 40-screenHeight/12);
-			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20 -screenHeight/12 );
+			g.drawString("PLAYER 1   : " , 0, screenHeight - 80-20-screenHeight/12);
+			g.drawString("FOODSTOCK  : "+ ordo.getPlayer(1).getFoodStock(), 0, screenHeight - 60-20-screenHeight/12);
+			g.drawString("STONESOTCK : "+ ordo.getPlayer(1).getStone(), 0, screenHeight - 40-20-screenHeight/12);
+			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
+			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
 
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
 				g.setColor(Color.darkGray);
-				g.fillRect(4*screenWidth/5, screenHeight - 80-screenHeight/12 - 5, 150, 100);
+				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
-				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80-screenHeight/12);
-				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight - 60-screenHeight/12);
-				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight - 40-screenHeight/12);
-				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20 -screenHeight/12 );
+				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
+				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
+				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
+				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
+				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
+
 			}
 			g.setColor(Color.white);
 		}
