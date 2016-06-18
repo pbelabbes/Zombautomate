@@ -27,7 +27,7 @@ public class DisplayCellule extends Display implements Observer {
 
 	private static SpriteSheet setSpriteSheet() throws SlickException{
 		if(SPRITE == null){
-			String spritePath = "ressources/map/tuiles/sprite2.png";
+			String spritePath = "ressources/map/tuiles/sprites.png";
 			SPRITE = new SpriteSheet(spritePath, SIZE, SIZE);
 		}
 
@@ -44,13 +44,13 @@ public class DisplayCellule extends Display implements Observer {
 	public void initAnimations() {
 	
 		if( ANIMATIONS == null ){
-			this.animations[0] = loadAnimation(sprite, 0, 1, 2); // Grass
-			this.animations[1] = loadAnimation(sprite, 0, 1, 6); //Rock
-			this.animations[2] = loadAnimation(sprite, 0, 1, 5); //Apple ( Tomato )
-			this.animations[3] = loadAnimation(sprite, 0, 1, 7); //Sprout
-			this.animations[4] = loadAnimation(sprite, 0, 1, 0); //Tree
-			this.animations[5] = loadAnimation(sprite, 0, 1, 3); //Katana
-			this.animations[6] = loadAnimation(sprite, 0, 1, 1); //Baseball_bat
+			this.animations[0] = loadAnimation(sprite, 0, 1, 0); // Grass
+			this.animations[1] = loadAnimation(sprite, 0, 1, 1); //Rock
+			this.animations[2] = loadAnimation(sprite, 0, 1, 2); //Apple ( Tomato )
+			this.animations[3] = loadAnimation(sprite, 0, 1, 3); //Sprout
+			this.animations[4] = loadAnimation(sprite, 0, 1, 7); //Tree
+			this.animations[5] = loadAnimation(sprite, 0, 1, 6); //Katana
+			this.animations[6] = loadAnimation(sprite, 0, 1, 5); //Baseball_bat
 			this.animations[7] = loadAnimation(sprite, 0, 1, 4);//Rabbit
 			ANIMATIONS = this.animations;
 		}

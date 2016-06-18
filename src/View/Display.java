@@ -10,32 +10,37 @@ import org.newdawn.slick.SpriteSheet;
 public abstract class Display implements Observer {
 
 	protected float x,y;
-	protected int tempsAnim;
+	public static int tempsAnim = 500;
 	protected Animation[] animations;
 	protected SpriteSheet sprite;
 
 	public Display(float posX, float posY, SpriteSheet sprite, int nbAnimation) throws SlickException{
 		setX(posX);
 		setY(posY);
-		setTempsAnim(200);
+		setTempsAnim(tempsAnim);
+
 		animations = new Animation[nbAnimation];
 		this.sprite = sprite;
 		initAnimations();
 	}
-	
+
 	public abstract void initAnimations();
-	
+
+	public static void changeSpeed() {
+		if(tempsAnim == 100) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 500; else tempsAnim= 100;
+
+	}
 
 	protected static Animation loadAnimation(SpriteSheet spriteSheet, int startX, int endX, int y) {
-	    Animation animation = new Animation();
-	    for (int x = startX; x < endX; x++) {
-	        animation.addFrame(spriteSheet.getSprite(x, y), 100);
-	    }
-	    return animation;
+		Animation animation = new Animation();
+		for (int x = startX; x < endX; x++) {
+			animation.addFrame(spriteSheet.getSprite(x, y), 100);
+		}
+		return animation;
 	}
-	
+
 	public abstract Animation getCurrentAnimation();
-	
+
 	public float getY() {
 		return y;
 	}
@@ -49,14 +54,14 @@ public abstract class Display implements Observer {
 	public void setX(float x) {
 		this.x = x;
 	}
-	
+
 	public int getTempsAnim(){
 		return this.tempsAnim;
 	}
 	public void setTempsAnim(int tempsAnim){
 		this.tempsAnim=tempsAnim;
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 	}
