@@ -234,7 +234,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 		g.drawString("Vitesse : "+this.vitesse, 0, 130);
-		g.drawString("Tour n° : "+ordo.getTurn(), 0, 150);
+		g.drawString("Tour nï¿½ : "+ordo.getTurn(), 0, 150);
 		g.drawString("Nombre de Zombies : "+zombies.characters_remaining(), 0, 170);
 	}
 
@@ -422,10 +422,10 @@ public class WindowGame extends BasicGameState {
 				}*/
 			}else ordo.next();
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
-			if(cCharac.getCharacter() == null){
-				System.out.println("remove displaycharacter");
-				this.characters.remove(cCharac);
-			}
+//			if(cCharac.getCharacter() == null){
+//				System.out.println("remove displaycharacter");
+//				this.characters.remove(cCharac);
+//			}
 		}
 
 		cleanCharacters();
