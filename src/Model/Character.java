@@ -41,8 +41,8 @@ public abstract class Character extends Observable {
 	 */
 	
 	public Character(Player player, Automata automata, Map map) {
-		this.hp=10;
-		this.strength=1;
+		this.hp=100;
+		this.strength=5;
 		this.player=player;
 		this.automata=automata;
 		this.map=map;
