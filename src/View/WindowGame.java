@@ -27,29 +27,32 @@ import Model.*;
 
 public class WindowGame extends BasicGameState {
 	//
-
+	public final static float MAXLEVEL = .8f;
+	
 	public static final int ID = 0;
-
-	private GameContainer container;
-	private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
 	public static ArrayList<Model.Character> charactersList;
-	private DisplayCellule[][] mapDisplay;
-	public  int width,height;
 	public static int TILED_SIZE = 32;
 	public static int screenWidth , screenHeight;
-	public Point mapOrigin = new Point(0,0);
-	private boolean isMoving =false;
-	//private int action=0;
-	private int dureeAnim=0;
-	private int direction;
 	public  static Map map;
 	public static Ordonnanceur ordo;
+
+	
+	public Point mapOrigin = new Point(0,0);
+
+	private Music music;
+	private float musicLevel;
+	private GameContainer container;
+	private ArrayList<DisplayCharacter> characters = new ArrayList<DisplayCharacter>();
+	private DisplayCellule[][] mapDisplay;
+	public  int width,height;
+	private boolean isMoving =false;
+	private int dureeAnim=0;
 	private DisplayCharacter currentChar;
+	private int direction;
 	private StateBasedGame game;
 	private float vitesse;
 	private Player zombies;
 	private boolean showInfo;
-	public static Music music;
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
@@ -58,7 +61,7 @@ public class WindowGame extends BasicGameState {
 		this.showInfo = false;
 		this.game = game;
 		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
-//		this.music.setVolume(0.2f);
+		music.fade(100, .1f, false);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -68,9 +71,12 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void leave(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		this.music.stop();
-		MainScreenGameState.music.stop();
-		EndGameView.music.loop();
+		this.music.fade(100, 0f, true);
+		if((System.getProperties().get("os.name")).equals("Linux") ){
+
+			MainScreenGameState.music.stop();
+			EndGameView.music.loop();
+		}
 		super.leave(container, game);
 	}
 
@@ -79,12 +85,14 @@ public class WindowGame extends BasicGameState {
 			throws SlickException {
 		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
-		
+
 		if((System.getProperties().get("os.name")).equals("Linux")){
 			MainScreenGameState.music.stop() ;
 			EndGameView.music.stop();
-			}
-		this.music.loop();
+		}
+		this.musicLevel = MAXLEVEL;
+		music.fade(100, musicLevel, false);
+		music.loop();
 
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
@@ -163,7 +171,16 @@ public class WindowGame extends BasicGameState {
 
 		//affichage info
 		case Input.KEY_I : this.changeInfo();break;
+
+		//couper le son
+		case Input.KEY_M : this.changeSound();break;
 		}
+
+	}
+
+	private void changeSound() {
+		this.musicLevel = (this.musicLevel > 0f)?0f:MAXLEVEL;
+		this.music.fade(100, this.musicLevel, false);
 
 	}
 
@@ -266,7 +283,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder � l'�cran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder a l'ecran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
