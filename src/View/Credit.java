@@ -109,8 +109,8 @@ public class Credit extends BasicGameState {
 		    //game.enterState(MapGameState.ID);
 		 if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
 			 game.enterState(WindowGame.ID);
-			 MainScreenGameState.music.stop() ;
-			 WindowGame.music.loop();
+			 
+			 
 			 
 		 }
 		 else {

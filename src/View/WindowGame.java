@@ -57,7 +57,7 @@ public class WindowGame extends BasicGameState {
 		this.vitesse = 0.0005f;
 		this.showInfo = false;
 		this.game = game;
-		this.music = new Music("../Zombautomate/ressources/song/Arceus.ogg");
+		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
 //		this.music.setVolume(0.2f);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
@@ -79,6 +79,10 @@ public class WindowGame extends BasicGameState {
 			throws SlickException {
 		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
+		
+		MainScreenGameState.music.stop() ;
+		 EndGameView.music.stop();
+		this.music.loop();
 
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
