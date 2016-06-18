@@ -27,7 +27,7 @@ public abstract class Display implements Observer {
 	public abstract void initAnimations();
 
 	public static void changeSpeed() {
-		if(tempsAnim == 100) tempsAnim= 50; else if ( tempsAnim== 50) tempsAnim= 500; else tempsAnim= 100;
+		if(tempsAnim == 150) tempsAnim= 2000; else if ( tempsAnim== 50) tempsAnim= 2000; else tempsAnim= 150;
 
 	}
 

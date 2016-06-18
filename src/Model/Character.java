@@ -71,8 +71,8 @@ public abstract class Character extends Observable {
 		if(!is_alive())
 			cell.setEntity_on(null);
 		
-		setChanged();
-		notifyObservers(this.hp);
+		//setChanged();
+		//notifyObservers(this.hp);
 	}
 
 	
@@ -81,8 +81,8 @@ public abstract class Character extends Observable {
 	}
 	public void setPlayer(Player player) {
 		this.player = player;
-		setChanged();
-		notifyObservers(this.player);
+		//setChanged();
+		//notifyObservers(this.player);
 	}
 
 	public int getSightRange()
@@ -95,8 +95,8 @@ public abstract class Character extends Observable {
 	}
 	public void setStrength(int strength) {
 		this.strength = strength;
-		setChanged();
-		notifyObservers(this.strength);
+		//setChanged();
+		//notifyObservers(this.strength);
 	}
 
 	public Cell getCell() {
@@ -104,8 +104,8 @@ public abstract class Character extends Observable {
 	}
 	public void setCell(Cell cell) {
 		this.cell = cell;
-		setChanged();
-		notifyObservers(this.cell);
+		//setChanged();
+		//notifyObservers(this.cell);
 	}
 
 	public Automata getAutomata() {
@@ -113,8 +113,8 @@ public abstract class Character extends Observable {
 	}
 	public void setAutomata(Automata automata) {
 		this.automata = automata;
-		setChanged();
-		notifyObservers(this.automata);
+		//setChanged();
+		//notifyObservers(this.automata);
 	}
 
 	public Map getMap() {
@@ -122,8 +122,8 @@ public abstract class Character extends Observable {
 	}
 	public void setMap(Map map) {
 		this.map = map;
-		setChanged();
-		notifyObservers(this.map);
+		//setChanged();
+		//notifyObservers(this.map);
 	}
 
 	//Methodes
