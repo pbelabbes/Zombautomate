@@ -235,8 +235,8 @@ public class WindowGame extends BasicGameState {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 		g.drawString("Vitesse : "+this.vitesse, 0, 130);
-		g.drawString("Tour nï¿½ : "+ordo.getTurn(), 0, 150);
-		g.drawString("Nombre de Zombies : "+zombies.characters_remaining(), 0, 170);
+		g.drawString("Tour n : "+ordo.getTurn(), 0, 150);
+		g.drawString("Nombre de Zombies : "+(ordo.get_remaining_zombies()), 0, 170);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -247,7 +247,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder Ã  l'Ã©cran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder à  l'écran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -536,7 +536,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*70 <= ordo.getTurn() && EcranDeValidation.mode != -3 && zombies.characters_remaining() < 20){
+		if(Math.random()*70 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}
