@@ -100,7 +100,7 @@ public class Survivor extends Character{
 			this.getPlayer().addFoodStock(-1);
 		}
 		else {
-			this.supHp(5);
+			this.supHp(8);
 		}
 	}
 	/**

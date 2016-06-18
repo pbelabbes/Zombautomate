@@ -197,6 +197,11 @@ public class Map extends Observable{
 	 */
 	public Zombie random_pop_zombie(ArrayList<Character> lC, Player p0)
 	{
+		if (p0 == null) 
+		{
+			System.out.println("Situation suspecte dans random_pop_zombie");
+			return null;
+		} 
 		Zombie new_z = new Zombie((Zombie) p0.getEntities().get(0));
 		Cell cellule;
 		do

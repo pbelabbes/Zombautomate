@@ -16,6 +16,11 @@ public abstract class DisplayCharacter extends Display implements Observer {
 	protected Character character;
 	
 	public DisplayCharacter(Character c, int nbAnimations, String spriteName) throws SlickException {
+	/*	if(c==null) 
+		{
+			System.out.println("Situation suspecte dans le constructeur de DisplayCharacter);");
+			return;
+		}*/
 		super(c.getCell().getPosition().x, c.getCell().getPosition().y, new SpriteSheet(spriteName, 64, 64), nbAnimations);
 		this.setDirection(0);
 		this.setMoving(false);
