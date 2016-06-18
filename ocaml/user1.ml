@@ -1,17 +1,31 @@
 open Doc ;;
 
 let (guerrier: automate) =
+<<<<<<< HEAD
+  presence_AD 0 Katana Ramasser 1 4
+  @
+    presence_AD 0 Batte_baseball Ramasser 1 3
+  @
+    scan_loin_AD 0 Katana Deplacer 0 2
+=======
   presence_AD 0 Katana Ramasser 1 5
   @
     presence_AD 0 Batte_baseball Ramasser 1 4
   @
     scan_loin_AD 0 Katana Deplacer 0 3
+>>>>>>> c9ebd60e2ed0876a66ed1edbfb3266d6354223d4
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 2
   @
+<<<<<<< HEAD
+    presence_AD 1 Ennemi Attaquer 1 7
+  @
+    presence_AD 1 Zombie Attaquer 1 6
+=======
     presence_AD 1 Ennemi Attaquer 1 8
   @
     presence_AD 1 Zombie Attaquer 1 7
+>>>>>>> c9ebd60e2ed0876a66ed1edbfb3266d6354223d4
   @
     scan_loin_AD 1 Ennemi Deplacer 1 6
   @

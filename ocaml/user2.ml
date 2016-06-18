@@ -9,9 +9,13 @@ let (guerrier: automate) =
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 2
   @
+<<<<<<< HEAD
+    presence_AD 1 Ennemi Attaquer 1 6
+=======
     presence_AD 1 Ennemi Attaquer 1 7
   @
     scan_loin_AD 1 Ennemi Deplacer 1 6
+>>>>>>> c9ebd60e2ed0876a66ed1edbfb3266d6354223d4
   @
     scan_loin_AD 1 Batte_baseball Deplacer 1 2
   @

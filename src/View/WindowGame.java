@@ -38,11 +38,12 @@ public class WindowGame extends BasicGameState {
 	public static int screenWidth , screenHeight;
 	public Point mapOrigin = new Point(0,0);
 	private boolean isMoving =false;
+	//private int action=0;
 	private int direction;
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-	private float vitesse;
+	private float vitesse=.00005f;
 
 	private boolean gameOver;
 
@@ -174,20 +175,21 @@ public class WindowGame extends BasicGameState {
 
 
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
+		
 		for (DisplayCharacter c : characters) {
-
 			if( c.getX() >= mapOriginX && c.getX() < mapOriginX+(screenWidth/TILED_SIZE) && c.getX() < map.getWidth() &&
 					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
 			{
-				int posCharScreenX = (int) (c.getX()- mapOriginX);
-				int posCharScreenY = (int) (c.getY()- mapOriginY);
+				int posCharScreenX = (int) (c.getX()- mapOriginX) *TILED_SIZE-TILED_SIZE/4;
+				int posCharScreenY = (int) (c.getY()- mapOriginY) *TILED_SIZE-TILED_SIZE/2;
 
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillOval(posCharScreenX*TILED_SIZE-16, posCharScreenY*TILED_SIZE-8, 32, 16);
+					g.fillOval(posCharScreenX-16, posCharScreenY-8, 32, 16);
 				}
-				//System.out.println(c.getCurrentAnimation());
-				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX*TILED_SIZE-TILED_SIZE/4, posCharScreenY*TILED_SIZE-TILED_SIZE/2);
+				System.out.println(c.getCurrentAnimation());
+				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
+
 
 			}
 		}
@@ -254,38 +256,106 @@ public class WindowGame extends BasicGameState {
 			}
 			//this.currentChar = cCharac;
 			if(cCharac != null){
-				if (cCharac.isMoving()){		
-					switch (cCharac.getDirection()) {
-					case 0: 
-						cCharac.setY(cCharac.getY() + vitesse * delta); 
-						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+				
+				if (!isMoving){
+					ordo.next();
+					cCharac = null;
+					for (DisplayCharacter c : characters) {
+						if(c.getCharacter() == ordo.getCharacter()){
+							cCharac = c;
 						}
-						break;
-					case 1: 
-						cCharac.setX(cCharac.getX() - vitesse * delta); 
-						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 2: 
-						cCharac.setX(cCharac.getX() + vitesse * delta); 
-						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
-							cCharac.setMoving(false);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-						}
-						break;
-					case 3:
-						cCharac.setY(cCharac.getY() - vitesse * delta); 
-						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
-							cCharac.setMoving(false);
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-						}
+					}
+					this.currentChar = cCharac;
+					cCharac.setMoving(true);
+					switch (ordo.getDirection()){
+					case 'U': break;
+					case 'N': cCharac.setDirection(3); break;
+					case 'S': cCharac.setDirection(0); break;
+					case 'O': cCharac.setDirection(1); break;
+					case 'E': cCharac.setDirection(2); break;
+					default:;
 					}
 				}
 				else{
+					switch (ordo.getAction()){
+					case MOVE://animation1
+						cCharac.setAction(1);
+						switch (cCharac.getDirection()) {
+						case 0:
+							cCharac.setY(cCharac.getY() + vitesse * delta); 
+							if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
+								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+								cCharac.setMoving(false);
+							}
+							break;
+						case 1:
+							cCharac.setX(cCharac.getX() - vitesse * delta); 
+							if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
+								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+								cCharac.setMoving(false);
+							}
+							break;
+						case 2:
+							cCharac.setX(cCharac.getX() + vitesse * delta); 
+							if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+								cCharac.setMoving(false);
+							}
+							break;
+						case 3:
+							cCharac.setY(cCharac.getY() - vitesse * delta); 
+							if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+								cCharac.setMoving(false);
+							}
+							break;
+						default :
+						}
+						break;
+					case ATTACK:
+						if (cCharac.getCharacter() instanceof Survivor){
+							if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
+								Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
+								if (arme instanceof Baseball_Bat) cCharac.setAction(3);
+								else cCharac.setAction(5);
+							}
+							else cCharac.setAction(3);
+						}
+						cCharac.setMoving(false);
+					case DROP:
+						cCharac.setMoving(false);
+
+						break;
+					case PICK:
+						cCharac.setMoving(false);
+
+						break;
+					case PLANT:
+						cCharac.setMoving(false);
+
+						break;
+					case STEAL:
+						cCharac.setMoving(false);
+
+						break;
+					case SWAP:
+						cCharac.setMoving(false);
+
+						break;
+					case WATER:
+						cCharac.setMoving(false);
+
+						break;
+					default:
+						cCharac.setMoving(false);
+
+						break;
+
+					}
+				}
+				/*else{
+
+					this.ordo.next();
 					cCharac = null;
 					ordo.next();
 					for (DisplayCharacter c : characters) {
@@ -305,9 +375,14 @@ public class WindowGame extends BasicGameState {
 						case 'E': cCharac.setDirection(2); break;
 						}
 					}
-				}
+
+				}*/
 			}else ordo.next();
-			this.gameOver = Moteur.clean_dead_bodies(charactersList) > 0 ;
+			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
+			if(cCharac.getCharacter() == null){
+				System.out.println("remove displaycharacter");
+				this.characters.remove(cCharac);
+			}
 		}
 
 				cleanCharacters();
