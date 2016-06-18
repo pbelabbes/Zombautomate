@@ -336,36 +336,39 @@ public class Moteur {
 //		Zombi.setEntities(CreateEntities(Zombi, liste));
 	
 		
-		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/ocaml/equipe1.xml");
-		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/ocaml/equipe2.xml");
-		ArrayList<ArrayList<transfer>> listeZ=fichier.read("../Zombautomate/ocaml/zombies.xml");
+		ArrayList<ArrayList<transfer>> liste1=fichier.read("../Zombautomate/demo2.xml");
+		ArrayList<ArrayList<transfer>> liste2=fichier.read("../Zombautomate/equipe2.xml");
+		ArrayList<ArrayList<transfer>> listeZ=fichier.read("../Zombautomate/zombies.xml");
 		
 
 		Player j1 = new Player(1 ,"Joueur 1", 10);
-		Player j2 = new Player(2 ,"Joueur 2", 10);
+//		Player j2 = new Player(2 ,"Joueur 2", 10);
 		Player j0 = new Player(0,"Zombie", 10);
 		
 		j1.setEntities(CreateEntities(j1,liste1));
-		j2.setEntities(CreateEntities(j2,liste2));
+//		j2.setEntities(CreateEntities(j2,liste2));
 		j0.setEntities(CreateEntities(j0,listeZ));
 		
 		
 		ArrayList<Character> lC = new ArrayList<Character>();
 		lC.addAll(j1.getEntities());
-		lC.addAll(j2.getEntities());
+	//	lC.addAll(j2.getEntities());
 
 	
 		ArrayList<Point> lP = getList_coords_automatas(lC);
 //		System.out.println(lP.toString());
 
-		
+		/*
 		Map carte = create_map(lC);
 		carte.init_map(); 
 		carte.setAutomatas(lC, lP);
+*/
+		Map carte = Moteur.initiate_demo_map(lC, j0);
 
-		lC.addAll(j0.getEntities());		
-		carte.set_charact_position(lC);
-			
+//		lC.addAll(j0.getEntities());		
+//		carte.set_charact_position(lC); 
+		
+		
 		Ordonnanceur ordo = new Ordonnanceur(lC);
 
 		System.out.println("positions initiales du joueur 1 :");
@@ -374,22 +377,21 @@ public class Moteur {
 			System.out.println(c.getCell().getPosition());
 		}
 
-		System.out.println("positions initiales du joueur 2 :");
-		for(Character c :j2.getEntities()) 
-			{
-			System.out.println(c.getAutomata().getCost());
-			System.out.println(c.getCell().getPosition());
-			}
+//		System.out.println("positions initiales du joueur 2 :");
+//		for(Character c :j2.getEntities()) 
+//			{
+//			System.out.println(c.getAutomata().getCost());
+//			System.out.println(c.getCell().getPosition());
+//			}
 
-		carte.random_pop_zombies(lC,j0, 10);		
+//		carte.random_pop_zombies(lC,j0, 10);		
 		while(clean_dead_bodies(lC) == 0)
 		{
 //			carte.random_pop_zombies(lC,j0, compteur/100);
 			ordo.next();
-			ordo.getCharacter();
 //			ordo.melanger();
 //			ordo.next_move();
-//			carte.print_map();
+			carte.print_map();
 			
 		}
 		System.out.println("Partie terminée");
@@ -397,8 +399,8 @@ public class Moteur {
 		{
 			System.out.println("j1 a perdu en "+ordo.getTurn()+" tours");
 		}
-		else if(j2.defeated())
-			System.out.println("j2 a perdu en " + ordo.getTurn() + " tours" );
+//		else if(j2.defeated())
+//			System.out.println("j2 a perdu en " + ordo.getTurn() + " tours" );
 
 		
 /*		System.out.println("positions finales du joueur 1 :");
