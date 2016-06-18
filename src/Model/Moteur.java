@@ -313,6 +313,9 @@ public class Moteur {
 		carte.set_charact(lC.get(1), new Point (0,5));
 		carte.setAutomata(lC.get(0).getAutomata(), new Point(12,5),lC.get(0));
 		
+		lC.get(0).supHp(-24);
+		lC.get(1).supHp(-24);
+		
 		return carte;
 	}
 	/**

@@ -53,6 +53,7 @@ public class WindowGame extends BasicGameState {
 	private float vitesse;
 	private Player zombies;
 	private boolean showInfo;
+	private boolean showplayers;
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
@@ -60,6 +61,7 @@ public class WindowGame extends BasicGameState {
 		this.vitesse = 0.0005f;
 		this.showInfo = false;
 		this.game = game;
+		this.showplayers = false;
 		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
 		music.fade(100, .1f, false);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
@@ -188,6 +190,9 @@ public class WindowGame extends BasicGameState {
 		this.showInfo = !this.showInfo;
 	}
 
+	private void changeShplayer(){
+		this.showplayers = !this.showplayers;
+	}
 
 	public void keyReleased(int key, char c) {
 
@@ -239,6 +244,15 @@ public class WindowGame extends BasicGameState {
 			}
 		}
 	}
+	
+	public void affichePLayer(GameContainer container, Graphics g){
+		g.setColor(Color.magenta);
+		g.drawString("Player 1   : ", 0, screenHeight - 80);
+		g.drawString("foodstock  : ", 0, screenHeight - 60);
+		g.drawString("stonestock : ", 0, screenHeight - 40);
+		g.drawString("seedstock  : ", 0, screenHeight-  20);
+		
+	}
 
 
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
@@ -283,7 +297,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder � l'�cran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder a l'ecran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -311,7 +325,7 @@ public class WindowGame extends BasicGameState {
 
 		//Affichage infos
 		if(this.showInfo)afficherInfos(container, g);
-		
+
 	}
 
 	@Override
