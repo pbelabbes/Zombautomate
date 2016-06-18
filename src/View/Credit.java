@@ -120,6 +120,13 @@ public class Credit extends BasicGameState {
 	 }
 
 	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		
+		super.leave(container, game);
+	}
+
+	@Override
 	public int getID() {
 		return ID;
 	}
