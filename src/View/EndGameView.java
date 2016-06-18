@@ -51,12 +51,10 @@ public class EndGameView extends BasicGameState {
 		
 		
 		if(WindowGame.ordo.getPlayer(0)!=null){
-			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
-		}
-		
-		
+			nbZombie = WindowGame.ordo.get_remaining_zombies() ;
+		}		
 		if(WindowGame.ordo.getPlayer(1)!=null){
-			nbPerso1 = WindowGame.ordo.get_remaining_zombies() ;
+			nbPerso1 = WindowGame.ordo.getPlayer(0).characters_remaining() ;
 		}
 		if(WindowGame.ordo.getPlayer(2)!=null){
 			nbPerso2 = WindowGame.ordo.getPlayer(2).characters_remaining();
@@ -68,8 +66,8 @@ public class EndGameView extends BasicGameState {
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
 				if (Credit.J1.defeated()){
-					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur1 " , Color.orange);
-
+					
+					font2.drawString(larg/4    , haut/5  , "OMG VICTOIRE TOTALE 42 42 42" + WindowGame.ordo.getTurn() +" tours" , Color.orange);
 				}
 				else{
 					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur2" , Color.orange);

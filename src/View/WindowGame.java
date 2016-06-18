@@ -80,8 +80,10 @@ public class WindowGame extends BasicGameState {
 		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
 		
-		MainScreenGameState.music.stop() ;
-		 EndGameView.music.stop();
+		if((System.getProperties().get("os.name")).equals("Linux")){
+			MainScreenGameState.music.stop() ;
+			EndGameView.music.stop();
+			}
 		this.music.loop();
 
 		super.enter(container, game);
@@ -205,18 +207,18 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
-				if(cCell.getCell().getEntity_on() != null){
-					if(cCell.getCell().getEntity_on() instanceof Zombie){
-						g.setColor(Color.green);						
-					}else{
-						for (DisplayCharacter displayCharacter : characters) {
-							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
-						}
-
-					}
-					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-
-				}
+//				if(cCell.getCell().getEntity_on() != null){
+//					if(cCell.getCell().getEntity_on() instanceof Zombie){
+//						g.setColor(Color.green);						
+//					}else{
+//						for (DisplayCharacter displayCharacter : characters) {
+//							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+//						}
+//
+//					}
+//					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+//
+//				}
 			}
 		}
 	}
@@ -264,7 +266,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder � l'�cran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder a l'ecran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -336,6 +338,7 @@ public class WindowGame extends BasicGameState {
 				}
 				else{
 					//On continue d'afficher l'action du perso precedent
+
 					if (ordo.getAction()!=null){
 						switch (ordo.getAction()){
 						case MOVE://animation1

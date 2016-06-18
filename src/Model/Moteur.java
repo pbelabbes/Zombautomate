@@ -295,11 +295,23 @@ public class Moteur {
 	public static Map initiate_demo_map(ArrayList<Character> lC, Player j0)
 	{
 		Map carte = new Map(15,15);
-		carte.init_demo();
+		carte.init_demo(1);
 		
 		lC.addAll(j0.getEntities());
 		carte.set_charact(lC.get(0), new Point(6,6));
 		carte.set_charact(lC.get(1), new Point(10,6));
+		
+		return carte;
+	}
+	
+	public static Map initiate_demo_map_2(ArrayList<Character> lC)
+	{
+		Map carte = new Map (20,20);
+		carte.init_demo(2);
+		
+		carte.set_charact(lC.get(0), new Point (0,0));
+		carte.set_charact(lC.get(1), new Point (0,5));
+		carte.setAutomata(lC.get(0).getAutomata(), new Point(12,5),lC.get(0));
 		
 		return carte;
 	}
