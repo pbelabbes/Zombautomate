@@ -44,7 +44,7 @@ public class WindowGame extends BasicGameState {
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
 	private float vitesse;
-
+	private Player zombies;
 	private boolean gameOver;
 
 	private StateBasedGame game;
@@ -74,6 +74,7 @@ public class WindowGame extends BasicGameState {
 				characters.add(new DisplaySurvivor(character));
 			}else{
 				characters.add(new DisplayZombie(character)); 
+				this.zombies = character.getPlayer(); 
 			}
 		}
 
@@ -273,6 +274,8 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 		if(!this.gameOver){
+			
+			
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
@@ -284,6 +287,7 @@ public class WindowGame extends BasicGameState {
 
 				if (!cCharac.moving){
 					ordo.next();
+					this.addZombie();
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
@@ -384,6 +388,7 @@ public class WindowGame extends BasicGameState {
 			}
 			else {
 				ordo.next();
+				this.addZombie();
 				cCharac = null;
 				for (DisplayCharacter c : characters) {
 					if(c.getCharacter() == ordo.getCharacter()){
@@ -422,6 +427,14 @@ public class WindowGame extends BasicGameState {
 			}
 		}
 
+	}
+
+	private void addZombie() throws SlickException {
+		if(Math.random()*70 <= ordo.getTurn()){
+			Zombie z = map.random_pop_zombie(charactersList, zombies);
+			characters.add(new DisplayZombie(z));
+		}
+		
 	}
 	
 	
