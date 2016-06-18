@@ -176,8 +176,11 @@ public class WindowGame extends BasicGameState {
 	}
 
 	public void afficherDecors(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
+		
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
+			
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
+				
 				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
@@ -211,11 +214,11 @@ public class WindowGame extends BasicGameState {
 					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
 			{
 				float posCharScreenX = (c.getX()- mapOriginX) *TILED_SIZE-TILED_SIZE/2;
-				float posCharScreenY = (c.getY()- mapOriginY) *TILED_SIZE-TILED_SIZE;
+				float posCharScreenY = (c.getY()- mapOriginY) *TILED_SIZE-TILED_SIZE-16;
 
 				if(c instanceof DisplaySurvivor){
 					g.setColor(((DisplaySurvivor) c).getColor());
-					g.fillOval(posCharScreenX-16, posCharScreenY-8, 32, 16);
+					g.fillOval(posCharScreenX+16, posCharScreenY+56, 32, 16);
 				}
 				System.out.println(c.getCurrentAnimation());
 				g.drawAnimation(c.getCurrentAnimation(), posCharScreenX, posCharScreenY);
@@ -245,7 +248,7 @@ public class WindowGame extends BasicGameState {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
 			g.setColor(Color.red);
-			g.drawString("appuyer sur enter pour acceder à  l'écran des scores", screenWidth/3, 2*screenHeight/3);
+			g.drawString("appuyer sur enter pour acceder ï¿½ l'ï¿½cran des scores", screenWidth/3, 2*screenHeight/3);
 
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -322,9 +325,9 @@ public class WindowGame extends BasicGameState {
 						if (cCharac.getTempsAnim()<=this.dureeAnim){
 							this.dureeAnim=0;
 							cCharac.setAction(0);
-							cCharac.setMoving(false);
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+							cCharac.setMoving(false);
 						}
 						else {
 							this.dureeAnim++;
@@ -534,7 +537,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*70 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}

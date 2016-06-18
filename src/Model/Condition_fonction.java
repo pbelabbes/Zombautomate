@@ -300,7 +300,7 @@ public class Condition_fonction {
 	 */
 	public boolean CaseAlliee(char direction,Cell cell, Map map){
 		Point p=new Point(cell.getPosition());
-		boolean a,b;
+		boolean b;
 		Cell ce;
 		switch (direction){
 		
@@ -331,7 +331,7 @@ public class Condition_fonction {
 	
 	public boolean CaseEnnemie(char direction, Cell cell,Map map){
 		Point p=new Point(cell.getPosition());
-		boolean a,b;
+		boolean b;
 		Cell ce;
 		switch (direction){
 		
@@ -345,8 +345,8 @@ public class Condition_fonction {
 		}
 		ce=map.getGrid()[p.x][p.y];
 		if(ce.getOwned_by()!=null){
-			
-			return (ce.getOwned_by().getPlayer()!= cell.getEntity_on().getPlayer() );
+			b=ce.getOwned_by().getPlayer()!= cell.getEntity_on().getPlayer();
+			return (b);
 		}	
 		else return false; 	
 	}

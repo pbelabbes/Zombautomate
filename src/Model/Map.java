@@ -162,7 +162,7 @@ public class Map extends Observable{
 				x =(int) (this.getWidth()*Math.random());
 				y =(int) (this.getHeight()*Math.random());
 			}
-			while(this.getGrid()[x][y].getEntity_on()!=null);
+			while(grid[x][y].getEntity_on()!=null && grid[x][y].getDecor() != Decor.ROCK);
 			this.set_charact(c,new Point(x,y));
 		}
 	}
