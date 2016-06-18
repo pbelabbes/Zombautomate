@@ -36,7 +36,7 @@ public class EndGameView extends BasicGameState {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
 		this.game = game ; 
-		this.music = new Music("../Zombautomate/ressources/song/endofgame.ogg");
+		this.music = new Music("../Zombautomate/ressources/song/endofgame2.ogg");
 		
 	
 	}

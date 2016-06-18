@@ -15,13 +15,11 @@ public abstract class DisplayCharacter extends Display implements Observer {
 	protected int action;
 	protected Character character;
 	
-//	public DisplayCharacter(float posX, float posY, int direction, int nbAnimations, String spriteName) throws SlickException {
 	public DisplayCharacter(Character c, int nbAnimations, String spriteName) throws SlickException {
 		super(c.getCell().getPosition().x, c.getCell().getPosition().y, new SpriteSheet(spriteName, 64, 64), nbAnimations);
-//		super(posX, posY, new SpriteSheet(spriteName, 64, 64), nbAnimations);
 		this.setDirection(0);
-		setMoving(false);
-		setAction(0);
+		this.setMoving(false);
+		this.setAction(0);
 		this.character = c;
 		}
 
@@ -73,10 +71,9 @@ public abstract class DisplayCharacter extends Display implements Observer {
 	}
 	
 	public Animation getCurrentAnimation(){
-		System.out.println("anim: "+(this.direction));
-		
-		Animation c = animations[this.direction + action*4];
-		System.out.println("anim: "+c);
+		/*System.out.println("anim: "+(this.direction));
+		Animation ani = animations[this.direction + action*4];
+		System.out.println("anim: "+ani);*/
 		return animations[this.direction + action*4];
 	}
 	
