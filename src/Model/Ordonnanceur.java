@@ -142,5 +142,17 @@ public class Ordonnanceur {
 		return null;
 	}
 	
+	public int get_remaining_zombies()
+	{
+		int compteur = 0;
+		for(Character c : List)
+		{
+			if(c instanceof Zombie && c.is_alive()) compteur++;
+		}
+		
+		return compteur;
+	}
+	
+	
 }
 
