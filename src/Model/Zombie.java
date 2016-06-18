@@ -8,8 +8,9 @@ public class Zombie extends Character {
 	{
 		super(player,automata,map);	
 
-		strength = 3;
+		strength = 34;
 		sight_range = 15;
+		hp = 30;
 
 	}
 
@@ -18,6 +19,7 @@ public class Zombie extends Character {
 		super(zombie.getPlayer(),zombie.getAutomata(),zombie.getMap());
 		strength = zombie.getStrength();
 		sight_range = zombie.getSightRange();
+		this.hp = 30;
 		
 	}
 	

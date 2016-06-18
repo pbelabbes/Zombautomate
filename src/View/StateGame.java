@@ -174,8 +174,11 @@ public static void initiateboth(){
 
 		
 		if(mode < 0)
-		{
-			ArrayList<ArrayList<transfer>> equipe1=fichier.read("demo"+(mode*-1)+".xml");//fich1);
+		{	
+			System.out.println("dans load caractère le mode est : "+mode);
+			ArrayList<ArrayList<transfer>> equipe1 = fichier.read("demo"+(mode*-1)+".xml");//fich1);
+			
+			
 			
 			Player j1 = new Player(1,"Joueur 1",10);
 
@@ -187,7 +190,7 @@ public static void initiateboth(){
 		
 		ArrayList<ArrayList<transfer>> equipe1=fichier.read("equipe1.xml");//fich1);
 
-		Player j1 = new Player(1 ,"Joueur 1", 10);
+		Player j1 = new Player(1 ,"Joueur 1", 100);
 		
 		j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 		lC.addAll(j1.getEntities());
@@ -196,12 +199,12 @@ public static void initiateboth(){
 		if(mode==2 || mode == 5)
 		{		 
 			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
-			Player j2 = new Player(2 ,"Joueur 2", 10);
+			Player j2 = new Player(2 ,"Joueur 2", 100);
 			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
 			lC.addAll(j2.getEntities());
 			Credit.J2 =j2; 
 		}
-			return lC;
+		return lC;
 }
 	
 /**
@@ -235,6 +238,7 @@ public static Player getZombies(){
 		addState(new EcranDeValidation());
 		addState(new Credit());
 		addState(new WindowGame() ) ;
+		addState(new EndGameView());
 		}
 		
 		else{

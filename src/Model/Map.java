@@ -290,11 +290,11 @@ public class Map extends Observable{
 				grid[x][y].setDecor(Decor.GRASS);
 			}
 		}
-		grid[1][0].setDecor(Decor.KATANA);
-		grid[0][1].setDecor(Decor.RABBIT);
-		grid[5][0].setDecor(Decor.ROCK);
-		grid[5][2].setDecor(Decor.ROCK);
-		grid[4][1].setDecor(Decor.ROCK);
-		grid[6][1].setDecor(Decor.ROCK);
+		grid[6][5].setDecor(Decor.KATANA);
+		grid[5][6].setDecor(Decor.RABBIT);
+		grid[10][5].setDecor(Decor.ROCK);
+		grid[10][7].setDecor(Decor.ROCK);
+		grid[9][6].setDecor(Decor.ROCK);
+		grid[11][6].setDecor(Decor.ROCK);
 	}
 }

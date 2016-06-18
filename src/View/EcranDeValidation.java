@@ -136,12 +136,12 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 				
 				if (mode < 0 ){
 					System.out.println("je quite vers windowsgame");
+					
 					game.enterState(WindowGame.ID);
 				}
 				else
 				game.enterState(Credit.ID);
 			}
-
 		}
 		else  oui.setImageColor(0.30f, 0.20f, 0.30f);
 

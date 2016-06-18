@@ -133,5 +133,14 @@ public class Ordonnanceur {
 		}
 	}
 	
+	public Player getPlayer(int id)
+	{
+		for(Character c : List)
+		{
+			if(c.getPlayer().getId() == id)  return c.getPlayer();
+		}
+		return null;
+	}
+	
 }
 
