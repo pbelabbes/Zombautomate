@@ -53,6 +53,7 @@ public class WindowGame extends BasicGameState {
 	private float vitesse;
 	private Player zombies;
 	private boolean showInfo;
+	private boolean showplayers;
 	private boolean gameOver;
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
@@ -60,6 +61,7 @@ public class WindowGame extends BasicGameState {
 		this.vitesse = 0.0005f;
 		this.showInfo = false;
 		this.game = game;
+		this.showplayers = false;
 		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
 		music.fade(100, .1f, false);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
@@ -188,6 +190,9 @@ public class WindowGame extends BasicGameState {
 		this.showInfo = !this.showInfo;
 	}
 
+	private void changeShplayer(){
+		this.showplayers = !this.showplayers;
+	}
 
 	public void keyReleased(int key, char c) {
 
@@ -238,6 +243,15 @@ public class WindowGame extends BasicGameState {
 //				}
 			}
 		}
+	}
+	
+	public void affichePLayer(GameContainer container, Graphics g){
+		g.setColor(Color.magenta);
+		g.drawString("Player 1   : ", 0, screenHeight - 80);
+		g.drawString("foodstock  : ", 0, screenHeight - 60);
+		g.drawString("stonestock : ", 0, screenHeight - 40);
+		g.drawString("seedstock  : ", 0, screenHeight-  20);
+		
 	}
 
 
@@ -310,7 +324,7 @@ public class WindowGame extends BasicGameState {
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-		if((EcranDeValidation.mode >= 0) && this.showInfo)afficherInfos(container, g);
+		if(this.showInfo)afficherInfos(container, g);
 		/*try {
 			Thread.sleep(pause);
 		} catch (InterruptedException e) {

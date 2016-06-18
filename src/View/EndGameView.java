@@ -65,8 +65,7 @@ public class EndGameView extends BasicGameState {
 		}
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
-				if (Credit.J1.defeated()){
-					
+				if (!Credit.J1.defeated()){
 					font2.drawString(larg/4    , haut/5  , "OMG VICTOIRE TOTALE 42 42 42" + WindowGame.ordo.getTurn() +" tours" , Color.orange);
 				}
 				else{
@@ -87,9 +86,9 @@ public class EndGameView extends BasicGameState {
 		
 		
 		
-		font.drawString(larg/24, haut - haut/5, " Tapez R pour rejouez" , Color.white);
-		font.drawString(larg/24, haut - haut/5+haut/30, " Tapez echape pour quitter" , Color.white);
-		font.drawString(larg/24, haut - haut/5 +haut/15, " Tapez enter pour acceder au menu" , Color.white);
+		font.drawString(larg/24, haut - haut/5, " Taper R pour rejouer" , Color.white);
+		font.drawString(larg/24, haut - haut/5+haut/30, " Taper echap pour quitter" , Color.white);
+		font.drawString(larg/24, haut - haut/5 +haut/15, " Taper enter pour acceder au menu" , Color.white);
 
 	}
 	

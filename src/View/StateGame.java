@@ -198,11 +198,11 @@ public static void initiateboth(){
 		
 		if(mode==2 || mode == 5)
 		{		 
-			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
-			Player j2 = new Player(2 ,"Joueur 2", 100);
-			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
-			lC.addAll(j2.getEntities());
-			Credit.J2 =j2; 
+			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml") ;//fich2);	
+			Player j2 = new Player(2 ,"Joueur 2", 100) ;
+			j2.setEntities(Moteur.CreateEntities(j2,equipe2)) ;
+			lC.addAll(j2.getEntities()) ;
+			Credit.J2 =j2 ; 
 		}
 		return lC;
 }
