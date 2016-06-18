@@ -337,9 +337,9 @@ public class WindowGame extends BasicGameState {
 								}
 								else cCharac.setAction(0);
 							}
-								this.dureeAnim=0;
-								cCharac.setMoving(false);
-							
+							this.dureeAnim=0;
+							cCharac.setMoving(false);
+
 						}
 						else {
 							this.dureeAnim++;
@@ -433,15 +433,17 @@ public class WindowGame extends BasicGameState {
 						cCharac = c;
 					}
 				}
-				this.currentChar = cCharac;
-				cCharac.setMoving(true);
-				switch (ordo.getDirection()){
-				case 'U': break;
-				case 'N': cCharac.setDirection(3); break;
-				case 'S': cCharac.setDirection(0); break;
-				case 'O': cCharac.setDirection(1); break;
-				case 'E': cCharac.setDirection(2); break;
-				default:;
+				if(cCharac != null){
+					this.currentChar = cCharac;
+					cCharac.setMoving(true);
+					switch (ordo.getDirection()){
+					case 'U': break;
+					case 'N': cCharac.setDirection(3); break;
+					case 'S': cCharac.setDirection(0); break;
+					case 'O': cCharac.setDirection(1); break;
+					case 'E': cCharac.setDirection(2); break;
+					default:;
+					}
 				}
 			}
 
