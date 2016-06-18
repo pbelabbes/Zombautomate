@@ -17,7 +17,7 @@ public abstract class Display implements Observer {
 	public Display(float posX, float posY, SpriteSheet sprite, int nbAnimation) throws SlickException{
 		setX(posX);
 		setY(posY);
-		setTempsAnim(800);
+		setTempsAnim(200);
 		animations = new Animation[nbAnimation];
 		this.sprite = sprite;
 		initAnimations();
