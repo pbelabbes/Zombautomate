@@ -46,8 +46,11 @@ public class WindowGame extends BasicGameState {
 
 	private boolean gameOver;
 
+	private StateBasedGame game;
+
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
+		this.game = game ; 
 		this.vitesse = 0.005f;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
@@ -58,7 +61,7 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		System.out.println("\n\nje susi ans le enter\n\n");
+		System.out.println("\n\nje suis dans le enter\n\n");
 
 
 		super.enter(container, game);
@@ -81,6 +84,7 @@ public class WindowGame extends BasicGameState {
 		}     
 
 		System.out.println("\n\n je suis dans\n\n ");
+		
 
 	}
 
@@ -99,6 +103,8 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void keyPressed(int key, char c) {
 		DisplayCharacter dc = characters.get(0);
+		
+		
 		switch (key) {
 		//Mouvement personnage
 		case Input.KEY_UP:    dc.setDirection(0); dc.setMoving(true); break;
@@ -111,9 +117,13 @@ public class WindowGame extends BasicGameState {
 		case Input.KEY_S: this.direction = 1;this.isMoving=true;break;
 		case Input.KEY_Q: this.direction = 2;this.isMoving=true;break;
 		case Input.KEY_D: this.direction = 3;this.isMoving=true;break;
-
+		
 		//Changement vitesse
 		case Input.KEY_SPACE : this.changeSpeed();break;
+		}
+		
+		if (gameOver){
+			
 		}
 	}
 
@@ -125,6 +135,13 @@ public class WindowGame extends BasicGameState {
 		DisplayCharacter dc = characters.get(0);
 		dc.setMoving(false);
 		this.isMoving = false;
+		
+		if (gameOver ){
+			if (key == Input.KEY_ENTER){
+				game.enterState(EndGameView.ID);
+			}
+		}
+		
 	}
 
 
@@ -198,6 +215,9 @@ public class WindowGame extends BasicGameState {
 		try {
 			image = new Image("ressources/end/game_over.png");
 			g.drawImage(image, (screenWidth/2)-image.getWidth()/2, (screenHeight/2)-image.getHeight()/2);
+			g.setColor(Color.pink);
+			g.drawString("appuyer sur enter pour acceder à l'écran des scores", screenWidth/3, 2*screenHeight/3);
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -312,6 +332,8 @@ public class WindowGame extends BasicGameState {
 		}
 
 	}
+	
+	
 
 	/*public static void startgame() throws SlickException {
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 

@@ -21,7 +21,7 @@ public class Credit extends BasicGameState {
 	TrueTypeFont font2 ;
 	public static Player J1 ;
 	public static Player J2 ;
-	private int creditbase = 400 ; 
+	private int creditbase = 300 ; 
 	private int creditj2 ;
 	
 	@Override
@@ -31,7 +31,7 @@ public class Credit extends BasicGameState {
 		this .background = new Image("../Zombautomate/ressources/Menu/backround_credit.png");
 		
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
-		font = new TrueTypeFont(awtFont, false);
+		font =  new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 90), false);
 		
 //		StateGame.loadCharacters(2); 
