@@ -74,6 +74,7 @@ public abstract class DisplayCharacter extends Display implements Observer {
 	
 	public Animation getCurrentAnimation(){
 		System.out.println("anim: "+(this.direction));
+		
 		Animation c = animations[this.direction + action*4];
 		System.out.println("anim: "+c);
 		return animations[this.direction + action*4];

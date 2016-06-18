@@ -51,10 +51,10 @@ public class EndGameView extends BasicGameState {
 //		}
 		
 		
-		if(WindowGame.ordo.getPlayer(1)!=null){
-//			if(WindowGame.ordo.getPlayer(1).getEntities() != null)
-			nbPerso1 = WindowGame.ordo.getPlayer(1).characters_remaining() ;
-		}
+//		if(WindowGame.ordo.getPlayer(1)!=null){
+////			if(WindowGame.ordo.getPlayer(1).getEntities() != null)
+			nbPerso1 = WindowGame.ordo.get_remaining_zombies() ;
+//		}
 		if(WindowGame.ordo.getPlayer(2)!=null){
 			nbPerso2 = WindowGame.ordo.getPlayer(2).characters_remaining();
 		}
@@ -79,9 +79,9 @@ public class EndGameView extends BasicGameState {
 		}
 		
 		
-		font.drawString(larg/6, haut/3+haut/10 , "nombres de zombies sur la cartes : " + nbZombie  , Color.orange);
-		font.drawString(larg/6, haut/3 + haut/5, "nombres personnages restant : " +(nbPerso1+nbPerso2) , Color.orange);
-		font.drawString(larg/6, haut/3 + 3*haut/10, " " , Color.orange);
+		font.drawString(larg/6, haut/3 , "nombres de zombies sur la cartes : " + nbZombie  , Color.orange);
+		font.drawString(larg/6, haut/3 +haut/10, "nombres personnages restant : " +(nbPerso1+nbPerso2) , Color.orange);
+		font.drawString(larg/6, haut/3 + 2*haut/10, " " , Color.orange);
 		
 		
 		
