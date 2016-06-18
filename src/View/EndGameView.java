@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class EndGameView extends BasicGameState {
 	public static final int ID = 6;
 	
-	private Image background ;
+	private Image background42 ;
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
 
@@ -24,6 +24,7 @@ public class EndGameView extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		this.background42 = new Image("../Zombautomate/ressources/fondvictoire.png");
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font =  new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 40), false);	
@@ -38,9 +39,23 @@ public class EndGameView extends BasicGameState {
 			throws SlickException {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
+		int nbZombie =0 , nbPerso1 =0 , nbPerso2=0 ; 
+		
+		
+		if(WindowGame.ordo.getPlayer(0)!=null){
+			nbZombie = WindowGame.ordo.getPlayer(0).characters_remaining() ;
+		}
+		if(WindowGame.ordo.getPlayer(1)!=null){
+//			if(WindowGame.ordo.getPlayer(1).getEntities() != null)
+			nbPerso1 = WindowGame.ordo.getPlayer(1).characters_remaining() ;
+		}
+		if(WindowGame.ordo.getPlayer(2)!=null){
+			nbPerso2 = WindowGame.ordo.getPlayer(2).characters_remaining();
+		}
 		
 		if(WindowGame.ordo.getTurn()==42){
-			
+			background42.draw(0, 0, container.getWidth(), container.getHeight());
+
 		}
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
@@ -58,10 +73,13 @@ public class EndGameView extends BasicGameState {
 			}
 		}
 		
-
-		font.drawString(larg/6, haut/3+haut/10 , "nombres de zombies sur la cartes : "  , Color.orange);
-		font.drawString(larg/6, haut/3 + haut/5, "nombres personnages restant : " , Color.orange);
+		
+		font.drawString(larg/6, haut/3+haut/10 , "nombres de zombies sur la cartes : " + nbZombie  , Color.orange);
+		font.drawString(larg/6, haut/3 + haut/5, "nombres personnages restant : " +(nbPerso1+nbPerso2) , Color.orange);
 		font.drawString(larg/6, haut/3 + 3*haut/10, " " , Color.orange);
+		
+		
+		
 		
 		font.drawString(larg/24, haut - haut/5, " Tapez R pour rejouez" , Color.white);
 		font.drawString(larg/24, haut - haut/5+haut/30, " Tapez echape pour quitter" , Color.white);
