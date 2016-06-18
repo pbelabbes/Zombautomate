@@ -43,7 +43,10 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 	private DisplayCharacter currentChar;
-	private float vitesse; 
+	private float vitesse;
+	private Player zombies;
+	private boolean showInfo;
+
 	private boolean gameOver;
 
 	private StateBasedGame game;
@@ -54,7 +57,7 @@ public class WindowGame extends BasicGameState {
 		this.game = game ; 
 
 		this.vitesse = 0.0005f;
-
+		this.showInfo = false;
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
@@ -73,6 +76,7 @@ public class WindowGame extends BasicGameState {
 				characters.add(new DisplaySurvivor(character));
 			}else{
 				characters.add(new DisplayZombie(character)); 
+				this.zombies = character.getPlayer(); 
 			}
 		}
 
@@ -140,7 +144,15 @@ public class WindowGame extends BasicGameState {
 		
 		//Changement vitesse
 		case Input.KEY_SPACE : this.changeSpeed();break;
+		
+		//affichage info
+		case Input.KEY_I : this.changeInfo();break;
 		}
+		
+	}
+
+	private void changeInfo() {
+		this.showInfo = !this.showInfo;
 		
 	}
 
@@ -228,6 +240,7 @@ public class WindowGame extends BasicGameState {
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
 		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
 		g.drawString("Vitesse : "+this.vitesse, 0, 130);
+		g.drawString("Tour n° : "+ordo.getTurn(), 0, 150);
 	}
 
 	public void afficherGameOver(GameContainer container, Graphics g){
@@ -265,7 +278,7 @@ public class WindowGame extends BasicGameState {
 		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
-		if((EcranDeValidation.mode >= 0))afficherInfos(container, g);
+		if((EcranDeValidation.mode >= 0) && this.showInfo)afficherInfos(container, g);
 		/*try {
 			Thread.sleep(pause);
 		} catch (InterruptedException e) {
@@ -276,6 +289,8 @@ public class WindowGame extends BasicGameState {
 	@Override
 	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
 		if(!this.gameOver){
+			
+			
 			DisplayCharacter cCharac = null;
 			for (DisplayCharacter c : characters) {
 				if(c.getCharacter() == ordo.getCharacter()){
@@ -287,6 +302,7 @@ public class WindowGame extends BasicGameState {
 
 				if (!cCharac.moving){
 					ordo.next();
+					this.addZombie();
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
@@ -387,6 +403,7 @@ public class WindowGame extends BasicGameState {
 			}
 			else {
 				ordo.next();
+				this.addZombie();
 				cCharac = null;
 				for (DisplayCharacter c : characters) {
 					if(c.getCharacter() == ordo.getCharacter()){
@@ -425,6 +442,14 @@ public class WindowGame extends BasicGameState {
 			}
 		}
 
+	}
+
+	private void addZombie() throws SlickException {
+		if(Math.random()*70 <= ordo.getTurn()){
+			Zombie z = map.random_pop_zombie(charactersList, zombies);
+			characters.add(new DisplayZombie(z));
+		}
+		
 	}
 	
 	
