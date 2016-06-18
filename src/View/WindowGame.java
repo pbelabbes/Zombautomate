@@ -224,18 +224,18 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
-				if(cCell.getCell().getEntity_on() != null){
-					if(cCell.getCell().getEntity_on() instanceof Zombie){
-						g.setColor(Color.green);						
-					}else{
-						for (DisplayCharacter displayCharacter : characters) {
-							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
-						}
-
-					}
-					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-
-				}
+//				if(cCell.getCell().getEntity_on() != null){
+//					if(cCell.getCell().getEntity_on() instanceof Zombie){
+//						g.setColor(Color.green);						
+//					}else{
+//						for (DisplayCharacter displayCharacter : characters) {
+//							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+//						}
+//
+//					}
+//					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+//
+//				}
 			}
 		}
 	}
@@ -576,7 +576,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode != -3 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode > -2 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}

@@ -31,6 +31,28 @@ public enum Action {
 		return this.decor;
 	}
 	
+	public static Action getAction(Decor decor)
+	{
+		if(decor==null)
+		{
+			System.out.println("le decor converti est nul");
+			return null;
+		}
+		else
+			switch(decor)
+			{
+			case ROCK: return Action.PICK;
+			case GRASS: return Action.MOVE;
+			case RABBIT: return Action.WATER;
+			case APPLE: return Action.ATTACK;
+			case SPROUT: return Action.PLANT;
+			case TREE: return Action.DROP;
+			case BASEBALL_BAT: return Action.SWAP;
+			case KATANA:
+			default: return Action.STEAL;
+			}
+	}
+	
 }
 
 
