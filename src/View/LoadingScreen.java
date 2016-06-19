@@ -124,7 +124,12 @@ public class LoadingScreen extends BasicGameState {
 		else {
 			if (!started) {
 				started = true;
+				if((System.getProperties().get("os.name")).equals("Linux")){
 				game.enterState(MainScreenGameState.ID);
+				}
+				else{
+					game.enterState(WindowGame.ID);
+				}
 			}
 		}
 
