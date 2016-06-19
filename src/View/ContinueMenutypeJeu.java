@@ -20,18 +20,24 @@ public class ContinueMenutypeJeu extends BasicGameState {
 	private boolean released  ;
 	private StateBasedGame game;
 	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.background = LoadingScreen.background;
+		this.hu1 = LoadingScreen.hu1;
+		 hu1.setColor(0, 1, 1, 1, 0);
+		 this.hu2= LoadingScreen.hu2;
+		 hu2.setColor(0, 1, 1, 1, 0);
+		 this.var = LoadingScreen.var;
+		 var.setColor(0, 1, 1, 1, 0);
+		super.enter(container, game);
+	}
+
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
-		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
-		this.hu1 = new Image ("../Zombautomate/ressources/Menu/1vZombie.png");
-		hu1.setColor(0, 1, 1, 1, 0);
-		this.hu2= new Image ("../Zombautomate/ressources/Menu/2vZombies.png");
-		hu2.setColor(0, 1, 1, 1, 0);
-		this.var = new Image ("../Zombautomate/ressources/Menu/variante.png");
-		var.setColor(0, 1, 1, 1, 0);
 		this.released = false ;
 
 	}

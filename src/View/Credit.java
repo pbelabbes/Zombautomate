@@ -24,30 +24,28 @@ public class Credit extends BasicGameState {
 	private int creditbase = 300 ; 
 	private int creditj2 ;
 	
+	
+	
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.background = LoadingScreen.credit;
+		super.enter(container, game);
+	}
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game ; 
-		this .background = new Image("../Zombautomate/ressources/Menu/backround_credit.png");
 		
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font =  new TrueTypeFont(awtFont, false);
 		font2 = new TrueTypeFont(new Font("Verdane",  Font.BOLD, 90), false);
 		
-//		StateGame.loadCharacters(2); 
 		J2 = null;
 		this.creditj2 = creditbase;
-//		// load font from a .ttf file
-//		try {
-//			InputStream inputStream	= ResourceLoader.getResourceAsStream("myfont.ttf");
-//	 
-//			Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-//			awtFont2 = awtFont2.deriveFont(24f); // set font size
-//			font2 = new TrueTypeFont(awtFont2, false);
-//	 
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}	
+
 		
 		
 	}

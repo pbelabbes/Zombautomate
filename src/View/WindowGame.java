@@ -57,6 +57,22 @@ public class WindowGame extends BasicGameState {
 	private boolean showChara;
 	private boolean gameOver;
 
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		
+		
+		this.music =LoadingScreen.musicgame;
+		this.music.fade(100, 0f, true);
+		
+		
+		if((System.getProperties().get("os.name")).equals("Linux") ){
+			
+			MainScreenGameState.music.stop();
+			EndGameView.music.loop();
+		}
+		super.leave(container, game);
+	}
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
@@ -65,25 +81,13 @@ public class WindowGame extends BasicGameState {
 		this.game = game;
 		this.showplayers = false;
 		this.showChara = false ;
-		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
-		music.fade(100, .1f, false);
-		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
+//		music.fade(100, .1f, false);
+//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
 	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
 
 
-	@Override
-	public void leave(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		this.music.fade(100, 0f, true);
-		if((System.getProperties().get("os.name")).equals("Linux") ){
-
-			MainScreenGameState.music.stop();
-			EndGameView.music.loop();
-		}
-		super.leave(container, game);
-	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
