@@ -1,13 +1,5 @@
 open Doc ;;
 
-let (l_autre:automate) = 
-scan_loin_AD 0 Allie Deplacer 1 3
-@
-scan_proche_AD 1 Allie Echanger 0 1
-@
-scan_loin_AD 0 Ennemi Attaquer 0 1;;
-
-
 let (guerrier: automate) =
   presence_AD 0 Katana Ramasser 1 1
   @
@@ -92,5 +84,5 @@ let (simplet:automate) =
   [(0,Defaut, Deplacer, N, 0, 1)];;
 
 
-let equipe2 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+let equipe2 = [ (guerrier,"guerrier")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)

@@ -42,7 +42,7 @@
   type equipe = (automate*string) list;;  (* liste d'automates avec un nom de personnage associé *)
     
 
-let oppdirection(direction d)=
+let oppdirection d=
 match d with
 |O->E
 |E->O
@@ -60,10 +60,10 @@ let (presence_AD: etat -> cible -> action -> etat -> priorite -> automate) = fun
   List.map (fun (direction:direction) -> (src, Present(cbl,direction), act, direction, tgt, pri) ) [N ; S ; E ; O];;
 
 let (fuir:etat -> cible -> action -> etat -> priorite -> automate->direction)=fun src cbl act tgt pri->
-  List.map (fun (direction:direction) -> (src, Present(cbl,oppdirection(direction)), act, direction, tgt, pri) ) [N ; S ; E ; O];;
+  List.map (fun (direction:direction) -> (src, Present(cbl,oppdirection direction), act, direction, tgt, pri) ) [N ; S ; E ; O];;
  
 let (fuirL:etat -> cible -> action -> etat -> priorite -> automate->direction)=fun src cbl act tgt pri->
-  List.map (fun (direction:direction) -> (src, ScanLoin(cbl,oppdirection(direction)), act, direction, tgt, pri) ) [N ; S ; E ; O];;
+  List.map (fun (direction:direction) -> (src, ScanLoin(cbl,oppdirection direction), act, direction, tgt, pri) ) [N ; S ; E ; O];;
  
 
   let (etat_to_string : etat->string) = fun etat -> string_of_int etat
