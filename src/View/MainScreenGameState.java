@@ -32,29 +32,59 @@ public class MainScreenGameState extends BasicGameState  {
 	public static Music music ;
 	private StateBasedGame game ; 
 	
+	
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.background = LoadingScreen.background;
+		
+		this.Newgame = LoadingScreen.Newgame ;
+//		Newgame.setImageColor(0,120,10,20);
+		Newgame.setColor(0,1,1,1,0);
+		
+		this.Continue = LoadingScreen.Continue;
+		Continue.setColor(0,1,1,1,0);
+
+		this.Option = LoadingScreen.Option;
+		Option.setColor(0,1,1,1,0);
+
+		this.souris = LoadingScreen.souris;
+		this.souris2 = LoadingScreen.souris2;
+		container.setMouseCursor(this.souris, 0, 0);
+		
+		this.game = game; 
+		this.music = LoadingScreen.musicmainscreen;
+		music.loop();
+
+		super.enter(container, game);
+		
+	}
+
+
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
-		
-		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
-//		Newgame.setImageColor(0,120,10,20);
-		Newgame.setColor(0,1,1,1,0);
-		
-		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
-		Continue.setColor(0,1,1,1,0);
-
-		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
-		Option.setColor(0,1,1,1,0);
-
-		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
-		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
-		container.setMouseCursor(this.souris, 0, 0);
-		this.game = game; 
-		this.music = new Music("../Zombautomate/ressources/song/Menu2.ogg");
+//		this.background = new Image("../Zombautomate/ressources/Menu/background.png");
+//		
+//		this.Newgame = new Image ("../Zombautomate/ressources/Menu/newgame.png");
+////		Newgame.setImageColor(0,120,10,20);
+//		Newgame.setColor(0,1,1,1,0);
+//		
+//		this.Continue = new Image ("../Zombautomate/ressources/Menu/continue.png");
+//		Continue.setColor(0,1,1,1,0);
+//
+//		this.Option = new Image ("../Zombautomate/ressources/Menu/exit.png"); 
+//		Option.setColor(0,1,1,1,0);
+//
+//		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
+//		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
+//		container.setMouseCursor(this.souris, 0, 0);
+//		this.game = game; 
+//		this.music = new Music("../Zombautomate/ressources/song/Menu2.ogg");
 //		this.music.setVolume(200);
-		music.loop();
+//		music.loop();
 	}
 	
 	
@@ -62,6 +92,7 @@ public class MainScreenGameState extends BasicGameState  {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
 		background.draw(0, 0, container.getWidth(), container.getHeight());

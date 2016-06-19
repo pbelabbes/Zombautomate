@@ -34,19 +34,34 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	private StateBasedGame game;
 
 	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.released = false ;
+		this.background = LoadingScreen.valider;
+		this.oui = LoadingScreen.oui ;
+		oui.setImageColor(0.30f, 0.20f, 0.30f);
+		this.non= LoadingScreen.non;
+		non.setImageColor(0.30f, 0.20f, 0.30f);
+		this.souris = LoadingScreen.souris; 
+		this.souris2 = LoadingScreen.souris2;
+		
+//		System.out.println("\n\n\nenter\n\n\n");
+		
+		
+		
+		container.setMouseCursor(this.souris, 0, 0);
+		StateGame.jeu(mode);// ouvrir le gedit
+		this.released = false ;
+		super.enter(container, game);
+	}
+	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.game = game;
 		this.mode = 2 ; 
-		this.background = new Image("../Zombautomate/ressources/Menu/valider.png");
-		this.oui = new Image ("../Zombautomate/ressources/Menu/panneau-yes.png");
-		oui.setImageColor(0.30f, 0.20f, 0.30f);
-		this.non= new Image ("../Zombautomate/ressources/Menu/panneau-no.png");
-		non.setImageColor(0.30f, 0.20f, 0.30f);
-		this.souris = new Image ("../Zombautomate/ressources/Menu/UpArrow.png");
-		this.souris2 = new Image ("../Zombautomate/ressources/Menu/AppStarting2.png");
 		this.released = false ;
-		container.setMouseCursor(this.souris, 0, 0);
+		
+//		container.setMouseCursor(this.souris, 0, 0);
 	}
 
 	@Override
@@ -61,14 +76,6 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	
 	
 
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		System.out.println("\n\n\nenter\n\n\n");
-		container.setMouseCursor(this.souris, 0, 0);
-		StateGame.jeu(mode);// ouvrir le gedit
-		super.enter(container, game);
-	}
 
 	@Override
 	public void leave(GameContainer container, StateBasedGame game)

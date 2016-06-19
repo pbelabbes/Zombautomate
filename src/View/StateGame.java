@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import sun.awt.windows.ThemeReader;
@@ -250,7 +251,7 @@ public static Player getZombies(){
 		
 		if	((System.getProperties().get("os.name")).equals("Linux") ) {
 
-			
+		addState(new LoadingScreen());
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());

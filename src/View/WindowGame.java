@@ -58,47 +58,25 @@ public class WindowGame extends BasicGameState {
 	private boolean gameOver;
 
 
-	public void init(GameContainer container,StateBasedGame game) throws SlickException{
-		this.container = container;
-		this.vitesse = 0.0005f;
-		this.showInfo = false;
-		this.game = game;
-		this.showplayers = false;
-		this.showChara = false ;
-		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
-		music.fade(100, .1f, false);
-		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
-	}
-
-	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
-
-
-	@Override
-	public void leave(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		this.music.fade(100, 0f, true);
-		if((System.getProperties().get("os.name")).equals("Linux") ){
-
-			MainScreenGameState.music.stop();
-			EndGameView.music.loop();
-		}
-		super.leave(container, game);
-	}
-
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		System.out.println("\n\nje suis dans le enter\n\n");
+		
+		this.music =LoadingScreen.musicgame ;
+		music.fade(100, .1f, false);
+//		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
-
+		
 		if((System.getProperties().get("os.name")).equals("Linux")){
 			MainScreenGameState.music.stop() ;
-			EndGameView.music.stop();
+			if (EndGameView.music !=null){
+				EndGameView.music.stop();
+			}
 		}
 		this.musicLevel = MAXLEVEL;
 		music.fade(100, musicLevel, false);
 		music.loop();
-
+		
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -108,9 +86,9 @@ public class WindowGame extends BasicGameState {
 				this.zombies = character.getPlayer(); 
 			}
 		}
-
+		
 		System.out.println("\n\n je suis entre \n\n");
-
+		
 		//Creation mapDisplay
 		mapDisplay = new DisplayCellule[map.getWidth()][map.getHeight()];
 		for(int i = 0 ; i< map.getWidth();i++){
@@ -118,11 +96,36 @@ public class WindowGame extends BasicGameState {
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
 			}
 		}     
-
+		
 		System.out.println("\n\n je suis dans\n\n ");
-
+		
+	}
+	public void init(GameContainer container,StateBasedGame game) throws SlickException{
+		this.container = container;
+		this.vitesse = 0.0005f;
+		this.showInfo = false;
+		this.game = game;
+		this.showplayers = false;
+		this.showChara = false ;
+		
+//		
+//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
+	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.music.fade(100, 0f, true);
+		if((System.getProperties().get("os.name")).equals("Linux") ){
+			
+			MainScreenGameState.music.stop();
+			
+		}
+		super.leave(container, game);
+	}
+	
 
 
 	public void setScreenDimension(int width, int height){
@@ -282,7 +285,8 @@ public class WindowGame extends BasicGameState {
 			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
 			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
 
-			if(EcranDeValidation.mode == 2 || Math.abs(EcranDeValidation.mode) == 5){
+
+			if(ordo.getPlayer(2)!=  null){
 				g.setColor(Color.darkGray);
 				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
