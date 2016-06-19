@@ -77,13 +77,6 @@ let (simplet:automate) =
   @
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
-let (suicidaire:automate) = presence_AD 0 Zombie Deplacer 0 1
 
-<<<<<<< HEAD
-let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"guerrier"); (farmer,"guerrier")];; 
-=======
-
-let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"farmer"); (farmer,"farmer")];; 
->>>>>>> 5695e4990b0e7b315b655e521ded84ba2cdff417
+let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
-(*let equipe1 = [(suicidaire,"p1")];;*)
