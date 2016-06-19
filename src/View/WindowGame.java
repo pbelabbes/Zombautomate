@@ -28,7 +28,7 @@ import Model.*;
 public class WindowGame extends BasicGameState {
 	//
 	public final static float MAXLEVEL = .8f;
-	
+
 	public static final int ID = 0;
 	public static ArrayList<Model.Character> charactersList;
 	public static int TILED_SIZE = 32;
@@ -36,7 +36,7 @@ public class WindowGame extends BasicGameState {
 	public  static Map map;
 	public static Ordonnanceur ordo;
 
-	
+
 	public Point mapOrigin = new Point(0,0);
 
 	private Music music;
@@ -58,15 +58,47 @@ public class WindowGame extends BasicGameState {
 	private boolean gameOver;
 
 
+	private void setCharacters(ArrayList<DisplayCharacter> l) {
+		this.characters=l;
+	}
+
+	public void sort(){
+		if (this.characters!=null){
+			ArrayList<DisplayCharacter> c=new ArrayList<DisplayCharacter>();
+			int i=0;
+			for (DisplayCharacter p : this.characters) {
+				if (c.size()==0){
+					c.add(0, p);
+				}
+				else {
+					/*if (c.size()==1){
+					if (c.get(0).getY()<p.getY()){
+						c.set(1, p);
+					}
+					else c.set(0,p);
+				}
+				else {*/
+					while (i<c.size()-1 && c.get(i).getY()<p.getY()){
+						i++;
+					}
+					c.add(i,p);
+					//}
+				}
+			}
+			this.setCharacters(c);
+		}
+
+	}
+
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		
+
 		this.music =LoadingScreen.musicgame ;
 		music.fade(100, .1f, false);
-//		System.out.println("\n\nje suis dans le enter\n\n");
+		//		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
-		
+
 		if((System.getProperties().get("os.name")).equals("Linux")){
 			MainScreenGameState.music.stop() ;
 			if (EndGameView.music !=null){
@@ -76,7 +108,7 @@ public class WindowGame extends BasicGameState {
 		this.musicLevel = MAXLEVEL;
 		music.fade(100, musicLevel, false);
 		music.loop();
-		
+
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -86,9 +118,9 @@ public class WindowGame extends BasicGameState {
 				this.zombies = character.getPlayer(); 
 			}
 		}
-		
+
 		System.out.println("\n\n je suis entre \n\n");
-		
+
 		//Creation mapDisplay
 		mapDisplay = new DisplayCellule[map.getWidth()][map.getHeight()];
 		for(int i = 0 ; i< map.getWidth();i++){
@@ -96,9 +128,9 @@ public class WindowGame extends BasicGameState {
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
 			}
 		}     
-		
+
 		System.out.println("\n\n je suis dans\n\n ");
-		
+
 	}
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
@@ -107,9 +139,9 @@ public class WindowGame extends BasicGameState {
 		this.game = game;
 		this.showplayers = false;
 		this.showChara = false ;
-		
-//		
-//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
+
+		//		
+		//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
 	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
@@ -119,13 +151,13 @@ public class WindowGame extends BasicGameState {
 			throws SlickException {
 		this.music.fade(100, 0f, true);
 		if((System.getProperties().get("os.name")).equals("Linux") ){
-			
+
 			MainScreenGameState.music.stop();
-			
+
 		}
 		super.leave(container, game);
 	}
-	
+
 
 
 	public void setScreenDimension(int width, int height){
@@ -182,10 +214,10 @@ public class WindowGame extends BasicGameState {
 
 		//couper le son
 		case Input.KEY_M : this.changeSound();break;
-		
+
 		//afficher les joueurs
 		case Input.KEY_LSHIFT: this.changeShplayer(); break; 
-		
+
 		//afficher les charactere
 		case Input.KEY_LCONTROL: this.changeShChara(); break;
 		}
@@ -194,7 +226,7 @@ public class WindowGame extends BasicGameState {
 
 	private void changeShChara() {
 		this.showChara= !this.showChara ; 
-		
+
 	}
 
 	private void changeSound() {
@@ -236,7 +268,7 @@ public class WindowGame extends BasicGameState {
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-//mettre cursorY à 0 pour éviter un bord noir + plantage en lançant une 2eme partie
+				//mettre cursorY à 0 pour éviter un bord noir + plantage en lançant une 2eme partie
 				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
@@ -246,34 +278,34 @@ public class WindowGame extends BasicGameState {
 					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
 				}
 
-//				if(cCell.getCell().getEntity_on() != null){
-//					if(cCell.getCell().getEntity_on() instanceof Zombie){
-//						g.setColor(Color.green);						
-//					}else{
-//						for (DisplayCharacter displayCharacter : characters) {
-//							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
-//						}
-//
-//					}
-//					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
-//
-//				}
+				//				if(cCell.getCell().getEntity_on() != null){
+				//					if(cCell.getCell().getEntity_on() instanceof Zombie){
+				//						g.setColor(Color.green);						
+				//					}else{
+				//						for (DisplayCharacter displayCharacter : characters) {
+				//							if(displayCharacter.getCharacter() == cCell.getCell().getEntity_on()) g.setColor(((DisplaySurvivor) displayCharacter).getColor());
+				//						}
+				//
+				//					}
+				//					g.fillRect(cursorX*TILED_SIZE, cursorY*TILED_SIZE, TILED_SIZE, TILED_SIZE);
+				//
+				//				}
 			}
 		}
 	}
-	
+
 	public void afficheChar(GameContainer container, Graphics g){
 		if(!gameOver){
 			if (this.currentChar != null){
-			g.setColor(Color.darkGray);
-			g.fillRect(screenWidth/3, screenHeight - 20-screenHeight/12, 370, 20);
-			g.setColor(Color.pink);
-			g.drawString("charactere: hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter().getPlayer().getName(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
+				g.setColor(Color.darkGray);
+				g.fillRect(screenWidth/3, screenHeight - 20-screenHeight/12, 370, 20);
+				g.setColor(Color.pink);
+				g.drawString("charactere: hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter().getPlayer().getName(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
 			}
 		}
-		
+
 	}
-	
+
 	public void affichePLayer(GameContainer container, Graphics g){
 		if (!gameOver){
 			g.setColor(Color.darkGray);
@@ -304,6 +336,7 @@ public class WindowGame extends BasicGameState {
 
 	public void afficherPersos(GameContainer container, Graphics g, int mapOriginX, int mapOriginY){
 
+		this.sort();
 		for (DisplayCharacter c : characters) {
 			if( c.getX() >= mapOriginX && c.getX() < mapOriginX+(screenWidth/TILED_SIZE) && c.getX() < map.getWidth() &&
 					c.getY() >= mapOriginY && c.getY() < mapOriginY+(screenHeight/TILED_SIZE) && c.getY() < map.getHeight())
@@ -375,7 +408,7 @@ public class WindowGame extends BasicGameState {
 
 
 		if(this.showplayers)affichePLayer(container, g);
-		
+
 		if(this.showChara)afficheChar(container, g);
 
 	}
@@ -396,13 +429,13 @@ public class WindowGame extends BasicGameState {
 					//Si le personnage a fini son action on change
 
 					int tour = ordo.getTurn(); //on enregistre le tour actuel pour voir si l'appel de next() fait changer de tour
-					
+
 					ordo.next();
 					if(tour != ordo.getTurn())
 					{
 						this.addZombie();
 					}
-					
+
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
@@ -660,7 +693,7 @@ public class WindowGame extends BasicGameState {
 
 	}
 
-/*
+	/*
 	public static void main(String[] args) throws SlickException {
 		startgame();
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
