@@ -273,7 +273,9 @@ public static Player getZombies(){
 			WindowGame wg = new WindowGame();
 			wg.map =carte ; 
 			wg.ordo = ordo ;
-			wg.charactersList = lC ; 
+			wg.charactersList = lC ;
+			addState(new LoadingScreen());
+//			addState(new MainScreenGameState());
 			addState(wg);
 		}
 		

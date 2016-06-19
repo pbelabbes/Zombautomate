@@ -88,6 +88,8 @@ public abstract class DisplayCharacter extends Display implements Observer {
 		return animations[this.direction + action*4];
 	}
 	
+
+	
 	@Override
 	public void update(Observable o, Object arg) {
 	}
