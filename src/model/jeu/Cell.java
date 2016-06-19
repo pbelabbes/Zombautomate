@@ -146,7 +146,7 @@ public class Cell {
 			if (this.case_automate != null)
 			{
 				
-				case_automate.setAction(decor.getAction());
+				case_automate.setAction(Action.getAction(decor));
 				
 //				Point poscell = this.position;
 //				Point posaut = this.owned_by.getAutomata().getPosition();

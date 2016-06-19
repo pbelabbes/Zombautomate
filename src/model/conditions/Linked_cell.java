@@ -42,7 +42,7 @@ public class Linked_cell extends Condition {
         
         Cell ce=getTargetedCell(direction, cellule);
 
-        Character c = ce.getOwned_by();
+        model.jeu.Character c = ce.getOwned_by();
 		if(c==null) 
 		{
 				return id_searched == 'N';

@@ -103,9 +103,11 @@ public class Survivor extends Character{
 			this.getPlayer().addFoodStock(-1);
 		}
 		else {
-			this.supHp(5);
+			this.supHp(8);
 		}
 	}
+	
+
 	/**
 	 * La fonction drop permet de poser une pierre sur de l'herbe
 	 * Elle ne fait rien si le decor de la case indiquée ne correspond pas à de l'herbe

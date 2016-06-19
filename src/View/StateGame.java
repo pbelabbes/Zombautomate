@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import sun.awt.windows.ThemeReader;
@@ -182,13 +183,32 @@ public static void initiateboth(){
 		{	
 			System.out.println("dans load caractère le mode est : "+mode);
 			ArrayList<ArrayList<transfer>> equipe1 = fichier.read("demo"+(mode*-1)+".xml");//fich1);
+			ArrayList<ArrayList<transfer>> equipe2;
 			
-			int foodstock = mode==(-4) ? 50 : 15;
+			int foodstock;
+			switch(mode)
+			{
+			case -1: 
+			case -5:
+			case -3: foodstock = 15; break;
+			case -2: foodstock = 100; break;
+			default: foodstock = 50;
+			}
 			
 			Player j1 = new Player(1,"Joueur 1",foodstock);
-
 			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
 			lC.addAll(j1.getEntities());
+
+			Player j2;
+			
+			if(mode == -5)
+			{
+				j2 = new Player(2,"Joueur 2", foodstock);
+				equipe2 = fichier.read("demo5_2.xml");
+				j2.setEntities(Moteur.CreateEntities(j2, equipe2));
+				lC.addAll(j2.getEntities());
+			}
+			
 			return lC;
 
 		}
@@ -203,11 +223,11 @@ public static void initiateboth(){
 		
 		if(mode==2 || mode == 5)
 		{		 
-			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml");//fich2);	
-			Player j2 = new Player(2 ,"Joueur 2", 100);
-			j2.setEntities(Moteur.CreateEntities(j2,equipe2));
-			lC.addAll(j2.getEntities());
-			Credit.J2 =j2; 
+			ArrayList<ArrayList<transfer>> equipe2=fichier.read("equipe2.xml") ;//fich2);	
+			Player j2 = new Player(2 ,"Joueur 2", 100) ;
+			j2.setEntities(Moteur.CreateEntities(j2,equipe2)) ;
+			lC.addAll(j2.getEntities()) ;
+			Credit.J2 =j2 ; 
 		}
 		return lC;
 }
@@ -236,7 +256,7 @@ public static Player getZombies(){
 		
 		if	((System.getProperties().get("os.name")).equals("Linux") ) {
 
-			
+		addState(new LoadingScreen());
 		addState(new MainScreenGameState());
 		addState(new MenuTypeJeu()) ;
 		addState(new ContinueMenutypeJeu());

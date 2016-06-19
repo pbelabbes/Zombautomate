@@ -201,6 +201,11 @@ public class Map extends Observable{
 	 */
 	public Zombie random_pop_zombie(ArrayList<Character> lC, Player p0)
 	{
+		if (p0 == null) 
+		{
+			System.out.println("Situation suspecte dans random_pop_zombie");
+			return null;
+		} 
 		Zombie new_z = new Zombie((Zombie) p0.getEntities().get(0));
 		Cell cellule;
 		do
@@ -306,6 +311,13 @@ public class Map extends Observable{
 			grid[10][7].setDecor(Decor.ROCK);
 			grid[9][6].setDecor(Decor.ROCK);
 			grid[11][6].setDecor(Decor.ROCK);
+		}
+		if(m==3)
+		{
+			grid[6][5].setDecor(Decor.APPLE);
+			grid[5][6].setDecor(Decor.RABBIT);
+			grid[4][5].setDecor(Decor.APPLE);
+			grid[5][4].setDecor(Decor.APPLE);
 		}
 	}
 }

@@ -17,6 +17,11 @@ public abstract class DisplayCharacter extends Display implements Observer {
 	protected Character character;
 	
 	public DisplayCharacter(Character c, int nbAnimations, String spriteName) throws SlickException {
+	/*	if(c==null) 
+		{
+			System.out.println("Situation suspecte dans le constructeur de DisplayCharacter);");
+			return;
+		}*/
 		super(c.getCell().getPosition().x, c.getCell().getPosition().y, new SpriteSheet(spriteName, 64, 64), nbAnimations);
 		this.setDirection(0);
 		this.setMoving(false);
@@ -69,6 +74,11 @@ public abstract class DisplayCharacter extends Display implements Observer {
 		    this.animations[29] = loadAnimation(sprite, 1, 7, 1);//ouest mobile
 		    this.animations[30] = loadAnimation(sprite, 1, 7, 3);//est mobile
 		    this.animations[31] = loadAnimation(sprite, 1, 7, 0);//nord mobile
+		    
+		    this.animations[32] = loadAnimation(sprite, 5, 6, 2);//sud immobile
+		    this.animations[33] = loadAnimation(sprite, 5, 6, 1);//ouest immobile
+		    this.animations[34] = loadAnimation(sprite, 5, 6, 3);//est immobile
+		    this.animations[35] = loadAnimation(sprite, 5, 6, 0);//nord immobile
 	}
 	
 	public Animation getCurrentAnimation(){
