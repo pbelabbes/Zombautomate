@@ -328,7 +328,7 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
-<<<<<<< HEAD
+///<<<<<<< HEAD
 /*<<<<<<< HEAD*/
 				g.drawString("PLAYER 2   : ", 4 * screenWidth / 5, screenHeight - 80 - 20 - screenHeight / 12);
 				g.drawString("FOODSTOCK  : " + ordo.getPlayer(2).getFoodStock(), 4 * screenWidth / 5,
