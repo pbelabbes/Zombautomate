@@ -308,5 +308,12 @@ public class Map extends Observable{
 			grid[9][6].setDecor(Decor.ROCK);
 			grid[11][6].setDecor(Decor.ROCK);
 		}
+		if(m==3)
+		{
+			grid[6][5].setDecor(Decor.APPLE);
+			grid[5][6].setDecor(Decor.RABBIT);
+			grid[4][5].setDecor(Decor.APPLE);
+			grid[5][4].setDecor(Decor.APPLE);
+		}
 	}
 }

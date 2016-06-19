@@ -58,47 +58,25 @@ public class WindowGame extends BasicGameState {
 	private boolean gameOver;
 
 
-	public void init(GameContainer container,StateBasedGame game) throws SlickException{
-		this.container = container;
-		this.vitesse = 0.0005f;
-		this.showInfo = false;
-		this.game = game;
-		this.showplayers = false;
-		this.showChara = false ;
-		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
-		music.fade(100, .1f, false);
-		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
-	}
-
-	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
-
-
-	@Override
-	public void leave(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		this.music.fade(100, 0f, true);
-		if((System.getProperties().get("os.name")).equals("Linux") ){
-
-			MainScreenGameState.music.stop();
-			EndGameView.music.loop();
-		}
-		super.leave(container, game);
-	}
-
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		System.out.println("\n\nje suis dans le enter\n\n");
+		
+		this.music =LoadingScreen.musicgame ;
+		music.fade(100, .1f, false);
+//		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
-
+		
 		if((System.getProperties().get("os.name")).equals("Linux")){
 			MainScreenGameState.music.stop() ;
-			EndGameView.music.stop();
+			if (EndGameView.music !=null){
+				EndGameView.music.stop();
+			}
 		}
 		this.musicLevel = MAXLEVEL;
 		music.fade(100, musicLevel, false);
 		music.loop();
-
+		
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -108,9 +86,9 @@ public class WindowGame extends BasicGameState {
 				this.zombies = character.getPlayer(); 
 			}
 		}
-
+		
 		System.out.println("\n\n je suis entre \n\n");
-
+		
 		//Creation mapDisplay
 		mapDisplay = new DisplayCellule[map.getWidth()][map.getHeight()];
 		for(int i = 0 ; i< map.getWidth();i++){
@@ -118,11 +96,36 @@ public class WindowGame extends BasicGameState {
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
 			}
 		}     
-
+		
 		System.out.println("\n\n je suis dans\n\n ");
-
+		
+	}
+	public void init(GameContainer container,StateBasedGame game) throws SlickException{
+		this.container = container;
+		this.vitesse = 0.0005f;
+		this.showInfo = false;
+		this.game = game;
+		this.showplayers = false;
+		this.showChara = false ;
+		
+//		
+//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
+	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.music.fade(100, 0f, true);
+		if((System.getProperties().get("os.name")).equals("Linux") ){
+			
+			MainScreenGameState.music.stop();
+			
+		}
+		super.leave(container, game);
+	}
+	
 
 
 	public void setScreenDimension(int width, int height){
@@ -232,8 +235,8 @@ public class WindowGame extends BasicGameState {
 
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 
-			for(int cursorY = 1; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-
+			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
+//mettre cursorY à 0 pour éviter un bord noir + plantage en lançant une 2eme partie
 				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
@@ -274,21 +277,25 @@ public class WindowGame extends BasicGameState {
 	public void affichePLayer(GameContainer container, Graphics g){
 		if (!gameOver){
 			g.setColor(Color.darkGray);
-			g.fillRect(0, screenHeight - 80-screenHeight/12 - 5, 150, 100);
+			g.fillRect(0, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 			g.setColor(Color.magenta);
-			g.drawString("PLAYER 1   : " , 0, screenHeight - 80-screenHeight/12);
-			g.drawString("FOODSTOCK  : "+ ordo.getPlayer(1).getFoodStock(), 0, screenHeight - 60-screenHeight/12);
-			g.drawString("STONESOTCK : "+ ordo.getPlayer(1).getStone(), 0, screenHeight - 40-screenHeight/12);
-			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20 -screenHeight/12 );
+			g.drawString("PLAYER 1   : " , 0, screenHeight - 80-20-screenHeight/12);
+			g.drawString("FOODSTOCK  : "+ ordo.getPlayer(1).getFoodStock(), 0, screenHeight - 60-20-screenHeight/12);
+			g.drawString("STONESOTCK : "+ ordo.getPlayer(1).getStone(), 0, screenHeight - 40-20-screenHeight/12);
+			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
+			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
 
-			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
+
+			if(ordo.getPlayer(2)!=  null){
 				g.setColor(Color.darkGray);
-				g.fillRect(4*screenWidth/5, screenHeight - 80-screenHeight/12 - 5, 150, 100);
+				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
-				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80-screenHeight/12);
-				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight - 60-screenHeight/12);
-				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight - 40-screenHeight/12);
-				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20 -screenHeight/12 );
+				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
+				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
+				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
+				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
+				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
+
 			}
 			g.setColor(Color.white);
 		}
@@ -323,7 +330,8 @@ public class WindowGame extends BasicGameState {
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
 		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
-		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		if (ordo.getAction()!=null)	g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		else g.drawString("Action en cours : rien", 0, 110);
 		g.drawString("Vitesse : "+ Display.tempsAnim, 0, 130);
 		g.drawString("Tour n : "+ordo.getTurn(), 0, 150);
 		g.drawString("Nombre de Zombies : "+(ordo.get_remaining_zombies()), 0, 170);
@@ -347,12 +355,11 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
-		//int pause=1000;
 
 		//System.out.println("Map Origin :" + this.mapOrigin.x+":"+this.mapOrigin.y);
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
-		//Affichage de d�cors
+		//Affichage de décors
 		afficherDecors(container, g, mapOriginX,mapOriginY);
 
 		//Affichage des personnages
@@ -361,10 +368,11 @@ public class WindowGame extends BasicGameState {
 		if(this.gameOver) afficherGameOver(container,g);
 
 		//Affichage Automates
-		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
+		//afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
 		if(this.showInfo)afficherInfos(container, g);
+
 
 		if(this.showplayers)affichePLayer(container, g);
 		
@@ -386,8 +394,15 @@ public class WindowGame extends BasicGameState {
 			if(cCharac != null){
 				if (!cCharac.moving){
 					//Si le personnage a fini son action on change
+
+					int tour = ordo.getTurn(); //on enregistre le tour actuel pour voir si l'appel de next() fait changer de tour
+					
 					ordo.next();
-					this.addZombie();
+					if(tour != ordo.getTurn())
+					{
+						this.addZombie();
+					}
+					
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
@@ -582,6 +597,16 @@ public class WindowGame extends BasicGameState {
 							break;
 						}
 					}
+					else {
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(8);}
+					}
 				}
 			}
 			else {
@@ -607,8 +632,6 @@ public class WindowGame extends BasicGameState {
 				}
 			}
 
-
-			//}else ordo.next();
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 			//			if(cCharac.getCharacter() == null){
 			//				System.out.println("remove displaycharacter");
@@ -630,7 +653,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode > -2 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*100 <= ordo.getTurn() && EcranDeValidation.mode > -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}
