@@ -71,13 +71,14 @@ public class BestScore {
 		for (int score : listscore){
 			if(nbtour> score){
 				pos = listscore.indexOf(score);
+				listscore.add(pos,nbtour);
+				listscore.remove(3);
+				write(listscore, nbjoueur);
+				return pos+1;
 			}
 			
 		}
-		if(pos != -1){
-			listscore.add(pos,nbtour);
-			listscore.remove(3);
-		}
+
 		write(listscore, nbjoueur);
 		
 					
