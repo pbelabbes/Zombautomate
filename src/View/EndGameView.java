@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -13,6 +14,8 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import extension.BestScore;
+
 public class EndGameView extends BasicGameState {
 	public static final int ID = 6;
 	
@@ -21,6 +24,8 @@ public class EndGameView extends BasicGameState {
 	TrueTypeFont font;
 	TrueTypeFont font2 ;
 	public static Music music;
+	private int pos ; 
+	private ArrayList<Integer> listscore ; 
 
 	private StateBasedGame game;
 
@@ -36,10 +41,14 @@ public class EndGameView extends BasicGameState {
 		this.back = LoadingScreen.bfin;  new Image("../Zombautomate/ressources/Menu/fin.png");
 		this.music = LoadingScreen.musicfin ; new Music("../Zombautomate/ressources/song/endofgame2.ogg");
 		EndGameView.music.loop();
+		BestScore BS = new BestScore();
+		int nbJ = (WindowGame.ordo.getPlayer(2) == null)? 1:2 ;
+		this.pos = BS.bestscoreplayer(WindowGame.ordo.getTurn(), nbJ);
+		this.listscore = BS.read(nbJ);
 		
 		super.enter(container, game);
 		
-		System.out.println("\n\n\n dans le déut de end game \n\n\n");
+//		System.out.println("\n\n\n dans le déut de end game \n\n\n");
 	}
 
 	@Override
@@ -53,7 +62,6 @@ public class EndGameView extends BasicGameState {
 		int haut = container.getHeight() ;
 		this.game = game ; 
 		
-	
 	}
 
 	@Override
@@ -88,7 +96,7 @@ public class EndGameView extends BasicGameState {
 				else{
 					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur 2" , Color.orange);
 				}
-				font.drawString(larg/6, haut/3 + 3*haut/10 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
+				font.drawString(larg/6, haut/3 + 2*haut/10 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
 			}
 			else{
 				font2.drawString(larg/4    , haut/5  , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours" , Color.orange);
@@ -98,15 +106,21 @@ public class EndGameView extends BasicGameState {
 		
 		font.drawString(larg/6, haut/3 , "nombres de zombies sur la cartes : " + nbZombie  , Color.orange);
 		font.drawString(larg/6, haut/3 +haut/10, "nombres personnages restant : " +(nbPerso1+nbPerso2) , Color.orange);
-		font.drawString(larg/6, haut/3 + 2*haut/10, " " , Color.orange);
-		
-		
-		
+		if(pos!=0){
+			font.drawString(larg/6, haut/3 + 3*haut/10, "Bravo, votre classement est : "+pos , Color.orange);
+		}
+		else{
+			font.drawString(larg/6, haut/3 + 3*haut/10, "Tableau des scores : " , Color.orange);			
+		}
+		font.drawString(5*larg/8, haut/3 + 3*haut/10         ,  "Record     : "+listscore.get(0) , Color.orange);
+		font.drawString(5*larg/8, haut/3 + 3*haut/10+ haut/25,  "Deuxieme   : "+listscore.get(1) , Color.orange);
+		font.drawString(5*larg/8, haut/3 + 3*haut/10+ 2*haut/25,"Troisieme : "+listscore.get(2) , Color.orange);
+
 		
 		font.drawString(larg/24, haut - haut/5, " Taper R pour rejouer" , Color.white);
 		font.drawString(larg/24, haut - haut/5+haut/30, " Taper echap pour quitter" , Color.white);
-		font.drawString(larg/24, haut - haut/5 +haut/15, " Taper enter pour acceder au menu" , Color.white);
-
+		font.drawString(larg/24, haut - haut/5 +haut/15, " Taper enter pour acceder au menu" , Color.white);	
+		
 	}
 	
 	
