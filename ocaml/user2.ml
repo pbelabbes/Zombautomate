@@ -84,5 +84,9 @@ let (simplet:automate) =
   [(0,Defaut, Deplacer, N, 0, 1)];;
 
 
-let equipe2 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+let (suicidaire:automate) = presence_AD 0 Zombie Deplacer 0 1
+
+let equipe2 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier"); (farmer,"farmer"); (farmer,"farmer")];; 
 (* let equipe = [(automate_zombie, "zombie")];; *)
+
+(*let equipe2 = [(suicidaire,"p1")] *)
