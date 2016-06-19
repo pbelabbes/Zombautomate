@@ -282,7 +282,7 @@ public class WindowGame extends BasicGameState {
 			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
 			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
 
-			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
+			if(EcranDeValidation.mode == 2 || Math.abs(EcranDeValidation.mode) == 5){
 				g.setColor(Color.darkGray);
 				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
@@ -390,8 +390,15 @@ public class WindowGame extends BasicGameState {
 			if(cCharac != null){
 				if (!cCharac.moving){
 					//Si le personnage a fini son action on change
+
+					int tour = ordo.getTurn(); //on enregistre le tour actuel pour voir si l'appel de next() fait changer de tour
+					
 					ordo.next();
-					this.addZombie();
+					if(tour != ordo.getTurn())
+					{
+						this.addZombie();
+					}
+					
 					cCharac = null;
 					for (DisplayCharacter c : characters) {
 						if(c.getCharacter() == ordo.getCharacter()){
