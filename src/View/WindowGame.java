@@ -283,7 +283,8 @@ public class WindowGame extends BasicGameState {
 		g.drawString("Taille Map en pixels: "+map.getWidth()*TILED_SIZE+" : "+map.getHeight()*TILED_SIZE, 0, 50);
 		g.drawString("Taille de l'ecran en pixels : "+screenWidth+" : "+screenHeight, 0, 70);
 		g.drawString("mapOriginMax : "+(map.getWidth()-screenWidth/TILED_SIZE)+" : "+(map.getHeight()-screenHeight/TILED_SIZE), 0, 90);
-		g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		if (ordo.getAction()!=null)	g.drawString("Action en cours : "+ordo.getAction(), 0, 110);
+		else g.drawString("Action en cours : rien", 0, 110);
 		g.drawString("Vitesse : "+ Display.tempsAnim, 0, 130);
 		g.drawString("Tour n : "+ordo.getTurn(), 0, 150);
 		g.drawString("Nombre de Zombies : "+(ordo.get_remaining_zombies()), 0, 170);
@@ -307,12 +308,11 @@ public class WindowGame extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container,StateBasedGame game, Graphics g) throws SlickException {
-		//int pause=1000;
 
 		//System.out.println("Map Origin :" + this.mapOrigin.x+":"+this.mapOrigin.y);
 		int mapOriginX = this.mapOrigin.x, mapOriginY = this.mapOrigin.y;
 
-		//Affichage de d�cors
+		//Affichage de décors
 		afficherDecors(container, g, mapOriginX,mapOriginY);
 
 		//Affichage des personnages
@@ -321,15 +321,11 @@ public class WindowGame extends BasicGameState {
 		if(this.gameOver) afficherGameOver(container,g);
 
 		//Affichage Automates
-		//		afficherAutomates(container, g, mapOriginX, mapOriginY);
+		//afficherAutomates(container, g, mapOriginX, mapOriginY);
 
 		//Affichage infos
 		if(this.showInfo)afficherInfos(container, g);
-		/*try {
-			Thread.sleep(pause);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}*/
+
 	}
 
 	@Override
@@ -542,6 +538,16 @@ public class WindowGame extends BasicGameState {
 							break;
 						}
 					}
+					else {
+						cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						if (cCharac.getTempsAnim()<=this.dureeAnim){
+							this.dureeAnim=0;
+							cCharac.setAction(0);
+							cCharac.setMoving(false);
+						}
+						else {this.dureeAnim++;cCharac.setAction(8);}
+					}
 				}
 			}
 			else {
@@ -567,8 +573,6 @@ public class WindowGame extends BasicGameState {
 				}
 			}
 
-
-			//}else ordo.next();
 			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
 			//			if(cCharac.getCharacter() == null){
 			//				System.out.println("remove displaycharacter");
