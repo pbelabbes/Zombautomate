@@ -179,7 +179,15 @@ public static void initiateboth(){
 			ArrayList<ArrayList<transfer>> equipe1 = fichier.read("demo"+(mode*-1)+".xml");//fich1);
 			ArrayList<ArrayList<transfer>> equipe2;
 			
-			int foodstock = mode==(-4) ? 50 : 15;
+			int foodstock;
+			switch(mode)
+			{
+			case -1: 
+			case -5:
+			case -3: foodstock = 15; break;
+			case -2: foodstock = 100; break;
+			default: foodstock = 50;
+			}
 			
 			Player j1 = new Player(1,"Joueur 1",foodstock);
 			j1.setEntities(Moteur.CreateEntities(j1,equipe1));
