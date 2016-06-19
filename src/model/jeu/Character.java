@@ -269,6 +269,12 @@ public abstract class Character extends Observable {
 		
 		while ( j < this.automata.getInputs() && cA[state][j] != null)
 		{
+			CaseAutomate debug = cA[state][j];
+			if(debug.getAction() == Action.SWAP)
+			{
+				int a = 1+1;
+			}
+
 			if (cA[state][j].getCondition().execute(this.getCell()))
 			{
 				List_cases.add(cA[state][j]);

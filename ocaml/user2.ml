@@ -84,5 +84,9 @@ let (simplet:automate) =
   [(0,Defaut, Deplacer, N, 0, 1)];;
 
 
+<<<<<<< HEAD
 let equipe2 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+=======
+let equipe2 = [ (guerrier,"guerrier")];; 
+>>>>>>> 4d036f2918fbd24a535d12da72909d832c65770c
 (* let equipe = [(automate_zombie, "zombie")];; *)

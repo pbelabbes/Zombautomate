@@ -1,5 +1,12 @@
 open Doc ;;
 
+
+let (michael_perrin:automate) = 
+scan_loin_AD 0 Allie Deplacer 0 3
+@
+presence_AD 0 Allie Echanger 0 6;;
+
+
 let (guerrier: automate) =
   presence_AD 0 Katana Ramasser 1 4
   @
@@ -78,5 +85,9 @@ let (simplet:automate) =
   scan_loin_AD 0 Ennemi Deplacer 0 1;;
 
 
+<<<<<<< HEAD
 let equipe1 = [ (guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+=======
+let equipe1 = [  (michael_perrin,"mich");(michael_perrin,"mich"); (michael_perrin,"mich"); (michael_perrin,"mich");(guerrier,"guerrier"); (guerrier,"guerrier");(guerrier,"guerrier"); (guerrier,"guerrier")];; 
+>>>>>>> 4d036f2918fbd24a535d12da72909d832c65770c
 (* let equipe = [(automate_zombie, "zombie")];; *)

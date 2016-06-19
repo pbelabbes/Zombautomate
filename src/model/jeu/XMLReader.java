@@ -97,6 +97,7 @@ public class XMLReader {
 			switch (s1[0]){
 			case "Present":
 				switch (s2[0]){
+				case "Allie":  return new Presence(s2[1].charAt(0),"allie");
 				case "Zombie": return new Presence(s2[1].charAt(0),"zombie");
 				case "Ennemi": return new Presence(s2[1].charAt(0),"ennemi");
 				case "Katana": return new Presence(s2[1].charAt(0),Decor.KATANA);
@@ -112,7 +113,7 @@ public class XMLReader {
 				break;
 			case "ScanLoin": 
 				switch (s2[0]){
-				case "Allie": return new ScanLoin("allie",s2[1].charAt(0));
+				case "Allie":  return new ScanLoin("allie",s2[1].charAt(0));
 				case "Zombie": return new ScanLoin("zombie",s2[1].charAt(0));
 				case "Ennemi": return new ScanLoin("ennemi",s2[1].charAt(0));
 				case "Katana": return new ScanLoin(Decor.KATANA,s2[1].charAt(0));
@@ -129,6 +130,7 @@ public class XMLReader {
 			case "ScanProche": 
 				switch (s2[0]){
 				case "Zombie": return new ScanProche("zombie",s2[1].charAt(0));
+				case "Allie": return new ScanProche("allie",s2[1].charAt(0));
 				case "Ennemi": return new ScanProche("ennemi",s2[1].charAt(0));
 				case "Katana": return new ScanProche(Decor.KATANA,s2[1].charAt(0));
 				case "Batte_baseball": return new ScanProche(Decor.BASEBALL_BAT,s2[1].charAt(0));
