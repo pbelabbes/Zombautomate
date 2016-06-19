@@ -23,12 +23,26 @@ public class EndGameView extends BasicGameState {
 	public static Music music;
 
 	private StateBasedGame game;
+
 	
+	
+	/* (non-Javadoc)
+	 * @see org.newdawn.slick.state.BasicGameState#enter(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+	 */
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.background42 = LoadingScreen.b42; new Image("../Zombautomate/ressources/fondvictoire.png");
+		this.back = LoadingScreen.bfin;  new Image("../Zombautomate/ressources/Menu/fin.png");
+		this.music = LoadingScreen.musicfin ; new Music("../Zombautomate/ressources/song/endofgame2.ogg");
+		EndGameView.music.loop();
+		
+		super.enter(container, game);
+	}
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		this.background42 = new Image("../Zombautomate/ressources/fondvictoire.png");
-		this.back = new Image("../Zombautomate/ressources/Menu/fin.png");
 		
 		Font awtFont = new Font("Verdane",  Font.BOLD, 24);
 		font =  new TrueTypeFont(awtFont, false);
@@ -36,7 +50,6 @@ public class EndGameView extends BasicGameState {
 		int larg = container.getWidth()  ;
 		int haut = container.getHeight() ;
 		this.game = game ; 
-		this.music = new Music("../Zombautomate/ressources/song/endofgame2.ogg");
 		
 	
 	}

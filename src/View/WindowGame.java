@@ -57,52 +57,26 @@ public class WindowGame extends BasicGameState {
 	private boolean showChara;
 	private boolean gameOver;
 
-	@Override
-	public void leave(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		
-		
-		this.music =LoadingScreen.musicgame;
-		this.music.fade(100, 0f, true);
-		
-		
-		if((System.getProperties().get("os.name")).equals("Linux") ){
-			
-			MainScreenGameState.music.stop();
-			EndGameView.music.loop();
-		}
-		super.leave(container, game);
-	}
-
-	public void init(GameContainer container,StateBasedGame game) throws SlickException{
-		this.container = container;
-		this.vitesse = 0.0005f;
-		this.showInfo = false;
-		this.game = game;
-		this.showplayers = false;
-		this.showChara = false ;
-//		music.fade(100, .1f, false);
-//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
-	}
-
-	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
-
-
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		System.out.println("\n\nje suis dans le enter\n\n");
+		
+		this.music =LoadingScreen.musicgame ;
+		music.fade(100, .1f, false);
+//		System.out.println("\n\nje suis dans le enter\n\n");
 		this.gameOver = false ;
-
+		
 		if((System.getProperties().get("os.name")).equals("Linux")){
 			MainScreenGameState.music.stop() ;
-			EndGameView.music.stop();
+			if (EndGameView.music !=null){
+				EndGameView.music.stop();
+			}
 		}
 		this.musicLevel = MAXLEVEL;
 		music.fade(100, musicLevel, false);
 		music.loop();
-
+		
 		super.enter(container, game);
 		for (Model.Character character : charactersList) {
 			if(character instanceof Survivor){
@@ -112,9 +86,9 @@ public class WindowGame extends BasicGameState {
 				this.zombies = character.getPlayer(); 
 			}
 		}
-
+		
 		System.out.println("\n\n je suis entre \n\n");
-
+		
 		//Creation mapDisplay
 		mapDisplay = new DisplayCellule[map.getWidth()][map.getHeight()];
 		for(int i = 0 ; i< map.getWidth();i++){
@@ -122,11 +96,36 @@ public class WindowGame extends BasicGameState {
 				this.mapDisplay[i][j] = new DisplayCellule(DisplayCellule.SIZE * i,DisplayCellule.SIZE * j, map.getGrid()[i][j]);
 			}
 		}     
-
+		
 		System.out.println("\n\n je suis dans\n\n ");
-
+		
+	}
+	public void init(GameContainer container,StateBasedGame game) throws SlickException{
+		this.container = container;
+		this.vitesse = 0.0005f;
+		this.showInfo = false;
+		this.game = game;
+		this.showplayers = false;
+		this.showChara = false ;
+		
+//		
+//		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
 	}
 
+	//		setScreenDimension(container.getScreenWidth(),container.getScreenHeight());
+
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		this.music.fade(100, 0f, true);
+		if((System.getProperties().get("os.name")).equals("Linux") ){
+			
+			MainScreenGameState.music.stop();
+			
+		}
+		super.leave(container, game);
+	}
+	
 
 
 	public void setScreenDimension(int width, int height){
