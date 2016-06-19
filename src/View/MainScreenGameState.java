@@ -92,6 +92,7 @@ public class MainScreenGameState extends BasicGameState  {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		
 		int larg = container.getWidth();
 		int haut = container.getHeight() ;
 		background.draw(0, 0, container.getWidth(), container.getHeight());

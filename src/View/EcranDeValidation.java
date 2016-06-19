@@ -36,7 +36,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-
+		this.released = false ;
 		this.background = LoadingScreen.valider;
 		this.oui = LoadingScreen.oui ;
 		oui.setImageColor(0.30f, 0.20f, 0.30f);
@@ -51,6 +51,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 		
 		container.setMouseCursor(this.souris, 0, 0);
 		StateGame.jeu(mode);// ouvrir le gedit
+		this.released = false ;
 		super.enter(container, game);
 	}
 	@Override

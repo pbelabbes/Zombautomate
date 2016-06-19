@@ -27,6 +27,7 @@ public class MenuTypeJeu extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		this.released = false ;
 		this.background = LoadingScreen.background;
 		this.hu1 = LoadingScreen.hu1;
 		 hu1.setColor(0, 1, 1, 1, 0);

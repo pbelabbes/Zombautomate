@@ -38,6 +38,8 @@ public class EndGameView extends BasicGameState {
 		EndGameView.music.loop();
 		
 		super.enter(container, game);
+		
+		System.out.println("\n\n\n dans le déut de end game \n\n\n");
 	}
 
 	@Override

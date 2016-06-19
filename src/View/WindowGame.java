@@ -285,7 +285,7 @@ public class WindowGame extends BasicGameState {
 			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
 			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
 
-			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
+			if(ordo.getPlayer(2)!=  null){
 				g.setColor(Color.darkGray);
 				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
