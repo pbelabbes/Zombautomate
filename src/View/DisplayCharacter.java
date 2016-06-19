@@ -1,12 +1,13 @@
 package View;
 
 import java.util.Observable;
+
 import java.util.Observer;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import Model.Character;
+import model.jeu.Character;
 
 public abstract class DisplayCharacter extends Display implements Observer {
 	
@@ -113,7 +114,7 @@ public abstract class DisplayCharacter extends Display implements Observer {
 		this.direction = direction;
 	}
 	
-	public Model.Character getCharacter(){
+	public model.jeu.Character getCharacter(){
 		return this.character;
 	}
 

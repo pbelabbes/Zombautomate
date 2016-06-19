@@ -1,4 +1,6 @@
 package Test;
+import model.decors.*;
+import model.jeu.*;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +8,10 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import Model.*;
+import model.automate.*;
+import model.conditions.*;
+
+//import Model.*;
 public class AutomataTest {
 
 	@Test

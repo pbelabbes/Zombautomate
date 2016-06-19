@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Font;
 
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,7 +12,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Model.Player;
+import model.jeu.Player;
 
 public class Credit extends BasicGameState {
 	public static final int ID = 5;

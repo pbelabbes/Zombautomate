@@ -2,6 +2,8 @@ package View;
 
 
 import java.io.BufferedWriter;
+
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,13 +19,16 @@ import org.newdawn.slick.state.StateBasedGame;
 import sun.awt.windows.ThemeReader;
 
 //import Model.* ;
-import Model.Character;
-import Model.Map;
-import Model.Moteur;
-import Model.Ordonnanceur;
-import Model.Player;
-import Model.XMLReader;
-import Model.transfer;
+
+import model.jeu.*;
+import model.jeu.Character;
+import model.jeu.Map;
+import model.jeu.Moteur;
+import model.jeu.Ordonnanceur;
+import model.jeu.Player;
+import model.jeu.XMLReader;
+import model.jeu.transfer;
+
 
 public class StateGame extends StateBasedGame {
 
@@ -285,8 +290,6 @@ public StateGame() {
  * @throws SlickException
  */
 public static void main(String[] args) throws SlickException {
-
-//	ArrayList<Character> lC = jeu (1) ;
 
 //	ArrayList<Character> lC = jeu (2) ;
 
