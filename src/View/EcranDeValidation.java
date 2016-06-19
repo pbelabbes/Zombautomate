@@ -103,6 +103,7 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 			if(mode<0)
 			{
 				if(mode == -4) carte = Moteur.initiate_demo_map_2(lC);
+				else if(mode == -5) carte = Moteur.initiate_demo_map_3(lC);
 				else carte = Moteur.initiate_demo_map(lC, StateGame.getZombies());
 			}
 			else

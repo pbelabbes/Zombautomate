@@ -174,7 +174,8 @@ public class MainScreenGameState extends BasicGameState  {
 		case Input.KEY_1:  EcranDeValidation.mode= -1 ; game.enterState(EcranDeValidation.ID); break;
 		case Input.KEY_2:  EcranDeValidation.mode= -2 ; game.enterState(EcranDeValidation.ID); break;
 		case Input.KEY_3:  EcranDeValidation.mode= -3 ; game.enterState(EcranDeValidation.ID); break;
-		case Input.KEY_4:  EcranDeValidation.mode= -4 ; game.enterState(EcranDeValidation.ID);
+		case Input.KEY_4:  EcranDeValidation.mode= -4 ; game.enterState(EcranDeValidation.ID); break;
+		case Input.KEY_5:  EcranDeValidation.mode= -5 ; game.enterState(EcranDeValidation.ID);
 		}
 	}
 	

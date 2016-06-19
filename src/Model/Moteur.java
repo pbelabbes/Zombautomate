@@ -318,6 +318,17 @@ public class Moteur {
 		
 		return carte;
 	}
+	
+	public static Map initiate_demo_map_3(ArrayList<Character> lC)
+	{
+		Map carte = new Map(20,20);
+		carte.init_demo(3);
+		
+		carte.set_charact(lC.get(0), new Point(5,5));
+		carte.set_charact(lC.get(1), new Point(5,12));
+		
+		return carte;
+	}
 	/**
 	 * @param args
 	 */

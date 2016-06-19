@@ -54,7 +54,9 @@ public class WindowGame extends BasicGameState {
 	private Player zombies;
 	private boolean showInfo;
 	private boolean showplayers;
+	private boolean showChara;
 	private boolean gameOver;
+
 
 	public void init(GameContainer container,StateBasedGame game) throws SlickException{
 		this.container = container;
@@ -62,6 +64,7 @@ public class WindowGame extends BasicGameState {
 		this.showInfo = false;
 		this.game = game;
 		this.showplayers = false;
+		this.showChara = false ;
 		this.music = new Music("../Zombautomate/ressources/song/ingame2.ogg");
 		music.fade(100, .1f, false);
 		System.out.println("\n\nje suis dans le init"+container.getScreenWidth()+ container.getScreenHeight()+"\n\n");
@@ -124,8 +127,8 @@ public class WindowGame extends BasicGameState {
 
 	public void setScreenDimension(int width, int height){
 		if(width > 0 && height > 0){
-			this.screenWidth = width;
-			this.screenHeight = height-TILED_SIZE;
+			screenWidth = width;
+			screenHeight = height-TILED_SIZE;
 		}
 	}
 
@@ -176,8 +179,19 @@ public class WindowGame extends BasicGameState {
 
 		//couper le son
 		case Input.KEY_M : this.changeSound();break;
+		
+		//afficher les joueurs
+		case Input.KEY_LSHIFT: this.changeShplayer(); break; 
+		
+		//afficher les charactere
+		case Input.KEY_LCONTROL: this.changeShChara(); break;
 		}
 
+	}
+
+	private void changeShChara() {
+		this.showChara= !this.showChara ; 
+		
 	}
 
 	private void changeSound() {
@@ -219,7 +233,7 @@ public class WindowGame extends BasicGameState {
 		for(int cursorX = 0; cursorX >= 0 && cursorX < (screenWidth/TILED_SIZE) && cursorX < map.getWidth();cursorX++){
 
 			for(int cursorY = 0; cursorY >= 0 && cursorY < (screenHeight/TILED_SIZE) && cursorY < map.getHeight();cursorY++){
-
+//mettre cursorY à 0 pour éviter un bord noir + plantage en lançant une 2eme partie
 				DisplayCellule cCell = mapDisplay[mapOriginX+cursorX][mapOriginY+cursorY];
 				if(cCell.getCell().getDecor()!=null){
 					g.drawAnimation(cCell.getCurrentAnimation(),cursorX*TILED_SIZE,cursorY*TILED_SIZE);
@@ -245,13 +259,42 @@ public class WindowGame extends BasicGameState {
 		}
 	}
 	
-	public void affichePLayer(GameContainer container, Graphics g){
-		g.setColor(Color.magenta);
-		g.drawString("Player 1   : ", 0, screenHeight - 80);
-		g.drawString("foodstock  : ", 0, screenHeight - 60);
-		g.drawString("stonestock : ", 0, screenHeight - 40);
-		g.drawString("seedstock  : ", 0, screenHeight-  20);
+	public void afficheChar(GameContainer container, Graphics g){
+		if(!gameOver){
+			if (this.currentChar != null){
+			g.setColor(Color.darkGray);
+			g.fillRect(screenWidth/3, screenHeight - 20-screenHeight/12, 370, 20);
+			g.setColor(Color.pink);
+			g.drawString("charactere: hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter().getPlayer().getName(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
+			}
+		}
 		
+	}
+	
+	public void affichePLayer(GameContainer container, Graphics g){
+		if (!gameOver){
+			g.setColor(Color.darkGray);
+			g.fillRect(0, screenHeight - 100-screenHeight/12 - 5, 150, 120);
+			g.setColor(Color.magenta);
+			g.drawString("PLAYER 1   : " , 0, screenHeight - 80-20-screenHeight/12);
+			g.drawString("FOODSTOCK  : "+ ordo.getPlayer(1).getFoodStock(), 0, screenHeight - 60-20-screenHeight/12);
+			g.drawString("STONESOTCK : "+ ordo.getPlayer(1).getStone(), 0, screenHeight - 40-20-screenHeight/12);
+			g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(1).getSeed(), 0, screenHeight-  20-20 -screenHeight/12 );
+			g.drawString("Chara. rem.: "+ ordo.getPlayer(1).characters_remaining(), 0, screenHeight-20 -screenHeight/12 );
+
+			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
+				g.setColor(Color.darkGray);
+				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
+				g.setColor(Color.magenta);
+				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
+				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
+				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
+				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
+				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
+
+			}
+			g.setColor(Color.white);
+		}
 	}
 
 
@@ -325,6 +368,11 @@ public class WindowGame extends BasicGameState {
 
 		//Affichage infos
 		if(this.showInfo)afficherInfos(container, g);
+
+
+		if(this.showplayers)affichePLayer(container, g);
+		
+		if(this.showChara)afficheChar(container, g);
 
 	}
 
@@ -594,32 +642,16 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*50 <= ordo.getTurn() && EcranDeValidation.mode > -2 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*100 <= ordo.getTurn() && EcranDeValidation.mode > -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}
 
 	}
 
-
-
-	/*public static void startgame() throws SlickException {
-		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
-		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
-		Ordonnanceur ordo = new Ordonnanceur(lC);
-		WindowGame wg = new WindowGame();
-		wg.initialisedGameModel(lC, carte, ordo);
-		AppGameContainer tmp = new AppGameContainer(null);
-		AppGameContainer app= new AppGameContainer(wg,tmp.getScreenWidth(),tmp.getScreenHeight(),false);
-		wg.setScreenDimension(tmp.getScreenWidth(),tmp.getScreenHeight());
-		System.out.println(wg.screenWidth+"/"+tmp.getScreenWidth()+" "+wg.screenHeight+"/"+app.getScreenHeight());
-		app.start();
-	}
-
-
+/*
 	public static void main(String[] args) throws SlickException {
 		startgame();
-		/*
 		ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
 		Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 		Ordonnanceur ordo = new Ordonnanceur(lC);

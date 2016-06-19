@@ -62,14 +62,16 @@ public class EndGameView extends BasicGameState {
 		
 		if(WindowGame.ordo.getTurn()==42){
 			background42.draw(0, 0, container.getWidth(), container.getHeight());
+			font2.drawString(larg/4    , haut/5  , "OMG VICTOIRE TOTALE 42 42 42" + WindowGame.ordo.getTurn() +" tours" , Color.orange);
 		}
 		else{
 			if(EcranDeValidation.mode == 2 || EcranDeValidation.mode == 5){
 				if (!Credit.J1.defeated()){
-					font2.drawString(larg/4    , haut/5  , "OMG VICTOIRE TOTALE 42 42 42" + WindowGame.ordo.getTurn() +" tours" , Color.orange);
+					font2.drawString(larg/4    , haut/5  , "Le vainquer est joueur 1" , Color.orange);
+
 				}
 				else{
-					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur2" , Color.orange);
+					font2.drawString(larg/4    , haut/5  , "Le vainqueur est joueur 2" , Color.orange);
 				}
 				font.drawString(larg/6, haut/3 + 3*haut/10 , "Vous avez tenu " + WindowGame.ordo.getTurn() +" tours " , Color.orange);
 			}
