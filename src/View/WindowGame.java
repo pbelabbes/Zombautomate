@@ -403,6 +403,7 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(4 * screenWidth / 5, screenHeight - 100 - screenHeight / 12 - 5, 150, 120);
 				g.setColor(Color.magenta);
+/*<<<<<<< HEAD
 				g.drawString("PLAYER 2   : ", 4 * screenWidth / 5, screenHeight - 80 - 20 - screenHeight / 12);
 				g.drawString("FOODSTOCK  : " + ordo.getPlayer(2).getFoodStock(), 4 * screenWidth / 5,
 						screenHeight - 20 - 60 - screenHeight / 12);
@@ -412,6 +413,12 @@ public class WindowGame extends BasicGameState {
 						screenHeight - 20 - 20 - screenHeight / 12);
 				g.drawString("Chara. rem.: " + ordo.getPlayer(2).characters_remaining(), 4 * screenWidth / 5,
 						screenHeight - 20 - screenHeight / 12);
+=======*/
+				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
+				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
+				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getStone(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
+				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
+				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
 
 			}
 			g.setColor(Color.white);
@@ -504,7 +511,8 @@ public class WindowGame extends BasicGameState {
 
 	}
 
-	@Override
+
+/*	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 
 		if (!this.gameOver) {
@@ -512,8 +520,23 @@ public class WindowGame extends BasicGameState {
 			for (DisplayCharacter c : characters) {
 				if (c.getCharacter() == ordo.getCharacter()) {
 					cCharac = c;
+
+
+	public void incrementedureeAnim(DisplayCharacter cCharac){
+		if (cCharac.getTempsAnim()<=this.dureeAnim){
+			this.dureeAnim=0;
+			cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+			cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+			if (cCharac.getCharacter() instanceof Survivor){
+				if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
+					Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
+					if (arme instanceof Baseball_Bat) cCharac.setAction(2);
+					else cCharac.setAction(4);
+>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
 				}
+				else cCharac.setAction(0);
 			}
+<<<<<<< HEAD
 			// this.currentChar = cCharac;
 			if (cCharac != null) {
 				if (!cCharac.moving) {
@@ -705,10 +728,32 @@ public class WindowGame extends BasicGameState {
 							}
 
 							break;
+=======
+			cCharac.setMoving(false);
+		}
+		else {this.dureeAnim++;}
+>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
 
-						case SWAP:
+	}*/
+	public void afficheAction(DisplayCharacter cCharac, int delta){
+		incrementedureeAnim(cCharac);
+		if (dureeAnim!=0){
+			if (ordo.getAction()!=null){
+				switch (ordo.getAction()){
+				case MOVE://animation1
+					cCharac.setAction(1);
+					switch (cCharac.getDirection()) {
+					case 0:
+						cCharac.setY(cCharac.getY() + vitesse * delta); 
+						if (cCharac.getY()>=cCharac.getCharacter().getCell().getPosition().y){
 							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						}
+						break;
+					case 1:
+						cCharac.setX(cCharac.getX() - vitesse * delta); 
+						if (cCharac.getX()<=cCharac.getCharacter().getCell().getPosition().x){
 							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+/*<<<<<<< HEAD
 							if (cCharac.getTempsAnim() <= this.dureeAnim) {
 								this.dureeAnim = 0;
 								cCharac.setAction(0);
@@ -759,8 +804,41 @@ public class WindowGame extends BasicGameState {
 							this.dureeAnim++;
 							cCharac.setAction(8);
 						}
+=======*/
+						}
+						break;
+					case 2:
+						cCharac.setX(cCharac.getX() + vitesse * delta); 
+						if (cCharac.getX()>=cCharac.getCharacter().getCell().getPosition().x){
+							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
+						}
+						break;
+					case 3:
+						cCharac.setY(cCharac.getY() - vitesse * delta); 
+						if (cCharac.getY()<=cCharac.getCharacter().getCell().getPosition().y){
+							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
+						}
+						break;
+					default :
 					}
+					break;
+
+				case ATTACK://animations 2 et 3 couteau  4 et 5 lance 6 poing
+					if (cCharac.getCharacter() instanceof Survivor){
+						if (((Survivor) cCharac.getCharacter()).getWeapon().size()>0){
+							Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
+							if (arme instanceof Baseball_Bat) cCharac.setAction(3);
+							else cCharac.setAction(5);
+						}
+						else cCharac.setAction(6);
+					}
+					break;
+
+				default:
+					cCharac.setAction(7);
+					break;
 				}
+/*<<<<<<< HEAD
 			} else {
 				ordo.next();
 				// this.addZombie();
@@ -799,9 +877,63 @@ public class WindowGame extends BasicGameState {
 			// System.out.println("remove displaycharacter");
 			// this.characters.remove(cCharac);
 			// }
+=======*/
+			}
+			//Dans le cas ou le personnage ne fait aucune action
+			else {cCharac.setAction(8);}
 		}
 
+	}
+
+	public DisplayCharacter recupDisplayCharacter(){
+		DisplayCharacter cCharac = null;
+		for (DisplayCharacter c : characters) {
+			if(c.getCharacter() == ordo.getCharacter()){
+				cCharac = c;
+			}
+		}
+		return cCharac;
+	}
+
+	public void nextOrdonnanceur(DisplayCharacter cCharac) throws SlickException{
+		int tour = ordo.getTurn(); //on enregistre le tour actuel pour voir si l'appel de next() fait changer de tour
+		ordo.next();
+		cCharac = null;
+		cCharac = recupDisplayCharacter();
+		if(tour != ordo.getTurn()){this.addZombie();}
+		if(cCharac != null){
+			cCharac.setMoving(true);
+			switch (ordo.getDirection()){
+			case 'U': break;
+			case 'S': cCharac.setDirection(0); break;
+			case 'O': cCharac.setDirection(1); break;
+			case 'E': cCharac.setDirection(2); break;
+			case 'N': cCharac.setDirection(3); break;
+			default:;
+			}
+		}
+	}
+
+	@Override
+	public void update(GameContainer container,StateBasedGame game, int delta) throws SlickException {
+		if(!this.gameOver){
+			DisplayCharacter cCharac = recupDisplayCharacter();
+			if(cCharac != null){
+				if (!cCharac.moving){
+					nextOrdonnanceur(cCharac);
+					this.currentChar = cCharac;
+				}
+				else{
+					//On continue d'afficher l'action du perso precedent
+					afficheAction(cCharac, delta);
+				}
+			}
+			else nextOrdonnanceur(cCharac);
+			this.gameOver = Moteur.clean_dead_bodies(this.charactersList) > 0 ;
+
+		}
 		cleanCharacters();
+/*<<<<<<< HEAD
 		if (this.isMoving) {
 			switch (this.direction) {
 			case 0:
@@ -821,9 +953,18 @@ public class WindowGame extends BasicGameState {
 					this.mapOrigin.x++;
 				break;
 
+=======*/
+
+		//si on déplace la vue de la carte
+		if(this.isMoving){
+			switch(this.direction){
+			case 0: if(this.mapOrigin.y > 0) this.mapOrigin.y--;break;
+			case 1: if(this.mapOrigin.y < (map.getHeight()-screenHeight/TILED_SIZE)) this.mapOrigin.y++;break;
+			case 2: if(this.mapOrigin.x > 0)this.mapOrigin.x--;break;
+			case 3: if(this.mapOrigin.x< (map.getWidth()-screenWidth/TILED_SIZE)) this.mapOrigin.x++;break;
+			default:;
 			}
 		}
-
 	}
 
 	private void addZombie() throws SlickException {

@@ -75,24 +75,24 @@ public class Credit extends BasicGameState {
 		font2.drawString(larg/4 - larg/10   , haut/4 -haut/13 , Integer.toString( creditbase -J1.getCost()) , Color.orange);
 	
 		if (creditbase -J1.getCost()> 0 ){
-			font.drawString(larg/10 + larg/30 , haut/4 + haut/10, "Vous pouvez jouez" , Color.green);
+			font.drawString(larg/10 + larg/30 , haut/4 + haut/10, "Vous pouvez jouer" , Color.green);
 		}
 		else{
 			font.drawString(larg/10 + larg/30 , haut/4 + haut/10 , "L'automate est trop grand" , Color.red);
 		}
 		
 		if (creditj2>0 ){
-			font.drawString(larg/2 + larg/20 , haut/2 +haut/15 + haut/4 , "Vous pouvez jouez" , Color.green);
+			font.drawString(larg/2 + larg/20 , haut/2 +haut/15 + haut/4 , "Vous pouvez jouer" , Color.green);
 		}
 		else{
 			font.drawString(larg/2 + larg/40 , haut/2 +haut/15 + haut/4 ,"L'automate est trop grand" , Color.red);
 		}
 		
 		if(creditj2 > 0 && creditbase -J1.getCost()> 0  ){
-			g.drawString("appuyez sur une touche pour joeur" , larg/8, 3*haut/4);
+			g.drawString("appuyer sur une touche pour jouer" , larg/8, 3*haut/4);
 		}
 		else{
-			g.drawString("appuyez sur une touche editer vos automates" , larg/8, 3*haut/4);
+			g.drawString("appuyer sur une touche editer vos automates" , larg/8, 3*haut/4);
 		}
 	
 	}

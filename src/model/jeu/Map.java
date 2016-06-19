@@ -164,13 +164,15 @@ public class Map extends Observable{
 	{
 		for(Character c : lC) 
 		{
+			Cell cellule;
 			int x,y;
 			do
 			{
 				x =(int) (this.getWidth()*Math.random());
 				y =(int) (this.getHeight()*Math.random());
+				cellule = grid[x][y]; 
 			}
-			while(grid[x][y].getEntity_on()!=null && grid[x][y].getDecor() != Decor.ROCK);
+			while(cellule.getEntity_on()!=null || cellule.getDecor() == Decor.ROCK);
 			this.set_charact(c,new Point(x,y));
 		}
 	}
