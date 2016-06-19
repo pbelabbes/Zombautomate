@@ -403,7 +403,7 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(4 * screenWidth / 5, screenHeight - 100 - screenHeight / 12 - 5, 150, 120);
 				g.setColor(Color.magenta);
-/*<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 				g.drawString("PLAYER 2   : ", 4 * screenWidth / 5, screenHeight - 80 - 20 - screenHeight / 12);
 				g.drawString("FOODSTOCK  : " + ordo.getPlayer(2).getFoodStock(), 4 * screenWidth / 5,
 						screenHeight - 20 - 60 - screenHeight / 12);
@@ -413,13 +413,13 @@ public class WindowGame extends BasicGameState {
 						screenHeight - 20 - 20 - screenHeight / 12);
 				g.drawString("Chara. rem.: " + ordo.getPlayer(2).characters_remaining(), 4 * screenWidth / 5,
 						screenHeight - 20 - screenHeight / 12);
-=======*/
+/*=======
 				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
 				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
 				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getStone(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
 				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
 				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
-
+*/
 			}
 			g.setColor(Color.white);
 		}
@@ -521,7 +521,7 @@ public class WindowGame extends BasicGameState {
 				if (c.getCharacter() == ordo.getCharacter()) {
 					cCharac = c;
 
-
+*/
 	public void incrementedureeAnim(DisplayCharacter cCharac){
 		if (cCharac.getTempsAnim()<=this.dureeAnim){
 			this.dureeAnim=0;
@@ -532,11 +532,11 @@ public class WindowGame extends BasicGameState {
 					Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
 					if (arme instanceof Baseball_Bat) cCharac.setAction(2);
 					else cCharac.setAction(4);
->>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
+/*>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f*/
 				}
 				else cCharac.setAction(0);
 			}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 			// this.currentChar = cCharac;
 			if (cCharac != null) {
 				if (!cCharac.moving) {
@@ -728,13 +728,15 @@ public class WindowGame extends BasicGameState {
 							}
 
 							break;
-=======
+						
+//=======
 			cCharac.setMoving(false);
-		}
-		else {this.dureeAnim++;}
->>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
+		}}
+		else this.dureeAnim++;}}}
+//>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
 
-	}*/
+	
+}
 	public void afficheAction(DisplayCharacter cCharac, int delta){
 		incrementedureeAnim(cCharac);
 		if (dureeAnim!=0){
