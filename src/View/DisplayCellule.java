@@ -49,8 +49,8 @@ public class DisplayCellule extends Display implements Observer {
 			this.animations[2] = loadAnimation(sprite, 0, 1, 2); //Apple ( Tomato )
 			this.animations[3] = loadAnimation(sprite, 0, 1, 3); //Sprout
 			this.animations[4] = loadAnimation(sprite, 0, 1, 7); //Tree
-			this.animations[5] = loadAnimation(sprite, 0, 1, 6); //Katana
-			this.animations[6] = loadAnimation(sprite, 0, 1, 5); //Baseball_bat
+			this.animations[5] = loadAnimation(sprite, 0, 1, 5); //Katana
+			this.animations[6] = loadAnimation(sprite, 0, 1, 6); //Baseball_bat
 			this.animations[7] = loadAnimation(sprite, 0, 1, 4);//Rabbit
 			ANIMATIONS = this.animations;
 		}

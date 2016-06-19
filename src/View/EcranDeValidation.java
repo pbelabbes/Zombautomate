@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -92,6 +93,22 @@ public class EcranDeValidation extends BasicGameState implements GameState {
 				Thread.sleep(700);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
+			}
+			File doc_cmo = new File("../Zombautomate/ocaml/doc.cmo");
+			if(doc_cmo.exists())
+			{
+				if((new File("../Zombautomate/ocaml/user1.cmo")).exists())
+					Pop_err_compil.infoBox("Une erreur de syntaxe a été détectée dans votre code. (user2.ml)", "Erreur de compilation");
+				else
+					Pop_err_compil.infoBox("Une erreur de syntaxe a été détectée dans votre code. (user1.ml)", "Erreur de compilation");
+
+				try {
+					Runtime.getRuntime().exec("make clean", null, new File("../Zombautomate/ocaml/")) ;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				game.enterState(ID);
+				return;
 			}
 			try {
 				Runtime.getRuntime().exec("../Zombautomate/ocaml/xml_writter");
