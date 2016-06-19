@@ -1,8 +1,10 @@
 package View;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.AppGameContainer;
@@ -15,13 +17,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Model.Character;
-import Model.Map;
-import Model.Moteur;
-import Model.Ordonnanceur;
-import Model.Player;
-import Model.XMLReader;
-import Model.transfer;
+import model.jeu.*;
+import model.jeu.Character;
 
 public class EcranDeValidation extends BasicGameState implements GameState {
 	public static final int ID = 4;
