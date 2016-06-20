@@ -306,7 +306,7 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(screenWidth/3, screenHeight - 20-screenHeight/12, 370, 20);
 				g.setColor(Color.pink);
-				g.drawString("charactere: hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter().getPlayer().getName(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
+				g.drawString(((currentChar.getCharacter() instanceof Zombie) ? "Zombie" : "Survivor") + " : hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
 			}
 		}
 
