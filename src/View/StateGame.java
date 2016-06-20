@@ -295,8 +295,6 @@ public static void main(String[] args) throws SlickException {
 //	System.out.println("pru");
 	
 	
-	System.setProperty("org.lwjgl.librarypath",
-            new File(new File(System.getProperty("user.dir"), "/lib/natives"), LWJGLUtil.getPlatformName()).getAbsolutePath());
 
 	AppGameContainer tmp = new AppGameContainer(null);
 	AppGameContainer app= new AppGameContainer(new StateGame(),tmp.getScreenWidth(),tmp.getScreenHeight(),false);
