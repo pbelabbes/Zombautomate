@@ -327,7 +327,7 @@ public abstract class Character extends Observable {
 	 */
 	public String toString()
 	{
-		return this.getPlayer().getName();
+		return getPlayer().getId() + "." + getPlayer().getEntities().indexOf(this);
 	}
 	
 	/**

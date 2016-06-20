@@ -48,5 +48,9 @@
 
   val presence_AD: etat -> cible -> action -> etat -> priorite -> automate
     
+  val presence_oppose_AD: etat -> cible -> action -> etat -> priorite -> automate
+
+  val scan_loin_oppose_AD: etat -> cible -> action -> etat -> priorite -> automate
+
   val make_xml: string->string->string->equipe->unit
 
