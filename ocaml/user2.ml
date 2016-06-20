@@ -48,14 +48,38 @@ let (farmer: automate) =
     presence_AD 0 Lapin Ramasser 0 4
   @
     scan_loin_AD 0 Pomme Deplacer 0 2
+   @
+    fuirL 0 Ennemie Deplacer 0 2
+   @
+    fuirL 0 Zombie Deplacer 0 2
+  @
+    fuir 0 Ennemie Deplacer 0 2
+   @
+    fuir 0 Zombie Deplacer 0 2
   @
     scan_loin_AD 0 Lapin Deplacer 0 1
   @
     presence_AD 0 Herbe Planter 1 0
+ @
+    fuirL 1 Ennemie Deplacer 1 2
+   @
+    fuirL 1 Zombie Deplacer 1 2
+  @
+    fuir 1 Ennemie Deplacer 1 2
+   @
+    fuir 1 Zombie Deplacer 1 2
   @
     presence_AD 1 Pousse Arroser 2 1
   @
     presence_AD 2 Arbre Attaquer 0 1
+ @
+    fuirL 2 Ennemie Deplacer 2 2
+   @
+    fuirL 2 Zombie Deplacer 2 2
+  @
+    fuir 2 Ennemie Deplacer 2 2
+   @
+    fuir 2 Zombie Deplacer 2 2
   @
     [(0,Ou(Present(Ennemi,N),Present(Ennemi,E)), Deplacer, S, 0, 3)]
   @

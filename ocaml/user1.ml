@@ -9,11 +9,13 @@ let (guerrier: automate) =
   @
     scan_loin_AD 0 Batte_baseball Deplacer 0 1
   @
-    presence_AD 1 Ennemi Attaquer 1 7
+    presence_AD 1 Rocher Attaquer 2 7 
+  @ 
+    presence_AD 1 Ennemi Attaquer 2 7
   @
-    presence_AD 1 Zombie Attaquer 1 6
+    presence_AD 1 Zombie Attaquer 2 6
   @
-    scan_loin_AD 1 Ennemi Deplacer 1 5
+     scan_loin_AD 1 Ennemi Deplacer 1 5
   @
     scan_loin_AD 1 Batte_baseball Deplacer 1 1
   @
@@ -21,11 +23,21 @@ let (guerrier: automate) =
   @
     presence_AD 1 Batte_baseball Ramasser 1 3
   @
-    presence_AD 1 Katana Ramasser 1 4  
+    presence_AD 1 Katana Ramasser 1 4
+  @   
+     presence_AD 2 Ennemi Attaquer 2 7
   @
-    presence_AD 0 Rocher Attaquer 0 7
+    presence_AD 2 Zombie Attaquer 2 6
+ @
+    presence_AD 2 Rocher Attaquer 2 7 
   @
-    presence_AD 1 Rocher Attaquer 1 7  
+    presence_AD 2 Katana Ramasser 1 4
+  @
+    presence_AD 2 Batte_baseball Ramasser 1 3
+  @
+    scan_loin_AD 2 Katana Deplacer 1 2
+  @
+    scan_loin_AD 2 Batte_baseball Deplacer 1 1
   @
     [(0,Defaut,Deplacer,O,1,0)]
   @
