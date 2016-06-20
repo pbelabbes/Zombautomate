@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -21,13 +22,6 @@ import sun.awt.windows.ThemeReader;
 //import Model.* ;
 
 import model.jeu.*;
-import model.jeu.Character;
-import model.jeu.Map;
-import model.jeu.Moteur;
-import model.jeu.Ordonnanceur;
-import model.jeu.Player;
-import model.jeu.XMLReader;
-import model.jeu.transfer;
 
 
 public class StateGame extends StateBasedGame {
@@ -174,8 +168,8 @@ public static void initiateboth(){
 	//modes positifs, => pour l'utilisateur
 	//modes négatifs => démos
 
-	public static ArrayList<Character> loadCharacters ( int mode ){
-		ArrayList<Character>  lC = new ArrayList<Character>() ; 
+	public static ArrayList<model.jeu.Character> loadCharacters ( int mode ){
+		ArrayList<model.jeu.Character>  lC = new ArrayList<model.jeu.Character>() ; 
 		XMLReader fichier = new XMLReader() ;
 
 		
@@ -267,7 +261,7 @@ public static Player getZombies(){
 		}
 		
 		else{
-			ArrayList<Character> lC = StateGame.loadCharacters(2) ; 
+			ArrayList<model.jeu.Character> lC = StateGame.loadCharacters(2) ; 
 			Map carte = Moteur.initiate_map(lC, StateGame.getZombies());
 			Ordonnanceur ordo = new Ordonnanceur(lC);
 			WindowGame wg = new WindowGame();
@@ -301,7 +295,9 @@ public static void main(String[] args) throws SlickException {
 //	System.out.println("pru");
 	
 	
-	
+	System.setProperty("org.lwjgl.librarypath",
+            new File(new File(System.getProperty("user.dir"), "/lib/natives"), LWJGLUtil.getPlatformName()).getAbsolutePath());
+
 	AppGameContainer tmp = new AppGameContainer(null);
 	AppGameContainer app= new AppGameContainer(new StateGame(),tmp.getScreenWidth(),tmp.getScreenHeight(),false);
 	WindowGame.screenHeight= tmp.getScreenHeight();
