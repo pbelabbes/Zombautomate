@@ -62,8 +62,8 @@
 | Se déplacer | herbe             | Déplacement N,S,E,O        |
 | Se battre   | pomme             | Joueurs, Zombies	       |
 | Ramasser    | rocher            | armes, nourriture -> herbe |
-| Echanger    | batte de baseball | armes, nourriture          |
-| Voler       | Katana 		  | armes, nourriture          | 
+| Echanger    | dague | armes, nourriture          |
+| Voler       | Lance		  | armes, nourriture          | 
 | Planter     | pousse 		  | herbe -> pousse            |
 | Arroser     | lapin 		  | pousse -> arbre            | 
 | Deposer     | Forêt 		  | herbe -> rocher            |
@@ -76,8 +76,8 @@
 - Pomme 
 - Pousse
 - Forêt
-- Batte de Baseball
-- Katana
+- Couteau
+- Lance
 
 ### Attaquer:
 - Zombie si perso case adjascente

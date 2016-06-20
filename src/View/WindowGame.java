@@ -306,7 +306,7 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(screenWidth/3, screenHeight - 20-screenHeight/12, 370, 20);
 				g.setColor(Color.pink);
-				g.drawString("charactere: hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter().getPlayer().getName(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
+				g.drawString(((currentChar.getCharacter() instanceof Zombie) ? "Zombie" : "Survivor") + " : hp : " + this.currentChar.getCharacter().getHp() +" joueur " +this.currentChar.getCharacter(), screenWidth/3 + 7, screenHeight - 17-screenHeight/12 );
 			}
 		}
 
@@ -775,7 +775,7 @@ public class WindowGame extends BasicGameState {
 	}
 
 	private void addZombie() throws SlickException {
-		if(Math.random()*100 <= ordo.getTurn() && EcranDeValidation.mode > -3 && (ordo.get_remaining_zombies()) < 20){
+		if(Math.random()*80 <= ordo.getTurn() && EcranDeValidation.mode > -3 && (ordo.get_remaining_zombies()) < 20){
 			Zombie z = map.random_pop_zombie(charactersList, zombies);
 			characters.add(new DisplayZombie(z));
 		}

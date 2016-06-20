@@ -1,611 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persos>
-	<automate id ="mich-mich">
+	<automate id ="guerrier">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="mich-mich">
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,S)</texte></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,E)</texte></condition>
-			<action>Deplacer</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Allie,O)</texte></condition>
-			<action>Deplacer</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,N)</texte></condition>
-			<action>Echanger</action>
-			<direction>N</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,S)</texte></condition>
-			<action>Echanger</action>
-			<direction>S</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,E)</texte></condition>
-			<action>Echanger</action>
-			<direction>E</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Allie,O)</texte></condition>
-			<action>Echanger</action>
-			<direction>O</direction>
-			<priorite>6</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-	</automate>
-	<automate id ="milene">
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Et</texte>
-			<condition><texte>Case_ennemie(N)</texte></condition><condition><texte>Ou</texte>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,N)</texte></condition>
+			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,S)</texte></condition>
+			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,E)</texte></condition>
+			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,O)</texte></condition>
+			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>2</priorite>
@@ -613,7 +75,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>2</priorite>
@@ -621,7 +83,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>2</priorite>
@@ -629,7 +91,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>2</priorite>
@@ -637,7 +99,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -645,7 +107,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -653,7 +115,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -661,237 +123,401 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,N)</texte></condition>
-			<action>Planter</action>
-			<direction>N</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,S)</texte></condition>
-			<action>Planter</action>
-			<direction>S</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,E)</texte></condition>
-			<action>Planter</action>
-			<direction>E</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,O)</texte></condition>
-			<action>Planter</action>
-			<direction>O</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
 			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,N)</texte></condition>
-			<action>Arroser</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,S)</texte></condition>
-			<action>Arroser</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,E)</texte></condition>
-			<action>Arroser</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,O)</texte></condition>
-			<action>Arroser</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,N)</texte></condition>
-			<action>Attaquer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,S)</texte></condition>
-			<action>Attaquer</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,E)</texte></condition>
-			<action>Attaquer</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,O)</texte></condition>
-			<action>Attaquer</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
 			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<condition><texte>Present(Ennemi,E)</texte></condition></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<condition><texte>Present(Ennemi,O)</texte></condition></condition>
-			<action>Deplacer</action>
+			<action>Attaquer</action>
 			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<action>Voler</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,E)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
+			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,O)</texte></condition>
-			<action>Voler</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 	</automate>
-	<automate id ="milene">
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Et</texte>
-			<condition><texte>Case_ennemie(N)</texte></condition><condition><texte>Ou</texte>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
+	<automate id ="guerrier">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,N)</texte></condition>
+			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,S)</texte></condition>
+			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,E)</texte></condition>
+			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,O)</texte></condition>
+			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>2</priorite>
@@ -899,7 +525,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>2</priorite>
@@ -907,7 +533,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>2</priorite>
@@ -915,7 +541,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>2</priorite>
@@ -923,7 +549,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -931,7 +557,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -939,7 +565,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -947,237 +573,401 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,N)</texte></condition>
-			<action>Planter</action>
-			<direction>N</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,S)</texte></condition>
-			<action>Planter</action>
-			<direction>S</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,E)</texte></condition>
-			<action>Planter</action>
-			<direction>E</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,O)</texte></condition>
-			<action>Planter</action>
-			<direction>O</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
 			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,N)</texte></condition>
-			<action>Arroser</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,S)</texte></condition>
-			<action>Arroser</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,E)</texte></condition>
-			<action>Arroser</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,O)</texte></condition>
-			<action>Arroser</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,N)</texte></condition>
-			<action>Attaquer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,S)</texte></condition>
-			<action>Attaquer</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,E)</texte></condition>
-			<action>Attaquer</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,O)</texte></condition>
-			<action>Attaquer</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
 			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<condition><texte>Present(Ennemi,E)</texte></condition></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<condition><texte>Present(Ennemi,O)</texte></condition></condition>
-			<action>Deplacer</action>
+			<action>Attaquer</action>
 			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<action>Voler</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,E)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
+			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,O)</texte></condition>
-			<action>Voler</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 	</automate>
-	<automate id ="milene">
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Et</texte>
-			<condition><texte>Case_ennemie(N)</texte></condition><condition><texte>Ou</texte>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
+	<automate id ="guerrier">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,N)</texte></condition>
+			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,S)</texte></condition>
+			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,E)</texte></condition>
+			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,O)</texte></condition>
+			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>2</priorite>
@@ -1185,7 +975,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>2</priorite>
@@ -1193,7 +983,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>2</priorite>
@@ -1201,7 +991,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>2</priorite>
@@ -1209,7 +999,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -1217,7 +1007,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -1225,7 +1015,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -1233,237 +1023,401 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,N)</texte></condition>
-			<action>Planter</action>
-			<direction>N</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,S)</texte></condition>
-			<action>Planter</action>
-			<direction>S</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,E)</texte></condition>
-			<action>Planter</action>
-			<direction>E</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,O)</texte></condition>
-			<action>Planter</action>
-			<direction>O</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
 			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,N)</texte></condition>
-			<action>Arroser</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,S)</texte></condition>
-			<action>Arroser</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,E)</texte></condition>
-			<action>Arroser</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,O)</texte></condition>
-			<action>Arroser</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,N)</texte></condition>
-			<action>Attaquer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,S)</texte></condition>
-			<action>Attaquer</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,E)</texte></condition>
-			<action>Attaquer</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,O)</texte></condition>
-			<action>Attaquer</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
 			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<condition><texte>Present(Ennemi,E)</texte></condition></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<condition><texte>Present(Ennemi,O)</texte></condition></condition>
-			<action>Deplacer</action>
+			<action>Attaquer</action>
 			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<action>Voler</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,E)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Ennemi,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
+			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>1</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
+			<action>Deplacer</action>
+			<direction>N</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,O)</texte></condition>
-			<action>Voler</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
 			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 	</automate>
-	<automate id ="milene">
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Et</texte>
-			<condition><texte>Case_ennemie(N)</texte></condition><condition><texte>Ou</texte>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
+	<automate id ="guerrier">
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,N)</texte></condition>
+			<condition><texte>Present(Katana,N)</texte></condition>
 			<action>Ramasser</action>
 			<direction>N</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,S)</texte></condition>
+			<condition><texte>Present(Katana,S)</texte></condition>
 			<action>Ramasser</action>
 			<direction>S</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,E)</texte></condition>
+			<condition><texte>Present(Katana,E)</texte></condition>
 			<action>Ramasser</action>
 			<direction>E</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,O)</texte></condition>
+			<condition><texte>Present(Katana,O)</texte></condition>
 			<action>Ramasser</action>
 			<direction>O</direction>
 			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>2</priorite>
@@ -1471,7 +1425,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>2</priorite>
@@ -1479,7 +1433,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>2</priorite>
@@ -1487,7 +1441,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>2</priorite>
@@ -1495,7 +1449,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
@@ -1503,7 +1457,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
@@ -1511,7 +1465,7 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
@@ -1519,443 +1473,331 @@
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
 			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,N)</texte></condition>
-			<action>Planter</action>
-			<direction>N</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,S)</texte></condition>
-			<action>Planter</action>
-			<direction>S</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,E)</texte></condition>
-			<action>Planter</action>
-			<direction>E</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,O)</texte></condition>
-			<action>Planter</action>
-			<direction>O</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
-		</transition>
-		<transition>
 			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,N)</texte></condition>
-			<action>Arroser</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,S)</texte></condition>
-			<action>Arroser</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,E)</texte></condition>
-			<action>Arroser</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,O)</texte></condition>
-			<action>Arroser</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,N)</texte></condition>
-			<action>Attaquer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,S)</texte></condition>
-			<action>Attaquer</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,E)</texte></condition>
-			<action>Attaquer</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,O)</texte></condition>
-			<action>Attaquer</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
 			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<condition><texte>Present(Ennemi,E)</texte></condition></condition>
-			<action>Deplacer</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<condition><texte>Present(Ennemi,O)</texte></condition></condition>
-			<action>Deplacer</action>
+			<action>Attaquer</action>
 			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<action>Voler</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,E)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
+			<etat_courant>1</etat_courant>
 			<condition><texte>Present(Ennemi,O)</texte></condition>
-			<action>Voler</action>
+			<action>Attaquer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
-	</automate>
-	<automate id ="milene">
 		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Et</texte>
-			<condition><texte>Case_ennemie(N)</texte></condition><condition><texte>Ou</texte>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<condition><texte>Present(Pomme,N)</texte></condition></condition></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Zombie,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>6</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Pomme,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,N)</texte></condition>
-			<action>Ramasser</action>
-			<direction>N</direction>
-			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,S)</texte></condition>
-			<action>Ramasser</action>
-			<direction>S</direction>
-			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,E)</texte></condition>
-			<action>Ramasser</action>
-			<direction>E</direction>
-			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Lapin,O)</texte></condition>
-			<action>Ramasser</action>
-			<direction>O</direction>
-			<priorite>4</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,N)</texte></condition>
-			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>2</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,S)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>2</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,E)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
-			<priorite>2</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Pomme,O)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Ennemi,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>2</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>5</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,N)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,N)</texte></condition>
 			<action>Deplacer</action>
 			<direction>N</direction>
 			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,S)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,S)</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
 			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,E)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,E)</texte></condition>
 			<action>Deplacer</action>
 			<direction>E</direction>
 			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>ScanLoin(Lapin,O)</texte></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Batte_baseball,O)</texte></condition>
 			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,N)</texte></condition>
-			<action>Planter</action>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,N)</texte></condition>
+			<action>Deplacer</action>
 			<direction>N</direction>
-			<priorite>0</priorite>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,S)</texte></condition>
+			<action>Deplacer</action>
+			<direction>S</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,E)</texte></condition>
+			<action>Deplacer</action>
+			<direction>E</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>ScanLoin(Katana,O)</texte></condition>
+			<action>Deplacer</action>
+			<direction>O</direction>
+			<priorite>2</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Batte_baseball,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>3</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,N)</texte></condition>
+			<action>Ramasser</action>
+			<direction>N</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,S)</texte></condition>
+			<action>Ramasser</action>
+			<direction>S</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,E)</texte></condition>
+			<action>Ramasser</action>
+			<direction>E</direction>
+			<priorite>4</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Katana,O)</texte></condition>
+			<action>Ramasser</action>
+			<direction>O</direction>
+			<priorite>4</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,S)</texte></condition>
-			<action>Planter</action>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
 			<direction>S</direction>
-			<priorite>0</priorite>
-			<etat_futur>1</etat_futur>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,E)</texte></condition>
-			<action>Planter</action>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
 			<direction>E</direction>
-			<priorite>0</priorite>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
+			<etat_futur>0</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,N)</texte></condition>
+			<action>Attaquer</action>
+			<direction>N</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,S)</texte></condition>
+			<action>Attaquer</action>
+			<direction>S</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,E)</texte></condition>
+			<action>Attaquer</action>
+			<direction>E</direction>
+			<priorite>7</priorite>
+			<etat_futur>1</etat_futur>
+		</transition>
+		<transition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Present(Rocher,O)</texte></condition>
+			<action>Attaquer</action>
+			<direction>O</direction>
+			<priorite>7</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Herbe,O)</texte></condition>
-			<action>Planter</action>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
 			<direction>O</direction>
 			<priorite>0</priorite>
 			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
 			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,N)</texte></condition>
-			<action>Arroser</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,S)</texte></condition>
-			<action>Arroser</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,E)</texte></condition>
-			<action>Arroser</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>1</etat_courant>
-			<condition><texte>Present(Pousse,O)</texte></condition>
-			<action>Arroser</action>
+			<condition><texte>Defaut</texte></condition>
+			<action>Deplacer</action>
 			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>2</etat_futur>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,N)</texte></condition>
-			<action>Attaquer</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,S)</texte></condition>
-			<action>Attaquer</action>
-			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,E)</texte></condition>
-			<action>Attaquer</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>2</etat_courant>
-			<condition><texte>Present(Arbre,O)</texte></condition>
-			<action>Attaquer</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<condition><texte>Present(Ennemi,E)</texte></condition></condition>
+			<etat_courant>0</etat_courant>
+			<condition><texte>Defaut</texte></condition>
 			<action>Deplacer</action>
 			<direction>S</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 		<transition>
-			<etat_courant>0</etat_courant><condition><texte>Ou</texte>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<condition><texte>Present(Ennemi,O)</texte></condition></condition>
+			<etat_courant>1</etat_courant>
+			<condition><texte>Defaut</texte></condition>
 			<action>Deplacer</action>
-			<direction>N</direction>
-			<priorite>3</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,N)</texte></condition>
-			<action>Voler</action>
-			<direction>N</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,S)</texte></condition>
-			<action>Voler</action>
 			<direction>S</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,E)</texte></condition>
-			<action>Voler</action>
-			<direction>E</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
-		</transition>
-		<transition>
-			<etat_courant>0</etat_courant>
-			<condition><texte>Present(Ennemi,O)</texte></condition>
-			<action>Voler</action>
-			<direction>O</direction>
-			<priorite>1</priorite>
-			<etat_futur>0</etat_futur>
+			<priorite>0</priorite>
+			<etat_futur>1</etat_futur>
 		</transition>
 	</automate>
 </persos>
