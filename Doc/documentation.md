@@ -76,8 +76,8 @@
 - Pomme 
 - Pousse
 - Forêt
-- Batte de Baseball
-- Katana
+- Couteau
+- Lance
 
 ### Attaquer:
 - Zombie si perso case adjascente
