@@ -1,3 +1,4 @@
+
 package View;
 
 import java.awt.Font;
@@ -328,26 +329,12 @@ public class WindowGame extends BasicGameState {
 				g.setColor(Color.darkGray);
 				g.fillRect(4*screenWidth/5, screenHeight - 100-screenHeight/12 - 5, 150, 120);
 				g.setColor(Color.magenta);
-///<<<<<<< HEAD
-/*<<<<<<< HEAD*/
-				g.drawString("PLAYER 2   : ", 4 * screenWidth / 5, screenHeight - 80 - 20 - screenHeight / 12);
-				g.drawString("FOODSTOCK  : " + ordo.getPlayer(2).getFoodStock(), 4 * screenWidth / 5,
-						screenHeight - 20 - 60 - screenHeight / 12);
-				g.drawString("STONESTOCK : " + ordo.getPlayer(2).getFoodStock(), 4 * screenWidth / 5,
-						screenHeight - 20 - 40 - screenHeight / 12);
-				g.drawString("SEEDSTOCK  : " + ordo.getPlayer(2).getSeed(), 4 * screenWidth / 5,
-						screenHeight - 20 - 20 - screenHeight / 12);
-				g.drawString("Chara. rem.: " + ordo.getPlayer(2).characters_remaining(), 4 * screenWidth / 5,
-						screenHeight - 20 - screenHeight / 12);
-/*=======
-=======
->>>>>>> 4d036f2918fbd24a535d12da72909d832c65770c
 				g.drawString("PLAYER 2   : ", 4*screenWidth/5, screenHeight - 80 -20-screenHeight/12);
 				g.drawString("FOODSTOCK  : "+ ordo.getPlayer(2).getFoodStock(), 4*screenWidth/5, screenHeight -20- 60-screenHeight/12);
 				g.drawString("STONESTOCK : "+ ordo.getPlayer(2).getFoodStock(),4*screenWidth/5, screenHeight-20 - 40-screenHeight/12);
 				g.drawString("SEEDSTOCK  : "+ ordo.getPlayer(2).getSeed(), 4*screenWidth/5, screenHeight-  20-20 -screenHeight/12 );
 				g.drawString("Chara. rem.: "+ ordo.getPlayer(2).characters_remaining(),  4*screenWidth/5, screenHeight -20-screenHeight/12 );
-*/
+
 			}
 			g.setColor(Color.white);
 		}
@@ -444,218 +431,14 @@ public class WindowGame extends BasicGameState {
 					Arme arme=((Survivor) cCharac.getCharacter()).getWeapon().get(0);
 					if (arme instanceof Baseball_Bat) cCharac.setAction(2);
 					else cCharac.setAction(4);
-/*>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f*/
 				}
-				else cCharac.setAction(0);
-			}
-//<<<<<<< HEAD
-			// this.currentChar = cCharac;
-			if (cCharac != null) {
-				if (!cCharac.moving) {
-					// Si le personnage a fini son action on change
-
-					int tour = ordo.getTurn(); // on enregistre le tour actuel
-												// pour voir si l'appel de
-												// next() fait changer de tour
-
-					ordo.next();
-					if (tour != ordo.getTurn()) {
-						this.addZombie();
-					}
-
-					cCharac = null;
-					for (DisplayCharacter c : characters) {
-						if (c.getCharacter() == ordo.getCharacter()) {
-							cCharac = c;
-						}
-					}
-					this.currentChar = cCharac;
-					if (cCharac != null) {
-						cCharac.setMoving(true);
-						switch (ordo.getDirection()) {
-						case 'U':
-							break;
-						case 'S':
-							cCharac.setDirection(0);
-							break;
-						case 'O':
-							cCharac.setDirection(1);
-							break;
-						case 'E':
-							cCharac.setDirection(2);
-							break;
-						case 'N':
-							cCharac.setDirection(3);
-							break;
-						default:
-							;
-						}
-					}
-				} else {
-					// On continue d'afficher l'action du perso precedent
-
-					if (ordo.getAction() != null) {
-						switch (ordo.getAction()) {
-						case MOVE:// animation1
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								System.out.println("WindGame: ccharac.char.cell  x="
-										+ cCharac.getCharacter().getCell().getPosition().x + " y="
-										+ cCharac.getCharacter().getCell().getPosition().y + "\n");
-								cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-								cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-								cCharac.setAction(0);
-								this.dureeAnim = 0;
-								cCharac.setMoving(false);
-							} else {
-								this.dureeAnim++;
-								cCharac.setAction(1);
-								switch (cCharac.getDirection()) {
-								case 0:
-									cCharac.setY(cCharac.getY() + vitesse * delta);
-									if (cCharac.getY() >= cCharac.getCharacter().getCell().getPosition().y) {
-										cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-										// cCharac.setMoving(false);
-										// cCharac.setAction(0);
-									}
-									break;
-								case 1:
-									cCharac.setX(cCharac.getX() - vitesse * delta);
-									if (cCharac.getX() <= cCharac.getCharacter().getCell().getPosition().x) {
-										cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-										// cCharac.setMoving(false);
-										// cCharac.setAction(0);
-
-									}
-									break;
-								case 2:
-									cCharac.setX(cCharac.getX() + vitesse * delta);
-									if (cCharac.getX() >= cCharac.getCharacter().getCell().getPosition().x) {
-										cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-										// cCharac.setMoving(false);
-										// cCharac.setAction(0);
-
-									}
-									break;
-								case 3:
-									cCharac.setY(cCharac.getY() - vitesse * delta);
-									if (cCharac.getY() <= cCharac.getCharacter().getCell().getPosition().y) {
-										cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-										// cCharac.setMoving(false);
-										// cCharac.setAction(0);
-
-									}
-									break;
-								default:
-								}
-							}
-							break;
-
-						case ATTACK:// animations 2 et 3 couteau 4 et 5 lance 6
-									// poing
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								if (cCharac.getCharacter() instanceof Survivor) {
-									if (((Survivor) cCharac.getCharacter()).getWeapon().size() > 0) {
-										Arme arme = ((Survivor) cCharac.getCharacter()).getWeapon().get(0);
-										if (arme instanceof Baseball_Bat)
-											cCharac.setAction(2);
-										else
-											cCharac.setAction(4);
-									} else
-										cCharac.setAction(0);
-								}
-								this.dureeAnim = 0;
-								cCharac.setMoving(false);
-
-							} else {
-								this.dureeAnim++;
-								if (cCharac.getCharacter() instanceof Survivor) {
-									if (((Survivor) cCharac.getCharacter()).getWeapon().size() > 0) {
-										Arme arme = ((Survivor) cCharac.getCharacter()).getWeapon().get(0);
-										if (arme instanceof Baseball_Bat)
-											cCharac.setAction(3);
-										else
-											cCharac.setAction(5);
-									} else
-										cCharac.setAction(6);
-								}
-							}
-							break;
-
-						case DROP:
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								this.dureeAnim = 0;
-								cCharac.setAction(0);
-								cCharac.setMoving(false);
-
-							} else {
-								this.dureeAnim++;
-								cCharac.setAction(7);
-							}
-
-							break;
-
-						case PICK:
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								this.dureeAnim = 0;
-								cCharac.setAction(0);
-								cCharac.setMoving(false);
-
-							} else {
-								this.dureeAnim++;
-								cCharac.setAction(7);
-							}
-
-							break;
-
-						case PLANT:
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								this.dureeAnim = 0;
-								cCharac.setAction(0);
-								cCharac.setMoving(false);
-							} else {
-								this.dureeAnim++;
-								cCharac.setAction(7);
-							}
-
-							break;
-
-						case STEAL:
-							cCharac.setY(cCharac.getCharacter().getCell().getPosition().y);
-							cCharac.setX(cCharac.getCharacter().getCell().getPosition().x);
-							if (cCharac.getTempsAnim() <= this.dureeAnim) {
-								this.dureeAnim = 0;
-								cCharac.setAction(0);
-								cCharac.setMoving(false);
-							} else {
-								this.dureeAnim++;
-								cCharac.setAction(7);
-							}
-
-							break;}}
-/*						
-//=======
-			cCharac.setMoving(false);
-		}}
-		else this.dureeAnim++;}}}
-//>>>>>>> f48afb1295c56af2cadd1d2b0abbc55aaee0e10f
-*/
-				
 				else cCharac.setAction(0);
 			}
 			cCharac.setMoving(false);
 		}
-		else {this.dureeAnim++;}}
+		else {this.dureeAnim++;}
 
 	}
-//>>>>>>> 4d036f2918fbd24a535d12da72909d832c65770c
 	public void afficheAction(DisplayCharacter cCharac, int delta){
 		incrementedureeAnim(cCharac);
 		if (dureeAnim!=0){
