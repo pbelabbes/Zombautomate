@@ -730,6 +730,7 @@ public class WindowGame extends BasicGameState {
 		cCharac = null;
 		cCharac = recupDisplayCharacter();
 		if(tour != ordo.getTurn()){this.addZombie();}
+		//on met à jour la direction ou on fait l'action
 		if(cCharac != null){
 			cCharac.setMoving(true);
 			switch (ordo.getDirection()){
